@@ -1,17 +1,19 @@
-import matplotlib as plt
 import unittest
-from PIL import Image
 from service.ImageLoader import ImageLoader
-from StringIO import StringIO
-from matplotlib import pyplot as plt
-import cv2
+import os.path
+
 
 class TestImageLoader(unittest.TestCase):
 
-    def test(self):
+    def testDownloadImage(self):
         imageLoader = ImageLoader()
-        img = Image.open(StringIO(imageLoader.loadImage()))
-        plt.imshow(img)
-        plt.show()
-        self.assertTrue(True)
+        latitude= '47.2246376'
+        longitude = '8.8178977'
+        filename = latitude+'_'+longitude + '.jpg'
+        path = os.getcwd() + "/orthofotos/" + filename
+
+        img = imageLoader.download(latitude,longitude)
+        imageLoader.save(img, path)
+
+        self.assertTrue(os.path.exists(os.getcwd() +"/orthofotos/" + filename))
 
