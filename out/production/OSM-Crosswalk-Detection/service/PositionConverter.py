@@ -32,3 +32,6 @@ class PositionConverter:
 
     def getDistantBetweenPoinsInMeters(self, pointA, pointB):
         return vincenty(pointA, pointB).meters
+
+    def getImageSizeInMeter(self):
+        return self.IMAGE_SIZE * self.PIXEL_TO_METER_SCALE

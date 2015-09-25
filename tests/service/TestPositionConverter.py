@@ -27,10 +27,10 @@ class TestPositionConverter(unittest.TestCase):
         distance = positionConverter.PIXEL_TO_METER_SCALE * width
         difference = positionConverter.getDistantBetweenPoinsInMeters(startPoint, endPoint)
 
-        print "distance: " + str(distance)
-        print "difference: " + str(difference)
-        print width
-        print height
         self.assertTrue(distance+5 > difference and difference > distance-5)
+
+    def testImageSizeToMeter(self):
+        positionConverter = PositionConverter()
+        self.assertTrue(positionConverter.getImageSizeInMeter() == 105)
 
 
