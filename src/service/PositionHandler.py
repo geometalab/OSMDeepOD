@@ -22,7 +22,7 @@ class PositionHandler:
 
 
 
-    #TODO Better Calculation
+    #TODO Exacter Calculation
     def addDistanceToPoint(self,startPoint, distanceXinMeter, distanceYinMeter):
         oldLatitude = startPoint.latitude
         startPoint.latitude += (distanceYinMeter / self.MIDLE_EARTH_RADIUS_IN_METER) * (180 / math.pi);
@@ -34,3 +34,6 @@ class PositionHandler:
 
     def getImageSizeInMeter(self):
         return self.IMAGE_SIZE * self.PIXEL_TO_METER_SCALE
+
+    def arePointsNear(self,pointA, pointB, distanceInMeter):
+        return self.getDistantBetweenPoinsInMeters(pointA, pointB) <= distanceInMeter
