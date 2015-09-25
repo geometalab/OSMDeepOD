@@ -15,5 +15,5 @@ class TestImageLoader(unittest.TestCase):
         img = imageLoader.download(latitude,longitude)
         imageLoader.save(img, path)
 
-        self.assertTrue(os.path.exists(os.getcwd() +"/orthofotos/" + filename))
+        self.assertTrue(os.path.exists(path))
 
