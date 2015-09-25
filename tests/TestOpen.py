@@ -32,14 +32,14 @@ class TestOpen(unittest.TestCase):
         # cv2.drawMatchesKnn expects list of lists as matches.
         img3 = cv2.drawMatchesKnn(img1,kp1,img2,kp2,good,None,flags=2)
 
-        plt.imshow(img3);
-        plt.show();
+        plt.imshow(img3)
+        plt.show()
 
         # cv2.drawMatchesKnn expects list of lists as matches.
         img3 = cv2.drawMatchesKnn(img1,kp1,img2,kp2,good,None,flags=2)
 
-        plt.imshow(img3);
-        plt.show();
+        plt.imshow(img3)
+        plt.show()
 
 
         self.assertTrue(True)

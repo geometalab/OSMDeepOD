@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/PositionConverter.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/service/PositionConverter.py" afterPath="$PROJECT_DIR$/src/service/PositionHandler.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/ImageLoader.py" afterPath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/ImageLoader.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/ImageLoader.py" afterPath="$PROJECT_DIR$/src/service/ImageLoader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/PositionConverter.py" afterPath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/PositionConverter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/PositionConverter.py" afterPath="$PROJECT_DIR$/src/service/PositionConverter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TestImageLoader.py" afterPath="$PROJECT_DIR$/tests/service/TestImageLoader.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TestOpen.py" afterPath="$PROJECT_DIR$/tests/TestOpen.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TestPositionConverter.py" afterPath="$PROJECT_DIR$/tests/service/TestPositionConverter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -26,7 +27,7 @@
     <SUITE FILE_PATH="coverage/CrosswalkDetection$ImageLoader.coverage" NAME="ImageLoader Coverage Results" MODIFIED="1443018785953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/service" />
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestPositionConverter.coverage" NAME="Unittests in TestPositionConverter Coverage Results" MODIFIED="1443167618433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestOpen.coverage" NAME="Unittests in TestOpen Coverage Results" MODIFIED="1443017234059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestImageLoader.coverage" NAME="Unittests in TestImageLoader Coverage Results" MODIFIED="1443169481878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
+    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestImageLoader.coverage" NAME="Unittests in TestImageLoader Coverage Results" MODIFIED="1443186873191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -37,23 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TestSIFT.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/TestSIFT.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ImageLoader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/ImageLoader.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -64,45 +53,11 @@
       <file leaf-file-name="TestImageLoader.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/service/TestImageLoader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.80810237">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7121535">
+              <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PositionConverter.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/service/PositionConverter.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestPositionConverter.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/service/TestPositionConverter.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="70" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="case.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/lib/python2.7/unittest/case.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="553" column="0" selection-start-line="553" selection-start-column="0" selection-end-line="553" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -127,11 +82,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/TestOpen.py" />
         <option value="$PROJECT_DIR$/src/service/Coordinate.py" />
-        <option value="$PROJECT_DIR$/src/service/PositionConverter.py" />
         <option value="$PROJECT_DIR$/tests/service/TestPositionConverter.py" />
         <option value="$PROJECT_DIR$/src/service/ImageLoader.py" />
+        <option value="$PROJECT_DIR$/tests/TestOpen.py" />
+        <option value="$PROJECT_DIR$/src/service/PositionConverter.py" />
+        <option value="$PROJECT_DIR$/src/service/PositionHandler.py" />
         <option value="$PROJECT_DIR$/tests/service/TestImageLoader.py" />
       </list>
     </option>
@@ -286,7 +242,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/tests/TestSIFT.py&#10;TestIm&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/tests/service/TestImageLoader.py&#10;TestIm&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -846,12 +802,12 @@
       <created>1443008262445</created>
       <option name="number" value="Default" />
       <updated>1443008262445</updated>
-      <workItem from="1443008266224" duration="28530000" />
+      <workItem from="1443008266224" duration="30405000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28530000" />
+    <option name="totallyTimeSpent" value="30405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="874" extended-state="6" />
@@ -865,7 +821,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24967907" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -913,35 +869,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestOpen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15991472">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/service/orthofotos/47.2246376_8.8178977.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file:///usr/lib/python2.7/unittest/case.py">
+    <entry file="file://$PROJECT_DIR$/src/service/ImageLoader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="553" column="0" selection-start-line="553" selection-start-column="0" selection-end-line="553" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/PositionConverter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -949,37 +887,51 @@
     <entry file="file://$PROJECT_DIR$/tests/service/TestPositionConverter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="70" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/ImageLoader.py">
+    <entry file="file://$PROJECT_DIR$/src/service/PositionHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.12793177">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TestOpen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.80810237">
+          <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/TestSIFT.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.031982943">
+          <caret line="1" column="36" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python2.7/unittest/case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0341152">
+          <caret line="553" column="0" selection-start-line="553" selection-start-column="0" selection-end-line="553" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/service/TestImageLoader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80810237">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.7121535">
+          <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

@@ -1,9 +1,8 @@
 from geopy.point import Point
 from geopy.distance import vincenty
-from geopy.distance import great_circle
 import math
 
-class PositionConverter:
+class PositionHandler:
 
     def __init__(self):
         # Meters/Pixel = 0.30 --> Zoomlevel 19

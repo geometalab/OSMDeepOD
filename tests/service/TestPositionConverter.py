@@ -1,12 +1,12 @@
 import unittest
-from service.PositionConverter import PositionConverter
+from service.PositionHandler import PositionHandler
 from geopy import Point
 import cv2
 
 class TestPositionConverter(unittest.TestCase):
 
     def testAddDistance(self):
-        positionConverter = PositionConverter()
+        positionConverter = PositionHandler()
         startPoint = Point(47.2, 8.81, 0)
 
         newPoint = Point(startPoint.latitude, startPoint.longitude)
@@ -16,7 +16,7 @@ class TestPositionConverter(unittest.TestCase):
         self.assertTrue(distance > 4995 and distance < 5005)
 
     def testImageWidth(self):
-        positionConverter = PositionConverter()
+        positionConverter = PositionHandler()
         orthophotoPath = './orthofotos/47.2246376_8.8178977.jpg'
         orthophoto = cv2.imread(orthophotoPath,0)
         height, width = orthophoto.shape[:2]
@@ -30,7 +30,7 @@ class TestPositionConverter(unittest.TestCase):
         self.assertTrue(distance+5 > difference and difference > distance-5)
 
     def testImageSizeToMeter(self):
-        positionConverter = PositionConverter()
+        positionConverter = PositionHandler()
         self.assertTrue(positionConverter.getImageSizeInMeter() == 105)
 
 
