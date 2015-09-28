@@ -12,8 +12,9 @@ class TestCrosswalkLoader(unittest.TestCase):
 
     def testGetCrosswalksByPositions(self):
         crosswalkLoader = CrosswalkLoader()
-        downLeftPoint = Point('47.22491209728128','8.815191135900864')
-        upRightPoint = Point('47.22819078179419','8.823774204748178')
+
+        downLeftPoint = Point('47.226043', '8.818360')
+        upRightPoint = Point('47.226926', '8.820032')
 
         points = crosswalkLoader.getCrosswalksByPositions(downLeftPoint, upRightPoint)
 

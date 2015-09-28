@@ -9,8 +9,8 @@ class ImageLoader:
 
 
     def __init__(self):
-        self.LINK_PREFIX = 'http://dev.virtualearth.net/REST/v1/Imagery/Map/Aerial/'
         #47.2246376,8.8178977/19/?key=Asc0mfX_vbDVHkleWyc85z1mRLrSfjqHeGJamZsRF-mgzR4_GAlU31hkwMOGN4Mq'
+        self.LINK_PREFIX = 'http://dev.virtualearth.net/REST/v1/Imagery/Map/Aerial/'
         self.LINK_POSTFIX ='/19/?key=Asc0mfX_vbDVHkleWyc85z1mRLrSfjqHeGJamZsRF-mgzR4_GAlU31hkwMOGN4Mq'
 
 
@@ -39,20 +39,15 @@ class ImageLoader:
         positionConverter = PositionHandler()
         distance = positionConverter.getImageSizeInMeter()
 
-        x = 0
-        y = 0
+        stepInX = 0
+        stepInY = 0
         while upRightPoint.latitude >= currentPoint.latitude:
             while upRightPoint.longitude >= currentPoint.longitude:
+                currentPoint = positionConverter.addDistanceToPoint(downLeftPoint, stepInX * distance, stepInY * distance)
                 images.append(self.download(currentPoint))
-                currentPoint = positionConverter.addDistanceToPoint(downLeftPoint,x * distance,y * distance)
-                y += 1
-            x += 1
-            y = 0
+                stepInX =  stepInX + 1
+            stepInY = stepInY + 1
+            stepInX = 0
+            currentPoint.longitude = downLeftPoint.longitude
 
         return images
-
-    def save(self, image, path):
-        image.save(path)
-
-    def remove(self, path):
-        os.remove(path)
