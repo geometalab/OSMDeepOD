@@ -24,10 +24,11 @@ class PositionHandler:
 
     #TODO Exacter Calculation
     def addDistanceToPoint(self,startPoint, distanceXinMeter, distanceYinMeter):
+        currentPoint = Point(startPoint.latitude, startPoint.longitude)
         oldLatitude = startPoint.latitude
-        startPoint.latitude += (distanceYinMeter / self.MIDLE_EARTH_RADIUS_IN_METER) * (180 / math.pi);
-        startPoint.longitude += (distanceXinMeter / self.MIDLE_EARTH_RADIUS_IN_METER) * (180 / math.pi) / math.cos(oldLatitude * math.pi/180);
-        return startPoint
+        currentPoint.latitude += (distanceYinMeter / self.MIDLE_EARTH_RADIUS_IN_METER) * (180 / math.pi);
+        currentPoint.longitude += (distanceXinMeter / self.MIDLE_EARTH_RADIUS_IN_METER) * (180 / math.pi) / math.cos(oldLatitude * math.pi/180);
+        return currentPoint
 
     def getDistantBetweenPoinsInMeters(self, pointA, pointB):
         return vincenty(pointA, pointB).meters

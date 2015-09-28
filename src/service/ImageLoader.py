@@ -25,13 +25,31 @@ class ImageLoader:
         images = []
         positionConverter = PositionHandler()
         distance = positionConverter.getImageSizeInMeter()
+        currentPoint = Point(startPoint.latitude, startPoint.longitude)
 
         for x in range(0, amoutInX):
             for y in range(0, amountInY):
-                images.append(self.download(startPoint))
-                startPoint = positionConverter.addDistanceToPoint(startPoint,distance,distance)
+                images.append(self.download(currentPoint))
+                currentPoint = positionConverter.addDistanceToPoint(startPoint,x * distance,y * distance)
         return images
 
+    def downloadImagesByPositions(self, downLeftPoint, upRightPoint):
+        images = []
+        currentPoint = Point(downLeftPoint.latitude, downLeftPoint.longitude)
+        positionConverter = PositionHandler()
+        distance = positionConverter.getImageSizeInMeter()
+
+        x = 0
+        y = 0
+        while upRightPoint.latitude >= currentPoint.latitude:
+            while upRightPoint.longitude >= currentPoint.longitude:
+                images.append(self.download(currentPoint))
+                currentPoint = positionConverter.addDistanceToPoint(downLeftPoint,x * distance,y * distance)
+                y += 1
+            x += 1
+            y = 0
+
+        return images
 
     def save(self, image, path):
         image.save(path)
