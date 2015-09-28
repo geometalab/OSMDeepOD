@@ -17,7 +17,7 @@ class TestImageLoader(unittest.TestCase):
 
         startPoint = Point(latitude,longitude)
         img = imageLoader.download(startPoint)
-        imageLoader.save(img, path)
+        self.save(img, path)
 
         self.assertTrue(os.path.exists(path))
 
@@ -41,9 +41,30 @@ class TestImageLoader(unittest.TestCase):
         startPoint = Point(latitude,longitude)
 
         img = imageLoader.download(startPoint)
-        imageLoader.save(img, path)
+        self.save(img, path)
         crosswalkPicture = cv2.imread(path)
-        plt.imshow(crosswalkPicture)
-        plt.show()
+        #plt.imshow(crosswalkPicture)
+        #plt.show()
 
+
+    def testDownloadImagesByPositions(self):
+        imageLoader = ImageLoader()
+
+        downLeftPoint = Point('47.226043', '8.818360')
+        upRightPoint = Point('47.226926', '8.820032')
+        images = imageLoader.downloadImagesByPositions(downLeftPoint, upRightPoint)
+
+        for img in images:
+            plt.imshow(img)
+            plt.show()
+
+        self.assertTrue(len(images) == 6)
+
+
+
+    def save(self, image, path):
+        image.save(path)
+
+    def remove(self, path):
+        os.remove(path)
 

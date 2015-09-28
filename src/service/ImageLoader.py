@@ -9,8 +9,8 @@ class ImageLoader:
 
 
     def __init__(self):
-        self.LINK_PREFIX = 'http://dev.virtualearth.net/REST/v1/Imagery/Map/Aerial/'
         #47.2246376,8.8178977/19/?key=Asc0mfX_vbDVHkleWyc85z1mRLrSfjqHeGJamZsRF-mgzR4_GAlU31hkwMOGN4Mq'
+        self.LINK_PREFIX = 'http://dev.virtualearth.net/REST/v1/Imagery/Map/Aerial/'
         self.LINK_POSTFIX ='/19/?key=Asc0mfX_vbDVHkleWyc85z1mRLrSfjqHeGJamZsRF-mgzR4_GAlU31hkwMOGN4Mq'
 
 
@@ -25,16 +25,29 @@ class ImageLoader:
         images = []
         positionConverter = PositionHandler()
         distance = positionConverter.getImageSizeInMeter()
+        currentPoint = Point(startPoint.latitude, startPoint.longitude)
 
         for x in range(0, amoutInX):
             for y in range(0, amountInY):
-                images.append(self.download(startPoint))
-                startPoint = positionConverter.addDistanceToPoint(startPoint,distance,distance)
+                images.append(self.download(currentPoint))
+                currentPoint = positionConverter.addDistanceToPoint(startPoint,x * distance,y * distance)
         return images
 
+    def downloadImagesByPositions(self, downLeftPoint, upRightPoint):
+        images = []
+        currentPoint = Point(downLeftPoint.latitude, downLeftPoint.longitude)
+        positionConverter = PositionHandler()
+        distance = positionConverter.getImageSizeInMeter()
 
-    def save(self, image, path):
-        image.save(path)
+        stepInX = 0
+        stepInY = 0
+        while upRightPoint.latitude >= currentPoint.latitude:
+            while upRightPoint.longitude >= currentPoint.longitude:
+                currentPoint = positionConverter.addDistanceToPoint(downLeftPoint, stepInX * distance, stepInY * distance)
+                images.append(self.download(currentPoint))
+                stepInX =  stepInX + 1
+            stepInY = stepInY + 1
+            stepInX = 0
+            currentPoint.longitude = downLeftPoint.longitude
 
-    def remove(self, path):
-        os.remove(path)
+        return images
