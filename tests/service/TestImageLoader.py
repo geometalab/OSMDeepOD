@@ -59,7 +59,7 @@ class TestImageLoader(unittest.TestCase):
 
         numRows = len(images)
         numCols = len(images[0])
-        self.assertTrue(numCols == 3 and numRows == 2)
+        self.assertTrue(numCols == 3 and numRows == 3)
 
 
 
