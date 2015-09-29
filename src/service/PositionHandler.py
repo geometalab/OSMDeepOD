@@ -38,6 +38,6 @@ class PositionHandler:
     def getImageSizeInMeter(self):
         #return self.IMAGE_SIZE * self.PIXEL_TO_METER_SCALE
         return 70
-    
+
     def arePointsNear(self,pointA, pointB, distanceInMeter):
         return self.getDistantBetweenPoinsInMeters(pointA, pointB) <= distanceInMeter
