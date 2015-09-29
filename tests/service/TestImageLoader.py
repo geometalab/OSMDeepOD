@@ -2,8 +2,8 @@ import unittest
 from service.ImageLoader import ImageLoader
 import os.path
 from geopy import Point
-from matplotlib import pyplot as plt
 import cv2
+from service.ImagePlotter import ImagePlotter
 
 class TestImageLoader(unittest.TestCase):
 
@@ -49,16 +49,17 @@ class TestImageLoader(unittest.TestCase):
 
     def testDownloadImagesByPositions(self):
         imageLoader = ImageLoader()
+        imagePlotter = ImagePlotter()
 
         downLeftPoint = Point('47.226043', '8.818360')
         upRightPoint = Point('47.226926', '8.820032')
         images = imageLoader.downloadImagesByPositions(downLeftPoint, upRightPoint)
 
-        for img in images:
-            plt.imshow(img)
-            plt.show()
+        imagePlotter.plotMatrix(images)
 
-        self.assertTrue(len(images) == 6)
+        numRows = len(images)
+        numCols = len(images[0])
+        self.assertTrue(numCols == 3 and numRows == 3)
 
 
 

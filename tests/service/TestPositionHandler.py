@@ -32,7 +32,7 @@ class TestPositionHandler(unittest.TestCase):
     def testImageSizeToMeter(self):
         positionHandler = PositionHandler()
 
-        self.assertTrue(positionHandler.getImageSizeInMeter() == 105)
+        self.assertTrue(positionHandler.getImageSizeInMeter() == 70)
 
 
     def testPositionAreNear(self):

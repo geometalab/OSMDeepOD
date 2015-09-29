@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/CrosswalkLoader.py" afterPath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/CrosswalkLoader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/CrosswalkLoader.py" afterPath="$PROJECT_DIR$/src/service/CrosswalkLoader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/ImageLoader.py" afterPath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/ImageLoader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/ImageLoader.py" afterPath="$PROJECT_DIR$/src/service/ImageLoader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TestCrosswalkLoader.py" afterPath="$PROJECT_DIR$/tests/service/TestCrosswalkLoader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TestImageLoader.py" afterPath="$PROJECT_DIR$/tests/service/TestImageLoader.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/PositionHandler.py" afterPath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/PositionHandler.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/PositionHandler.py" afterPath="$PROJECT_DIR$/src/service/PositionHandler.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TestPositionHandler.py" afterPath="$PROJECT_DIR$/tests/service/TestPositionHandler.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CrosswalkDetection.iws" />
@@ -24,11 +21,13 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/CrosswalkDetection$ImageLoader.coverage" NAME="ImageLoader Coverage Results" MODIFIED="1443018785953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/service" />
-    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestPositionHandler.coverage" NAME="Unittests in TestPositionHandler Coverage Results" MODIFIED="1443445297764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
+    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestSURF.coverage" NAME="Unittests in TestSURF Coverage Results" MODIFIED="1443526994526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestPositionHandler.coverage" NAME="Unittests in TestPositionHandler Coverage Results" MODIFIED="1443529786316" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestPositionConverter.coverage" NAME="Unittests in TestPositionHandler Coverage Results" MODIFIED="1443188635847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
-    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestOpen.coverage" NAME="Unittests in TestOpen Coverage Results" MODIFIED="1443017234059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestCrosswalkLoader.coverage" NAME="Unittests in TestCrosswalkLoader Coverage Results" MODIFIED="1443444547286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
-    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestImageLoader.coverage" NAME="Unittests in TestImageLoader Coverage Results" MODIFIED="1443447366449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
+    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestOpen.coverage" NAME="Unittests in TestOpen Coverage Results" MODIFIED="1443527010130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestCrosswalkLoader.coverage" NAME="Unittests in TestCrosswalkLoader Coverage Results" MODIFIED="1443529756302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
+    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestImageLoader.coverage" NAME="Unittests in TestImageLoader Coverage Results" MODIFIED="1443529761051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
+    <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestSIFT.coverage" NAME="Unittests in TestSIFT Coverage Results" MODIFIED="1443527115451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -43,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/src/service/ImageLoader.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="60" selection-start-line="50" selection-start-column="60" selection-end-line="50" selection-end-column="60" />
+              <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -51,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestImageLoader.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TestImageLoader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/service/TestImageLoader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4893617">
-              <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -75,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestPositionHandler.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestPositionHandler.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/service/TestPositionHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.52330506">
+              <caret line="34" column="67" selection-start-line="34" selection-start-column="67" selection-end-line="34" selection-end-column="67" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -102,8 +101,8 @@
       <file leaf-file-name="PositionHandler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/PositionHandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+            <state vertical-scroll-proportion="-11.655172">
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -135,12 +134,13 @@
         <option value="$PROJECT_DIR$/tests/service/TestPositionConverter.py" />
         <option value="$PROJECT_DIR$/tests/TestOpen.py" />
         <option value="$PROJECT_DIR$/src/service/PositionConverter.py" />
-        <option value="$PROJECT_DIR$/tests/service/TestPositionHandler.py" />
-        <option value="$PROJECT_DIR$/src/service/PositionHandler.py" />
         <option value="$PROJECT_DIR$/tests/service/TestCrosswalkLoader.py" />
         <option value="$PROJECT_DIR$/src/service/CrosswalkLoader.py" />
         <option value="$PROJECT_DIR$/src/service/ImageLoader.py" />
+        <option value="$PROJECT_DIR$/src/service/ImagePlotter.py" />
         <option value="$PROJECT_DIR$/tests/service/TestImageLoader.py" />
+        <option value="$PROJECT_DIR$/src/service/PositionHandler.py" />
+        <option value="$PROJECT_DIR$/tests/service/TestPositionHandler.py" />
       </list>
     </option>
   </component>
@@ -187,9 +187,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -260,6 +257,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -272,7 +272,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/ImageLoader.py&#10;Test&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/tests/service/TestCrosswalkLoader.py&#10;Cros&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/CrosswalkLoader.py&#10;Cro&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/CrosswalkLoader.py&#10;test&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/tests/service/TestPositionConverter.py&#10;TestIm&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="po&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/PositionHandler.py&#10;Po&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/PositionHandler.py&#10;sift&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/tests/TestSIFT.py&#10;Test&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/tests/service/TestCrosswalkLoader.py&#10;Cros&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/CrosswalkLoader.py&#10;Cro&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/CrosswalkLoader.py&#10;test&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/tests/service/TestPositionConverter.py&#10;TestIm&#9;null&#9;null" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Android/MetalSensor" />
   </component>
   <component name="RecentsManager">
@@ -281,48 +281,7 @@
       <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in TestImageLoader">
-    <configuration default="false" name="Unittests in TestOpen" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="OSM-Crosswalk-Detection" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/TestOpen.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="ImageLoader" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/service" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="OSM-Crosswalk-Detection" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/service/ImageLoader.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests in TestPositionHandler">
     <configuration default="false" name="Unittests in TestImageLoader" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -346,18 +305,41 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests in TestPositionHandler" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittests in TestSIFT" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/service" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="OSM-Crosswalk-Detection" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/service/TestPositionHandler.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/TestSIFT.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in TestOpen" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="OSM-Crosswalk-Detection" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/TestOpen.py" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
@@ -381,6 +363,29 @@
       <module name="OSM-Crosswalk-Detection" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/service/TestCrosswalkLoader.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in TestPositionHandler" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/service" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="OSM-Crosswalk-Detection" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/service/TestPositionHandler.py" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
@@ -838,18 +843,18 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestOpen" />
-      <item index="1" class="java.lang.String" itemvalue="Python.ImageLoader" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in TestImageLoader" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in TestPositionHandler" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in TestCrosswalkLoader" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestImageLoader" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TestSIFT" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in TestOpen" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in TestCrosswalkLoader" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in TestPositionHandler" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestImageLoader" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TestPositionHandler" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestPositionHandler" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TestImageLoader" />
         <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in TestCrosswalkLoader" />
-        <item index="3" class="java.lang.String" itemvalue="Python.ImageLoader" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in TestSIFT" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in TestOpen" />
       </list>
     </recent_temporary>
@@ -866,11 +871,12 @@
       <updated>1443008262445</updated>
       <workItem from="1443008266224" duration="32115000" />
       <workItem from="1443191763923" duration="19285000" />
+      <workItem from="1443522853093" duration="6665000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51400000" />
+    <option name="totallyTimeSpent" value="58065000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="874" extended-state="6" />
@@ -884,7 +890,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32793522" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32523617" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24967907" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -907,7 +913,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -916,6 +922,66 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/service/ImageLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="60" selection-start-line="50" selection-start-column="60" selection-end-line="50" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/service/TestImageLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/CrosswalkLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/service/TestPositionHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/service/TestCrosswalkLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/PositionHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/service/ImageLoader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -983,14 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestSIFT.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.031982943">
-          <caret line="1" column="36" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python2.7/unittest/case.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0341152">
@@ -1009,10 +1067,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/service/TestPositionHandler.py">
+    <entry file="file://$PROJECT_DIR$/tests/TestSIFT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6165254">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/ImagePlotter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4766949">
+          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/service/TestImageLoader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -1029,30 +1107,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/PositionHandler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/service/ImageLoader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="60" selection-start-line="50" selection-start-column="60" selection-end-line="50" selection-end-column="60" />
+          <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/service/TestImageLoader.py">
+    <entry file="file://$PROJECT_DIR$/src/service/PositionHandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4893617">
-          <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
+        <state vertical-scroll-proportion="-11.655172">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/service/TestPositionHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.52330506">
+          <caret line="34" column="67" selection-start-line="34" selection-start-column="67" selection-end-line="34" selection-end-column="67" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

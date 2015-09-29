@@ -30,11 +30,14 @@ class PositionHandler:
         currentPoint.longitude += (distanceXinMeter / self.MIDLE_EARTH_RADIUS_IN_METER) * (180 / math.pi) / math.cos(oldLatitude * math.pi/180);
         return currentPoint
 
+
     def getDistantBetweenPoinsInMeters(self, pointA, pointB):
         return vincenty(pointA, pointB).meters
 
+    #TODO Exact Value (with Calculation)
     def getImageSizeInMeter(self):
-        return self.IMAGE_SIZE * self.PIXEL_TO_METER_SCALE
+        #return self.IMAGE_SIZE * self.PIXEL_TO_METER_SCALE
+        return 70
 
     def arePointsNear(self,pointA, pointB, distanceInMeter):
         return self.getDistantBetweenPoinsInMeters(pointA, pointB) <= distanceInMeter
