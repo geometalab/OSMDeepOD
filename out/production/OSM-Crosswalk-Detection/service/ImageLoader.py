@@ -42,9 +42,10 @@ class ImageLoader:
         stepInX = 0
         stepInY = 0
         while upRightPoint.latitude >= currentPoint.latitude:
+            images.append([])
             while upRightPoint.longitude >= currentPoint.longitude:
                 currentPoint = positionConverter.addDistanceToPoint(downLeftPoint, stepInX * distance, stepInY * distance)
-                images.append(self.download(currentPoint))
+                images[stepInY].append(self.download(currentPoint))
                 stepInX =  stepInX + 1
             stepInY = stepInY + 1
             stepInX = 0
