@@ -53,6 +53,7 @@ class TestImageLoader(unittest.TestCase):
 
         downLeftPoint = Point('47.226043', '8.818360')
         upRightPoint = Point('47.226926', '8.820032')
+
         images = imageLoader.downloadImagesByPositions(downLeftPoint, upRightPoint)
 
         imagePlotter.plotMatrix(images)
