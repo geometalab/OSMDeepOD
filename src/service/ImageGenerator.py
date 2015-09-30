@@ -1,7 +1,7 @@
-from PIL import Image
-from geopy import Point
+import os
 from service.ImageLoader import ImageLoader
 from service.CrosswalkLoader import CrosswalkLoader
+from PIL import Image
 
 class ImageGenerator:
 
@@ -15,10 +15,15 @@ class ImageGenerator:
 
         for crosswalk in crosswalks:
             image = imageLoader.download(crosswalk)
-            image.crop((145, 205, 205, 145))
-            self.__save(image, str(crosswalk.latitude) + "_" + str(crosswalk.longitude)+".jpg")
+            image = image.crop((145, 145, 205, 205))
+            self.__save(image, (str(crosswalk.latitude) + "_" + str(crosswalk.longitude)+".jpg"))
 
 
+    def __save(self, image, filename):
+        filepath = self.destinationPath + filename
+        self.__removeIfExists(filepath)
+        image.save(filepath)
 
-    def __save(self, image, name):
-            image.save(self.destinationPath + name)
+    def __removeIfExists(self, filepath):
+        if(os.path.exists(filepath)):
+            os.remove(filepath)
