@@ -41,3 +41,6 @@ class PositionHandler:
 
     def arePointsNear(self,pointA, pointB, distanceInMeter):
         return self.getDistantBetweenPoinsInMeters(pointA, pointB) <= distanceInMeter
+
+    def pointIsBigger(self, pointA, pointB):
+        return (pointA.latitude > pointB.latitude or pointA.longitude > pointB.longitude)

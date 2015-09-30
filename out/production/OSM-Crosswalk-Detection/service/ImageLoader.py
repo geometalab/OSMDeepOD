@@ -34,17 +34,21 @@ class ImageLoader:
         return images
 
     def downloadImagesByPositions(self, downLeftPoint, upRightPoint):
+        positionHandler = PositionHandler()
+
+        if(positionHandler.pointIsBigger(downLeftPoint,upRightPoint)):
+            raise Exception('upRightPoint')
+
         images = []
         currentPoint = Point(downLeftPoint.latitude, downLeftPoint.longitude)
-        positionConverter = PositionHandler()
-        distance = positionConverter.getImageSizeInMeter()
+        distance = positionHandler.getImageSizeInMeter()
 
         stepInX = 0
         stepInY = 0
         while upRightPoint.latitude >= currentPoint.latitude:
             images.append([])
             while upRightPoint.longitude >= currentPoint.longitude:
-                currentPoint = positionConverter.addDistanceToPoint(downLeftPoint, stepInX * distance, stepInY * distance)
+                currentPoint = positionHandler.addDistanceToPoint(downLeftPoint, stepInX * distance, stepInY * distance)
                 images[stepInY].append(PosImage(self.download(currentPoint), currentPoint))
                 stepInX =  stepInX + 1
             stepInY = stepInY + 1
