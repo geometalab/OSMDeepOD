@@ -1,7 +1,7 @@
 import httplib2
 from StringIO import StringIO
 from PIL import Image
-import os
+from service.PosImage import PosImage
 from service.PositionHandler import PositionHandler
 from geopy import Point
 
@@ -45,7 +45,7 @@ class ImageLoader:
             images.append([])
             while upRightPoint.longitude >= currentPoint.longitude:
                 currentPoint = positionConverter.addDistanceToPoint(downLeftPoint, stepInX * distance, stepInY * distance)
-                images[stepInY].append(self.download(currentPoint))
+                images[stepInY].append(PosImage(self.download(currentPoint), currentPoint))
                 stepInX =  stepInX + 1
             stepInY = stepInY + 1
             stepInX = 0
