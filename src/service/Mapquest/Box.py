@@ -1,4 +1,4 @@
-__author__ = 'osboxes'
+from geopy import Point
 
 class Box:
     def __init__(self):
@@ -14,4 +14,10 @@ class Box:
         self.lon2 = str(lon2)
 
     def toString(self):
-       return str(self.lat1) +"," + str(self.lon1) + "," + str(self.lat2) + ","  + str(self.lon2)
+       return str(self.lon1) +"," + str(self.lat1) + "," + str(self.lon2) + ","  + str(self.lat2)
+
+    def getDownLeftPoint(self):
+        return Point(self.lat1,self.lon1)
+
+    def getUpRightPoint(self):
+        return Point(self.lat2,self.lon2)

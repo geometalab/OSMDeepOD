@@ -3,6 +3,7 @@ from matplotlib import pyplot as plt
 from scipy import ndimage
 import numpy as np
 
+
 class FourierTransform:
     def __init__(self, img):
         imgDimension = len(list(img.shape))
@@ -26,10 +27,12 @@ class FourierTransform:
         for y in range(0, height -1):
             arr = np.append(arr,[self.img[y,middle]])
         return arr
+
     def getFrequencies(self):
         column = self.getMiddleColumn()
         dft = np.fft.rfft(column)
         return dft
+
     def plotFrequencie(self):
         N = self.img.shape[0]
         yf = self.getFrequencies()
