@@ -14,7 +14,7 @@ class Box:
         self.lon2 = str(lon2)
 
     def toString(self):
-       return str(self.lon1) +"," + str(self.lat1) + "," + str(self.lon2) + ","  + str(self.lat2)
+       return str(self.lon1) + "," + str(self.lat1) + "," + str(self.lon2) + "," + str(self.lat2)
 
     def getDownLeftPoint(self):
         return Point(self.lat1,self.lon1)
