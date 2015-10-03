@@ -10,6 +10,6 @@ http://wiki.hsr.ch/StefanKeller/SA_BA_Gamified_Extraction_of_Crosswalks_from_Aer
 
 
 
-## Install OpenCV
+## Install
 To be ready to programm do the following steps: 
 Just run the script install_requirements.sh and be ready to go.
