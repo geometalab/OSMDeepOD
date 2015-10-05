@@ -1,8 +1,7 @@
 import unittest
 import os.path
-from geopy import Point
 from src.service.ImageGenerator import ImageGenerator
-from src.service.Mapquest import Box
+from src.service.Mapquest.Box import Box
 
 class TestImageGenerator(unittest.TestCase):
 
@@ -16,6 +15,8 @@ class TestImageGenerator(unittest.TestCase):
 
         self.assertTrue(os.listdir(path) != [])
 
+
+    '''
     def testZebraGeneratorZuerich(self):
         path = "/home/murthy/Projects/SA/haarTraining/positiveImages/"
 
@@ -27,7 +28,7 @@ class TestImageGenerator(unittest.TestCase):
         imageGenerator.generateCrosswalks(bbox)
 
         self.assertTrue(os.listdir(path) != [])
-
+    '''
 
     ##Tscherlach No Zebra 47.116819, 9.329320
     '''

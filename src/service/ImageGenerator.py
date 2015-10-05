@@ -1,6 +1,6 @@
 import os
-from service.ImageLoader import ImageLoader
-from service.CrosswalkLoader import CrosswalkLoader
+from src.service.ImageLoader import ImageLoader
+from src.service.CrosswalkLoader import CrosswalkLoader
 
 class ImageGenerator:
 

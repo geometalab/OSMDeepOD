@@ -1,5 +1,5 @@
 import unittest
-from service.PositionHandler import PositionHandler
+from src.service.PositionHandler import PositionHandler
 from geopy import Point
 import cv2
 
