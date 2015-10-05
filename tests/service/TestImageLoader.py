@@ -4,6 +4,7 @@ import os.path
 from geopy import Point
 import cv2
 from src.service.ImagePlotter import ImagePlotter
+from src.service.Mapquest.Box import Box
 
 class TestImageLoader(unittest.TestCase):
 
@@ -51,10 +52,8 @@ class TestImageLoader(unittest.TestCase):
         imageLoader = ImageLoader()
         imagePlotter = ImagePlotter()
 
-        downLeftPoint = Point('47.226043', '8.818360')
-        upRightPoint = Point('47.226926', '8.820032')
-
-        images = imageLoader.downloadImagesByPositions(downLeftPoint, upRightPoint)
+        bbox = Box('8.818360', '47.226043', '8.820032', '47.226926')
+        images = imageLoader.downloadImagesByPositions(bbox)
 
         imagePlotter.plotMatrix(images)
 
