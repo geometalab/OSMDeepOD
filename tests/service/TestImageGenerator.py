@@ -14,6 +14,36 @@ class TestImageGenerator(unittest.TestCase):
         path = os.getcwd() + "/generatorImages/"
         imageGenerator = ImageGenerator(path)
 
-        imageGenerator.generate(downLeftPoint,upRightPoint)
+        imageGenerator.generateCrosswalks(downLeftPoint,upRightPoint)
 
         self.assertTrue(os.listdir(path) != [])
+
+    def testZebraGeneratorZuerich(self):
+        path = "/home/murthy/Projects/SA/haarTraining/positiveImages/"
+
+        #Zebra Zuerich
+        downLeftPoint = Point('47.366062', '8.516459')
+        upRightPoint = Point('47.386928', '8.546671')
+
+        imageGenerator = ImageGenerator(path)
+
+        imageGenerator.generateCrosswalks(downLeftPoint, upRightPoint)
+
+        self.assertTrue(os.listdir(path) != [])
+
+
+    ##Tscherlach No Zebra 47.116819, 9.329320
+    '''
+    def testZebraGeneratorZuerich(self):
+        path = "/home/murthy/Projects/SA/haarTraining/negativeImages/"
+
+        #Zebra Zuerich
+        downLeftPoint = Point('47.116819', '9.329320')
+        upRightPoint = Point('47.119009', '9.340264')
+
+        imageGenerator = ImageGenerator(path)
+
+        imageGenerator.generate(downLeftPoint, upRightPoint)
+
+        self.assertTrue(os.listdir(path) != [])
+    '''

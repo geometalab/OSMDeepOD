@@ -5,6 +5,7 @@ from service.PosImage import PosImage
 from service.PositionHandler import PositionHandler
 from geopy import Point
 
+
 class ImageLoader:
 
 
@@ -12,6 +13,12 @@ class ImageLoader:
         #47.2246376,8.8178977/19/?key=Asc0mfX_vbDVHkleWyc85z1mRLrSfjqHeGJamZsRF-mgzR4_GAlU31hkwMOGN4Mq'
         self.LINK_PREFIX = 'http://dev.virtualearth.net/REST/v1/Imagery/Map/Aerial/'
         self.LINK_POSTFIX ='/19/?key=Asc0mfX_vbDVHkleWyc85z1mRLrSfjqHeGJamZsRF-mgzR4_GAlU31hkwMOGN4Mq'
+
+    def bingApiRquest(self):
+        url = 'http://dev.virtualearth.net/REST/v1/Imagery/Map/Aerial/47.222769,8.816514/19/?key=Asc0mfX_vbDVHkleWyc85z1mRLrSfjqHeGJamZsRF-mgzR4_GAlU31hkwMOGN4Mq'
+        resp, content = httplib2.Http().request(url)
+        image = Image.open(StringIO(content))
+        return image
 
 
     def download(self,point):
