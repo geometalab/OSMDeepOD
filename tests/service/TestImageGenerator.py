@@ -1,18 +1,18 @@
 import unittest
 import os.path
 from geopy import Point
-from service.ImageGenerator import ImageGenerator
+from src.service.ImageGenerator import ImageGenerator
+from src.service.Mapquest import Box
 
 class TestImageGenerator(unittest.TestCase):
 
 
     def testZebraGenerate(self):
-        downLeftPoint = Point('47.226043', '8.818360')
-        upRightPoint = Point('47.226926', '8.820032')
+        bbox = Box('8.818360', '47.226043', '8.820032', '47.226926')
         path = os.getcwd() + "/generatorImages/"
         imageGenerator = ImageGenerator(path)
 
-        imageGenerator.generateCrosswalks(downLeftPoint,upRightPoint)
+        imageGenerator.generateCrosswalks(bbox)
 
         self.assertTrue(os.listdir(path) != [])
 
@@ -20,12 +20,11 @@ class TestImageGenerator(unittest.TestCase):
         path = "/home/murthy/Projects/SA/haarTraining/positiveImages/"
 
         #Zebra Zuerich
-        downLeftPoint = Point('47.366062', '8.516459')
-        upRightPoint = Point('47.386928', '8.546671')
+        bbox = Box('8.516459', '47.366062', '8.546671', '47.386928')
 
         imageGenerator = ImageGenerator(path)
 
-        imageGenerator.generateCrosswalks(downLeftPoint, upRightPoint)
+        imageGenerator.generateCrosswalks(bbox)
 
         self.assertTrue(os.listdir(path) != [])
 
