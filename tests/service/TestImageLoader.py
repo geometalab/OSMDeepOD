@@ -1,9 +1,9 @@
 import unittest
-from service.ImageLoader import ImageLoader
+from src.service.ImageLoader import ImageLoader
 import os.path
 from geopy import Point
 import cv2
-from service.ImagePlotter import ImagePlotter
+from src.service.ImagePlotter import ImagePlotter
 
 class TestImageLoader(unittest.TestCase):
 

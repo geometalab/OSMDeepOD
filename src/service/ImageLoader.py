@@ -1,8 +1,8 @@
 import httplib2
 from StringIO import StringIO
 from PIL import Image
-from service.PosImage import PosImage
-from service.PositionHandler import PositionHandler
+from src.service.PosImage import PosImage
+from src.service.PositionHandler import PositionHandler
 from geopy import Point
 
 
