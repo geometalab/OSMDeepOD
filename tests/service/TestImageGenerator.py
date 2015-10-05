@@ -1,9 +1,7 @@
 import unittest
-from service.ImageLoader import ImageLoader
 import os.path
 from geopy import Point
 from service.ImageGenerator import ImageGenerator
-from service.ImagePlotter import ImagePlotter
 
 class TestImageGenerator(unittest.TestCase):
 
