@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/ImageLoader.py" afterPath="$PROJECT_DIR$/src/service/ImageLoader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TestImageLoader.py" afterPath="$PROJECT_DIR$/tests/service/TestImageLoader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/CrosswalkLoader.py" afterPath="$PROJECT_DIR$/src/service/CrosswalkLoader.py" />
     </list>
     <ignored path="CrosswalkDetection.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,10 +50,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestImageLoader.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TestImageLoader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/service/TestImageLoader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29761904">
+            <state vertical-scroll-proportion="-4.3103447">
               <caret line="55" column="59" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -116,21 +114,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StreetWalker.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/detection/fourier/StreetWalker.py">
+      <file leaf-file-name="CrosswalkLoader.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/service/CrosswalkLoader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8685969">
+              <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoxFactory.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/service/Mapquest/BoxFactory.py">
+      <file leaf-file-name="StreetWalker.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/detection/fourier/StreetWalker.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -181,7 +179,6 @@
         <option value="$PROJECT_DIR$/src/detection/__init__.py" />
         <option value="$PROJECT_DIR$/src/service/ImagePlotter.py" />
         <option value="$PROJECT_DIR$/tests/detection/Fourier/FourierTransformationTest.py" />
-        <option value="$PROJECT_DIR$/src/service/CrosswalkLoader.py" />
         <option value="$PROJECT_DIR$/src/service/StreetLoader.py" />
         <option value="$PROJECT_DIR$/src/service/StreetLoader/Node.py" />
         <option value="$PROJECT_DIR$/src/service/StreetLoader/Street.py" />
@@ -199,6 +196,7 @@
         <option value="$PROJECT_DIR$/src/__init__.py" />
         <option value="$PROJECT_DIR$/src/service/ImageLoader.py" />
         <option value="$PROJECT_DIR$/tests/service/TestImageLoader.py" />
+        <option value="$PROJECT_DIR$/src/service/CrosswalkLoader.py" />
       </list>
     </option>
   </component>
@@ -303,6 +301,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OSM-Crosswalk-Detection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OSM-Crosswalk-Detection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value=".idea" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -322,7 +338,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/tests/service/TestImageLoader.py&#10;b&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py&#10;Box&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py" />
+    <property name="SearchEverywhereHistoryKey" value="b&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py&#10;Box&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -968,12 +984,12 @@
       <workItem from="1443522853093" duration="44675000" />
       <workItem from="1443776889080" duration="5088000" />
       <workItem from="1444026356552" duration="1210000" />
-      <workItem from="1444056229787" duration="971000" />
+      <workItem from="1444056229787" duration="1147000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103344000" />
+    <option name="totallyTimeSpent" value="103520000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="874" extended-state="6" />
@@ -1067,6 +1083,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1118,6 +1135,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1146,6 +1164,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1286,6 +1305,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32929292">
           <caret line="1300" column="0" selection-start-line="1300" selection-start-column="0" selection-end-line="1300" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1338,13 +1358,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/CrosswalkLoader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40618956">
-          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -1416,6 +1429,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/service/TestImageLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.3103447">
+          <caret line="55" column="59" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/service/Mapquest/Box.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1424,13 +1447,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/service/TestImageLoader.py">
+    <entry file="file://$PROJECT_DIR$/src/service/CrosswalkLoader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29761904">
-          <caret line="55" column="59" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.8685969">
+          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
