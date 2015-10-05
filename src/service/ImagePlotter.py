@@ -9,13 +9,14 @@ class ImagePlotter:
     def plotMatrix(self, images):
         numRows = len(images)
         numCols = len(images[0])
-        width, height = images[0][0].size
+        width, height = images[0][0].getImage().size
 
         result = Image.new("RGBA", (numCols * width, numRows * height))
 
         for y in range(0, numRows):
             for x in range(0, numCols):
-                result.paste(images[y][x],(x * width, (numRows -1 -y) * height))
+                result.paste(images[y][x].getImage(),(x * width, (numRows -1 -y) * height))
+                print str(images[y][x].getPosition().latitude) + " " + str(images[y][x].getPosition().longitude)
 
         self.plot(result)
 

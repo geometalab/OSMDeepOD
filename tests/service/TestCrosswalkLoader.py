@@ -18,5 +18,8 @@ class TestCrosswalkLoader(unittest.TestCase):
 
         points = crosswalkLoader.getCrosswalksByPositions(downLeftPoint, upRightPoint)
 
+        for point in points:
+            print str(point.latitude) + " " + str(point.longitude)
+
         self.assertTrue(len(points) > 0)
 

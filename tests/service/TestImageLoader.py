@@ -53,6 +53,7 @@ class TestImageLoader(unittest.TestCase):
 
         downLeftPoint = Point('47.226043', '8.818360')
         upRightPoint = Point('47.226926', '8.820032')
+
         images = imageLoader.downloadImagesByPositions(downLeftPoint, upRightPoint)
 
         imagePlotter.plotMatrix(images)
@@ -60,6 +61,16 @@ class TestImageLoader(unittest.TestCase):
         numRows = len(images)
         numCols = len(images[0])
         self.assertTrue(numCols == 3 and numRows == 3)
+
+    def testDownloadImagesByPositionsException(self):
+        imageLoader = ImageLoader()
+        imagePlotter = ImagePlotter()
+
+        upRightPoint = Point('47.226043', '8.818360')
+        downLeftPoint = Point('47.226926', '8.820032')
+
+        with self.assertRaises(Exception):
+            imageLoader.downloadImagesByPositions(downLeftPoint, upRightPoint)
 
 
 
