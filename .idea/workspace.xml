@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/__init__.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/CrosswalkLoader.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/ImageGenerator.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/ImageLoader.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/ImagePlotter.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/PosImage.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/PositionHandler.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OSM-Crosswalk-Detection/service/__init__.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/ImageLoader.py" afterPath="$PROJECT_DIR$/src/service/ImageLoader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OSM-Crosswalk-Detection.iml" afterPath="$PROJECT_DIR$/OSM-Crosswalk-Detection.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TestImageLoader.py" afterPath="$PROJECT_DIR$/tests/service/TestImageLoader.py" />
-    </list>
+    <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="" />
     <ignored path="CrosswalkDetection.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -98,14 +78,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageLoader.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ImageLoader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/ImageLoader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26726058">
-              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Box.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/service/Mapquest/Box.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.46770602">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -326,6 +316,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
+    <property name="SearchEverywhereHistoryKey" value="Box&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -971,12 +962,12 @@
       <workItem from="1443522853093" duration="44675000" />
       <workItem from="1443776889080" duration="5088000" />
       <workItem from="1444026356552" duration="1210000" />
-      <workItem from="1444056229787" duration="206000" />
+      <workItem from="1444056229787" duration="515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102579000" />
+    <option name="totallyTimeSpent" value="102888000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="874" extended-state="6" />
@@ -1389,13 +1380,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/Mapquest/Box.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40618956">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1422,11 +1406,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/service/ImageLoader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26726058">
-          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/Mapquest/Box.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46770602">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
