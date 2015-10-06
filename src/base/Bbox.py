@@ -14,10 +14,18 @@ class Bbox:
         self.right = str(right)
 
     def toString(self):
-       return str(self.left) + "," + str(self.bottom) + "," + str(self.right) + "," + str(self.top)
+       return str(self.bottom) + "," + str(self.right) + "," + str(self.top)  + "," + str(self.left)
+
+    def getBingFormat(self):
+        return str(self.bottom) + "," + str(self.left) + "," + str(self.top)  + "," + str(self.right)
+
+    def printing(self):
+        return "Bottom: " + str(self.bottom) + ", Right: " + str(self.right) + ", Top: " + str(self.top)  + ", Left: " + str(self.left)
 
     def getDownLeftPoint(self):
         return Point(self.bottom,self.left)
 
     def getUpRightPoint(self):
         return Point(self.top,self.right)
+
+

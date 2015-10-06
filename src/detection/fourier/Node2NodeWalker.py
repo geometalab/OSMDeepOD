@@ -1,8 +1,9 @@
 from src.service.ImagePlotter import ImagePlotter
 
-class StreetWalker:
-    def __init__(self, street, images):
-        self.street = street
+class Node2NodeWalker:
+    def __init__(self, node1, node2, images):
+        self.node1 = node1
+        self.node2 = node2
         self.images = images
 
     def walk(self):
