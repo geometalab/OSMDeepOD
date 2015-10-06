@@ -1,6 +1,6 @@
 from geopy import Point
 
-class Box:
+class Bbox:
     def __init__(self):
         self.bottom = "0"
         self.left = "0"

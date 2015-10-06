@@ -1,7 +1,7 @@
 import unittest
 
 from src.service.CrosswalkLoader import CrosswalkLoader
-from src.base import Box
+from src.base import Bbox
 
 
 class TestCrosswalkLoader(unittest.TestCase):
@@ -15,7 +15,7 @@ class TestCrosswalkLoader(unittest.TestCase):
     def testGetCrosswalksByPositions(self):
         crosswalkLoader = CrosswalkLoader()
 
-        bbox = Box('8.818360', '47.226043', '8.820032', '47.226926')
+        bbox = Bbox('8.818360', '47.226043', '8.820032', '47.226926')
 
         points = crosswalkLoader.getCrosswalksByPositions(bbox)
 

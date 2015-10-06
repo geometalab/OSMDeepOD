@@ -2,14 +2,14 @@ import unittest
 import os.path
 
 from src.service.ImageGenerator import ImageGenerator
-from src.base import Box
+from src.base import Bbox
 
 
 class TestImageGenerator(unittest.TestCase):
 
 
     def testZebraGenerate(self):
-        bbox = Box('8.818360', '47.226043', '8.820032', '47.226926')
+        bbox = Bbox('8.818360', '47.226043', '8.820032', '47.226926')
         path = os.getcwd() + "/generatorImages/"
         imageGenerator = ImageGenerator(path)
 

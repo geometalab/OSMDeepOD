@@ -1,5 +1,5 @@
 import unittest
-from service.StreetLoader.StreetLoader import StreetLoader
+from src.service.StreetLoader.StreetLoader import StreetLoader
 from tests.service.Mapquest.BoxFactory import BoxFactory
 
 

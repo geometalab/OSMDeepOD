@@ -1,5 +1,5 @@
 from src.base import Street, Node
-from service.Mapquest.MapquestApi import MapquestApi
+from src.service.Mapquest.MapquestApi import MapquestApi
 
 
 class StreetLoader:

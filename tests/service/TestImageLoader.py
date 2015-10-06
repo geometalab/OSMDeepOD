@@ -6,7 +6,7 @@ import cv2
 
 from src.service.ImageLoader import ImageLoader
 from src.service.ImagePlotter import ImagePlotter
-from src.base import Box
+from src.base import Bbox
 
 
 class TestImageLoader(unittest.TestCase):
@@ -55,7 +55,7 @@ class TestImageLoader(unittest.TestCase):
         imageLoader = ImageLoader()
         imagePlotter = ImagePlotter()
 
-        bbox = Box('8.818360', '47.226043', '8.820032', '47.226926')
+        bbox = Bbox('8.818360', '47.226043', '8.820032', '47.226926')
         images = imageLoader.downloadImagesByPositions(bbox)
 
         imagePlotter.plotMatrix(images)

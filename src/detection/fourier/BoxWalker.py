@@ -1,4 +1,4 @@
-from service.ImagePlotter import ImagePlotter
+from src.service.ImagePlotter import ImagePlotter
 
 
 class BoxWalker:
