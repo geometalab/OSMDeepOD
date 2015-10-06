@@ -1,25 +1,25 @@
 import os
-from service.ImageLoader import ImageLoader
-from service.CrosswalkLoader import CrosswalkLoader
+from src.service.ImageLoader import ImageLoader
+from src.service.CrosswalkLoader import CrosswalkLoader
 
 class ImageGenerator:
 
     def __init__(self, destinationPath):
         self.destinationPath = destinationPath
 
-    def generateCrosswalks(self, downLeftPoint, upRightPoint):
+    def generateCrosswalks(self, bbox):
         crosswalLoader = CrosswalkLoader()
         imageLoader = ImageLoader()
-        crosswalks = crosswalLoader.getCrosswalksByPositions(downLeftPoint, upRightPoint)
+        crosswalks = crosswalLoader.getCrosswalksByPositions(bbox)
 
         for crosswalk in crosswalks:
             image = imageLoader.download(crosswalk)
             image = image.crop((145, 145, 205, 205))
             self.__save(image, (str(crosswalk.latitude) + "_" + str(crosswalk.longitude)+".jpg"))
 
-    def generate(self, downLeftPoint, upRightPoint):
+    def generate(self, bbox):
         imageLoader = ImageLoader()
-        images = imageLoader.downloadImagesByPositions(downLeftPoint, upRightPoint)
+        images = imageLoader.downloadImagesByPositions(bbox)
 
         numRows = len(images)
         numCols = len(images[0])

@@ -1,6 +1,8 @@
 import unittest
-from service.CrosswalkLoader import CrosswalkLoader
-from geopy import Point
+
+from src.service.CrosswalkLoader import CrosswalkLoader
+from src.base import Box
+
 
 class TestCrosswalkLoader(unittest.TestCase):
 
@@ -13,10 +15,9 @@ class TestCrosswalkLoader(unittest.TestCase):
     def testGetCrosswalksByPositions(self):
         crosswalkLoader = CrosswalkLoader()
 
-        downLeftPoint = Point('47.226043', '8.818360')
-        upRightPoint = Point('47.226926', '8.820032')
+        bbox = Box('8.818360', '47.226043', '8.820032', '47.226926')
 
-        points = crosswalkLoader.getCrosswalksByPositions(downLeftPoint, upRightPoint)
+        points = crosswalkLoader.getCrosswalksByPositions(bbox)
 
         for point in points:
             print str(point.latitude) + " " + str(point.longitude)

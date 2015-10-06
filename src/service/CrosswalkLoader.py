@@ -24,7 +24,7 @@ class CrosswalkLoader:
 
         return points
 
-    def getCrosswalksByPositions(self, downLeftPoint,upRightPoint):
-        self.LINK = self.LINK_PREFIX + str(downLeftPoint.longitude) + ","+ str(downLeftPoint.latitude) + "," + str(upRightPoint.longitude) + ","+ str(upRightPoint.latitude) + self.LINK_POSTFIX
+    def getCrosswalksByPositions(self, bbox):
+        self.LINK = self.LINK_PREFIX + bbox.toString() + self.LINK_POSTFIX
         return self.getCrosswalkPositions()
 

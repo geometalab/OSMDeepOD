@@ -1,5 +1,4 @@
-from Node import Node
-from Street import Street
+from src.base import Street, Node
 from service.Mapquest.MapquestApi import MapquestApi
 
 
