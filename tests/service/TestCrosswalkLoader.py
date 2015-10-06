@@ -1,6 +1,9 @@
 import unittest
+
 from src.service.CrosswalkLoader import CrosswalkLoader
-from src.service.Mapquest.Box import Box
+from src.base import Box
+
+
 class TestCrosswalkLoader(unittest.TestCase):
 
     def testGetCrosswalkPositions(self):

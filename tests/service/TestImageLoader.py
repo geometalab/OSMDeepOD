@@ -1,10 +1,13 @@
 import unittest
-from src.service.ImageLoader import ImageLoader
 import os.path
+
 from geopy import Point
 import cv2
+
+from src.service.ImageLoader import ImageLoader
 from src.service.ImagePlotter import ImagePlotter
-from src.service.Mapquest.Box import Box
+from src.base import Box
+
 
 class TestImageLoader(unittest.TestCase):
 

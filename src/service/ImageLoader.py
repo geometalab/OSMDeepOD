@@ -1,9 +1,11 @@
 import httplib2
 from StringIO import StringIO
 from PIL import Image
-from src.service.PosImage import PosImage
-from src.service.PositionHandler import PositionHandler
+
 from geopy import Point
+
+from src.base import PosImage
+from src.service.PositionHandler import PositionHandler
 
 
 class ImageLoader:

@@ -1,7 +1,9 @@
 import unittest
 import os.path
+
 from src.service.ImageGenerator import ImageGenerator
-from src.service.Mapquest.Box import Box
+from src.base import Box
+
 
 class TestImageGenerator(unittest.TestCase):
 
