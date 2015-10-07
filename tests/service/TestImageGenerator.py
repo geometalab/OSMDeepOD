@@ -18,6 +18,19 @@ class TestImageGenerator(unittest.TestCase):
         self.assertTrue(os.listdir(path) != [])
     '''
 
+    #winti down left 47.486478, 8.703949  up right 47.506433, 8.737978
+    def testZebraRapi(self):
+        path = "/home/murthy/Projects/SA/positive/winti/"
+
+        bbox = Bbox('8.703949', '47.486478', '8.737978', '47.506433')
+
+        imageGenerator = ImageGenerator(path)
+
+        imageGenerator.generateCrosswalks(bbox)
+
+        self.assertTrue(os.listdir(path) != [])
+
+    '''
     #rapi zebra down left 47.223505, 8.815292 up right 47.235126, 8.847341
     def testZebraRapi(self):
         path = "/home/murthy/Projects/SA/positive/rapi/"
@@ -30,6 +43,7 @@ class TestImageGenerator(unittest.TestCase):
 
         self.assertTrue(os.listdir(path) != [])
 
+    '''
 
     #mels down left 47.043556, 9.416240  up right 47.046026, 9.426942
     '''

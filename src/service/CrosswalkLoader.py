@@ -25,6 +25,6 @@ class CrosswalkLoader:
         return points
 
     def getCrosswalksByPositions(self, bbox):
-        self.LINK = self.LINK_PREFIX + bbox.toString() + self.LINK_POSTFIX
+        self.LINK = self.LINK_PREFIX + bbox.getMapquestFormat() + self.LINK_POSTFIX
         return self.getCrosswalkPositions()
 
