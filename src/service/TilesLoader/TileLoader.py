@@ -2,6 +2,7 @@ import httplib2
 from StringIO import StringIO
 from PIL import Image
 from src.base.Tile import Tile
+from src.base.Bbox19 import Bbox19
 
 
 class TileLoader:
@@ -10,13 +11,23 @@ class TileLoader:
     # &key=Asc0mfX_vbDVHkleWyc85z1mRLrSfjqHeGJamZsRF-mgzR4_GAlU31hkwMOGN4Mq
 
     def __init__(self):
-        self.PRELINK = "ttp://dev.virtualearth.net/REST/V1/Imagery/Map/Aerial/?mapArea="
+        self.PRELINK = "http://dev.virtualearth.net/REST/V1/Imagery/Map/Aerial/?mapArea="
         self.POSTLINK = "&key=Asc0mfX_vbDVHkleWyc85z1mRLrSfjqHeGJamZsRF-mgzR4_GAlU31hkwMOGN4Mq"
 
     def download(self, bbox):
-        url = self.PRELINK + bbox.toString() + self.POSTLINK
+        url = self.PRELINK + bbox.getBingFormat() + self.POSTLINK
         resp, content = httplib2.Http().request(url)
         image = Image.open(StringIO(content))
         return Tile(image,bbox)
 
-    def downloadZoom19(self):
+    def download19(self,bbox):
+        result = []
+        bboxes19 = Bbox19.toBbox19(bbox)
+        for y in range(len(bboxes19)):
+            result.append([])
+            for x in range(len(bboxes19[y])):
+                box = bboxes19[y][x]
+                tile = self.download(box)
+                result[y].append(tile)
+        return result
+

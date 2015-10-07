@@ -4,9 +4,9 @@ from src.service.PositionHandler import PositionHandler
 
 
 class Bbox19(Bbox):
-    def __init__(self, left, bottom, zoomCorrection = 1):
-        self.METER_PER_PIXEL = 0.298 / zoomCorrection
-        self.PIXEL_COUNT = 350
+    def __init__(self, left, bottom, zoomCorrection = 2):
+        self.METER_PER_PIXEL = 0.404428571 / zoomCorrection #0.298 / zoomCorrection
+        self.PIXEL_COUNT = 350 # 475
         self.DISTANCE = self.METER_PER_PIXEL * self.PIXEL_COUNT
 
         rightTop = self.__getRightTop(left, bottom)
