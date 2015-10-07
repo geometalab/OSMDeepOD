@@ -1,3 +1,6 @@
+from geopy import Point
+
+
 class Node:
     def __init__(self):
         #<node id="265628814" version="3" timestamp="2012-11-22T21:11:23Z" uid="317694" user="daniloB" changeset="13991392" lat="47.22917" lon="8.8229775"/>
@@ -9,3 +12,6 @@ class Node:
         self.ident = ident
         self.lat = lat
         self.lon = lon
+
+    def toPoint(self):
+       return Point(self.lat, self.lon)

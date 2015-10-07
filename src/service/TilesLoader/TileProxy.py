@@ -2,6 +2,7 @@ from src.service.TilesLoader.TileLoader import TileLoader
 from src.base.Tile import Tile
 from src.base.Bbox import Bbox
 from PIL import Image
+from geopy import Point
 
 
 class TileProxy:
@@ -29,12 +30,22 @@ class TileProxy:
                     return (y,x)
 
 
-    def getBigTile(self, node1, node2):
-        tileId1 = self.getTileIndexes(node1)
-        tileId2 = self.getTileIndexes(node2)
+    def getBigTile(self, point1, point2):
+        tileId1 = self.getTileIndexes(point1)
+        tileId2 = self.getTileIndexes(point2)
+
         image = self.mergeImage(tileId1,tileId2)
 
-        return Tile(image, Bbox(node1.longitude, node1.latitude, node2.longitude, node2.latitude))
+        firstTile = self.tiles[tileId1[0]][tileId1[1]]
+        lastTile = self.tiles[tileId2[0]][tileId2[1]]
+
+        bbox = Bbox(firstTile.bbox.left, firstTile.bbox.bottom, lastTile.bbox.right, lastTile.bbox.top)
+        return Tile(image, bbox)
+
+    def getBigTileByNodes(self, node1, node2):
+        point1 = self.__getLeftDownPoint(node1, node2)
+        point2 = self.__getUpRightPoint(node1, node2)
+        return self.getBigTile(point1, point2)
 
     def mergeImage(self, tileId1, tileId2):
         yCount = tileId2[0] - tileId1[0] + 1
@@ -51,4 +62,47 @@ class TileProxy:
                 result.paste(self.tiles[tiley][tilex].image, (x * width, (yCount - y - 1) * height))
 
         return result
+
+    def __getLeftDownPoint(self,node1, node2):
+        lat1 = node1.lat
+        lat2 = node2.lat
+        lon1 = node1.lon
+        lon2 = node2.lon
+
+        if(lat2 < lat1):
+            #Swap
+            temp = lat1
+            lat1 = lat2
+            lat2 = temp
+
+        if(lon2 < lon1):
+            #Swap
+            temp = lon1
+            lon1 = lat2
+            lon2 = temp
+
+        return Point(lat1,lon1)
+
+    def __getUpRightPoint(self,node1, node2):
+        lat1 = node1.lat
+        lat2 = node2.lat
+        lon1 = node1.lon
+        lon2 = node2.lon
+
+        if(lat2 < lat1):
+            #Swap
+            temp = lat1
+            lat1 = lat2
+            lat2 = temp
+
+        if(lon2 < lon1):
+            #Swap
+            temp = lon1
+            lon1 = lat2
+            lon2 = temp
+
+        return Point(lat2,lon2)
+
+
+
 
