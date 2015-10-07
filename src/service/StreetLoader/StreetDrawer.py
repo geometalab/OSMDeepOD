@@ -14,8 +14,11 @@ class StreetDrawer:
     def drawImage(self):
         box = self.proxy.bbox
         self.tile = self.proxy.getBigTile(box.getDownLeftPoint(), box.getUpRightPoint())
+
+        self.tile.startDrawing()
         for street in self.streets:
             self.tile.drawLine(street.nodes[0].toPoint(), street.nodes[1].toPoint())
+        self.tile.stopDrawing()
 
     def showImage(self):
         plotter = ImagePlotter()

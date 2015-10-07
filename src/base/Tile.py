@@ -6,14 +6,22 @@ class Tile:
     def __init__(self, image, bbox):
         self.image = image
         self.bbox = bbox
+        self.isDrawing = False
+
+    def startDrawing(self):
+        self.drawImage = self.__getCv2Image(self.image)
+        self.isDrawing = True
+
+    def stopDrawing(self):
+        self.image = self.__getPilImage(self.drawImage)
+        self.isDrawing = False
 
     def drawLine(self, point1, point2):
+        if(not self.isDrawing): raise Exception("Enter startDrawing first")
         p1 = self.getPixel(point1)
         p2 = self.getPixel(point2)
 
-        cv2image = self.__getCv2Image(self.image)
-        cv2.line(cv2image,p1,p2,(255,0,0),5)
-        self.image = self.__getPilImage(cv2image)
+        cv2.line(self.drawImage,p1,p2,(255,0,0),5)
 
     def getPixel(self, point):
         imagewidth = float(self.bbox.right) - float(self.bbox.left)

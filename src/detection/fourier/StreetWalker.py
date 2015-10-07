@@ -9,11 +9,10 @@ class StreetWalker:
 
     def walk(self):
         self.out(self.street.name)
-        for idx in range(len(self.street.nodes)-1):
-            node1 = self.street.nodes[idx]
-            node2 = self.street.nodes[idx + 1]
-            nodeWalker = Node2NodeWalker(node1, node2, self.proxy)
-            nodeWalker.walk()
+        node1 = self.street.nodes[0]
+        node2 = self.street.nodes[1]
+        tile = self.proxy.getBigTileByNodes(node1, node2)
+
 
     def out(self,msg):
         print "-" + str(datetime.datetime.now()) + ": " + msg

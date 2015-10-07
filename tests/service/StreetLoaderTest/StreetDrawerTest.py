@@ -6,7 +6,7 @@ from src.service.StreetLoader.StreetDrawer import StreetDrawer
 
 class StreetDrawerTest(unittest.TestCase):
     def test_Rappi(self):
-        drawer = StreetDrawer(self.GenfCityBig())
+        drawer = StreetDrawer(self.RapperswilBig())
         print "Downloading Data"
         drawer.downloadData()
         print "Drawing"
@@ -19,5 +19,5 @@ class StreetDrawerTest(unittest.TestCase):
     def ZurichBellvue(self):
         return Bbox(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
 
-    def GenfCityBig(self):
-        return Bbox(6.110782, 46.186114, 6.165800, 46.213320)
+    def RapperswilBig(self):
+        return Bbox(8.811903, 47.221270, 8.836365, 47.231092)

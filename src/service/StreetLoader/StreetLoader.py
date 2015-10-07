@@ -43,9 +43,6 @@ class StreetLoader:
                 street.nodes.append(me)
                 street.nodes.append(next)
                 result.append(street)
-            else:
-                street = self.__createStreet(way)
-                print street.name + " is invalid"
 
         return result
 
