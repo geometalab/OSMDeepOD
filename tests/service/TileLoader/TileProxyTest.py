@@ -3,7 +3,6 @@ import unittest
 from src.service.TilesLoader.TileProxy import TileProxy
 from src.base.Bbox import Bbox
 from geopy import Point
-from src.service.ImagePlotter import ImagePlotter
 
 
 class TestCrosswalkLoader(unittest.TestCase):
@@ -11,6 +10,7 @@ class TestCrosswalkLoader(unittest.TestCase):
         super(TestCrosswalkLoader, self).__init__(*args, **kwargs)
         bbox = self.ZurichBellvue()
         self.proxy = TileProxy(bbox)
+
 
     def test_getTileByPoint(self):
         point = Point(47.3662, 8.5435)
@@ -27,8 +27,7 @@ class TestCrosswalkLoader(unittest.TestCase):
         image = self.proxy.mergeImage((0,0), (2,2))
         self.assertEquals(image.size[0], 3 * 350)
         '''
-        plotter = ImagePlotter()
-        plotter.plot(image)
+        tile.plot()
         '''
 
     def test_getBigTile(self):
@@ -38,16 +37,22 @@ class TestCrosswalkLoader(unittest.TestCase):
         self.assertEquals(tile.image.size[0], 1750)
         self.assertEquals(tile.image.size[1], 350)
 
-        plotter = ImagePlotter()
-        plotter.plot(tile.image)
+        tile.plot()
 
     def test_drawLineonTile(self):
         node1 = Point(47.3676034, 8.545472)
         node2 = Point(47.3676223, 8.5455059)
         tile = self.proxy.getBigTile(node1, node2)
+        box = Bbox()
+        box.set(node1, node2)
+        tile = tile.getSubTile(box)
+        '''
+        tile.startDrawing()
         tile.drawLine(node1, node2)
-        plotter = ImagePlotter()
-        plotter.plot(tile.image)
+        tile.stopDrawing()
+        '''
+        tile.plot()
+
 
     def ZurichBellvue(self):
         return Bbox(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)

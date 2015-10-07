@@ -1,6 +1,9 @@
 import cv2
 from PIL import Image
 import numpy as np
+from src.base.Bbox import Bbox
+from matplotlib import pyplot as plt
+from src.base.Node import Node
 
 class Tile:
     def __init__(self, image, bbox):
@@ -41,3 +44,29 @@ class Tile:
     def __getPilImage(self, cv2img):
         cv2_im = cv2.cvtColor(cv2img,cv2.COLOR_BGR2RGB)
         return Image.fromarray(cv2_im)
+
+    def getSquaredImages(self, node1, node2):
+        print ""
+
+
+    def __getSquaredImage(self, centrePoint):
+        PIXEL_PER_SIDE = 20
+        METER_PER_PIXEL = 0.404428571
+        DISTANCE = PIXEL_PER_SIDE * METER_PER_PIXEL
+
+        p1 = Node(0,centrePoint.latitude - DISTANCE, centrePoint.longitude - DISTANCE)
+
+    def getSubTile(self, bbox):
+        cv2Image = self.__getCv2Image(self.image)
+
+        p1 = self.getPixel(bbox.getDownLeftPoint())
+        p2 = self.getPixel(bbox.getUpRightPoint())
+
+        cropped = cv2Image[p2[1]:p1[1], p1[0]:p2[0]]
+        cropped = self.__getPilImage(cropped)
+
+        return Tile(cropped,bbox)
+
+    def plot(self):
+        plt.imshow(self.image)
+        plt.show()

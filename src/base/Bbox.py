@@ -1,21 +1,31 @@
 from geopy import Point
 
 class Bbox:
-    def __init__(self):
-        self.bottom = "0"
-        self.left = "0"
-        self.top = "0"
-        self.right = "0"
-
-    def __init__(self,left, bottom, right, top):
+    def __init__(self, left = 0, bottom = 0, right = 0, top = 0):
         self.bottom = str(bottom)
         self.left = str(left)
         self.top = str(top)
         self.right = str(right)
-        if(not self.__isValid()): raise Exception("Cordinates are not valid")
+        self.__validation()
 
-    def __isValid(self):
-        return float(self.bottom) < float(self.top) and float(self.left) < float(self.right)
+    def set(self, leftDownPoint, rightUpPoint):
+        self.bottom = str(leftDownPoint.latitude)
+        self.left = str(leftDownPoint.longitude)
+        self.top = str(rightUpPoint.latitude)
+        self.right = str(rightUpPoint.longitude)
+        self.__validation()
+
+    def __validation(self):
+        if(float(self.bottom) > float(self.top)):
+            temp = self.bottom
+            self.bottom = self.top
+            self.top = temp
+
+        if(float(self.left) > float(self.right)):
+            temp = self.left
+            self.left = self.right
+            self.right = temp
+
 
     def toString(self):
        return str(self.bottom) + "," + str(self.right) + "," + str(self.top)  + "," + str(self.left)

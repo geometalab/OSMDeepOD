@@ -14,5 +14,6 @@ class StreetWalker:
         tile = self.proxy.getBigTileByNodes(node1, node2)
 
 
+
     def out(self,msg):
         print "-" + str(datetime.datetime.now()) + ": " + msg
