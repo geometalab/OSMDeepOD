@@ -12,12 +12,33 @@ class Bbox:
         self.left = str(left)
         self.top = str(top)
         self.right = str(right)
+        if(not self.__isValid()): raise Exception("Cordinates are not valid")
+
+    def __isValid(self):
+        return float(self.bottom) < float(self.top) and float(self.left) < float(self.right)
 
     def toString(self):
-       return str(self.left) + "," + str(self.bottom) + "," + str(self.right) + "," + str(self.top)
+       return str(self.bottom) + "," + str(self.right) + "," + str(self.top)  + "," + str(self.left)
+
+    def getBingFormat(self):
+        return str(self.bottom) + "," + str(self.left) + "," + str(self.top)  + "," + str(self.right)
+
+    def printing(self):
+        return "Bottom: " + str(self.bottom) + ", Right: " + str(self.right) + ", Top: " + str(self.top)  + ", Left: " + str(self.left)
 
     def getDownLeftPoint(self):
         return Point(self.bottom,self.left)
 
     def getUpRightPoint(self):
         return Point(self.top,self.right)
+
+    def inBbox(self, point):
+        lat = point.latitude
+        lon = point.longitude
+
+        inLat = lat >= float(self.bottom) and lat <= float(self.top)
+        intLon = lon >= float(self.left) and lon <= float(self.right)
+
+        return inLat and intLon
+
+

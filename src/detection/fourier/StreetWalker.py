@@ -1,5 +1,6 @@
 from src.service.ImagePlotter import ImagePlotter
 
+
 class StreetWalker:
     def __init__(self, street, images):
         self.street = street
