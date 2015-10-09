@@ -39,7 +39,7 @@ class Tile:
         return (pixelX, pixelY)
 
     def getPoint(self, pixelX, pixelY):
-        widthInPixel, heightInPixel = self.image.getImage().size
+        widthInPixel, heightInPixel = self.image.size
 
         widthInCoords = float(self.bbox.right) - float(self.bbox.left)
         heightInCoords = float(self.bbox.top) - float(self.bbox.bottom)
@@ -47,7 +47,10 @@ class Tile:
         offsetInX = self.__scalePixelToPosition(widthInPixel,widthInCoords) * pixelX
         offsetInY = self.__scalePixelToPosition(heightInPixel,heightInCoords) * pixelY
 
-        return Point(longitude = self.bbox.left + offsetInX, latitude = self.bbox.bottom + offsetInY)
+        lon = float(self.bbox.left) + offsetInX
+        lat = float(self.bbox.bottom) + offsetInY
+
+        return Point(str(lat), str(lon))
 
     def __scalePixelToPosition(self,pixel, coord):
         return coord / pixel
