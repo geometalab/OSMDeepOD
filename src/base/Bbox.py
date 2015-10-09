@@ -33,6 +33,9 @@ class Bbox:
     def getMapquestFormat(self):
         return   str(self.left) + "," + str(self.bottom) + "," + str(self.right) + "," + str(self.top)
 
+    def getMapquestFormat(self):
+        return   str(self.left) + "," + str(self.bottom) + "," + str(self.right) + "," + str(self.top)
+
     def getBingFormat(self):
         return str(self.bottom) + "," + str(self.left) + "," + str(self.top)  + "," + str(self.right)
 
