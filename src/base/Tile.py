@@ -4,6 +4,7 @@ import numpy as np
 from src.base.Bbox import Bbox
 from matplotlib import pyplot as plt
 from src.base.Node import Node
+from geopy.point import Point
 
 class Tile:
     def __init__(self, image, bbox):
@@ -36,6 +37,20 @@ class Tile:
         pixelX =  int(self.image.size[0] * (x/imagewidth))
         pixelY = self.image.size[1] - int(self.image.size[1] * (y/imageheight))
         return (pixelX, pixelY)
+
+    def getPoint(self, pixelX, pixelY):
+        widthInPixel, heightInPixel = self.image.getImage().size
+
+        widthInCoords = float(self.bbox.right) - float(self.bbox.left)
+        heightInCoords = float(self.bbox.top) - float(self.bbox.bottom)
+
+        offsetInX = self.__scalePixelToPosition(widthInPixel,widthInCoords) * pixelX
+        offsetInY = self.__scalePixelToPosition(heightInPixel,heightInCoords) * pixelY
+
+        return Point(longitude = self.bbox.left + offsetInX, latitude = self.bbox.bottom + offsetInY)
+
+    def __scalePixelToPosition(self,pixel, coord):
+        return coord / pixel
 
     def __getCv2Image(self, pilimg):
        return cv2.cvtColor(np.array(pilimg), cv2.COLOR_RGB2BGR)
