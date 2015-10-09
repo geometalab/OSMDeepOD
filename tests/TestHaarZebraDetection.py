@@ -1,6 +1,7 @@
 import unittest
 from matplotlib import pyplot as plt
 import cv2
+from src.detection.haar.HaarDetector import HaarDetector
 
 class TestHaarZebraDetection(unittest.TestCase):
 
@@ -45,13 +46,8 @@ class TestHaarZebraDetection(unittest.TestCase):
 
     def testRapi4(self):
         path = './classifier/cascade_4.xml'
-        zebra_cascade = cv2.CascadeClassifier(path)
-
+        haarDetector = HaarDetector(path)
         img = cv2.imread('./testImages/rappi.png')
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        zebra = zebra_cascade.detectMultiScale(gray, 1.1, 6)
-        for (x,y,w,h) in zebra:
-            cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
-
+        haarDetector.detect(img)
         plt.imshow(img)
         plt.show()

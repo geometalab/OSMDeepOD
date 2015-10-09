@@ -1,4 +1,3 @@
-from PIL import Image
 from geopy import Point
 
 class PosImage:
