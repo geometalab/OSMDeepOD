@@ -8,9 +8,9 @@ from src.base.Bbox import Bbox
 class TestHaarZebraDetection(unittest.TestCase):
 
     def testHaarDetector(self):
-        path = './classifier/cascade_7.xml'
+        path = './classifier/cascade_8.xml'
         haarDetector = HaarDetector(path)
-        img = cv2.imread('./testImages/rappi.png')
+        img = cv2.imread('./testImages/screen.jpg')
         detections = haarDetector.detect(img)
         haarDetector.drawDetectons(detections, img)
         plt.imshow(img)

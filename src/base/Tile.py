@@ -49,8 +49,7 @@ class Tile:
 
         lon = float(self.bbox.left) + offsetInX
         lat = float(self.bbox.bottom) + offsetInY
-
-        return Point(str(lat), str(lon))
+        return Point(lat, lon)
 
     def __scalePixelToPosition(self,pixel, coord):
         return coord / pixel

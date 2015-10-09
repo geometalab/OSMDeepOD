@@ -17,7 +17,7 @@ class HaarDetector:
     def detect(self, image):
         cascade = cv2.CascadeClassifier(self.path)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        return cascade.detectMultiScale(gray, 1.3, 20)
+        return cascade.detectMultiScale(gray, 1.2, 5)
 
 
     def detectTileMatrix(self, tiles):
@@ -31,9 +31,9 @@ class HaarDetector:
             for x in range(0, numCols):
                 image = imageConverter.pilToCv2(tiles[y][x].image)
                 detections = self.detect(image)
-                detectionPoints.append(self.__getDetectionPoints(detections, tiles[y][x]))
+                for point in self.__getDetectionPoints(detections, tiles[y][x]):
+                    detectionPoints.append(point)
                 tiles[y][x].image = imageConverter.cv2toPil(image)
-
         return detectionPoints
 
     def compare(self,bbox):
@@ -41,8 +41,11 @@ class HaarDetector:
         tiles = self.__downloadTiles(bbox)
 
         for point in self.detectTileMatrix(tiles):
-            print point.latitude
-            print point.longitude
+            print point
+
+        for street in streets:
+            for node in street.nodes:
+                print node.toPoint()
 
 
     def drawDetectons(self, detections, image):
@@ -54,6 +57,7 @@ class HaarDetector:
         for (x,y,w,h) in detections:
             px, py = self.__midle(x,y,w,h)
             detectionPoints.append(tile.getPoint(px, py))
+        return detectionPoints
 
     def __downloadTiles(self, bbox):
         return TileProxy(bbox).getTiles()
