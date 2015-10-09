@@ -1,6 +1,6 @@
 import cv2
 import os
-from src.service.StreetLoader.StreetLoader import StreetLoader
+from src.service.StreetLoader.StreetDrawer import StreetDrawer
 
 class HaarDetector:
 
@@ -22,5 +22,11 @@ class HaarDetector:
             self.detect(image)
 
 
-    def compare(self):
-        streetLoader = StreetLoader()
+    def compare(self,bbox):
+        streetDrawer = StreetDrawer(bbox)
+        streetDrawer.downloadData()
+        self.tile = streetDrawer.getTile()
+        image = self.tile.image()
+        self.detect(image)
+        streetDrawer.drawImage()
+        streetDrawer.showImage()
