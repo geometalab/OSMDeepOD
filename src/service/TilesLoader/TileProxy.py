@@ -31,8 +31,11 @@ class TileProxy:
 
 
     def getBigTile(self, point1, point2):
-        tileId1 = self.getTileIndexes(point1)
-        tileId2 = self.getTileIndexes(point2)
+        box = Bbox()
+        box.set(point1, point2)
+
+        tileId1 = self.getTileIndexes(box.getDownLeftPoint())
+        tileId2 = self.getTileIndexes(box.getUpRightPoint())
 
         image = self.mergeImage(tileId1,tileId2)
 

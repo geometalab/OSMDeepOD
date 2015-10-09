@@ -3,6 +3,7 @@ import unittest
 from src.service.TilesLoader.TileProxy import TileProxy
 from src.base.Bbox import Bbox
 from geopy import Point
+from src.base.Node import Node
 
 
 class TestCrosswalkLoader(unittest.TestCase):
@@ -53,6 +54,31 @@ class TestCrosswalkLoader(unittest.TestCase):
         '''
         tile.plot()
 
+    def test_SquaredImages(self):
+
+        node1 = Node.create(Point(47.367362, 8.544548))
+        node2 = Node.create(Point(47.367530, 8.544998))
+
+        #node1 = Node.create(Point(47.367506, 8.544360))
+        #node2 = Node.create(Point(47.367319, 8.544506))
+
+        #node1 = Node.create(Point(47.367464, 8.545077))
+        #node2 = Node.create(Point(47.367248, 8.544441))
+
+        tile = self.proxy.getBigTile(node1.toPoint(), node2.toPoint())
+
+        tile.startDrawing()
+        tile.drawLine(node1.toPoint(), node2.toPoint())
+        tile.stopDrawing()
+        #tile.plot()
+
+        squared = tile.getSquaredImages(node1, node2)
+        self.assertEquals(len(squared), 10)
+        '''
+        print len(squared)
+        for tile in squared:
+            tile.plot()
+        '''
 
     def ZurichBellvue(self):
         return Bbox(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)

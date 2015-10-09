@@ -12,6 +12,8 @@ class Node2NodeWalker:
     def walk(self):
         self.out(str(self.node1.ident) + " to " + str(self.node2.ident))
         tile = self.proxy.getBigTileByNodes(self.node1, self.node2)
+        squared = tile.getSquaredImages(self.node1, self.node2)
+
         self.plotTile(tile)
 
     def out(self,msg):

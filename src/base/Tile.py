@@ -4,6 +4,7 @@ import numpy as np
 from src.base.Bbox import Bbox
 from matplotlib import pyplot as plt
 from src.base.Node import Node
+from src.service.PositionHandler import PositionHandler
 
 class Tile:
     def __init__(self, image, bbox):
@@ -46,15 +47,35 @@ class Tile:
         return Image.fromarray(cv2_im)
 
     def getSquaredImages(self, node1, node2):
-        print ""
+        PIXELCOUNT = 10
+        METER_PER_PIXEL = 0.404428571
+        stepDistance = PIXELCOUNT * METER_PER_PIXEL
+        distanceBetweenNodes = node1.getDistanceInMeter(node2)
 
+        squaresTiles = []
+        for i in range(int(distanceBetweenNodes/stepDistance) +1):
+            currentDistance = stepDistance * i
+            currentNode = node1.stepTo(node2, currentDistance)
+
+            tile =  self.__getSquaredImage(currentNode.toPoint())
+            squaresTiles.append(tile)
+
+
+        return squaresTiles
 
     def __getSquaredImage(self, centrePoint):
         PIXEL_PER_SIDE = 20
         METER_PER_PIXEL = 0.404428571
         DISTANCE = PIXEL_PER_SIDE * METER_PER_PIXEL
 
-        p1 = Node(0,centrePoint.latitude - DISTANCE, centrePoint.longitude - DISTANCE)
+        centreNode = Node.create(centrePoint)
+        leftDown = centreNode.addMeter(-DISTANCE/2,-DISTANCE/2)
+        rightTop = centreNode.addMeter(DISTANCE/2,DISTANCE/2)
+
+        box = Bbox()
+        box.set(leftDown.toPoint(),rightTop.toPoint())
+
+        return self.getSubTile(box)
 
     def getSubTile(self, bbox):
         cv2Image = self.__getCv2Image(self.image)
