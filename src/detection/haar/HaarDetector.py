@@ -1,10 +1,9 @@
-import numpy as np
 import cv2
 import os
 from src.service.StreetLoader.StreetLoader import StreetLoader
 from src.service.TilesLoader.TileProxy import TileProxy
-from src.service.ImagePlotter import ImagePlotter
 from src.service.ImageConverter import ImageConverter
+from geopy.distance import vincenty
 
 class HaarDetector:
 
@@ -45,7 +44,33 @@ class HaarDetector:
 
         for street in streets:
             for node in street.nodes:
-                print node.toPoint()
+                print 'Street ' + str(node.toPoint())
+
+    def distanceToNearestStreet(self, streets, point):
+        nearestPointIndex = 0
+        distance = vincenty(point, streets[0].node.toPoint()).meters
+
+        for i in range (1, len(streets)):
+            if distance > vincenty(point, streets[i].node.toPoint()).meters:
+                distance = vincenty(point, streets[i].node.toPoint()).meters
+                nearestPointIndex = i
+
+        nearestPoint = streets[nearestPointIndex].node.toPoint()
+
+        if nearestPointIndex == 0:
+            secondPoint = streets[nearestPointIndex + 1].node.toPoint()
+        elif nearestPointIndex == len(streets):
+            secondPoint = streets[nearestPointIndex - 1].node.toPoint()
+        else:
+            distanceToPointBefore = vincenty(point, streets[nearestPointIndex - 1].node.toPoint()).meters
+            distancetoPointAfter = vincenty(point, streets[nearestPointIndex + 1].node.toPoint()).meters
+            if distancetoPointAfter < distanceToPointBefore:
+                secondPoint = streets[nearestPointIndex - 1].node.toPoint()
+            else:
+                secondPoint = streets[nearestPointIndex + 1].node.toPoint()
+
+    def getClosestPointFromLine(A, B, P):
+        
 
 
     def drawDetectons(self, detections, image):
