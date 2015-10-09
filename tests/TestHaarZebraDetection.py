@@ -2,9 +2,16 @@ import unittest
 from matplotlib import pyplot as plt
 import cv2
 from src.detection.haar.HaarDetector import HaarDetector
+from src.base.Bbox import Bbox
+
 
 class TestHaarZebraDetection(unittest.TestCase):
 
+    def testCompare(self):
+        path = './classifier/cascade_4.xml'
+        haarDetector = HaarDetector(path)
+        bbox = Bbox(8.814670787352005, 47.224729942195445, 8.818962321775663, 47.226369315435)
+        haarDetector.compare(bbox)
     def test(self):
         zebra_cascade = cv2.CascadeClassifier('./classifier/cascade_1.xml')
 
@@ -46,6 +53,14 @@ class TestHaarZebraDetection(unittest.TestCase):
 
     def testRapi4(self):
         path = './classifier/cascade_4.xml'
+        haarDetector = HaarDetector(path)
+        img = cv2.imread('./testImages/rappi.png')
+        haarDetector.detect(img)
+        plt.imshow(img)
+        plt.show()
+
+    def testRapi5(self):
+        path = './classifier/cascade_5.xml'
         haarDetector = HaarDetector(path)
         img = cv2.imread('./testImages/rappi.png')
         haarDetector.detect(img)

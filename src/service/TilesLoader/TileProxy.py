@@ -63,6 +63,9 @@ class TileProxy:
 
         return result
 
+    def getTiles(self):
+        return self.tiles
+
     def __getLeftDownPoint(self,node1, node2):
         lat1 = node1.lat
         lat2 = node2.lat

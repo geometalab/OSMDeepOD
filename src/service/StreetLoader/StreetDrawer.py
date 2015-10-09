@@ -10,11 +10,11 @@ class StreetDrawer:
         self.proxy = TileProxy(self.bbox)
         streetloader = StreetLoader()
         self.streets = streetloader.getStreets(self.bbox)
-        box = self.proxy.bbox
-        self.tile = self.proxy.getBigTile(box.getDownLeftPoint(), box.getUpRightPoint())
 
 
     def drawImage(self):
+        box = self.proxy.bbox
+        self.tile = self.proxy.getBigTile(box.getDownLeftPoint(), box.getUpRightPoint())
         self.tile.startDrawing()
         for street in self.streets:
             self.tile.drawLine(street.nodes[0].toPoint(), street.nodes[1].toPoint())
@@ -25,5 +25,6 @@ class StreetDrawer:
         plotter.plot(self.tile.image)
 
 
-    def getTile(self):
-        return self.tile
+    def getTiles(self):
+        self.downloadData()
+        return self.proxy.getTiles()
