@@ -7,8 +7,8 @@ import numpy as np
 class Node:
     def __init__(self, ident = 0, lat = 0, lon = 0):
         self.ident = ident
-        self.lat = lat
-        self.lon = lon
+        self.lat = float(lat)
+        self.lon = float(lon)
 
     def toPoint(self):
        return Point(self.lat, self.lon)
@@ -26,6 +26,7 @@ class Node:
     def addMeter(self, verticalDistance, horizontalDistance):
         newNode = self.addLatitude(verticalDistance)
         return newNode.addLongitude(horizontalDistance)
+
 
     def getDistanceInMeter(self, node):
         return vincenty(self.toPoint(),node.toPoint()).meters

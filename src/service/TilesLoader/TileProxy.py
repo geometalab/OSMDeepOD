@@ -46,8 +46,13 @@ class TileProxy:
         return Tile(image, bbox)
 
     def getBigTileByNodes(self, node1, node2):
+        assert self.bbox.inBbox(node1.toPoint()) and self.bbox.inBbox(node2.toPoint())
+
         point1 = self.__getLeftDownPoint(node1, node2)
         point2 = self.__getUpRightPoint(node1, node2)
+
+        assert self.bbox.inBbox(point1) and self.bbox.inBbox(point2)
+
         return self.getBigTile(point1, point2)
 
     def mergeImage(self, tileId1, tileId2):
@@ -66,7 +71,7 @@ class TileProxy:
 
         return result
 
-    def __getLeftDownPoint(self,node1, node2):
+    def __getLeftDownPoint(self, node1, node2):
         lat1 = node1.lat
         lat2 = node2.lat
         lon1 = node1.lon
@@ -81,10 +86,10 @@ class TileProxy:
         if(lon2 < lon1):
             #Swap
             temp = lon1
-            lon1 = lat2
+            lon1 = lon2
             lon2 = temp
 
-        return Point(lat1,lon1)
+        return Point(lat1, lon1)
 
     def __getUpRightPoint(self,node1, node2):
         lat1 = node1.lat
