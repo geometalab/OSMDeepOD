@@ -5,7 +5,7 @@ from src.base.Bbox import Bbox
 from matplotlib import pyplot as plt
 from src.base.Node import Node
 from geopy import Point
-from src.service.PositionHandler import PositionHandler
+from src.base.Constants import Constants
 
 class Tile:
     def __init__(self, image, bbox):
@@ -14,7 +14,7 @@ class Tile:
         self.isDrawing = False
 
     def startDrawing(self):
-        self.drawImage = self.__getCv2Image(self.image)
+        self.drawImage = Tile.getCv2Image(self.image)
         self.isDrawing = True
 
     def stopDrawing(self):
@@ -57,8 +57,8 @@ class Tile:
 
 
 
-
-    def __getCv2Image(self, pilimg):
+    @staticmethod
+    def getCv2Image(pilimg):
        return cv2.cvtColor(np.array(pilimg), cv2.COLOR_RGB2BGR)
 
 
@@ -68,8 +68,8 @@ class Tile:
         return Image.fromarray(cv2_im)
 
     def getSquaredImages(self, node1, node2):
-        PIXELCOUNT = 10
-        METER_PER_PIXEL = 0.404428571
+        PIXELCOUNT = Constants.squaredImage_PixelPerSide / 3
+        METER_PER_PIXEL = Constants.METER_PER_PIXEL
         stepDistance = PIXELCOUNT * METER_PER_PIXEL
 
         node1 = self.__ajustNodeToBoarder(node1)
@@ -101,7 +101,7 @@ class Tile:
         pixel = self.getPixel(node.toPoint())
         resultPixel = [pixel[0], pixel[1]]
 
-        borderPixel = 20
+        borderPixel = Constants.squaredImage_PixelPerSide
         if(pixel[0] < borderPixel): resultPixel[0] = borderPixel
         if(pixel[1] < borderPixel): resultPixel[1] = borderPixel
         if(yCount - pixel[1] < borderPixel):
@@ -117,8 +117,8 @@ class Tile:
 
 
     def __getSquaredImage(self, centrePoint):
-        PIXEL_PER_SIDE = 20
-        METER_PER_PIXEL = 0.404428571
+        PIXEL_PER_SIDE = Constants.squaredImage_PixelPerSide
+        METER_PER_PIXEL = Constants.METER_PER_PIXEL
         DISTANCE = PIXEL_PER_SIDE * METER_PER_PIXEL
 
         centreNode = Node.create(centrePoint)
@@ -134,7 +134,7 @@ class Tile:
         if(not(self.bbox.inBbox(bbox.getDownLeftPoint()) and self.bbox.inBbox(bbox.getUpRightPoint()))):
             raise Exception("given bbox is out of bbox of this tile")
 
-        cv2Image = self.__getCv2Image(self.image)
+        cv2Image = Tile.getCv2Image(self.image)
 
         p1 = self.getPixel(bbox.getDownLeftPoint())
         p2 = self.getPixel(bbox.getUpRightPoint())

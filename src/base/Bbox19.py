@@ -1,13 +1,14 @@
 from Bbox import Bbox
 from geopy.point import Point
 from src.service.PositionHandler import PositionHandler
+from src.base.Constants import Constants
 
 
 class Bbox19(Bbox):
-    def __init__(self, left, bottom, zoomCorrection = 2):
-        self.METER_PER_PIXEL = 0.404428571 / zoomCorrection #0.298 / zoomCorrection
-        self.PIXEL_COUNT = 350 # 475
-        self.DISTANCE = self.METER_PER_PIXEL * self.PIXEL_COUNT
+    def __init__(self, left, bottom):
+        self.METER_PER_PIXEL = Constants.METER_PER_PIXEL #0.298 / zoomCorrection
+        self.PIXEL_COUNT = Constants.PIXEL_TILE19 # 475
+        self.DISTANCE = Constants.TILE19_DISTANCE
 
         rightTop = self.__getRightTop(left, bottom)
 

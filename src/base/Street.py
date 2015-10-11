@@ -37,6 +37,11 @@ class Street:
         if(latDiff<0): angle *= -1
         return angle
 
+    def getAngleDegree(self):
+        rad = self.getAngle()
+        degree = rad / (2* np.pi) * 360
+        return degree
+
 
 
 
