@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/service/AlgorithmComparer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/detection/haar/HaarDetector.py" afterPath="$PROJECT_DIR$/src/detection/haar/HaarDetector.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py" afterPath="$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TestHaarZebraDetection.py" afterPath="$PROJECT_DIR$/tests/TestHaarZebraDetection.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py" afterPath="$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py" />
     </list>
     <ignored path="CrosswalkDetection.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +27,7 @@
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestHaarFaceDetection.coverage" NAME="Unittests in TestHaarFaceDetection Coverage Results" MODIFIED="1444046577435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestSURF.coverage" NAME="Unittests in TestSURF Coverage Results" MODIFIED="1443526994526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestPositionConverter.coverage" NAME="Unittests in TestPositionHandler Coverage Results" MODIFIED="1443188635847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
-    <SUITE FILE_PATH="coverage/OSM-Crosswalk-Detection$Unittests_in_TestHaarDetection.coverage" NAME="Unittests in TestHaarDetection Coverage Results" MODIFIED="1444658562182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/compareAlgorithm" />
+    <SUITE FILE_PATH="coverage/OSM-Crosswalk-Detection$Unittests_in_TestHaarDetection.coverage" NAME="Unittests in TestHaarDetection Coverage Results" MODIFIED="1444659419396" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/compareAlgorithm" />
     <SUITE FILE_PATH="coverage/OSM-Crosswalk-Detection$Unittests_in_TestHaarZebraDetection.coverage" NAME="Unittests in TestHaarZebraDetection Coverage Results" MODIFIED="1444658836973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestCrosswalkLoader.coverage" NAME="Unittests in TestCrosswalkLoader Coverage Results" MODIFIED="1443606518741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestImageLoader.coverage" NAME="Unittests in TestImageLoader Coverage Results" MODIFIED="1444046447836" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
@@ -47,16 +44,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Constants.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base/Constants.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="HaarDetector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/detection/haar/HaarDetector.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -69,14 +56,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestHaarDetection.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestHaarDetection.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.72527474">
               <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TileProxyTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -93,10 +90,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AlgorithmComparer.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AlgorithmComparer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/AlgorithmComparer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5934066">
+            <state vertical-scroll-proportion="0.0">
               <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
               <folding />
             </state>
@@ -211,7 +208,6 @@
         <option value="$PROJECT_DIR$/src/service/TilesLoader/TileLoader.py" />
         <option value="$PROJECT_DIR$/src/base/Bbox.py" />
         <option value="$PROJECT_DIR$/tests/base/NodeTest.py" />
-        <option value="$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py" />
         <option value="$PROJECT_DIR$/src/detection/fourier/Node2NodeWalker.py" />
         <option value="$PROJECT_DIR$/src/base/Node.py" />
         <option value="$PROJECT_DIR$/tests/base/StreetTest.py" />
@@ -228,8 +224,9 @@
         <option value="$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py" />
         <option value="$PROJECT_DIR$/src/detection/haar/HaarDetector.py" />
         <option value="$PROJECT_DIR$/tests/TestHaarZebraDetection.py" />
-        <option value="$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py" />
         <option value="$PROJECT_DIR$/src/service/AlgorithmComparer.py" />
+        <option value="$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py" />
+        <option value="$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py" />
       </list>
     </option>
   </component>
@@ -375,7 +372,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/AlgorithmComparer.py&#10;ha&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/detection/haar/HaarDetector.py&#10;TilePro&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/TilesLoader/TileProxy.py&#10;Position&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/PositionHandler.py&#10;con&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/base/Constants.py&#10;Node&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/base/Node.py&#10;cros&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/CrosswalkLoader.py&#10;gene&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/ImageGenerator.py&#10;Tile&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/base/Tile.py&#10;image&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/ImageGenerator.py&#10;b&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py&#10;Box&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py" />
+    <property name="SearchEverywhereHistoryKey" value="Test&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/tests/service/TileLoader/TileProxyTest.py&#10;ha&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/detection/haar/HaarDetector.py&#10;TilePro&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/TilesLoader/TileProxy.py&#10;Position&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/PositionHandler.py&#10;con&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/base/Constants.py&#10;Node&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/base/Node.py&#10;cros&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/CrosswalkLoader.py&#10;gene&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/ImageGenerator.py&#10;Tile&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/base/Tile.py&#10;image&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/ImageGenerator.py&#10;b&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py&#10;Box&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/detection/Fourier/BoxWalkerTest.py" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
@@ -396,7 +393,7 @@
       <recent name="$PROJECT_DIR$/tests/service" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in TestHaarZebraDetection">
+  <component name="RunManager" selected="Python tests.Unittests in TestHaarDetection">
     <configuration default="false" name="Unittest TestCrosswalkLoader.test_download19" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -1107,8 +1104,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestHaarZebraDetection" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TestHaarDetection" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestHaarDetection" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TestHaarZebraDetection" />
         <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in StreetDrawerTest" />
         <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest StreetDrawerTest.test_Rappi" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestCrosswalkLoader.test_download19" />
@@ -1131,12 +1128,12 @@
       <workItem from="1443776889080" duration="5088000" />
       <workItem from="1444026356552" duration="1210000" />
       <workItem from="1444056229787" duration="5927000" />
-      <workItem from="1444656174112" duration="3122000" />
+      <workItem from="1444656174112" duration="3255000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111422000" />
+    <option name="totallyTimeSpent" value="111555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="874" extended-state="6" />
@@ -1339,13 +1336,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1613,21 +1603,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py">
+    <entry file="file://$PROJECT_DIR$/src/service/AlgorithmComparer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.72527474">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/AlgorithmComparer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5934066">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>

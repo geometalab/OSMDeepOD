@@ -18,7 +18,7 @@ class TestHaarZebraDetection(unittest.TestCase):
         crosswalks = crosswalLoader.getCrosswalkNodes(bbox)
         detectedNodes = haarDetector.getDetectedNodes(bbox)
 
-        AlgorithmComparer(detectedNodes,crosswalks)
+        algorithmComparer = AlgorithmComparer(detectedNodes,crosswalks)
 
-
+        self.assertTrue(algorithmComparer.getHits() > 0)
 
