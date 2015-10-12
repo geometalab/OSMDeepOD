@@ -16,7 +16,7 @@ class HaarDetector:
     def detect(self, image):
         cascade = cv2.CascadeClassifier(self.path)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        return cascade.detectMultiScale(gray, 1.2, 5)
+        return cascade.detectMultiScale(gray, 1.3, 30)
 
 
     def detectTileMatrix(self, tiles):
@@ -69,8 +69,6 @@ class HaarDetector:
             else:
                 secondPoint = streets[nearestPointIndex + 1].node.toPoint()
 
-    def getClosestPointFromLine(A, B, P):
-        
 
 
     def drawDetectons(self, detections, image):

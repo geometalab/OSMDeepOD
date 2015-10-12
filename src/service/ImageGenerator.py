@@ -16,7 +16,8 @@ class ImageGenerator:
             image = imageLoader.download(crosswalk)
             #image = image.crop((145, 145, 205, 205)) #Image 60 x 60
             #image = image.crop((159, 159, 191, 191)) #Image 32 x 32
-            image = image.crop((155, 155, 195, 195)) #Image 40 x 40
+            #image = image.crop((155, 155, 195, 195)) #Image 40 x 40
+            image = image.crop((165, 165, 185, 185)) #Image 20 x 20
             self.__save(image, (str(crosswalk.latitude) + "_" + str(crosswalk.longitude)+".jpg"))
 
     def generate(self, bbox):

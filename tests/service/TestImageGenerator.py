@@ -18,11 +18,15 @@ class TestImageGenerator(unittest.TestCase):
         self.assertTrue(os.listdir(path) != [])
     '''
 
-    #winti down left 47.486478, 8.703949  up right 47.506433, 8.737978
-    def testZebraRapi(self):
-        path = "/home/murthy/Projects/SA/positive/winti/"
+    #basel down left 47.551828, 7.559269  up right 47.571766, 7.612397
+    def testZebraBasel(self):
+        #path = "/home/murthy/Projects/SA/images/positive/basel_small/"
+        #path = "/home/murthy/Projects/SA/images/positive/zuerich_small/"
+        path = "/home/murthy/Projects/SA/images/positive/genf_small/"
 
-        bbox = Bbox('8.703949', '47.486478', '8.737978', '47.506433')
+        #bbox = Bbox('7.559269', '47.551828', '7.612397', '47.571766') #basel
+        #bbox = Bbox('8.516459', '47.366062', '8.546671', '47.386928')
+        bbox = Bbox('6.128354', '46.187747', '6.157744', '46.203332')
 
         imageGenerator = ImageGenerator(path)
 
