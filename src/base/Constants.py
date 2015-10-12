@@ -16,6 +16,7 @@ class Constants:
     TILE19_DISTANCE = METER_PER_PIXEL * PIXEL_TILE19
     squaredImage_PixelPerSide = 80
 
+    RANGE_TO_NODE = 5 #Distance in Meter
 
 
     if(zoomCorrection > 4):

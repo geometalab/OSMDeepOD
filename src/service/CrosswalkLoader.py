@@ -1,6 +1,7 @@
 from geopy import Point
 import httplib2
 from xml.etree import ElementTree
+from src.base.Node import Node
 
 
 class CrosswalkLoader:
@@ -28,3 +29,12 @@ class CrosswalkLoader:
         self.LINK = self.LINK_PREFIX + bbox.getMapquestFormat() + self.LINK_POSTFIX
         return self.getCrosswalkPositions()
 
+
+    def getCrosswalkNodes(self,bbox):
+        points = self.getCrosswalksByPositions(bbox)
+        nodes = []
+
+        for point in points:
+            nodes.append(Node.create(point))
+
+        return nodes

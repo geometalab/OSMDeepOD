@@ -30,10 +30,15 @@ class HaarDetector:
             for x in range(0, numCols):
                 image = imageConverter.pilToCv2(tiles[y][x].image)
                 detections = self.detect(image)
-                for point in self.__getDetectionPoints(detections, tiles[y][x]):
+                for point in self.__getDetectionNodes(detections, tiles[y][x]):
                     detectionPoints.append(point)
                 tiles[y][x].image = imageConverter.cv2toPil(image)
         return detectionPoints
+
+    def getDetectedNodes(self, bbox):
+        tiles = self.__downloadTiles(bbox)
+        return self.detectTileMatrix(tiles)
+
 
     def compare(self,bbox):
         streets = self.__downloadStreets(bbox)
@@ -46,41 +51,17 @@ class HaarDetector:
             for node in street.nodes:
                 print 'Street ' + str(node.toPoint())
 
-    def distanceToNearestStreet(self, streets, point):
-        nearestPointIndex = 0
-        distance = vincenty(point, streets[0].node.toPoint()).meters
-
-        for i in range (1, len(streets)):
-            if distance > vincenty(point, streets[i].node.toPoint()).meters:
-                distance = vincenty(point, streets[i].node.toPoint()).meters
-                nearestPointIndex = i
-
-        nearestPoint = streets[nearestPointIndex].node.toPoint()
-
-        if nearestPointIndex == 0:
-            secondPoint = streets[nearestPointIndex + 1].node.toPoint()
-        elif nearestPointIndex == len(streets):
-            secondPoint = streets[nearestPointIndex - 1].node.toPoint()
-        else:
-            distanceToPointBefore = vincenty(point, streets[nearestPointIndex - 1].node.toPoint()).meters
-            distancetoPointAfter = vincenty(point, streets[nearestPointIndex + 1].node.toPoint()).meters
-            if distancetoPointAfter < distanceToPointBefore:
-                secondPoint = streets[nearestPointIndex - 1].node.toPoint()
-            else:
-                secondPoint = streets[nearestPointIndex + 1].node.toPoint()
-
-
 
     def drawDetectons(self, detections, image):
         for (x,y,w,h) in detections:
             cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,0),1)
 
-    def __getDetectionPoints(self, detections, tile):
-        detectionPoints = []
+    def __getDetectionNodes(self, detections, tile):
+        detectionNodes = []
         for (x,y,w,h) in detections:
             px, py = self.__midle(x,y,w,h)
-            detectionPoints.append(tile.getPoint(px, py))
-        return detectionPoints
+            detectionNodes.append(tile.getNode((px, py)))
+        return detectionNodes
 
     def __downloadTiles(self, bbox):
         return TileProxy(bbox).getTiles()
