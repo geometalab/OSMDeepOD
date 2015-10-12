@@ -31,8 +31,11 @@ class TileProxy:
 
 
     def getBigTile(self, point1, point2):
-        tileId1 = self.getTileIndexes(point1)
-        tileId2 = self.getTileIndexes(point2)
+        box = Bbox()
+        box.set(point1, point2)
+
+        tileId1 = self.getTileIndexes(box.getDownLeftPoint())
+        tileId2 = self.getTileIndexes(box.getUpRightPoint())
 
         image = self.mergeImage(tileId1,tileId2)
 
@@ -43,8 +46,13 @@ class TileProxy:
         return Tile(image, bbox)
 
     def getBigTileByNodes(self, node1, node2):
+        assert self.bbox.inBbox(node1.toPoint()) and self.bbox.inBbox(node2.toPoint())
+
         point1 = self.__getLeftDownPoint(node1, node2)
         point2 = self.__getUpRightPoint(node1, node2)
+
+        assert self.bbox.inBbox(point1) and self.bbox.inBbox(point2)
+
         return self.getBigTile(point1, point2)
 
     def mergeImage(self, tileId1, tileId2):
@@ -63,10 +71,7 @@ class TileProxy:
 
         return result
 
-    def getTiles(self):
-        return self.tiles
-
-    def __getLeftDownPoint(self,node1, node2):
+    def __getLeftDownPoint(self, node1, node2):
         lat1 = node1.lat
         lat2 = node2.lat
         lon1 = node1.lon
@@ -81,10 +86,10 @@ class TileProxy:
         if(lon2 < lon1):
             #Swap
             temp = lon1
-            lon1 = lat2
+            lon1 = lon2
             lon2 = temp
 
-        return Point(lat1,lon1)
+        return Point(lat1, lon1)
 
     def __getUpRightPoint(self,node1, node2):
         lat1 = node1.lat
