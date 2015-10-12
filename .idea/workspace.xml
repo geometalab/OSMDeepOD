@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/base/Constants.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/base/NodeTest.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/base/StreetTest.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/detection/fourier/Node2NodeWalker.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Bbox19.py" afterPath="$PROJECT_DIR$/src/base/Bbox19.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/detection/fourier/FourierTransform.py" afterPath="$PROJECT_DIR$/src/detection/fourier/FourierTransform.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Node.py" afterPath="$PROJECT_DIR$/src/base/Node.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Street.py" afterPath="$PROJECT_DIR$/src/base/Street.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/detection/fourier/StreetWalker.py" afterPath="$PROJECT_DIR$/src/detection/fourier/StreetWalker.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Tile.py" afterPath="$PROJECT_DIR$/src/base/Tile.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py" afterPath="$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py" afterPath="$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CrosswalkDetection.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,11 +41,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Tile.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Tile.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/base/Tile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="65" column="42" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.16783217">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -131,10 +119,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TileProxy.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TileProxy.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.95804197">
+            <state vertical-scroll-proportion="0.0">
               <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
               <folding />
             </state>
@@ -232,8 +220,8 @@
         <option value="$PROJECT_DIR$/src/detection/fourier/StreetWalker.py" />
         <option value="$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py" />
         <option value="$PROJECT_DIR$/src/base/Constants.py" />
-        <option value="$PROJECT_DIR$/src/base/Tile.py" />
         <option value="$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py" />
+        <option value="$PROJECT_DIR$/src/base/Tile.py" />
       </list>
     </option>
   </component>
@@ -1074,16 +1062,16 @@
       <workItem from="1443776889080" duration="5088000" />
       <workItem from="1444026356552" duration="1210000" />
       <workItem from="1444056229787" duration="5927000" />
-      <workItem from="1444656174112" duration="71000" />
+      <workItem from="1444656174112" duration="129000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108371000" />
+    <option name="totallyTimeSpent" value="108429000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="874" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1094,7 +1082,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287483" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19191271" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19191271" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967907" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1532,21 +1520,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/Tile.py">
+    <entry file="file://$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="42" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py">
+    <entry file="file://$PROJECT_DIR$/src/base/Tile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.95804197">
-          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.16783217">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

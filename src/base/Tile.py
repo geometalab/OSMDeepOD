@@ -4,12 +4,8 @@ import numpy as np
 from src.base.Bbox import Bbox
 from matplotlib import pyplot as plt
 from src.base.Node import Node
-<<<<<<< HEAD
-from geopy.point import Point
-=======
 from geopy import Point
 from src.base.Constants import Constants
->>>>>>> master
 
 class Tile:
     def __init__(self, image, bbox):
