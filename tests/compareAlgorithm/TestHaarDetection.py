@@ -8,7 +8,7 @@ from src.service.AlgorithmComparer import AlgorithmComparer
 class TestHaarZebraDetection(unittest.TestCase):
 
     def testHaarDetectorMatrix(self):
-        path = '../classifier/cascade_2.xml'
+        path = '../classifier/cascade_9.xml'
         haarDetector = HaarDetector(path)
         crosswalLoader = CrosswalkLoader()
 
