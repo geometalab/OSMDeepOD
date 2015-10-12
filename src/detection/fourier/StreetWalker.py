@@ -16,9 +16,9 @@ class StreetWalker:
         assert (inbox1 and inbox2)
 
         tile = self.proxy.getBigTileByNodes(node1, node2)
-        tile.startDrawing()
-        tile.drawLine(node1.toPoint(), node2.toPoint())
-        tile.stopDrawing()
+        #tile.startDrawing()
+        #tile.drawLine(node1.toPoint(), node2.toPoint())
+        #tile.stopDrawing()
         #tile.plot()
         squaredImages = tile.getSquaredImages(node1, node2)
 
@@ -27,8 +27,14 @@ class StreetWalker:
 
     def fourier(self, tile):
         transformer = FourierTransform(tile, self.street)
+        transformer.normalizeImage()
         transformer.rotateImg()
-        transformer.plotFrequencie()
+
+        isZebra = transformer.isZebra()
+        transformer.printFrequencie()
+        if(isZebra): print "Zebra!!"
+        #transformer.showImage()
+        #transformer.plotFrequencie()
 
 
     def out(self,msg):

@@ -10,7 +10,7 @@ class Constants:
     Max possible is 4
     4 for Recognition
     '''
-    zoomCorrection = 0.5
+    zoomCorrection = 4
     PIXEL_TILE19 = 350
     METER_PER_PIXEL = 0.404428571 / zoomCorrection
     TILE19_DISTANCE = METER_PER_PIXEL * PIXEL_TILE19

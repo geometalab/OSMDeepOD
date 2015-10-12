@@ -6,7 +6,7 @@ from src.service.StreetLoader.StreetDrawer import StreetDrawer
 
 class StreetDrawerTest(unittest.TestCase):
     def test_Rappi(self):
-        drawer = StreetDrawer(self.RapperswilBig())
+        drawer = StreetDrawer(self.RapperswilBhf())
         print "Downloading Data"
         drawer.downloadData()
         print "Drawing"
