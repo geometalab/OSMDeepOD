@@ -2,7 +2,8 @@ import unittest
 from src.detection.haar.HaarDetector import HaarDetector
 from src.base.Bbox import Bbox
 from src.service.CrosswalkLoader import CrosswalkLoader
-from src.base.Constants import Constants
+from src.service.AlgorithmComparer import AlgorithmComparer
+
 
 class TestHaarZebraDetection(unittest.TestCase):
 
@@ -17,15 +18,7 @@ class TestHaarZebraDetection(unittest.TestCase):
         crosswalks = crosswalLoader.getCrosswalkNodes(bbox)
         detectedNodes = haarDetector.getDetectedNodes(bbox)
 
-        hits = 0
-
-        for detectedNode in detectedNodes:
-            for crosswalk in crosswalks:
-                if detectedNode.getDistanceInMeter(crosswalk) <= Constants.RANGE_TO_NODE:
-                    hit = hit + 1
-                    print 'Crosswalk: ' + str(crosswalk.toPoint()) + ' Detected: ' + str(detectedNode.toPoint())
+        AlgorithmComparer(detectedNodes,crosswalks)
 
 
-        print 'detected: ' + str(len(detectedNodes))
-        print 'crosswalks: ' + str(len(crosswalks))
-        print 'hits: ' + str(hits)
+
