@@ -33,6 +33,9 @@ class Street:
         verticalDistance = vincenty(zero, latPoint).meters
         horizontalDistance = vincenty(zero, lonPoint).meters
 
+        if(horizontalDistance == 0):
+            return np.PI/2
+
         angle = np.arctan(verticalDistance/horizontalDistance)
         if(latDiff<0): angle *= -1
         return angle

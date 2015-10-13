@@ -8,7 +8,7 @@ from src.service.AlgorithmComparer import AlgorithmComparer
 class TestHaarZebraDetection(unittest.TestCase):
 
     def testHaarDetectorMatrix(self):
-        path = '../classifier/cascade_2.xml'
+        path = '../classifier/cascade_9.xml'
         haarDetector = HaarDetector(path)
         crosswalLoader = CrosswalkLoader()
 
@@ -20,5 +20,13 @@ class TestHaarZebraDetection(unittest.TestCase):
 
         algorithmComparer = AlgorithmComparer(detectedNodes,crosswalks)
 
+        bigTile = haarDetector.getTileProxy().getBigTile2()
+
+        blue = (255,0,0)
+        green = (0,255,0)
+        algorithmComparer.drawNodes(bigTile, detectedNodes, blue)
+        algorithmComparer.drawNodes(bigTile, crosswalks, green)
+
+        bigTile.plot()
         self.assertTrue(algorithmComparer.getHits() > 0)
 

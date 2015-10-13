@@ -17,3 +17,9 @@ class AlgorithmComparer:
 
     def getHits(self):
         return self.hits
+
+    def drawNodes(self, bigTile, nodes, color):
+        bigTile.startDrawing()
+        for node in nodes:
+            bigTile.drawColorPoint(node.toPoint(), color)
+        bigTile.stopDrawing()

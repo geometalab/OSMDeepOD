@@ -4,6 +4,7 @@ from src.service.TilesLoader.TileProxy import TileProxy
 from src.base.Bbox import Bbox
 from geopy import Point
 from src.base.Node import Node
+from src.base.Tile import Tile
 
 
 class TestCrosswalkLoader(unittest.TestCase):
@@ -79,6 +80,17 @@ class TestCrosswalkLoader(unittest.TestCase):
         for tile in squared:
             tile.plot()
         '''
+
+    def test_serialization(self):
+        path = "/home/osboxes/Documents/tiles/test.serialize"
+        tile = self.proxy.getBigTile2()
+        tile.toFile(path)
+
+        tile2 = Tile.fromFile(path)
+        tile2.plot()
+
+
+
 
     def ZurichBellvue(self):
         return Bbox(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
