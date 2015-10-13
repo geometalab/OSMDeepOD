@@ -28,7 +28,10 @@ class Bbox:
 
 
     def toString(self):
-       return str(self.bottom) + "," + str(self.right) + "," + str(self.top)  + "," + str(self.left)
+        return str(self.bottom) + "," + str(self.right) + "," + str(self.top)  + "," + str(self.left)
+
+    def getMapquestFormat(self):
+        return   str(self.left) + "," + str(self.bottom) + "," + str(self.right) + "," + str(self.top)
 
     def getMapquestFormat(self):
         return   str(self.left) + "," + str(self.bottom) + "," + str(self.right) + "," + str(self.top)
@@ -53,5 +56,4 @@ class Bbox:
         intLon = lon >= float(self.left) and lon <= float(self.right)
 
         return inLat and intLon
-
 

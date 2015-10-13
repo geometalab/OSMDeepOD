@@ -112,5 +112,5 @@ class TileProxy:
         return Point(lat2,lon2)
 
 
-
-
+    def getTiles(self):
+        return self.tiles
