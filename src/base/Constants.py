@@ -21,6 +21,8 @@ class Constants:
 
     RANGE_TO_NODE = 5 #Distance in Meter
 
+    SerializationFolder = "/home/osboxes/Documents/OSM-Crosswalk-Detection/tests/SerializedTiles/"
+
 
     if(zoomCorrection > 4):
         print "Max zoom correction is 4. Bigger is not supported by Microsoft Bing"

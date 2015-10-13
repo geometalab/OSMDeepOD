@@ -165,9 +165,11 @@ class Tile:
         plt.show()
 
     def toFile(self, filepath):
-        pickle.dump(self, filepath)
+        with open(filepath, 'wb') as f:
+            pickle.dump(self, f)
 
     @staticmethod
     def fromFile(filepath):
-        tile = pickle.load(filepath)
-        return tile
+        with open(filepath, 'rb') as f:
+            tile = pickle.load(f)
+            return tile

@@ -10,7 +10,7 @@ from src.base.Tile import Tile
 class TestCrosswalkLoader(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestCrosswalkLoader, self).__init__(*args, **kwargs)
-        bbox = self.ZurichBellvue()
+        bbox = self.Rappi()
         self.proxy = TileProxy(bbox)
 
 
@@ -82,9 +82,12 @@ class TestCrosswalkLoader(unittest.TestCase):
         '''
 
     def test_serialization(self):
-        path = "/home/osboxes/Documents/tiles/test.serialize"
+
+        path = "/home/osboxes/Documents/OSM-Crosswalk-Detection/tests/SerializedTiles/rapperswil2.serialize"
+
         tile = self.proxy.getBigTile2()
         tile.toFile(path)
+
 
         tile2 = Tile.fromFile(path)
         tile2.plot()
@@ -94,3 +97,7 @@ class TestCrosswalkLoader(unittest.TestCase):
 
     def ZurichBellvue(self):
         return Bbox(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
+
+    def Rappi(self):
+        return Bbox(8.814650, 47.222553, 8.821946, 47.228178)
+
