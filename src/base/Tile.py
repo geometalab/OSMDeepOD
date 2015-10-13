@@ -6,6 +6,7 @@ from matplotlib import pyplot as plt
 from src.base.Node import Node
 from geopy import Point
 from src.base.Constants import Constants
+import pickle
 
 class Tile:
     def __init__(self, image, bbox):
@@ -27,6 +28,12 @@ class Tile:
         p2 = self.getPixel(point2)
 
         cv2.line(self.drawImage,p1,p2,(255,0,0),5)
+
+    def drawPoint(self, point1):
+        if(not self.isDrawing): raise Exception("Enter startDrawing first")
+
+        p1 = self.getPixel(point1)
+        cv2.circle(self.drawImage,p1,10,(0,255,0), -1)
 
     def getPixel(self, point):
         imagewidth = float(self.bbox.right) - float(self.bbox.left)
@@ -156,3 +163,11 @@ class Tile:
     def plot(self):
         plt.imshow(self.image)
         plt.show()
+
+    def toFile(self, filepath):
+        pickle.dump(self, filepath)
+
+    @staticmethod
+    def fromFile(filepath):
+        tile = pickle.load(filepath)
+        return tile

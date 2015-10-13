@@ -45,6 +45,9 @@ class TileProxy:
         bbox = Bbox(firstTile.bbox.left, firstTile.bbox.bottom, lastTile.bbox.right, lastTile.bbox.top)
         return Tile(image, bbox)
 
+    def getBigTile2(self):
+        return self.getBigTile(self.bbox.getDownLeftPoint(),self.bbox.getUpRightPoint())
+
     def getBigTileByNodes(self, node1, node2):
         assert self.bbox.inBbox(node1.toPoint()) and self.bbox.inBbox(node2.toPoint())
 
