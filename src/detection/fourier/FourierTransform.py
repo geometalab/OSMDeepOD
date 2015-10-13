@@ -37,28 +37,39 @@ class FourierTransform:
         plt.imshow(img)
         plt.show()
 
-    def getMiddleColumn(self):
+
+    def __getColumn(self, where0to1):
         height = self.image.shape[0]
         width = self.image.shape[1]
-        middle = width/2
+        middle = width* where0to1
+        middle = int(middle)
         arr = np.array([], np.uint8)
         for y in range(0, height -1):
             arr = np.append(arr,[self.image[y,middle]])
         return arr
+
     def isZebra(self):
-        yf = self.getFrequencies()
-        absolut = []
+        trigger = 1200
+        cuts = 3
+        for i in range(1,cuts):
+            onePart = 1/(float(cuts) + 1)
+            where0to1 = onePart * i
+            frequencies = self.__calcFrequencies(where0to1)
+            isZebra = frequencies[11] > trigger
+            if(isZebra): return True
 
-        for x in yf:
-            absolut.append(abs(x))
-        trigger = 1850
-        isZebra = absolut[8] > trigger or absolut[9] > trigger or absolut[10] > trigger
-        return isZebra
+        return False
 
-    def getFrequencies(self):
-        column = self.getMiddleColumn()
+    def __calcFrequencies(self, where0to1):
+        column = self.__getColumn(where0to1)
         dft = np.fft.rfft(column)
-        return dft[0:20]
+        dtf = dft[0:20]
+        absolut = []
+        for x in dtf:
+            absolut.append(abs(x))
+        return absolut
+
+
 
     def printFrequencie(self):
         yf = self.getFrequencies()
@@ -68,7 +79,7 @@ class FourierTransform:
             absolut.append(abs(x))
 
         print ""
-        print "Abs 8: " + str(absolut[8]) + " 9: " + str(absolut[9]) + " 10: " + str(absolut[10])
+        print "Abs 11: " + str(absolut[11]) + " 9: " + str(absolut[9]) + " 10: " + str(absolut[10])
 
 
         #print "-------Phase 7: " + str(cmath.phase(yf[7])) + " 8: " + str(cmath.phase(yf[8])) + " 9: " + str(cmath.phase(yf[9]))

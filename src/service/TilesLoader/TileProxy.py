@@ -3,6 +3,7 @@ from src.base.Tile import Tile
 from src.base.Bbox import Bbox
 from PIL import Image
 from geopy import Point
+import pickle
 
 
 class TileProxy:
@@ -117,3 +118,15 @@ class TileProxy:
 
     def getTiles(self):
         return self.tiles
+
+
+
+    def toFile(self, filepath):
+        with open(filepath, 'wb') as f:
+            pickle.dump(self, f)
+
+    @staticmethod
+    def fromFile(filepath):
+        with open(filepath, 'rb') as f:
+            proxy = pickle.load(f)
+            return proxy

@@ -26,4 +26,11 @@ class StreetWalker:
         transformer.normalizeImage()
         transformer.rotateImg()
 
-        return transformer.isZebra()
+        isZebra = transformer.isZebra()
+
+#        transformer.printFrequencie()
+      #  transformer.showImage()
+       # transformer.plotFrequencie()
+
+
+        return isZebra

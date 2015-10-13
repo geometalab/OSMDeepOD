@@ -7,16 +7,19 @@ import datetime
 class BoxWalker:
     def __init__(self, bbox):
         self.bbox = bbox
+        self.proxy = ""
 
-    def loadData(self):
+    def loadTiles(self):
         self.out("Loading images within bounding box")
         self.proxy = TileProxy(self.bbox)
         self.out("Images loaded")
-
+    def loadStreets(self):
         self.out("Loading streets within bounding box")
         streetLoader = StreetLoader()
         self.streets = streetLoader.getStreets(self.bbox)
         self.out("Streets loaded")
+
+
 
     def walk(self):
         self.out("Start walking")

@@ -163,13 +163,3 @@ class Tile:
     def plot(self):
         plt.imshow(self.image)
         plt.show()
-
-    def toFile(self, filepath):
-        with open(filepath, 'wb') as f:
-            pickle.dump(self, f)
-
-    @staticmethod
-    def fromFile(filepath):
-        with open(filepath, 'rb') as f:
-            tile = pickle.load(f)
-            return tile
