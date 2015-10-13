@@ -3,7 +3,7 @@ import os
 from src.service.StreetLoader.StreetLoader import StreetLoader
 from src.service.TilesLoader.TileProxy import TileProxy
 from src.service.ImageConverter import ImageConverter
-from geopy.distance import vincenty
+
 
 class HaarDetector:
 
@@ -36,8 +36,8 @@ class HaarDetector:
         return detectionPoints
 
     def getDetectedNodes(self, bbox):
-        tiles = self.__downloadTiles(bbox)
-        return self.detectTileMatrix(tiles)
+        self.tiles = self.__downloadTiles(bbox)
+        return self.detectTileMatrix(self.tiles)
 
 
     def compare(self,bbox):
@@ -52,7 +52,8 @@ class HaarDetector:
                 print 'Street ' + str(node.toPoint())
 
 
-    def drawDetectons(self, detections, image):
+    def __drawDetectons(self, node, tile):
+        tile.draw
         for (x,y,w,h) in detections:
             cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,0),1)
 
@@ -73,3 +74,6 @@ class HaarDetector:
         rx = x + width/2
         ry = y + height/2
         return (rx, ry)
+
+    def getTiles(self):
+        return self.tiles
