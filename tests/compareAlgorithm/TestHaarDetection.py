@@ -22,12 +22,11 @@ class TestHaarZebraDetection(unittest.TestCase):
 
         bigTile = haarDetector.getTileProxy().getBigTile2()
 
-        red = (255,0,0)
+        blue = (255,0,0)
         green = (0,255,0)
-        algorithmComparer.drawNodes(bigTile, detectedNodes, red)
+        algorithmComparer.drawNodes(bigTile, detectedNodes, blue)
         algorithmComparer.drawNodes(bigTile, crosswalks, green)
 
         bigTile.plot()
-
         self.assertTrue(algorithmComparer.getHits() > 0)
 
