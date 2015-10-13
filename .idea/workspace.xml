@@ -2,10 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/testImages/rappi.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/service/AlgorithmComparer.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/detection/haar/HaarDetector.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/service/ImageConverter.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/TestHaarZebraDetection.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/detection/haar/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/compareAlgorithm/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_10.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_11.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_12.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_13.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_4.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_6.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_7.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_8.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/classifier/cascade_9.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Bbox.py" afterPath="$PROJECT_DIR$/src/base/Bbox.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Bbox19.py" afterPath="$PROJECT_DIR$/src/base/Bbox19.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/detection/fourier/BoxWalker.py" afterPath="$PROJECT_DIR$/src/detection/fourier/BoxWalker.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/detection/Fourier/BoxWalkerTest.py" afterPath="$PROJECT_DIR$/tests/detection/Fourier/BoxWalkerTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Constants.py" afterPath="$PROJECT_DIR$/src/base/Constants.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/CrosswalkLoader.py" afterPath="$PROJECT_DIR$/src/service/CrosswalkLoader.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/detection/fourier/FourierTransform.py" afterPath="$PROJECT_DIR$/src/detection/fourier/FourierTransform.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/ImageGenerator.py" afterPath="$PROJECT_DIR$/src/service/ImageGenerator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/Mapquest/MapquestApi.py" afterPath="$PROJECT_DIR$/src/service/Mapquest/MapquestApi.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Node.py" afterPath="$PROJECT_DIR$/src/base/Node.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/base/NodeTest.py" afterPath="$PROJECT_DIR$/tests/base/NodeTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OSM-Crosswalk-Detection.iml" afterPath="$PROJECT_DIR$/OSM-Crosswalk-Detection.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/PosImage.py" afterPath="$PROJECT_DIR$/src/base/PosImage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Street.py" afterPath="$PROJECT_DIR$/src/base/Street.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/StreetLoader/StreetDrawer.py" afterPath="$PROJECT_DIR$/src/service/StreetLoader/StreetDrawer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py" afterPath="$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/StreetLoader/StreetLoader.py" afterPath="$PROJECT_DIR$/src/service/StreetLoader/StreetLoader.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetLoaderTest.py" afterPath="$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetLoaderTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/base/StreetTest.py" afterPath="$PROJECT_DIR$/tests/base/StreetTest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/detection/fourier/StreetWalker.py" afterPath="$PROJECT_DIR$/src/detection/fourier/StreetWalker.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TestImageGenerator.py" afterPath="$PROJECT_DIR$/tests/service/TestImageGenerator.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Tile.py" afterPath="$PROJECT_DIR$/src/base/Tile.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/TilesLoader/TileLoader.py" afterPath="$PROJECT_DIR$/src/service/TilesLoader/TileLoader.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py" afterPath="$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py" afterPath="$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CrosswalkDetection.iws" />
@@ -30,6 +73,8 @@
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestHaarFaceDetection.coverage" NAME="Unittests in TestHaarFaceDetection Coverage Results" MODIFIED="1444046577435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestSURF.coverage" NAME="Unittests in TestSURF Coverage Results" MODIFIED="1443526994526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestPositionConverter.coverage" NAME="Unittests in TestPositionHandler Coverage Results" MODIFIED="1443188635847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
+    <SUITE FILE_PATH="coverage/OSM-Crosswalk-Detection$Unittests_in_TestHaarDetection.coverage" NAME="Unittests in TestHaarDetection Coverage Results" MODIFIED="1444659419396" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/compareAlgorithm" />
+    <SUITE FILE_PATH="coverage/OSM-Crosswalk-Detection$Unittests_in_TestHaarZebraDetection.coverage" NAME="Unittests in TestHaarZebraDetection Coverage Results" MODIFIED="1444658836973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestCrosswalkLoader.coverage" NAME="Unittests in TestCrosswalkLoader Coverage Results" MODIFIED="1443606518741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
     <SUITE FILE_PATH="coverage/CrosswalkDetection$Unittests_in_TestImageLoader.coverage" NAME="Unittests in TestImageLoader Coverage Results" MODIFIED="1444046447836" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
     <SUITE FILE_PATH="coverage/OSM-Crosswalk-Detection$Unittests_in_TestCrosswalkLoader.coverage" NAME="Unittests in TestCrosswalkLoader Coverage Results" MODIFIED="1444068190683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/service" />
@@ -45,11 +90,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Tile.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base/Tile.py">
+      <file leaf-file-name="HaarDetector.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/detection/haar/HaarDetector.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="52" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
+              <caret line="18" column="53" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -57,63 +102,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Constants.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Constants.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/base/Constants.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.34383956">
+              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StreetDrawerTest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py">
+      <file leaf-file-name="TestHaarDetection.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="61" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FourierTransform.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/detection/fourier/FourierTransform.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Street.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/base/Street.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BoxWalkerTest.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/detection/Fourier/BoxWalkerTest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30963302">
-              <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StreetWalker.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/detection/fourier/StreetWalker.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+              <caret line="17" column="59" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -121,11 +124,77 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoxWalker.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/detection/fourier/BoxWalker.py">
+      <file leaf-file-name="TileProxyTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageConverter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/service/ImageConverter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlgorithmComparer.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/service/AlgorithmComparer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestHaarFaceDetection.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/TestHaarFaceDetection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestHaarZebraDetection.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/TestHaarZebraDetection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Node.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/base/Node.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="15" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TileProxy.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -151,11 +220,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/service/Coordinate.py" />
-        <option value="$PROJECT_DIR$/tests/service/TestPositionConverter.py" />
-        <option value="$PROJECT_DIR$/tests/TestOpen.py" />
-        <option value="$PROJECT_DIR$/src/service/PositionConverter.py" />
-        <option value="$PROJECT_DIR$/tests/TestHaarFaceDetection.py" />
         <option value="$PROJECT_DIR$/src/service/PositionHandler.py" />
         <option value="$PROJECT_DIR$/tests/detection/Fourier/Preprocessing.py" />
         <option value="$PROJECT_DIR$/src/detection/__init__.py" />
@@ -169,7 +233,6 @@
         <option value="$PROJECT_DIR$/src/service/Mapquest/Box.py" />
         <option value="$PROJECT_DIR$/src/__init__.py" />
         <option value="$PROJECT_DIR$/src/service/ImageLoader.py" />
-        <option value="$PROJECT_DIR$/src/service/CrosswalkLoader.py" />
         <option value="$PROJECT_DIR$/tests/service/TestImageLoader.py" />
         <option value="$PROJECT_DIR$/tests/service/TestPositionHandler.py" />
         <option value="$PROJECT_DIR$/tests/service/TestPositionHandler.py" />
@@ -181,6 +244,7 @@
         <option value="$PROJECT_DIR$/tests/base/Bbox19Test.py" />
         <option value="$PROJECT_DIR$/tests/service/TileLoader/TileLoaderTest.py" />
         <option value="$PROJECT_DIR$/src/service/ImagePlotter.py" />
+        <option value="$PROJECT_DIR$/src/detection/fourier/BoxWalker.py" />
         <option value="$PROJECT_DIR$/src/service/Mapquest/MapquestApi.py" />
         <option value="$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetLoaderTest.py" />
         <option value="$PROJECT_DIR$/src/service/StreetLoader/StreetDrawer.py" />
@@ -188,20 +252,25 @@
         <option value="$PROJECT_DIR$/src/service/TilesLoader/TileLoader.py" />
         <option value="$PROJECT_DIR$/src/base/Bbox.py" />
         <option value="$PROJECT_DIR$/tests/base/NodeTest.py" />
-        <option value="$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py" />
         <option value="$PROJECT_DIR$/src/detection/fourier/Node2NodeWalker.py" />
-        <option value="$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py" />
         <option value="$PROJECT_DIR$/src/base/Node.py" />
         <option value="$PROJECT_DIR$/tests/base/StreetTest.py" />
         <option value="$PROJECT_DIR$/src/base/Street.py" />
-        <option value="$PROJECT_DIR$/src/base/Bbox19.py" />
-        <option value="$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py" />
-        <option value="$PROJECT_DIR$/src/base/Constants.py" />
         <option value="$PROJECT_DIR$/src/detection/fourier/FourierTransform.py" />
-        <option value="$PROJECT_DIR$/src/base/Tile.py" />
-        <option value="$PROJECT_DIR$/src/detection/fourier/StreetWalker.py" />
-        <option value="$PROJECT_DIR$/src/detection/fourier/BoxWalker.py" />
+        <option value="$PROJECT_DIR$/src/base/Bbox19.py" />
         <option value="$PROJECT_DIR$/tests/detection/Fourier/BoxWalkerTest.py" />
+        <option value="$PROJECT_DIR$/src/detection/fourier/StreetWalker.py" />
+        <option value="$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py" />
+        <option value="$PROJECT_DIR$/src/base/Tile.py" />
+        <option value="$PROJECT_DIR$/tests/compareAlgorithm/__init__.py" />
+        <option value="$PROJECT_DIR$/src/service/CrosswalkLoader.py" />
+        <option value="$PROJECT_DIR$/src/base/Constants.py" />
+        <option value="$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py" />
+        <option value="$PROJECT_DIR$/src/detection/haar/HaarDetector.py" />
+        <option value="$PROJECT_DIR$/tests/TestHaarZebraDetection.py" />
+        <option value="$PROJECT_DIR$/src/service/AlgorithmComparer.py" />
+        <option value="$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py" />
+        <option value="$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py" />
       </list>
     </option>
   </component>
@@ -309,130 +378,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TileLoader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StreetLoaderTest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mapquest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Fourier" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="base" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -452,112 +397,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TilesLoader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StreetLoader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mapquest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OSM-Crosswalk-Detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fourier" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -595,13 +434,14 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="SearchEverywhereHistoryKey" value="image&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/ImageGenerator.py&#10;b&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py&#10;Box&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py" />
+    <property name="SearchEverywhereHistoryKey" value="Test&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/tests/service/TileLoader/TileProxyTest.py&#10;ha&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/detection/haar/HaarDetector.py&#10;TilePro&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/TilesLoader/TileProxy.py&#10;Position&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/PositionHandler.py&#10;con&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/base/Constants.py&#10;Node&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/base/Node.py&#10;cros&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/CrosswalkLoader.py&#10;gene&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/ImageGenerator.py&#10;Tile&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/base/Tile.py&#10;image&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/ImageGenerator.py&#10;b&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py&#10;Box&#9;FILE&#9;file:///home/murthy/Projects/SA/OSM-Crosswalk-Detection/src/service/Mapquest/Box.py" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/detection/Fourier/BoxWalkerTest.py" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/compareAlgorithm" />
       <recent name="$PROJECT_DIR$/src/service/TilesLoader" />
       <recent name="$PROJECT_DIR$/src/detection/fourier" />
       <recent name="$PROJECT_DIR$/src/service" />
@@ -615,53 +455,7 @@
       <recent name="$PROJECT_DIR$/tests/service" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittest TestImageLoader.test_Boxwalker">
-    <configuration default="false" name="Unittest TestImageLoader.test_Boxwalker" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/detection/Fourier" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="OSM-Crosswalk-Detection" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/detection/Fourier/BoxWalkerTest.py" />
-      <option name="CLASS_NAME" value="TestImageLoader" />
-      <option name="METHOD_NAME" value="test_Boxwalker" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest StreetTest.test_getAngle4" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/base" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="OSM-Crosswalk-Detection" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/base/StreetTest.py" />
-      <option name="CLASS_NAME" value="StreetTest" />
-      <option name="METHOD_NAME" value="test_getAngle4" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests in TestHaarDetection">
     <configuration default="false" name="Unittest TestCrosswalkLoader.test_download19" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -720,6 +514,52 @@
       <module name="OSM-Crosswalk-Detection" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in TestHaarDetection" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/compareAlgorithm" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="OSM-Crosswalk-Detection" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in TestHaarZebraDetection" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="OSM-Crosswalk-Detection" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/TestHaarZebraDetection.py" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
@@ -1028,19 +868,19 @@
       <item index="4" class="java.lang.String" itemvalue="Python tests.TileLoaderTest" />
       <item index="5" class="java.lang.String" itemvalue="Python tests.Unittests TileProxy" />
       <item index="6" class="java.lang.String" itemvalue="Python tests.UnitTests BoxWalker" />
-      <item index="7" class="java.lang.String" itemvalue="Python tests.Unittest TestImageLoader.test_Boxwalker" />
-      <item index="8" class="java.lang.String" itemvalue="Python tests.Unittest StreetTest.test_getAngle4" />
-      <item index="9" class="java.lang.String" itemvalue="Python tests.Unittest TestCrosswalkLoader.test_download19" />
-      <item index="10" class="java.lang.String" itemvalue="Python tests.Unittest StreetDrawerTest.test_Rappi" />
-      <item index="11" class="java.lang.String" itemvalue="Python tests.Unittests in StreetDrawerTest" />
+      <item index="7" class="java.lang.String" itemvalue="Python tests.Unittest TestCrosswalkLoader.test_download19" />
+      <item index="8" class="java.lang.String" itemvalue="Python tests.Unittest StreetDrawerTest.test_Rappi" />
+      <item index="9" class="java.lang.String" itemvalue="Python tests.Unittests in StreetDrawerTest" />
+      <item index="10" class="java.lang.String" itemvalue="Python tests.Unittests in TestHaarDetection" />
+      <item index="11" class="java.lang.String" itemvalue="Python tests.Unittests in TestHaarZebraDetection" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest TestImageLoader.test_Boxwalker" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in StreetDrawerTest" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest StreetDrawerTest.test_Rappi" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestCrosswalkLoader.test_download19" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest StreetTest.test_getAngle4" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestHaarDetection" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TestHaarZebraDetection" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in StreetDrawerTest" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest StreetDrawerTest.test_Rappi" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestCrosswalkLoader.test_download19" />
       </list>
     </recent_temporary>
   </component>
@@ -1060,11 +900,12 @@
       <workItem from="1443776889080" duration="5088000" />
       <workItem from="1444026356552" duration="1210000" />
       <workItem from="1444056229787" duration="5927000" />
+      <workItem from="1444656174112" duration="3255000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108300000" />
+    <option name="totallyTimeSpent" value="111555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="874" extended-state="6" />
@@ -1075,26 +916,26 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967907" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19174603" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37756497" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35841313" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32865497" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32839838" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41754386" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34817815" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1117,9 +958,14 @@
           <option name="timeStamp" value="172" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/src/detection/fourier/FourierTransform.py</url>
+          <url>file://$PROJECT_DIR$/src/base/Street.py</url>
           <line>24</line>
-          <option name="timeStamp" value="188" />
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/src/detection/fourier/FourierTransform.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="175" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1129,7 +975,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="190" />
+      <option name="time" value="176" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1138,25 +984,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/service/PositionHandler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="85" selection-start-line="38" selection-start-column="85" selection-end-line="38" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/dist-packages/matplotlib/image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3326226">
-          <caret line="433" column="0" selection-start-line="433" selection-start-column="0" selection-end-line="433" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/service/orthofotos/47.2246376_8.8178977.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python2.7/unittest/case.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3326226">
@@ -1192,13 +1019,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/CrosswalkLoader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/service/TestImageGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1210,13 +1030,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestHaarFaceDetection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1241,13 +1054,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/PositionHandler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/service/TestCrosswalkLoader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1259,20 +1065,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/httplib2/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3318182">
-          <caret line="1468" column="0" selection-start-line="1468" selection-start-column="0" selection-end-line="1468" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/ImageGenerator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38039216">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1318,13 +1110,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/service/TestImageLoader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1344,13 +1129,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/utrunner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67741936">
-          <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1379,17 +1157,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/Node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/base/PosImage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Street.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1414,100 +1195,188 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/TilesLoader/TileLoader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/base/Bbox19.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.11888112">
           <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/dist-packages/numpy/core/numeric.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3318584">
-          <caret line="459" column="0" selection-start-line="459" selection-start-column="0" selection-end-line="459" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/Constants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/Street.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="61" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/detection/fourier/FourierTransform.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/Tile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="52" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.10489511">
+          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/detection/fourier/BoxWalker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-          <folding />
+        <state vertical-scroll-proportion="0.3986014">
+          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/detection/fourier/FourierTransform.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.72727275">
+          <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#10#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/detection/fourier/StreetWalker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.44055945">
+          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/detection/Fourier/BoxWalkerTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30963302">
-          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.16783217">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/TilesLoader/TileLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24475524">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/compareAlgorithm/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/ImageGenerator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Tile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.862069">
+          <caret line="41" column="15" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/CrosswalkLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/PositionHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="21" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="15" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/TilesLoader/TileProxy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TestHaarFaceDetection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/detection/haar/HaarDetector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="53" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TestHaarZebraDetection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/ImageConverter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/AlgorithmComparer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="59" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34383956">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
           <folding />
         </state>
       </provider>

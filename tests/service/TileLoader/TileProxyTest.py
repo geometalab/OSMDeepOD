@@ -73,7 +73,7 @@ class TestCrosswalkLoader(unittest.TestCase):
         #tile.plot()
 
         squared = tile.getSquaredImages(node1, node2)
-        self.assertEquals(len(squared), 10)
+
         '''
         print len(squared)
         for tile in squared:
