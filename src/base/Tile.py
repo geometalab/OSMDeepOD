@@ -29,11 +29,18 @@ class Tile:
 
         cv2.line(self.drawImage,p1,p2,(255,0,0),5)
 
-    def drawPoint(self, point1):
+    def drawPoint(self, point):
         if(not self.isDrawing): raise Exception("Enter startDrawing first")
 
-        p1 = self.getPixel(point1)
+        p1 = self.getPixel(point)
         cv2.circle(self.drawImage,p1,10,(0,255,0), -1)
+
+    def drawColorPoint(self, point, color):
+        if(not self.isDrawing): raise Exception("Enter startDrawing first")
+
+        p1 = self.getPixel(point)
+        cv2.circle(self.drawImage,p1,10,color, -1)
+
 
     def getPixel(self, point):
         imagewidth = float(self.bbox.right) - float(self.bbox.left)

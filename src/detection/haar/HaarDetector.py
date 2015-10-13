@@ -24,16 +24,16 @@ class HaarDetector:
         numRows = len(tiles)
         numCols = len(tiles[0])
 
-        detectionPoints = []
+        detectedNodes = []
 
         for y in range(0, numRows):
             for x in range(0, numCols):
                 image = imageConverter.pilToCv2(tiles[y][x].image)
                 detections = self.detect(image)
-                for point in self.__getDetectionNodes(detections, tiles[y][x]):
-                    detectionPoints.append(point)
+                for node in self.__getDetectionNodes(detections, tiles[y][x]):
+                    detectedNodes.append(node)
                 tiles[y][x].image = imageConverter.cv2toPil(image)
-        return detectionPoints
+        return detectedNodes
 
     def getDetectedNodes(self, bbox):
         self.tiles = self.__downloadTiles(bbox)
@@ -52,11 +52,6 @@ class HaarDetector:
                 print 'Street ' + str(node.toPoint())
 
 
-    def __drawDetectons(self, node, tile):
-        tile.draw
-        for (x,y,w,h) in detections:
-            cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,0),1)
-
     def __getDetectionNodes(self, detections, tile):
         detectionNodes = []
         for (x,y,w,h) in detections:
@@ -65,7 +60,8 @@ class HaarDetector:
         return detectionNodes
 
     def __downloadTiles(self, bbox):
-        return TileProxy(bbox).getTiles()
+        self.tileProxy = TileProxy(bbox)
+        return self.tileProxy.getTiles()
 
     def __downloadStreets(self, bbox):
         return StreetLoader().getStreets(bbox)
@@ -77,3 +73,6 @@ class HaarDetector:
 
     def getTiles(self):
         return self.tiles
+
+    def getTileProxy(self):
+        return self.tileProxy
