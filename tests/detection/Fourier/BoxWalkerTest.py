@@ -9,7 +9,9 @@ class TestImageLoader(unittest.TestCase):
         bbox = self.ZurichBellvue()
         walker = BoxWalker(bbox)
         walker.loadData()
-        walker.walk()
+        crosswalkNodes = walker.walk()
+
+        print str(len(crosswalkNodes)) + " crosswalks found!"
 
     def ZurichBellvue(self):
         return Bbox(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)

@@ -55,6 +55,11 @@ class Tile:
 
         return Node.create(Point(lat, lon))
 
+    def getCentreNode(self):
+        diffLat = self.bbox.getUpRightPoint().latitude - self.bbox.getDownLeftPoint().latitude
+        diffLon = self.bbox.getUpRightPoint().longitude - self.bbox.getDownLeftPoint().longitude
+        middle = Point(self.bbox.getDownLeftPoint().latitude + diffLat/2, self.bbox.getDownLeftPoint().longitude + diffLon/2)
+        return Node.create(middle)
 
 
     @staticmethod
