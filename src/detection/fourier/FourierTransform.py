@@ -49,8 +49,8 @@ class FourierTransform:
         return arr
 
     def isZebra(self):
-        trigger = 1200
-        cuts = 3
+        trigger = 1000
+        cuts = 6
         for i in range(1,cuts):
             onePart = 1/(float(cuts) + 1)
             where0to1 = onePart * i

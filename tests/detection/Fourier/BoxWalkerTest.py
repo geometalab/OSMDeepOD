@@ -33,7 +33,7 @@ class TestImageLoader(unittest.TestCase):
         print str(len(crosswalkNodes)) + " crosswalks found!"
 
     def getRappiProxy(self):
-        path = Constants.SerializationFolder + "zurichBellvue.serialize"
+        path = Constants.SerializationFolder + "rapperswil.serialize"
         return TileProxy.fromFile(path)
 
     def ZurichBellvue(self):
