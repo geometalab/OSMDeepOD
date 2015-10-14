@@ -4,4 +4,4 @@ class ProxyLoader:
 
     @staticmethod
     def load(filename):
-        TileProxy.fromFile(Constants.SerializationFolder + filename)
+        return TileProxy.fromFile(Constants.SerializationFolder + filename)

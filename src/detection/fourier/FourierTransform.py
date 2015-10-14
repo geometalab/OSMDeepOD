@@ -4,6 +4,7 @@ from scipy import ndimage
 import numpy as np
 from src.base.Tile import Tile
 from PIL import Image
+from MLP_SampleData import SampleData
 import cmath
 
 
@@ -84,7 +85,7 @@ class FourierTransform:
 
         #print "-------Phase 7: " + str(cmath.phase(yf[7])) + " 8: " + str(cmath.phase(yf[8])) + " 9: " + str(cmath.phase(yf[9]))
     def plotFrequencie(self):
-        yf = self.getFrequencies()
+        yf = self.__calcFrequencies(0.5)
         absolut = []
 
         for x in yf:
@@ -94,4 +95,13 @@ class FourierTransform:
             absolut[i] = 0
         plt.plot(absolut)
         plt.show()
+
+    def save(self):
+        yf = self.__calcFrequencies(0.5)
+        isCrosswalk = input("Was Crosswalk [1 or 0, default 0]: ")
+        print isCrosswalk
+        data = SampleData(yf,1)
+
+
+
 

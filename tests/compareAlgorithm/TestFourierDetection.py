@@ -10,7 +10,7 @@ from src.service.TilesLoader.TileProxy import TileProxy
 
 class TestFourierDetection(unittest.TestCase):
 
-    def testHaarDetectorMatrix(self):
+    def test_fourierdetection(self):
         proxy = self.getRappiProxy()
         bbox = proxy.bbox
 

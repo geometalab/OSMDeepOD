@@ -9,7 +9,7 @@ class StreetLoader:
         self.__ATTRIBNAME = "highway"
         self.__STREET_CATEGORIES = ['road', 'trunk', 'primary', 'secondary', 'tertiary',
                                     'unclassified', 'residential', 'service', 'trunk_link',
-                                    'primary_link', 'secondary_link', 'tertiary_link']
+                                    'primary_link', 'secondary_link', 'tertiary_link', 'pedestrian']
 
     def getStreets(self, box):
         result = []

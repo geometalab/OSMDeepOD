@@ -21,7 +21,7 @@ class Constants:
 
     RANGE_TO_NODE = 5 #Distance in Meter
 
-    SerializationFolder = "/home/osboxes/Documents/OSM-Crosswalk-Detection/tests/SerializedProxies/"
+    SerializationFolder = "/home/osboxes/Documents/OSM-Crosswalk-Detection/tests/serializedProxies/"
 
 
     if(zoomCorrection > 4):

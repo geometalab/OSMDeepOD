@@ -84,7 +84,7 @@ class TestCrosswalkLoader(unittest.TestCase):
     '''
     def test_serialization(self):
 
-        path = "/home/osboxes/Documents/OSM-Crosswalk-Detection/tests/SerializedProxies/zurichBellvue.serialize"
+        path = "/home/osboxes/Documents/OSM-Crosswalk-Detection/tests/serializedProxies/zurichBellvue.serialize"
 
         self.proxy.toFile(path)
 

@@ -6,8 +6,10 @@ class StreetDrawer:
     def __init__(self, bbox):
         self.bbox = bbox
 
-    def downloadData(self):
+    def downloadTiles(self):
         self.proxy = TileProxy(self.bbox)
+
+    def downloadStreets(self):
         streetloader = StreetLoader()
         self.streets = streetloader.getStreets(self.bbox)
 

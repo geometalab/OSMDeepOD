@@ -29,8 +29,9 @@ class StreetWalker:
         isZebra = transformer.isZebra()
 
 #        transformer.printFrequencie()
-      #  transformer.showImage()
-       # transformer.plotFrequencie()
+        transformer.showImage()
+        transformer.save()
+        #transformer.plotFrequencie()
 
 
         return isZebra

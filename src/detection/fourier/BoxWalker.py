@@ -28,12 +28,13 @@ class BoxWalker:
         iCount = 0
         lastpercentage = 0
         for street in self.streets:
+            iCount += 1
             streetwalker = StreetWalker(street, self.proxy)
             streetResults =  streetwalker.walk()
             crosswalkNodes += streetResults
-            percentage = iCount / streetsCount
+            percentage = (iCount / float(streetsCount)) *100
             if(lastpercentage + 1 < percentage):
-                print  "walking: " + str(percentage*100) + "%"
+                print  "walking: " + str(percentage) + "%"
                 lastpercentage = percentage
 
         self.out("Finish walking")

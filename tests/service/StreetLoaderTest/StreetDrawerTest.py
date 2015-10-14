@@ -2,13 +2,16 @@ import unittest
 from src.base.Bbox import Bbox
 from tests.service.Mapquest.BoxFactory import BoxFactory
 from src.service.StreetLoader.StreetDrawer import StreetDrawer
-
+from src.base.Constants import Constants
+from src.service.TilesLoader.TileProxy import TileProxy
 
 class StreetDrawerTest(unittest.TestCase):
     def test_Rappi(self):
-        drawer = StreetDrawer(self.RapperswilBhf())
+        proxy = self.getRappiProxy()
+        drawer = StreetDrawer(proxy.bbox)
         print "Downloading Data"
-        drawer.downloadData()
+        drawer.downloadStreets()
+        drawer.proxy = proxy
         print "Drawing"
         drawer.drawImage()
         drawer.showImage()
@@ -21,3 +24,7 @@ class StreetDrawerTest(unittest.TestCase):
 
     def RapperswilBig(self):
         return Bbox(8.811903, 47.221270, 8.836365, 47.231092)
+
+    def getRappiProxy(self):
+        path = Constants.SerializationFolder + "rapperswil.serialize"
+        return TileProxy.fromFile(path)
