@@ -15,9 +15,11 @@ class GoogleTileLoader:
 
     def __downloadImage(self, bbox):
         point = bbox.getCenterPoint()
+        print bbox.toString()
         latitude = str(point.latitude)
         longitude = str(point.longitude)
         url = self.PRELINK + latitude + ',' + longitude + self.POSTLINK
+        print url
         resp, content = httplib2.Http().request(url)
         image = Image.open(StringIO(content))
         return Tile(image,bbox)
@@ -25,13 +27,13 @@ class GoogleTileLoader:
     def download(self,bbox):
         self.__setBbox(bbox)
         result = []
-        point = Point(float(self.bbox.top) - Constants.TILE19_DISTANCE_IN_GPS, float(self.bbox.left))
+        point = Point(float(bbox.top) - Constants.TILE19_DISTANCE_IN_GPS, float(bbox.left))
 
         for row in range(self.__getRows(bbox)):
             result.append([])
             for col in range(0,self.__getColumns(bbox)):
                 smallBBox = self.__getSmallBbox(point)
-                point = Point(float(self.bbox.top) + col * Constants.TILE19_DISTANCE_IN_GPS, float(self.bbox.left))
+                point = Point(float(bbox.top) + col * Constants.TILE19_DISTANCE_IN_GPS, float(bbox.left))
                 tile = self.__downloadImage(smallBBox)
                 result[row].append(tile)
         return result

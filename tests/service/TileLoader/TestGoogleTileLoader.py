@@ -10,7 +10,7 @@ from geopy import Point
 
 
 class TestGoogleTileLoader(unittest.TestCase):
-    
+
     def test(self):
         bellevue = self.ZurichBellevue()
         loader = GoogleTileLoader()
@@ -25,7 +25,6 @@ class TestGoogleTileLoader(unittest.TestCase):
         pointA = Point(47.225378, 8.817082)
         pointB = Point(47.225378, 8.817082 + difference)
         pointC = Point(47.225378, 8.817082 + 2 * difference)
-
 
         images = []
 
