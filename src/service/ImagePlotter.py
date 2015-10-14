@@ -36,6 +36,15 @@ class ImagePlotter:
 
         self.plot(result)
 
+    def plotImageList(self, images):
+        width, height = images[0].size
+
+        result = Image.new("RGBA", ( len(images) * width, height))
+
+        for i in range(0, len(images)):
+             result.paste(images[i],(i * width,0 ))
+
+        self.plot(result)
 
     def plot(self, image):
         plt.imshow(image)

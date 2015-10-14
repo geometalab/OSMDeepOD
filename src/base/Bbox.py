@@ -57,3 +57,7 @@ class Bbox:
 
         return inLat and intLon
 
+    def getCenterPoint(self):
+        lon = float(self.left) + ((float(self.right) - float(self.left)) / 2)
+        lat = float(self.bottom) + ((float(self.top) - float(self.bottom)) / 2)
+        return Point(lat, lon)
