@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/TestHaarFaceDetection.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/TestHaarZebraDetection.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/TestOpen.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/TestSIFT.py" afterPath="$PROJECT_DIR$/tests/compareAlgorithm/TestSIFT.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/TestSURF.py" afterPath="$PROJECT_DIR$/tests/compareAlgorithm/TestSURF.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CrosswalkDetection.iws" />
@@ -93,10 +96,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestSURF.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/TestSURF.py">
+      <file leaf-file-name="TestSURF.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/compareAlgorithm/TestSURF.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.6166078">
               <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
               <folding />
             </state>
@@ -104,20 +107,10 @@
         </entry>
       </file>
       <file leaf-file-name="TestSIFT.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/TestSIFT.py">
+        <entry file="file://$PROJECT_DIR$/tests/compareAlgorithm/TestSIFT.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestOpen.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/TestOpen.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.0865724">
-              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -377,11 +370,11 @@
       <recent name="$PROJECT_DIR$/src/detection" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/compareAlgorithm" />
       <recent name="$PROJECT_DIR$/src/base" />
       <recent name="$PROJECT_DIR$/tests/service/Mapquest" />
       <recent name="$PROJECT_DIR$/src/service/Mapquest" />
       <recent name="$PROJECT_DIR$/src/service/StreetLoader" />
-      <recent name="$PROJECT_DIR$/tests/service" />
     </key>
   </component>
   <component name="RunManager" selected="Python tests.Unittests in TestHaarDetection">
@@ -1129,12 +1122,12 @@
       <workItem from="1444738802759" duration="2807000" />
       <workItem from="1444741788328" duration="704000" />
       <workItem from="1444747664885" duration="697000" />
-      <workItem from="1444810340825" duration="448000" />
+      <workItem from="1444810340825" duration="529000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116211000" />
+    <option name="totallyTimeSpent" value="116292000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="874" extended-state="6" />
@@ -1423,13 +1416,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestHaarZebraDetection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/service/ImageConverter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1581,15 +1567,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestSURF.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestSIFT.py">
+    <entry file="file://$PROJECT_DIR$/tests/compareAlgorithm/TestSIFT.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="42" />
@@ -1597,10 +1575,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestOpen.py">
+    <entry file="file://$PROJECT_DIR$/tests/compareAlgorithm/TestSURF.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0865724">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6166078">
+          <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
           <folding />
         </state>
       </provider>
