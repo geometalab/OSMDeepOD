@@ -40,5 +40,10 @@ class BoxWalker:
         self.out("Finish walking")
         return crosswalkNodes
 
+    def saveImages(self):
+        for street in self.streets:
+            streetwalker = StreetWalker(street, self.proxy)
+            streetResults =  streetwalker.saveSquaredImages()
+
     def out(self,msg):
         print str(datetime.datetime.now()) + ": " + msg

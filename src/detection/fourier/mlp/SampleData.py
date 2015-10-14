@@ -4,9 +4,10 @@ class SampleData:
     def __init__(self, complexFrequencie, isCrosswalk):
         self.complexFrequencie = complexFrequencie
         self.isCrosswalk = isCrosswalk
-        self.input = []
+        self.convert()
 
     def convert(self):
+        self.input = []
         maxSize = 2000.0
         inputSize = 20
         count = 0

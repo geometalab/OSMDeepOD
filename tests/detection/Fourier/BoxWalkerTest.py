@@ -32,6 +32,15 @@ class TestImageLoader(unittest.TestCase):
 
         print str(len(crosswalkNodes)) + " crosswalks found!"
 
+    def test_Saveimages(self):
+        proxy = self.getRappiProxy()
+        bbox = proxy.bbox
+        walker = BoxWalker(bbox)
+        walker.proxy = proxy
+        walker.loadStreets()
+
+        walker.saveImages()
+
     def getRappiProxy(self):
         path = Constants.SerializationFolder + "rapperswil.serialize"
         return TileProxy.fromFile(path)
