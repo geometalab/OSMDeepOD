@@ -42,7 +42,7 @@ class TestImageLoader(unittest.TestCase):
         walker.saveImages()
 
     def getRappiProxy(self):
-        path = Constants.SerializationFolder + "rapperswil.serialize"
+        path = Constants.SerializationFolder +  "rapperswil.serialize"# "zurichBellvue.serialize"
         return TileProxy.fromFile(path)
 
     def ZurichBellvue(self):

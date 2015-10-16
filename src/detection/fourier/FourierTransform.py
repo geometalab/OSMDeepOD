@@ -7,6 +7,7 @@ import cv2
 
 from src.base.Tile import Tile
 from src.detection.fourier.mlp.SampleData import SampleData
+from src.detection.fourier.mlp.NeuralNetwork import NeuralNetwork
 
 
 class FourierTransform:
@@ -60,7 +61,7 @@ class FourierTransform:
             arr = np.append(arr,[self.image[y, pixelX]])
         return arr
 
-    def isZebra(self):
+    def isZebra2(self):
         trigger = 1000
         cuts = 6
         for i in range(1,cuts):
@@ -69,6 +70,26 @@ class FourierTransform:
             frequencies = self.calcFrequencies(where0to1)
             isZebra = frequencies[11] > trigger
             if(isZebra): return True
+
+        return False
+
+    def isZebra(self):
+        cuts = 40
+        mustHits = 3
+        actuallHits = 0
+        for i in range(1,cuts):
+            onePart = 1/(float(cuts) + 1)
+            where0to1 = onePart * i
+            frequencies = self.calcFrequencies(where0to1)
+            sample = SampleData(frequencies,0)
+            nn = FourierTransform.getNeuralNetwork()
+            isCrosswalk = nn.isCrosswalk(sample.input)
+            if(isCrosswalk):
+                actuallHits += 1
+            else:
+                if(actuallHits > 0):
+                    actuallHits -= 1
+            if(actuallHits >= mustHits): return True
 
         return False
 
@@ -121,6 +142,13 @@ class FourierTransform:
         isCrosswalk = input("Was Crosswalk [1 or 0, default 0]: ")
         print isCrosswalk
         data = SampleData(yf,1)
+
+    neuralNetwork = None
+    @staticmethod
+    def getNeuralNetwork():
+        if(FourierTransform.neuralNetwork is None):
+            FourierTransform.neuralNetwork = NeuralNetwork.fromFile("/home/osboxes/Documents/squaredImages/ffnn 83.3%.serialize")
+        return FourierTransform.neuralNetwork
 
 
 

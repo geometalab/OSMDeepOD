@@ -1,35 +1,38 @@
 from pybrain.structure import FeedForwardNetwork, LinearLayer, SigmoidLayer, FullConnection
-from pybrain.tools.shortcuts import buildNetwork
 from pybrain.datasets import ClassificationDataSet
 from pybrain.supervised.trainers import BackpropTrainer
-from pybrain.structure.modules import SoftmaxLayer
-from pybrain.utilities import percentError
+
 import pickle
 
 class NeuralNetwork:
     def __init__(self):
-        self.nHidden1 = 50
-        self.nHidden2 = self.nHidden1
+        self.nHidden1 = 40
+        self.nHidden2 = 40
+
 
 
     def initialize(self):
         n = FeedForwardNetwork()
         inLayer = LinearLayer(self.traindata.indim)
-        hiddenLayer = SigmoidLayer(self.nHidden1)
-        hiddenLayer2 = SigmoidLayer(self.nHidden2)
-        outLayer = LinearLayer(self.traindata.outdim)
         n.addInputModule(inLayer)
-        n.addModule(hiddenLayer)
-        n.addModule(hiddenLayer2)
+        lastLayer = inLayer
+
+        for i in range(0,1):
+            layer = SigmoidLayer(self.nHidden1)
+            n.addModule(layer)
+            connection = FullConnection(lastLayer,layer)
+            n.addConnection(connection)
+            lastLayer = layer
+
+
+        outLayer = LinearLayer(self.traindata.outdim)
+
         n.addOutputModule(outLayer)
-        in_to_hidden = FullConnection(inLayer, hiddenLayer)
-        hidden_to_hidden = FullConnection(hiddenLayer, hiddenLayer2)
-        hidden_to_out = FullConnection(hiddenLayer2, outLayer)
-        n.addConnection(in_to_hidden)
-        n.addConnection(hidden_to_hidden)
+        hidden_to_out = FullConnection(lastLayer, outLayer)
         n.addConnection(hidden_to_out)
+
         n.sortModules()
-        return n
+        self.net = n
 
 
 
@@ -56,10 +59,11 @@ class NeuralNetwork:
         trainer = BackpropTrainer(self.net, dataset=self.traindata, momentum=0.1, verbose=True, weightdecay=0.01)
         #trainer.trainUntilConvergence(dataset=self.traindata, maxEpochs=500,validationData=self.testdata)
 
-        epoches = 200
-        for i in range(epoches/5):
-            trainer.trainEpochs(5)
-            print str(i*5)
+        epoches = 300
+        for i in range(epoches/10):
+            trainer.trainEpochs(10)
+            self.printError()
+            print str(i*10)
 
         self.printError()
         self.saveNet("/home/osboxes/Documents/squaredImages/ffnn.serialize")
@@ -76,6 +80,12 @@ class NeuralNetwork:
 
         print "Erfolgsrate: " + str((float(richtige) / len(self.testdata)) * 100)
 
+    def isCrosswalk(self, frequencies):
+        ret = self.net.activate(frequencies)
+        crosswalkDetected = ret[1] > 0.7 and ret[0] < 0.15
+        if(crosswalkDetected): print ret
+        return crosswalkDetected
+
     def saveNet(self, filepath):
         with open(filepath, 'wb') as f:
             pickle.dump(self.net, f)
@@ -84,4 +94,6 @@ class NeuralNetwork:
     def fromFile(filepath):
         with open(filepath, 'rb') as f:
             net = pickle.load(f)
-            return net
+            neuralNetwork = NeuralNetwork()
+            neuralNetwork.net = net
+            return neuralNetwork

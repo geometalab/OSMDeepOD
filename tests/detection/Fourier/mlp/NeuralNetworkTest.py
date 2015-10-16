@@ -1,7 +1,7 @@
 from src.detection.fourier.mlp.NeuralNetwork import NeuralNetwork
 import unittest
 from src.detection.fourier.mlp.DataGenerator import DataGenerator
-
+from random import shuffle
 
 
 class TestNeuralNetwork(unittest.TestCase):
@@ -15,7 +15,7 @@ class TestNeuralNetwork(unittest.TestCase):
     def generateSamples(self):
         generator = DataGenerator("/home/osboxes/Documents/squaredImages/no/")
         datasN = generator.generateSampleDatabyFolder()
-
+        shuffle(datasN)
         generator = DataGenerator("/home/osboxes/Documents/squaredImages/yes/")
         datasY = generator.generateSamplesByPixel()
         return datasN[0:len(datasY)] + datasY
