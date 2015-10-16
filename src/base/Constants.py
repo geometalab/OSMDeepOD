@@ -19,7 +19,8 @@ class Constants:
     TILE19_DISTANCE = METER_PER_PIXEL * PIXEL_TILE19
     squaredImage_PixelPerSide = 80
 
-    TILE19_DISTANCE_IN_GPS = 0.00094
+    TILE19_DISTANCE_LON = 0.00094
+    TILE19_DISTANCE_LAT = 0.000638
 
     RANGE_TO_NODE = 5 #Distance in Meter
 

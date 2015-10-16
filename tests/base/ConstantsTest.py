@@ -1,6 +1,4 @@
 import unittest
-
-from src.service.TilesLoader.GoogleTileLoader import GoogleTileLoader
 from src.base.Bbox import Bbox
 from src.service.ImagePlotter import ImagePlotter
 import httplib2
@@ -9,19 +7,12 @@ from PIL import Image
 from geopy import Point
 
 
-class TestGoogleTileLoader(unittest.TestCase):
+class ConstantsTest(unittest.TestCase):
 
-    def test(self):
-        bellevue = self.ZurichBellevue()
-        loader = GoogleTileLoader()
-        tiles = loader.download(bellevue)
-
-        plotter = ImagePlotter()
-        plotter.plotGoogleTileMatrix(tiles)
-
-    def testMercatorProjection(self):
+    def testConstantsLonDifference(self):
         difference = 0.00094
         plotter = ImagePlotter()
+
         pointA = Point(47.225378, 8.817082)
         pointB = Point(47.225378, 8.817082 + difference)
         pointC = Point(47.225378, 8.817082 + 2 * difference)
@@ -34,11 +25,12 @@ class TestGoogleTileLoader(unittest.TestCase):
         images.append(img1)
         images.append(img2)
         images.append(img3)
+
         plotter.plotImageListInLon(images)
 
         self.assertTrue(True)
 
-    def testMercatorProjectionLat(self):
+    def testConstantsLatDifference(self):
         difference = 0.000643
         plotter = ImagePlotter()
         pointA = Point(47.225378, 8.817082)
@@ -53,13 +45,11 @@ class TestGoogleTileLoader(unittest.TestCase):
         images.append(img1)
         images.append(img2)
         images.append(img3)
+
         plotter.plotImageListInLat(images)
 
         self.assertTrue(True)
 
-
-    def ZurichBellevue(self):
-        return Bbox(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
 
     def __downloadImage(self, point):
         self.PRELINK = 'https://maps.googleapis.com/maps/api/staticmap?maptype=satellite&center='

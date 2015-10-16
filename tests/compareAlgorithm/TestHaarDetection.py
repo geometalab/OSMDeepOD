@@ -13,7 +13,7 @@ class TestHaarZebraDetection(unittest.TestCase):
         crosswalLoader = CrosswalkLoader()
 
         #bbox = Bbox('8.815292', '47.223505', '8.84734', '47.235126')
-        bbox = Bbox('8.817897', '47.226033', '8.819561', '47.226831') #small
+        bbox = self.Rappi()
 
         crosswalks = crosswalLoader.getCrosswalkNodes(bbox)
         detectedNodes = haarDetector.getDetectedNodes(bbox)
@@ -30,3 +30,5 @@ class TestHaarZebraDetection(unittest.TestCase):
         bigTile.plot()
         self.assertTrue(algorithmComparer.getHits() > 0)
 
+    def Rappi(self):
+        return Bbox(8.814650, 47.222553, 8.825035, 47.228935)
