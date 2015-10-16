@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/TilesLoader/GoogleTileLoader.py" afterPath="$PROJECT_DIR$/src/service/TilesLoader/GoogleTileLoader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/ImagePlotter.py" afterPath="$PROJECT_DIR$/src/service/ImagePlotter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TileLoader/TestGoogleTileLoader.py" afterPath="$PROJECT_DIR$/tests/service/TileLoader/TestGoogleTileLoader.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Bbox.py" afterPath="$PROJECT_DIR$/src/base/Bbox.py" />
     </list>
     <ignored path="CrosswalkDetection.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -141,8 +139,8 @@
       <file leaf-file-name="Bbox.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/base/Bbox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3319149">
-              <caret line="29" column="16" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.65106386">
+              <caret line="39" column="77" selection-start-line="39" selection-start-column="77" selection-end-line="39" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -222,13 +220,13 @@
         <option value="$PROJECT_DIR$/src/service/MercatorProjection.py" />
         <option value="$PROJECT_DIR$/tests/service/TestMercatorProjection.py" />
         <option value="$PROJECT_DIR$/tests/service/TileLoader/TileLoaderTest.py" />
-        <option value="$PROJECT_DIR$/src/base/Bbox.py" />
         <option value="$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py" />
         <option value="$PROJECT_DIR$/src/base/Constants.py" />
         <option value="$PROJECT_DIR$/tests/base/ConstantsTest.py" />
         <option value="$PROJECT_DIR$/tests/service/TileLoader/TestGoogleTileLoader.py" />
         <option value="$PROJECT_DIR$/src/service/ImagePlotter.py" />
         <option value="$PROJECT_DIR$/src/service/TilesLoader/GoogleTileLoader.py" />
+        <option value="$PROJECT_DIR$/src/base/Bbox.py" />
       </list>
     </option>
   </component>
@@ -1216,12 +1214,12 @@
       <workItem from="1444738802759" duration="2807000" />
       <workItem from="1444741788328" duration="704000" />
       <workItem from="1444747664885" duration="697000" />
-      <workItem from="1444810340825" duration="36940000" />
+      <workItem from="1444810340825" duration="37136000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152703000" />
+    <option name="totallyTimeSpent" value="152899000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="874" extended-state="6" />
@@ -1729,8 +1727,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/base/Bbox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3319149">
-          <caret line="29" column="16" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.65106386">
+          <caret line="39" column="77" selection-start-line="39" selection-start-column="77" selection-end-line="39" selection-end-column="77" />
           <folding />
         </state>
       </provider>
