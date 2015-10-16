@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Bbox.py" afterPath="$PROJECT_DIR$/src/base/Bbox.py" />
-    </list>
+    <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="" />
     <ignored path="CrosswalkDetection.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -1214,12 +1212,12 @@
       <workItem from="1444738802759" duration="2807000" />
       <workItem from="1444741788328" duration="704000" />
       <workItem from="1444747664885" duration="697000" />
-      <workItem from="1444810340825" duration="37136000" />
+      <workItem from="1444810340825" duration="37795000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152899000" />
+    <option name="totallyTimeSpent" value="153558000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1602" height="874" extended-state="6" />
