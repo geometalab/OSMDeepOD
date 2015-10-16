@@ -16,11 +16,9 @@ class GoogleTileLoader:
 
     def __downloadImage(self, bbox):
         point = bbox.getCenterPoint()
-        print bbox.toString()
         latitude = str(point.latitude)
         longitude = str(point.longitude)
         url = self.PRELINK + latitude + ',' + longitude + self.POSTLINK
-        print url
         resp, content = httplib2.Http().request(url)
         image = Image.open(StringIO(content))
         return Tile(image,bbox)
@@ -39,15 +37,17 @@ class GoogleTileLoader:
         self.tiles = result
         return result
 
-    def __setBbox(self,bbox):
+    def __setBbox(self, bbox):
         self.bbox.left = bbox.left
         self.bbox.bottom = bbox.bottom
         rows = self.__getRows(bbox)
         columns = self.__getColumns(bbox)
-        self.bbox.right = float(columns) * Constants.TILE19_DISTANCE_LON
-        self.bbox.top = float(rows) * Constants.TILE19_DISTANCE_LAT
+        self.bbox.right = float(bbox.left) + float(columns) * Constants.TILE19_DISTANCE_LON
+        self.bbox.top = float(bbox.bottom) + float(rows) * Constants.TILE19_DISTANCE_LAT
 
     def getBigTile(self):
+        if(len(self.tiles) == 0):
+            raise Exception("Point not in bbox")
         bigImage = self.__mergeImages()
         return Tile(bigImage, self.bbox)
 
@@ -67,14 +67,13 @@ class GoogleTileLoader:
         tiles = self.tiles
         numRows = len(tiles)
         numCols = len(tiles[0])
-        print tiles[0][0]
         width, height = tiles[0][0].image.size
 
-        result = Image.new("RGBA", (numCols * width, numRows * height))
+        bigImage = Image.new("RGBA", (numCols * width, numRows * height))
 
         for y in range(0, numRows):
             for x in range(0, numCols):
-                result.paste(tiles[y][x].image,(x * width, y * height))
+                bigImage.paste(tiles[y][x].image,(x * width, y * height))
 
-        return result
+        return bigImage
 
