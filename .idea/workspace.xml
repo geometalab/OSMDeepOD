@@ -2,17 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c9ea630-7912-4599-b287-07faf5c15aa5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/detection/fourier/mlp/DataGenerator.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/detection/Fourier/mlp/DataGeneratorTest.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/detection/fourier/mlp/NeuralNetwork.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/detection/Fourier/mlp/NeuralNetworkTest.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/detection/fourier/mlp/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/detection/Fourier/mlp/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/detection/fourier/MLP_SampleData.py" afterPath="$PROJECT_DIR$/src/detection/fourier/mlp/SampleData.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/detection/fourier/BoxWalker.py" afterPath="$PROJECT_DIR$/src/detection/fourier/BoxWalker.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/detection/Fourier/BoxWalkerTest.py" afterPath="$PROJECT_DIR$/tests/detection/Fourier/BoxWalkerTest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/detection/fourier/FourierTransform.py" afterPath="$PROJECT_DIR$/src/detection/fourier/FourierTransform.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/detection/fourier/StreetWalker.py" afterPath="$PROJECT_DIR$/src/detection/fourier/StreetWalker.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/base/ConstantsTest.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/service/TilesLoader/GoogleTileLoader.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/service/MercatorProjection.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/base/Pixel.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/service/TileLoader/TestGoogleTileLoader.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/service/TestMercatorProjection.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/TestHaarFaceDetection.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/TestHaarZebraDetection.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/TestOpen.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/TestSIFT.py" afterPath="$PROJECT_DIR$/tests/compareAlgorithm/TestSIFT.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/tests/TestSURF.py" afterPath="$PROJECT_DIR$/tests/compareAlgorithm/TestSURF.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Bbox.py" afterPath="$PROJECT_DIR$/src/base/Bbox.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Constants.py" afterPath="$PROJECT_DIR$/src/base/Constants.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/ImageLoader.py" afterPath="$PROJECT_DIR$/src/service/ImageLoader.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/ImagePlotter.py" afterPath="$PROJECT_DIR$/src/service/ImagePlotter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Node.py" afterPath="$PROJECT_DIR$/src/base/Node.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/StreetLoader/StreetDrawer.py" afterPath="$PROJECT_DIR$/src/service/StreetLoader/StreetDrawer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py" afterPath="$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py" afterPath="$PROJECT_DIR$/tests/compareAlgorithm/TestHaarDetection.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TestImageGenerator.py" afterPath="$PROJECT_DIR$/tests/service/TestImageGenerator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TestImageLoader.py" afterPath="$PROJECT_DIR$/tests/service/TestImageLoader.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/service/TileLoader/TileLoaderTest.py" afterPath="$PROJECT_DIR$/tests/service/TileLoader/TileLoaderTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CrosswalkDetection.iws" />
@@ -54,18 +72,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="StreetWalker.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/detection/fourier/StreetWalker.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DataGenerator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/detection/fourier/mlp/DataGenerator.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -102,36 +108,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SampleData.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SampleData.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/detection/fourier/mlp/SampleData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.27936962">
               <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NeuralNetworkTest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/detection/Fourier/mlp/NeuralNetworkTest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#65#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FourierTransform.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/detection/fourier/FourierTransform.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36585367">
-              <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#36#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -141,16 +123,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="131" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StreetDrawerTest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -223,10 +195,10 @@
         <option value="$PROJECT_DIR$/src/detection/fourier/StreetWalker.py" />
         <option value="$PROJECT_DIR$/tests/detection/Fourier/mlp/DataGeneratorTest.py" />
         <option value="$PROJECT_DIR$/src/detection/fourier/mlp/SampleData.py" />
-        <option value="$PROJECT_DIR$/src/detection/fourier/FourierTransform.py" />
         <option value="$PROJECT_DIR$/src/detection/fourier/mlp/DataGenerator.py" />
         <option value="$PROJECT_DIR$/tests/detection/Fourier/mlp/NeuralNetworkTest.py" />
         <option value="$PROJECT_DIR$/src/detection/fourier/mlp/NeuralNetwork.py" />
+        <option value="$PROJECT_DIR$/src/detection/fourier/FourierTransform.py" />
       </list>
     </option>
   </component>
@@ -1070,9 +1042,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2495238" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19174603" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4131327" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32968536" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2257182" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32968536" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1081,11 +1051,13 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2257182" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32831737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4131327" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1142,7 +1114,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1271,13 +1242,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/TilesLoader/TileLoader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24475524">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/compareAlgorithm/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1313,20 +1277,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestHaarZebraDetection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestHaarFaceDetection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/service/TileLoader/TileProxyTest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1359,13 +1309,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/Constants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1435,7 +1378,7 @@
     <entry file="file://$PROJECT_DIR$/tests/service/StreetLoaderTest/StreetDrawerTest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
           <folding />
         </state>
       </provider>
@@ -1460,14 +1403,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/detection/fourier/mlp/SampleData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/detection/fourier/mlp/DataGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1482,7 +1417,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.40399">
           <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1491,16 +1425,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="131" selection-end-column="24" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/detection/Fourier/mlp/NeuralNetworkTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#65#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1514,13 +1438,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/TilesLoader/TileLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27936962">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/TilesLoader/GoogleTileLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/Constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3008596">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/detection/fourier/FourierTransform.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36585367">
+        <state vertical-scroll-proportion="0.0">
           <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/detection/Fourier/mlp/NeuralNetworkTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19340974">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/detection/fourier/mlp/SampleData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27936962">
+          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>

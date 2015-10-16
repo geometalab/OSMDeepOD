@@ -37,7 +37,7 @@ class Bbox:
         return   str(self.left) + "," + str(self.bottom) + "," + str(self.right) + "," + str(self.top)
 
     def getBingFormat(self):
-        return str(self.bottom) + "," + str(self.left) + "," + str(self.top)  + "," + str(self.right)
+        return str(self.bottom) + "," + str(self.left) + "," + str(self.top) + "," + str(self.right)
 
     def printing(self):
         return "Bottom: " + str(self.bottom) + ", Right: " + str(self.right) + ", Top: " + str(self.top)  + ", Left: " + str(self.left)
@@ -57,3 +57,7 @@ class Bbox:
 
         return inLat and intLon
 
+    def getCenterPoint(self):
+        lon = float(self.left) + ((float(self.right) - float(self.left)) / 2)
+        lat = float(self.bottom) + ((float(self.top) - float(self.bottom)) / 2)
+        return Point(lat, lon)

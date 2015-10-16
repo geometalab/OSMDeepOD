@@ -5,7 +5,7 @@ from src.base.Bbox import Bbox
 from src.service.ImagePlotter import ImagePlotter
 
 
-class TestCrosswalkLoader(unittest.TestCase):
+class TestTileLoader(unittest.TestCase):
     def test_download19(self):
         bellvue = self.ZurichBellvue()
         loader = TileLoader()

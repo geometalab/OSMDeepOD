@@ -1,6 +1,5 @@
 import unittest
 from src.base.Bbox import Bbox
-from tests.service.Mapquest.BoxFactory import BoxFactory
 from src.service.StreetLoader.StreetDrawer import StreetDrawer
 from src.base.Constants import Constants
 from src.service.TilesLoader.TileProxy import TileProxy

@@ -1,7 +1,6 @@
 from geopy import Point
 from geopy.distance import vincenty
 from src.service.PositionHandler import PositionHandler
-import numpy as np
 
 
 class Node:
