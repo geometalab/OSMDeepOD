@@ -32,12 +32,12 @@ class StreetLoader:
     def __parseWay(self, way, nodesDict, bbox):
         result = []
         nodes = self.__createNodeList(way, nodesDict)
-
+        borderdBox = bbox.getBboxExludeBorder(10)
         for i in range(len(nodes) -1):
             me = nodes[i]
             next = nodes[i + 1]
 
-            isValidStreet = self.__isValidNode(me, bbox) and self.__isValidNode(next, bbox)
+            isValidStreet = borderdBox.inBbox(me.toPoint()) and borderdBox.inBbox(next.toPoint())
             if(isValidStreet):
                 street = self.__createStreet(way)
                 street.nodes.append(me)

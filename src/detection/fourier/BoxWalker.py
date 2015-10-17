@@ -2,6 +2,7 @@ from src.detection.fourier.StreetWalker import StreetWalker
 from src.service.TilesLoader.TileProxy import TileProxy
 from src.service.StreetLoader.StreetLoader import StreetLoader
 import datetime
+from src.detection.fourier.NodeMerger import NodeMerger
 
 
 class BoxWalker:
@@ -27,9 +28,10 @@ class BoxWalker:
         crosswalkNodes = []
         iCount = 0
         lastpercentage = 0
+        bigTile = self.proxy.getBigTile2()
         for street in self.streets:
             iCount += 1
-            streetwalker = StreetWalker(street, self.proxy)
+            streetwalker = StreetWalker(street, bigTile)
             streetResults =  streetwalker.walk()
             crosswalkNodes += streetResults
             percentage = (iCount / float(streetsCount)) *100
@@ -38,11 +40,17 @@ class BoxWalker:
                 lastpercentage = percentage
 
         self.out("Finish walking")
-        return crosswalkNodes
+        mergedNodes = self.mergeNearNodes(crosswalkNodes)
+        return mergedNodes
+
+    def mergeNearNodes(self, nodeList):
+        merger = NodeMerger.fromNodeList(nodeList)
+        return merger.reduce()
 
     def saveImages(self):
+        tile = self.proxy.getBigTile2()
         for street in self.streets:
-            streetwalker = StreetWalker(street, self.proxy)
+            streetwalker = StreetWalker(street, tile)
             streetResults =  streetwalker.saveSquaredImages()
 
     def out(self,msg):

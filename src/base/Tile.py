@@ -100,7 +100,7 @@ class Tile:
         distanceBetweenNodes = node1.getDistanceInMeter(node2)
 
         squaresTiles = []
-        for i in range(1, int(distanceBetweenNodes/stepDistance) + 1):
+        for i in range(0, int(distanceBetweenNodes/stepDistance) + 1):
             currentDistance = stepDistance * i
 
             currentNode = node1.stepTo(node2, currentDistance)
@@ -130,13 +130,12 @@ class Tile:
 
         newnode = self.getNode(resultPixel)
 
-        pixel2 = self.getPixel(newnode.toPoint())
 
         return newnode
 
 
-    def __getSquaredImage(self, centrePoint):
-        PIXEL_PER_SIDE = Constants.squaredImage_PixelPerSide
+    def getSquaredImage(self, centrePoint, PIXEL_PER_SIDE):
+        #PIXEL_PER_SIDE = Constants.squaredImage_PixelPerSide
         METER_PER_PIXEL = Constants.METER_PER_PIXEL
         DISTANCE = PIXEL_PER_SIDE * METER_PER_PIXEL
 
@@ -144,9 +143,16 @@ class Tile:
         leftDown = centreNode.addMeter(-DISTANCE/2,-DISTANCE/2)
         rightTop = centreNode.addMeter(DISTANCE/2,DISTANCE/2)
 
-        box = Bbox()
-        box.set(leftDown.toPoint(),rightTop.toPoint())
 
+        leftDown = self.__ajustNodeToBoarder(leftDown)
+        rightTop = self.__ajustNodeToBoarder(rightTop)
+
+        assert self.bbox.inBbox(leftDown.toPoint())
+        assert self.bbox.inBbox(rightTop.toPoint())
+
+
+        box = Bbox()
+        box.set(leftDown.toPoint(), rightTop.toPoint())
         return self.getSubTile(box)
 
     def getSubTile(self, bbox):
@@ -166,6 +172,38 @@ class Tile:
         cropped = self.__getPilImage(cropped)
 
         return Tile(cropped,bbox)
+
+    def getExtendedSubTile(self, bbox):
+        pld = bbox.getDownLeftPoint()
+        pru = bbox.getUpRightPoint()
+        pixelLeftDown = self.getPixel(pld)
+        pixelRightUp = self.getPixel(pru)
+
+        correction = Constants.squaredImage_PixelPerSide*1
+
+        x1 = pixelLeftDown[0] - correction
+        y1 = pixelLeftDown[1] + correction
+        if(x1 < 0): x1 = 0
+        if(y1 > self.image.size[1]): y1 = self.image.size[1] -1
+
+        pixelLeftDown = (x1, y1)
+
+        x2 = pixelRightUp[0] + correction
+        y2 = pixelRightUp[1] - correction
+
+        if(x2 > self.image.size[0]): x2 = self.image.size[0] -1
+        if(y2 < 0): y2 = 0
+        pixelRightUp = (x2, y2)
+
+
+        p1 = self.getNode(pixelLeftDown).toPoint()
+        p2 = self.getNode(pixelRightUp).toPoint()
+        bbox = Bbox()
+        bbox.set(p1, p2)
+        return self.getSubTile(bbox)
+
+
+
 
     def plot(self):
         plt.imshow(self.image)

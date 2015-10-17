@@ -1,32 +1,39 @@
 
 
 class SampleData:
-    def __init__(self, complexFrequencie, isCrosswalk):
-        self.complexFrequencie = complexFrequencie
-        self.isCrosswalk = isCrosswalk
-        self.convert()
+    def __init__(self):
+        self.fourier2d = None
+        self.isCrosswalk = False
 
-    def convert(self):
-        self.input = []
-        maxSize = 2000.0
-        inputSize = 20
-        count = 0
-        for x in self.complexFrequencie:
-            value = abs(x)/maxSize
-            self.input.append(value)
-            count += 1
-            if(count > inputSize): break
+    @classmethod
+    def fromAbsoluteFourier2d(cls, fourier2d, isCrosswalk = False):
+        data = cls()
+        data.fourier2d = fourier2d
+        data.isCrosswalk = isCrosswalk
+        return data
 
-    def save(self, filename):
-        if(len(self.input) < 1): raise Exception("Inputlength smaller 1")
-        line = ""
-        for x in self.input:
-            line += str(x) + ";\n"
 
-        line += str(self.isCrosswalk) + ";"
-        with open("Output.txt", "aw") as myfile:
-            myfile.write(line)
 
+    def getInputArray(self):
+        input = []
+        for rows in self.fourier2d:
+            for value in rows:
+                input.append(value)
+        return input
+
+    def getNormalizedInputArray(self):
+        max = 10000
+        input = self.getInputArray()
+        for i in range(len(input)):
+            input[i] = input[i]/max
+        return input
+
+
+    def getOutputArray(self):
+        if(self.isCrosswalk):
+            return [1]
+        else:
+            return [0]
 
 
 

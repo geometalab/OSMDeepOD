@@ -6,8 +6,8 @@ import pickle
 
 class NeuralNetwork:
     def __init__(self):
-        self.nHidden1 = 40
-        self.nHidden2 = 40
+        self.nHidden1 = 50
+
 
 
 
@@ -17,7 +17,7 @@ class NeuralNetwork:
         n.addInputModule(inLayer)
         lastLayer = inLayer
 
-        for i in range(0,1):
+        for i in range(0,3):
             layer = SigmoidLayer(self.nHidden1)
             n.addModule(layer)
             connection = FullConnection(lastLayer,layer)
@@ -38,15 +38,16 @@ class NeuralNetwork:
 
     def setDataset(self, sampleDatas):
         self.sampleData = sampleDatas
-        set = ClassificationDataSet(20,1, nb_classes=2)
+        set = ClassificationDataSet(50*50,1, nb_classes=2)
         set.setField('class', [[0], [1]])
         for s in sampleDatas:
-            set.addSample(s.input, [s.isCrosswalk])
+            inp = s.getNormalizedInputArray()
+            outp = s.getOutputArray()
+            set.addSample(inp, outp)
 
         set._convertToOneOfMany()
         self.dataset = set
-        self.testdata, self.traindata = set.splitWithProportion(0.25) #Split set into train (75%) and test (25%)
-
+        self.traindata = set
 
         print "Number of training patterns: ", len(self.traindata)
         print "Input and output dimensions: ", self.traindata.indim, self.traindata.outdim
@@ -55,34 +56,46 @@ class NeuralNetwork:
         print self.traindata['target'][0]
         #print self.traindata['class'][0]
 
+    def setTestSet(self, sampleDatas):
+        set = ClassificationDataSet(50*50,1, nb_classes=2)
+        set.setField('class', [[0], [1]])
+        for s in sampleDatas:
+            inp = s.getNormalizedInputArray()
+            outp = s.getOutputArray()
+            set.addSample(inp, outp)
+
+        set._convertToOneOfMany()
+        self.testdata = set
+
     def train(self):
         trainer = BackpropTrainer(self.net, dataset=self.traindata, momentum=0.1, verbose=True, weightdecay=0.01)
         #trainer.trainUntilConvergence(dataset=self.traindata, maxEpochs=500,validationData=self.testdata)
+        lastError = 0
+        epoches = 20
+        trainer.trainEpochs(epoches)
 
-        epoches = 300
-        for i in range(epoches/10):
-            trainer.trainEpochs(10)
-            self.printError()
-            print str(i*10)
+        error = self.printError()
+        return error
 
-        self.printError()
-        self.saveNet("/home/osboxes/Documents/squaredImages/ffnn.serialize")
+
 
     def printError(self):
         richtige = 0
-
         for s in self.testdata:
             ret = self.net.activate(s[0])
             crossWalkDetected = 0
-            if(ret[1] > 0.5): crossWalkDetected = 1
+            #if(ret[1] > 0.5): crossWalkDetected = 1
+            if(ret[1] > 0.9 and ret[0] < 0.1): crossWalkDetected = 1
+
             print str(ret) + " Should: " + str(s[1][1]) + " Detected: " + str(crossWalkDetected)
             if(crossWalkDetected == s[1][1]): richtige += 1
 
-        print "Erfolgsrate: " + str((float(richtige) / len(self.testdata)) * 100)
+        print "Erfolgsrate Testset: " + str((float(richtige) / len(self.testdata)) * 100)
+        return (float(richtige) / len(self.testdata)) * 100
 
     def isCrosswalk(self, frequencies):
         ret = self.net.activate(frequencies)
-        crosswalkDetected = ret[1] > 0.7 and ret[0] < 0.15
+        crosswalkDetected = ret[1] > 0.95 and ret[0] < 0.1
         if(crosswalkDetected): print ret
         return crosswalkDetected
 

@@ -102,6 +102,9 @@ class FourierTransform:
             absolut.append(abs(x))
         return absolut
 
+    def calc2d(self):
+        four2d = np.fft.fft2(self.image)
+        return four2d
     def calcFrequenciesByPixel(self, pixel):
         column = self.__getColumnByPixel(pixel)
         dft = np.fft.rfft(column)
