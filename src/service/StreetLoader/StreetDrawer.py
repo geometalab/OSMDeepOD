@@ -6,8 +6,10 @@ class StreetDrawer:
     def __init__(self, bbox):
         self.bbox = bbox
 
-    def downloadData(self):
+    def downloadTiles(self):
         self.proxy = TileProxy(self.bbox)
+
+    def downloadStreets(self):
         streetloader = StreetLoader()
         self.streets = streetloader.getStreets(self.bbox)
 
@@ -28,3 +30,11 @@ class StreetDrawer:
     def getTiles(self):
         self.downloadData()
         return self.proxy.getTiles()
+
+    def drawImageFromGoogel(self, bigTile):
+        streetloader = StreetLoader()
+        self.streets = streetloader.getStreets(self.bbox)
+        bigTile.startDrawing()
+        for street in self.streets:
+            bigTile.drawLine(street.nodes[0].toPoint(), street.nodes[1].toPoint())
+        bigTile.stopDrawing()

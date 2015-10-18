@@ -17,7 +17,6 @@ class ImagePlotter:
         for y in range(0, numRows):
             for x in range(0, numCols):
                 result.paste(images[y][x].getImage(),(x * width, (numRows -1 -y) * height))
-                print str(images[y][x].getPosition().latitude) + " " + str(images[y][x].getPosition().longitude)
 
         self.plot(result)
 
@@ -32,7 +31,39 @@ class ImagePlotter:
         for y in range(0, numRows):
             for x in range(0, numCols):
                 result.paste(tiles[y][x].image,(x * width, (numRows -1 -y) * height))
-                #print str(tiles[y][x].getPosition().latitude) + " " + str(images[y][x].getPosition().longitude)
+
+        self.plot(result)
+
+    def plotGoogleTileMatrix(self, tiles):
+        numRows = len(tiles)
+        numCols = len(tiles[0])
+        width, height = tiles[0][0].image.size
+
+        result = Image.new("RGBA", (numCols * width, numRows * height))
+
+        for y in range(0, numRows):
+            for x in range(0, numCols):
+                result.paste(tiles[y][x].image,(x * width, y * height))
+
+        self.plot(result)
+
+    def plotImageListInLon(self, images):
+        width, height = images[0].size
+
+        result = Image.new("RGBA", (len(images) * width, height))
+
+        for i in range(0, len(images)):
+             result.paste(images[i],(i * width,0 ))
+
+        self.plot(result)
+
+    def plotImageListInLat(self, images):
+        width, height = images[0].size
+
+        result = Image.new("RGBA", (width, len(images) * height))
+
+        for i in range(0, len(images)):
+            result.paste(images[len(images)-1 -i],(0, i * height))
 
         self.plot(result)
 

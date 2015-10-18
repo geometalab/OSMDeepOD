@@ -9,7 +9,7 @@ class StreetLoader:
         self.__ATTRIBNAME = "highway"
         self.__STREET_CATEGORIES = ['road', 'trunk', 'primary', 'secondary', 'tertiary',
                                     'unclassified', 'residential', 'service', 'trunk_link',
-                                    'primary_link', 'secondary_link', 'tertiary_link']
+                                    'primary_link', 'secondary_link', 'tertiary_link', 'pedestrian']
 
     def getStreets(self, box):
         result = []
@@ -32,12 +32,12 @@ class StreetLoader:
     def __parseWay(self, way, nodesDict, bbox):
         result = []
         nodes = self.__createNodeList(way, nodesDict)
-
+        borderdBox = bbox.getBboxExludeBorder(10)
         for i in range(len(nodes) -1):
             me = nodes[i]
             next = nodes[i + 1]
 
-            isValidStreet = self.__isValidNode(me, bbox) and self.__isValidNode(next, bbox)
+            isValidStreet = borderdBox.inBbox(me.toPoint()) and borderdBox.inBbox(next.toPoint())
             if(isValidStreet):
                 street = self.__createStreet(way)
                 street.nodes.append(me)

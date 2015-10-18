@@ -10,7 +10,6 @@ from src.service.PositionHandler import PositionHandler
 
 class ImageLoader:
 
-
     def __init__(self):
         #47.2246376,8.8178977/19/?key=Asc0mfX_vbDVHkleWyc85z1mRLrSfjqHeGJamZsRF-mgzR4_GAlU31hkwMOGN4Mq'
         self.LINK_PREFIX = 'http://dev.virtualearth.net/REST/v1/Imagery/Map/Aerial/'

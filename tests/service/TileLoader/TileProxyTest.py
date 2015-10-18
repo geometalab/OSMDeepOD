@@ -4,7 +4,7 @@ from src.service.TilesLoader.TileProxy import TileProxy
 from src.base.Bbox import Bbox
 from geopy import Point
 from src.base.Node import Node
-from src.base.Tile import Tile
+from src.service.TilesLoader.TileProxy import TileProxy
 
 
 class TestCrosswalkLoader(unittest.TestCase):
@@ -81,16 +81,23 @@ class TestCrosswalkLoader(unittest.TestCase):
             tile.plot()
         '''
 
+    '''
     def test_serialization(self):
-        path = "/home/osboxes/Documents/tiles/test.serialize"
-        tile = self.proxy.getBigTile2()
-        tile.toFile(path)
 
-        tile2 = Tile.fromFile(path)
-        tile2.plot()
+        path = "/home/osboxes/Documents/OSM-Crosswalk-Detection/tests/serializedProxies/zurichBellvue.serialize"
+
+        self.proxy.toFile(path)
 
 
+        proxy = TileProxy.fromFile(path)
+        proxy.getBigTile2().plot()
+
+    '''
 
 
     def ZurichBellvue(self):
         return Bbox(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
+
+    def Rappi(self):
+        return Bbox(8.814650, 47.222553, 8.821946, 47.228178)
+

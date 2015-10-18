@@ -36,7 +36,9 @@ class HaarDetector:
         return detectedNodes
 
     def getDetectedNodes(self, bbox):
-        self.tiles = self.__downloadTiles(bbox)
+        if(self.tiles is None):
+            self.tiles = self.__downloadTiles(bbox)
+
         return self.detectTileMatrix(self.tiles)
 
 

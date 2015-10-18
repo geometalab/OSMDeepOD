@@ -47,8 +47,6 @@ class TestImageLoader(unittest.TestCase):
         img = imageLoader.download(startPoint)
         self.save(img, path)
         crosswalkPicture = cv2.imread(path)
-        #plt.imshow(crosswalkPicture)
-        #plt.show()
 
 
     def testDownloadImagesByPositions(self):
@@ -66,7 +64,6 @@ class TestImageLoader(unittest.TestCase):
 
     def testDownloadImagesByPositionsException(self):
         imageLoader = ImageLoader()
-        imagePlotter = ImagePlotter()
 
         upRightPoint = Point('47.226043', '8.818360')
         downLeftPoint = Point('47.226926', '8.820032')
