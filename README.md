@@ -3,7 +3,7 @@ Extraction of crosswalks from orthophotos
 
 ![Marcitecture](http://s2.postimg.org/ycbxk8wmx/SA_Overview.png)
 
-![Example](http://oi58.tinypic.com/2whl00z.jpg)
+![Example](http://oi58.tinypic.com/wrnql3.jpg)
 
 This work is part of the semester thesis at the university of applied science Rapperswil (HSR).
 
