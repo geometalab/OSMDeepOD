@@ -1,13 +1,19 @@
 import psycopg2
+import json
 
 class DataHandler:
 
     def __init__(self):
-        pass
+        with open('config.json') as data_file:
+            self.config = json.load(data_file)
+        self.connection_string = "dbname='" + self.config['dbname']+ "' host='" + self.config['host']+ "' port='" + \
+                                 self.config['port'] + "' user='" + self.config['user'] + "' password='" + self.config['password'] + "'"
+        print self.connection_string
+
 
     def connect(self):
         try:
-            self.connection = psycopg2.connect("dbname='crosswalkdb' user='crosswalk' host='152.96.56.62' port='40000' password='crosswalkUser'")
+            self.connection = psycopg2.connect(self.connection_string)
             print "I am loged in!"
         except:
             print "I am unable to connect to the databas"
