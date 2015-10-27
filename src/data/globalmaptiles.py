@@ -229,7 +229,7 @@ class GlobalMercator(object):
 
         minx, miny = self.PixelsToMeters( tx*self.tileSize, ty*self.tileSize, zoom )
         maxx, maxy = self.PixelsToMeters( (tx+1)*self.tileSize, (ty+1)*self.tileSize, zoom )
-        return ( minx, miny, maxx, maxy )
+        return (minx, miny, maxx, maxy)
 
     def TileLatLonBounds(self, tx, ty, zoom ):
         "Returns bounds of the given tile in latutude/longitude using WGS84 datum"
