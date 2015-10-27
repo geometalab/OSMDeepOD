@@ -3,19 +3,22 @@ from src.base.Constants import Constants
 from src.base.Bbox import Bbox
 from src.base.Tile import Tile
 from src.data.MultiLoader import MultiLoader
+import random
 
 class TileLoader:
     def __init__(self, bbox):
         self.bbox = bbox
         self.mercator = GlobalMercator()
-        self.PRELINK = 'https://t3.ssl.ak.tiles.virtualearth.net/tiles/a'
+        self.PRELINK_FIRST = 'https://t'
+        self.PRELINK_SECOUND = '.ssl.ak.tiles.virtualearth.net/tiles/a'
         self.POSTLINK = '.jpeg?g=4401&n=z'
 
     def getTiles(self):
         return self._download_tiles(self.bbox)
 
     def _build_url(self, quadtree):
-        return self.PRELINK + str(quadtree) + self.POSTLINK
+        server = random.randint(0, 7)
+        return self.PRELINK_FIRST+ str(server) + self.PRELINK_SECOUND + str(quadtree) + self.POSTLINK
 
     def _build_urls(self, tminx, tminy, tmaxx, tmaxy):
         urls = []
