@@ -1,6 +1,3 @@
-import httplib2
-from StringIO import StringIO
-from PIL import Image
 from src.data.globalmaptiles import GlobalMercator
 from src.base.Constants import Constants
 from src.base.Bbox import Bbox
@@ -51,8 +48,8 @@ class TileLoader:
             tiles.append([])
             for tx in range(tminx, tmaxx+1):
                 image = loader.results[url_number]
-                left, bottom, top, right = self.mercator.TileLatLonBounds(tx, ty, Constants.ZOOM)
-                bbox = Bbox(left, bottom, top, right)
+                bottom,left,top,right = self.mercator.TileLatLonBounds(tx, ty, Constants.ZOOM)
+                bbox = Bbox(left,bottom,right,top)
                 tile = Tile(image, bbox)
                 tiles[row].append(tile)
                 url_number += 1

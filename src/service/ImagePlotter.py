@@ -23,7 +23,6 @@ class ImagePlotter:
     def plotTileMatrix(self, tiles):
         numRows = len(tiles)
         numCols = len(tiles[0])
-        print tiles[0][0]
         width, height = tiles[0][0].image.size
 
         result = Image.new("RGBA", (numCols * width, numRows * height))
