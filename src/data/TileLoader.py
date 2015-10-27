@@ -17,11 +17,6 @@ class TileLoader:
     def getTiles(self):
         return self._download_tiles(self.bbox)
 
-    def _url_to_image(self, url):
-        resp, content = httplib2.Http().request(url)
-        image = Image.open(StringIO(content))
-        return image
-
     def _build_url(self, quadtree):
         return self.PRELINK + str(quadtree) + self.POSTLINK
 
@@ -35,11 +30,7 @@ class TileLoader:
 
         return urls
 
-    def _download_image(self, quadtree):
-        url = self._build_url(quadtree)
-        return self._url_to_image(url)
-
-    def _BboxToTiles(self, bbox):
+    def _bbox_to_tiles(self, bbox):
         mminx, mminy = self.mercator.LatLonToMeters(bbox.bottom, bbox.left)
         mmaxx, mmaxy = self.mercator.LatLonToMeters(bbox.top, bbox.right)
         tmaxx, tmaxy = self.mercator.MetersToTile( mmaxx, mmaxy, Constants.ZOOM)
@@ -47,7 +38,7 @@ class TileLoader:
         return (tminx, tminy, tmaxx, tmaxy)
 
     def _download_tiles(self, bbox):
-        tminx, tminy, tmaxx, tmaxy = self._BboxToTiles(bbox)
+        tminx, tminy, tmaxx, tmaxy = self._bbox_to_tiles(bbox)
         urls = self._build_urls(tminx, tminy, tmaxx, tmaxy)
 
         loader = MultiLoader.from_url_list(urls)
