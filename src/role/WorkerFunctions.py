@@ -12,11 +12,5 @@ def detect(bbox):
 
 
 def store(nodes):
-    with open('geo.json') as f:
-        data = json.load(f)
-
-    for n in nodes:
-        data.update(Point(n.longitude, n.latitude))
-
-    with open('geo.json', 'w') as f:
-        json.dump(data, f)
+    for x in range(0, len(nodes)):
+        print str(nodes[x].longitude) + '  ' +  str(nodes[x].latitude)

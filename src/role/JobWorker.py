@@ -6,9 +6,6 @@ from src.role.WorkerFunctions import detect
 
 class JobWorker:
     def __init__(self):
-        pass
-
-    def run(self):
         print 'I start to work!'
         with Connection(Constants.REDIS):
             print 'Connected!'
@@ -16,4 +13,5 @@ class JobWorker:
             qs = map(Queue, queues) or [Queue()]
             w = Worker(qs)
             w.work()
+
 

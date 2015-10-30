@@ -50,14 +50,14 @@ if __name__ == "__main__":
             Usage("ERROR: 'right' must be bigger then 'left'")
         big_bbox = Bbox(left, bottom, right, top)
         print 'Manger is running!'
-        #Manager(big_bbox)
+        Manager(big_bbox)
         print 'Manger is finished!'
     elif role == 'jobworker':
         print 'JobWorker is running!'
-        #JobWorker()
+        JobWorker()
     elif role == 'resultworker':
         print 'ResultWorker is running!'
-        #ResultWorker()
+        ResultWorker()
     else:
         Usage("ERROR: Sorry, given role is not implemented yet.")
 
