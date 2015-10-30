@@ -7,9 +7,13 @@ import math
 
 class Manager:
     def __init__(self, big_bbox):
+        pass
+
+    def run(self, big_bbox):
         self.queue = Queue(Constants.QUEUE_JOBS, connection=Constants.REDIS)
         self.mercator = GlobalMercator()
         self._generate_jobs(big_bbox)
+        print 'Jobs generated!'
 
     def _generate_jobs(self, big_bbox):
         mminx, mminy = self.mercator.LatLonToMeters(big_bbox.bottom, big_bbox.left)

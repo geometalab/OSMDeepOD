@@ -1,20 +1,22 @@
 from src.base.Constants import Constants
 from rq import Queue
+from src.detection.DummyWalker import DummyWalker
 import json
+from geojson import Point
 
 def detect(bbox):
-    #BoxWorker do work
-    results = []
+    walker = DummyWalker()
+    nodes = walker.detect(bbox)
     q = Queue(Constants.QUEUE_RESULTS, connection=Constants.REDIS)
-    q.enqueue(store, results)
+    q.enqueue(store, nodes)
 
 
-def store(results):
-    add_value = {'new_key': 'new_value'}
-    with open('test.json') as f:
+def store(nodes):
+    with open('geo.json') as f:
         data = json.load(f)
 
-    data.update(add_value)
+    for n in nodes:
+        data.update(Point(n.longitude, n.latitude))
 
-    with open('test.json', 'w') as f:
+    with open('geo.json', 'w') as f:
         json.dump(data, f)
