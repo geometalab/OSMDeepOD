@@ -14,10 +14,10 @@ if __name__ == "__main__":
         print "OSM-Crosswalk-Detection is a tool to extract the position of crosswalks on orthophotos."
         sys.exit(1)
 
-    def _get_float(argv , i):
+    def _get_float(arg):
         try:
-            return (float(argv[i]), (i + 1))
-        except TypeError:
+            return (float(arg))
+        except ValueError:
             Usage("ERROR: All boundingbox parameters needs to be floats")
 
     bottom, left, top, right = None, None, None, None
@@ -29,14 +29,18 @@ if __name__ == "__main__":
     if argv[i] == '-role':
         i += 1
         role = argv[i]
+        i += 1
 
     if role == 'manager':
         if len(argv) < 7:
             Usage("ERROR: You have to specify the whole boundingbox.")
-        left, i = _get_float(argv[i], i)
-        bottom, i = _get_float(argv[i], i)
-        right, i = _get_float(argv[i], i)
-        top, i = _get_float(argv[i], i)
+        left = _get_float(argv[i])
+        i += 1
+        bottom = _get_float(argv[i])
+        i += 1
+        right = _get_float(argv[i])
+        i += 1
+        top = _get_float(argv[i])
 
         if left is None or bottom is None or right is None or top is None:
             Usage("ERROR: You have to specify left, bottom, right and top .")
