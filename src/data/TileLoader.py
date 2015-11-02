@@ -53,7 +53,7 @@ class TileLoader:
                 image = loader.results[url_number]
                 bottom,left,top,right = self.mercator.TileLatLonBounds(tx, ty, Constants.ZOOM)
                 bbox = Bbox.from_lbrt(left, bottom, right, top)
-                tile = Tile(image, bbox)
+                tile = Tile.from_tile(image, bbox)
                 tiles[row].append(tile)
                 url_number += 1
             row += 1
