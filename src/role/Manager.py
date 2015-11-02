@@ -21,7 +21,7 @@ class Manager:
             for x in range(0, rows):
                 left, bottom = self.mercator.MetersToLatLon(mminx + (side * x), mminy + (side * y))
                 right, top = self.mercator.MetersToLatLon(mminx + (side * (x + 1)), mminy + (side * (y + 1)))
-                small_bbox = Bbox(left, bottom, right, top)
+                small_bbox = Bbox.from_lbrt(left, bottom, right, top)
                 self._enqueue_job(small_bbox)
 
     def _enqueue_job(self, small_bbox):

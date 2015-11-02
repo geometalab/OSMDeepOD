@@ -48,7 +48,7 @@ if __name__ == "__main__":
             Usage("ERROR: 'top' must be bigger then 'bottom'")
         if right < left:
             Usage("ERROR: 'right' must be bigger then 'left'")
-        big_bbox = Bbox(left, bottom, right, top)
+        big_bbox = Bbox.from_lbrt(left, bottom, right, top)
         print 'Manger is running!'
         Manager(big_bbox)
         print 'Manger is finished!'
