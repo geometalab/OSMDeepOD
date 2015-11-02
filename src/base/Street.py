@@ -14,6 +14,15 @@ class Street:
         street = cls()
         street.nodes.append(node1)
         street.nodes.append(node2)
+        return street
+
+    @classmethod
+    def from_info(cls, name, ident, highway):
+        street = cls()
+        street.name = name
+        street.ident = ident
+        street.highway = highway
+        return street
 
     def getLeftNode(self):
         if(self.nodes[0].logitude < self.nodes[1].longitude):

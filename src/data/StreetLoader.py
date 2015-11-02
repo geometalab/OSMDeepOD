@@ -6,47 +6,47 @@ from src.data.MapquestApi import MapquestApi
 class StreetLoader:
     def __init__(self):
         self.api = MapquestApi()
-        self.__ATTRIBNAME = "highway"
-        self.__STREET_CATEGORIES = ['road', 'trunk', 'primary', 'secondary', 'tertiary',
+        self._ATTRIBNAME = "highway"
+        self._STREET_CATEGORIES = ['road', 'trunk', 'primary', 'secondary', 'tertiary',
                                     'unclassified', 'residential', 'service', 'trunk_link',
                                     'primary_link', 'secondary_link', 'tertiary_link', 'pedestrian']
 
-    def getStreets(self, box):
+    def load_streets(self, box):
         result = []
-        for categorie in self.__STREET_CATEGORIES:
-            tag = self.__ATTRIBNAME + "=" + categorie
+        for categorie in self._STREET_CATEGORIES:
+            tag = self._ATTRIBNAME + "=" + categorie
             tree = self.api.request(tag, box)
-            streets = self.__parseTree(tree, box)
+            streets = self._parse_tree(tree, box)
             result = result + streets
         return result
 
-    def __parseTree(self, tree, bbox):
-        nodesDict = self.__getNodesDict(tree, bbox)
+    def _parse_tree(self, tree, bbox):
+        nodesDict = self._getNodesDict(tree, bbox)
         streets = []
         for way in tree.iter('way'):
-            results = self.__parseWay(way, nodesDict, bbox)
+            results = self._parse_way(way, nodesDict, bbox)
             for res in results:
                 streets.append(res)
         return streets
 
-    def __parseWay(self, way, nodesDict, bbox):
+    def _parse_way(self, way, nodesDict, bbox):
         result = []
-        nodes = self.__createNodeList(way, nodesDict)
+        nodes = self._createNodeList(way, nodesDict)
         borderdBox = bbox.getBboxExludeBorder(10)
         for i in range(len(nodes) -1):
             me = nodes[i]
             next = nodes[i + 1]
 
-            isValidStreet = borderdBox.inBbox(me.toPoint()) and borderdBox.inBbox(next.toPoint())
+            isValidStreet = borderdBox.in_bbox(me) and borderdBox.in_bbox(next)
             if(isValidStreet):
-                street = self.__createStreet(way)
+                street = self._create_street(way)
                 street.nodes.append(me)
                 street.nodes.append(next)
                 result.append(street)
 
         return result
 
-    def __createStreet(self, way):
+    def _create_street(self, way):
         ident = way.get('id')
         name = ""
         highway = ""
@@ -57,13 +57,10 @@ class StreetLoader:
             if tag.attrib['k'] == 'highway':
                 highway = tag.attrib['v']
 
-        street = Street()
-        street.ident = ident
-        street.name = name
-        street.highway = highway
+        street = Street.from_info(name,ident,highway)
         return street
 
-    def __createNodeList(self, way, nodesDict):
+    def _createNodeList(self, way, nodesDict):
         nodes = []
         for node in way.iter('nd'):
             nid = node.get('ref')
@@ -71,15 +68,12 @@ class StreetLoader:
                 nodes.append(nodesDict[nid])
         return nodes
 
-    def __getNodesDict(self,tree, bbox):
+    def _getNodesDict(self,tree, bbox):
         nodes = {}
         for node in tree.iter('node'):
             ident = node.get('id')
             lon = node.get('lon')
             lat = node.get('lat')
-            n = Node(ident,lat, lon)
+            n = Node(lat, lon, ident)
             nodes[ident] = n
         return nodes
-
-    def __isValidNode(self, node, bbox):
-        return bbox.inBbox(node.toPoint())

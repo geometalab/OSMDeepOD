@@ -3,6 +3,7 @@ from src.base.Constants import Constants
 from src.base.Bbox import Bbox
 from src.base.Tile import Tile
 from src.data.MultiLoader import MultiLoader
+from PIL import Image
 import random
 
 class TileLoader:
@@ -60,3 +61,21 @@ class TileLoader:
 
         return tiles
 
+    def get_big_tile(self):
+        tiles = self.getTiles()
+        numRows = len(tiles)
+        numCols = len(tiles[0])
+        width, height = tiles[0][0].image.size
+
+        result = Image.new("RGB", (numCols * width, numRows * height))
+
+        for y in range(0, numRows):
+            for x in range(0, numCols):
+                result.paste(tiles[y][x].image,(x * width, (numRows -1 -y) * height))
+
+        first = tiles[0][0]
+        last = tiles[numRows -1][numCols -1]
+        bbox = Bbox()
+        bbox.set(first.bbox.getDownLeftPoint(),last.bbox.getUpRightPoint())
+
+        return Tile(result,bbox)

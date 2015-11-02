@@ -27,7 +27,7 @@ class Bbox:
         return box
 
     @classmethod
-    def from_bltr(cls, node_leftdown, node_rightup):
+    def from_leftdown_rightup(cls, node_leftdown, node_rightup):
         box = cls()
         box.left = node_leftdown.longitude
         box.bottom = node_leftdown.latitude
@@ -57,3 +57,12 @@ class Bbox:
         lon = self.left + ((self.right - self.left) / 2)
         lat = self.bottom + ((self.top - self.bottom) / 2)
         return Node(lat, lon)
+
+    def getBboxExludeBorder(self, borderDistance):
+        leftDownNode = self.node_leftdown()
+        rightUpNode = self.node_rightup()
+
+        newLeftDown = leftDownNode.addMeter(borderDistance, borderDistance)
+        newRightUp = rightUpNode.addMeter(-borderDistance,-borderDistance)
+        ret = Bbox.from_leftdown_rightup(newLeftDown,newRightUp)
+        return ret

@@ -10,7 +10,10 @@ class MapquestApi:
 
     def request(self, tag, box):
         prefix = self.__LINK_PREFIX.replace("%TAG%",tag)
-        postfix = box.getMapquestFormat() + self.__LINK_POSTFIX + self.developerKey
+        postfix = self.to_mapquest_format(box) + self.__LINK_POSTFIX + self.developerKey
         url = prefix + postfix
         resp, content = httplib2.Http().request(url)
         return ElementTree.fromstring(content)
+
+    def to_mapquest_format(self, bbox):
+        return str(bbox.left) + "," + str(bbox.bottom) + "," + str(bbox.right) + "," + str(bbox.top)
