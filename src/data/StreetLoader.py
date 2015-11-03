@@ -22,7 +22,7 @@ class StreetLoader:
         query += tag
         query += '"]('
         query += sbox
-        query += '); out body;  >; out skel qt;'
+        query += ');); out body;  >; out skel qt;'
         return query
 
     def _get_queries(self, bbox):
@@ -48,4 +48,4 @@ class StreetLoader:
         return streets
 
     def _bbox_to_string(self,bbox):
-        return str(bbox.top)+','+str(bbox.left)+','+str(bbox.bottom)+','+str(bbox.right)
+        return str(bbox.bottom)+','+str(bbox.left)+','+str(bbox.top)+','+str(bbox.right)

@@ -15,7 +15,7 @@ class MultiStreetLoader(unittest.TestCase):
         return loader
 
     def download(self):
-        pool = ThreadPool(len(self.queries))
+        pool = ThreadPool(1)
         results = pool.map(self._get_ways, self.queries)
         pool.close()
         pool.join()
