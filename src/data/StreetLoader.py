@@ -1,11 +1,11 @@
 from src.base.Street import Street
 from src.base.Node import Node
 from src.data.MapquestApi import MapquestApi
-
+import overpy
 
 class StreetLoader:
     def __init__(self):
-        self.api = MapquestApi()
+        self.api = overpy.Overpass
         self._ATTRIBNAME = "highway"
         self._STREET_CATEGORIES = ['road', 'trunk', 'primary', 'secondary', 'tertiary',
                                     'unclassified', 'residential', 'service', 'trunk_link',
@@ -15,9 +15,9 @@ class StreetLoader:
         result = []
         for categorie in self._STREET_CATEGORIES:
             tag = self._ATTRIBNAME + "=" + categorie
-            tree = self.api.request(tag, box)
-            streets = self._parse_tree(tree, box)
-            result = result + streets
+            streets = self.api.request(tag, box)
+
+            result.append(streets)
         return result
 
     def _parse_tree(self, tree, bbox):
