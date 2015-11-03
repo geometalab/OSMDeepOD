@@ -6,7 +6,7 @@ if __name__ == "__main__":
     from src.base.Constants import Constants
 
     def Usage(s = ""):
-        print "Usage: main.py -role 'manager' left bottom right top |'jobworker' | 'resultworker' "
+        print "Usage: main.py --role 'manager' left bottom right top |'jobworker' | 'resultworker' "
         print
         if s:
             print s
@@ -26,7 +26,7 @@ if __name__ == "__main__":
         Usage("ERROR: You have to specify all needed arguments.")
     i = 1
     role = ''
-    if argv[i] == '-role':
+    if argv[i] == '--role':
         i += 1
         role = argv[i]
         i += 1
