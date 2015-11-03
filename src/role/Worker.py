@@ -4,17 +4,21 @@ from rq import Connection
 from src.base.Constants import Constants
 from src.role.WorkerFunctions import detect
 
-class JobWorker:
+class Worker:
     def __init__(self):
         self.queues = None
 
-    def hallo(self):
+    def run(self):
         print 'I start to work!'
         with Connection(Constants.REDIS):
             print 'Connected!'
-            queues = [Constants.QUEUE_JOBS, Constants.QUEUE_FAILED]
-            qs = map(Queue, queues) or [Queue()]
+            qs = map(Queue, self.queues) or [Queue()]
             w = Worker(qs)
             w.work()
 
-
+    @classmethod
+    def from_worker(cls, queues=[Constants.QUEUE_JOBS]):
+        worker = cls()
+        worker.queues = queues
+        worker.run()
+        return worker
