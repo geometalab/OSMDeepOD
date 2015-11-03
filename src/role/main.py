@@ -1,9 +1,9 @@
 if __name__ == "__main__":
     import sys, os
     from src.base.Bbox import Bbox
-    from src.role.JobWorker import JobWorker
+    from src.role.Worker import Worker
     from src.role.Manager import Manager
-    from src.role.ResultWorker import ResultWorker
+    from src.base.Constants import Constants
 
     def Usage(s = ""):
         print "Usage: main.py -role 'manager' left bottom right top |'jobworker' | 'resultworker' "
@@ -54,10 +54,12 @@ if __name__ == "__main__":
         print 'Manger is finished!'
     elif role == 'jobworker':
         print 'JobWorker is running!'
-        JobWorker()
+        jobWorker = Worker.from_worker([Constants.QUEUE_JOBS])
+        jobWorker.run()
     elif role == 'resultworker':
         print 'ResultWorker is running!'
-        ResultWorker()
+        resultWorker = Worker.from_worker([Constants.QUEUE_RESULTS])
+        resultWorker.run()
     else:
         Usage("ERROR: Sorry, given role is not implemented yet.")
 

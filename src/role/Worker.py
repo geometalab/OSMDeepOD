@@ -9,9 +9,7 @@ class Worker:
         self.queues = None
 
     def run(self):
-        print 'I start to work!'
         with Connection(Constants.REDIS):
-            print 'Connected!'
             qs = map(Queue, self.queues) or [Queue()]
             w = Worker(qs)
             w.work()
@@ -20,5 +18,4 @@ class Worker:
     def from_worker(cls, queues=[Constants.QUEUE_JOBS]):
         worker = cls()
         worker.queues = queues
-        worker.run()
         return worker
