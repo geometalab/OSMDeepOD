@@ -1,23 +1,22 @@
 import unittest
 import overpy
 from multiprocessing.dummy import Pool as ThreadPool
-from src.base.Constants import Constants
 
-class TestOverpy(unittest.TestCase):
+class MultiStreetLoader(unittest.TestCase):
     def __init__(self):
-        self.querys = []
+        self.queries = []
         self.ways = []
         self.api = overpy.Overpass()
 
     @classmethod
-    def from_query_list(cls, querys):
+    def from_query_list(cls, queries):
         loader = cls()
-        loader.querys = querys
+        loader.queries = queries
         return loader
 
     def download(self):
-        pool = ThreadPool(Constants.NUMBER_OF_THREADS)
-        results = pool.map(self.query, self.querys)
+        pool = ThreadPool(len(self.queries))
+        results = pool.map(self._get_ways, self.queries)
         pool.close()
         pool.join()
         for result in results:
@@ -25,7 +24,7 @@ class TestOverpy(unittest.TestCase):
                 self.ways.append(way)
         return self.ways
 
-    def query(self,query):
+    def _get_ways(self,query):
         return self.api.query(query)
 
 

@@ -2,7 +2,7 @@ import unittest
 from src.data.StreetLoader import StreetLoader
 from src.base.Bbox import Bbox
 
-class StreetLoaderTest(unittest.TestCase):
+class TestStreetLoader(unittest.TestCase):
     def test_load_streets(self):
         bbox = self.ZurichBellvue()
         loader = StreetLoader()
