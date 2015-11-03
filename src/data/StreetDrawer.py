@@ -27,7 +27,7 @@ class StreetDrawer:
         drawer.tile = tileloader.get_big_tile()
 
         return drawer
-    
+
 
 
 
