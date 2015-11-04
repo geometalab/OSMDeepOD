@@ -1,7 +1,7 @@
 from src.base.Street import Street
 from src.base.Node import Node
 from src.data.MapquestApi import MapquestApi
-
+from src.base.Crosswalk import Crosswalk
 
 class StreetLoader:
     def __init__(self):
@@ -10,25 +10,38 @@ class StreetLoader:
         self._STREET_CATEGORIES = ['road', 'trunk', 'primary', 'secondary', 'tertiary',
                                    'unclassified', 'residential', 'service', 'trunk_link',
                                    'primary_link', 'secondary_link', 'tertiary_link', 'pedestrian']
+        self.crosswalks = []
+        self.streets = []
 
     def load_streets(self, bbox):
+        self._load_data(bbox)
+        return self.streets
+
+    def _load_data(self, bbox):
         tree = self.api.request(bbox)
-        streets = self._parse_tree(tree, bbox)
-        return streets
+        self._parse_tree(tree, bbox)
+        self._filter_crosswalks(tree)
+
+    def _filter_crosswalks(self, tree):
+        for node in tree.iter('node'):
+            for tag in node.iter('tag'):
+                if self._is_crosswalk(tag):
+                    self.crosswalks.append(Crosswalk(node.get('lat'), node.get('lon')))
 
     def _parse_tree(self, tree, bbox):
-        node_map = self._get_nodes_map(tree, bbox)
-        streets = []
+        node_map = self._get_node_map(tree)
         for way in tree.iter('way'):
             for tag in way.iter('tag'):
                 for category in self._STREET_CATEGORIES:
                     if self._is_in_category(tag,category):
                         results = self._parse_way(way, node_map, bbox)
-                        streets += results
-        return streets
+                        self.streets += results
 
     def _is_in_category(self,tag, category):
         return str(tag.attrib) == "{'k': 'highway', 'v': '" + category + "'}"
+
+    def _is_crosswalk(self, tag):
+        return str(tag.attrib) == "{'k': 'highway', 'v': 'crossing'}"
 
     def _parse_way(self, way, node_map, bbox):
         result = []
@@ -61,20 +74,16 @@ class StreetLoader:
         street = Street.from_info(name,ident,highway)
         return street
 
-    def _create_node_list(self, way, nodesDict):
+    def _create_node_list(self, way, node_map):
         nodes = []
         for node in way.iter('nd'):
             nid = node.get('ref')
-            if(nid in nodesDict) :
-                nodes.append(nodesDict[nid])
+            if(nid in node_map) :
+                nodes.append(node_map[nid])
         return nodes
 
-    def _get_nodes_map(self,tree, bbox):
+    def _get_node_map(self,tree):
         nodes = {}
         for node in tree.iter('node'):
-            ident = node.get('id')
-            lon = node.get('lon')
-            lat = node.get('lat')
-            n = Node(lat, lon, ident)
-            nodes[ident] = n
+            nodes[node.get('id')] = Node(node.get('lat'), node.get('lon'), node.get('id'))
         return nodes
