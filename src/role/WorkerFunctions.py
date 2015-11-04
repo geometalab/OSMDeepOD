@@ -1,9 +1,8 @@
 from src.base.Constants import Constants
 from rq import Queue
-from src.detection.DummyWalker import DummyWalker
 import json
-from geojson import Point
 
+'''
 def detect(bbox):
     walker = DummyWalker()
     nodes = walker.detect(bbox)
@@ -20,3 +19,4 @@ def store(nodes):
 
     with open('geo.json', 'w') as f:
         json.dump(data, f)
+'''

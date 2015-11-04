@@ -8,7 +8,7 @@ setup(
     license = "MIT",
     keywords = "crosswalk detection",
     url = "https://github.com/geometalab/OSM-Crosswalk-Detection",
-    packages=['src', 'src.base', 'src.service', 'src.data', 'src.detection', 'src.role'],
-    install_requires = ['rq', 'geopy', 'pillow'],
+    packages=['src', 'src.base', 'src.data', 'src.detection', 'src.role'],
+    install_requires = ['rq', 'geopy', 'pillow', 'fake_useragent'],
     classifiers = [],
 )
