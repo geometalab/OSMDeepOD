@@ -21,3 +21,6 @@ class Tile:
         pixelX =  int(self.image.size[0] * (x/imagewidth))
         pixelY = self.image.size[1] - int(self.image.size[1] * (y/imageheight))
         return (pixelX, pixelY)
+
+    def show(self):
+        self.image.show()

@@ -1,17 +1,17 @@
 import unittest
 from src.data.TileLoader import TileLoader
 from src.base.Bbox import Bbox
-from src.service.ImagePlotter import ImagePlotter
 
 class TestTileLoader(unittest.TestCase):
 
-    def test(self):
-        plt = ImagePlotter()
+    def test_orthophoto_download(self):
         bbox = self.ZurichBellvue()
-
         tl = TileLoader(bbox)
-        tiles = tl.getTiles()
-        plt.plotTileMatrix(tiles)
+        tile = tl.get_big_tile()
+        img = tile.image
+        self.assertEquals(img.size[0], 1792)
+        self.assertEquals(img.size[1], 1280)
+
 
 
     def ZurichBellvue(self):

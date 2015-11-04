@@ -75,7 +75,5 @@ class TileLoader:
 
         first = tiles[0][0]
         last = tiles[numRows -1][numCols -1]
-        bbox = Bbox()
-        bbox.set(first.bbox.getDownLeftPoint(),last.bbox.getUpRightPoint())
-
-        return Tile(result,bbox)
+        bbox = Bbox.from_leftdown_rightup(first.bbox.node_leftdown(), last.bbox.node_rightup())
+        return Tile.from_tile(result, bbox)
