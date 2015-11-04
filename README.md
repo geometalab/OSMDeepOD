@@ -1,7 +1,7 @@
 # OSM-Crosswalk-Detection
 Extraction of crosswalks from orthophotos
 
-![Marcitecture](http://s7.postimg.org/sjfagef5n/SA_Overview_new.jpg)
+![Marcitecture](http://s11.postimg.org/7bdx1cetf/SA_Overview_new.png)
 
 ![Example](http://oi57.tinypic.com/14alwue.jpg)
 
