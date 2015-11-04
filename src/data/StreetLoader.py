@@ -1,51 +1,79 @@
 from src.base.Street import Street
 from src.base.Node import Node
-from src.data.MultiStreetLoader import MultiStreetLoader
+from src.data.MapquestApi import MapquestApi
+
 
 class StreetLoader:
     def __init__(self):
+        self.api = MapquestApi()
+        self._ATTRIBNAME = "highway"
         self._STREET_CATEGORIES = ['road', 'trunk', 'primary', 'secondary', 'tertiary',
-                                    'unclassified', 'residential', 'service', 'trunk_link',
-                                    'primary_link', 'secondary_link', 'tertiary_link', 'pedestrian']
+                                   'unclassified', 'residential', 'service', 'trunk_link',
+                                   'primary_link', 'secondary_link', 'tertiary_link', 'pedestrian']
 
-    def _build_query(self, tag, bbox):
-        sbox = self._bbox_to_string(bbox)
-        query = '[out:json];(node["highway"="'
-        query += tag
-        query += '"]('
-        query += sbox
-        query += '); way["highway"="'
-        query += tag
-        query += '"]('
-        query += sbox
-        query += '); relation["highway"="'
-        query += tag
-        query += '"]('
-        query += sbox
-        query += ');); out body;  >; out skel qt;'
-        return query
+    def load_streets(self, box):
+        result = []
+        for categorie in self._STREET_CATEGORIES:
+            tag = self._ATTRIBNAME + "=" + categorie
+            tree = self.api.request(tag, box)
+            streets = self._parse_tree(tree, box)
+            result = result + streets
+        return result
 
-    def _get_queries(self, bbox):
-        queries = []
-        for tag in self._STREET_CATEGORIES:
-            queries.append(self._build_query(tag, bbox))
-        return queries
-
-    def _build_streets(self, ways):
+    def _parse_tree(self, tree, bbox):
+        nodesDict = self._getNodesDict(tree, bbox)
         streets = []
-        for way in ways:
-            street = Street.from_info(way.tags.get("name", "n/a"),way.id, way.tags.get("highway", "n/a"))
-            for node in way.nodes:
-                street.nodes.append(Node(node.lat, node.lon, node.id))
-            streets.append(street)
+        for way in tree.iter('way'):
+            results = self._parse_way(way, nodesDict, bbox)
+            for res in results:
+                streets.append(res)
         return streets
 
-    def load_streets(self, bbox):
-        queries = self._get_queries(bbox)
-        loader = MultiStreetLoader.from_query_list(queries)
-        ways = loader.download()
-        streets = self._build_streets(ways)
-        return streets
+    def _parse_way(self, way, nodesDict, bbox):
+        result = []
+        nodes = self._createNodeList(way, nodesDict)
+        borderdBox = bbox.getBboxExludeBorder(10)
+        for i in range(len(nodes) -1):
+            me = nodes[i]
+            next = nodes[i + 1]
 
-    def _bbox_to_string(self,bbox):
-        return str(bbox.bottom)+','+str(bbox.left)+','+str(bbox.top)+','+str(bbox.right)
+            isValidStreet = borderdBox.in_bbox(me) and borderdBox.in_bbox(next)
+            if(isValidStreet):
+                street = self._create_street(way)
+                street.nodes.append(me)
+                street.nodes.append(next)
+                result.append(street)
+
+        return result
+
+    def _create_street(self, way):
+        ident = way.get('id')
+        name = ""
+        highway = ""
+
+        for tag in way.iter('tag'):
+            if tag.attrib['k'] == 'name':
+                name = tag.attrib['v']
+            if tag.attrib['k'] == 'highway':
+                highway = tag.attrib['v']
+
+        street = Street.from_info(name,ident,highway)
+        return street
+
+    def _createNodeList(self, way, nodesDict):
+        nodes = []
+        for node in way.iter('nd'):
+            nid = node.get('ref')
+            if(nid in nodesDict) :
+                nodes.append(nodesDict[nid])
+        return nodes
+
+    def _getNodesDict(self,tree, bbox):
+        nodes = {}
+        for node in tree.iter('node'):
+            ident = node.get('id')
+            lon = node.get('lon')
+            lat = node.get('lat')
+            n = Node(lat, lon, ident)
+            nodes[ident] = n
+        return nodes
