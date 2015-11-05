@@ -5,10 +5,10 @@ Extraction of crosswalks from orthophotos
 
 ## Examples
 ![Detection-Example1](imgs/preview_crosswalk_rappi2.png)
-Rapperswil trainstation (47.226468, 8.818477)
+Rapperswil trainstation (47.226468, 8.818477)__
 
 ![Detection-Example2](imgs/preview_crosswalk_rappi.png)
-Rapperswil suburb (47.232803, 8.837321)
+Rapperswil suburb (47.232803, 8.837321)__
 
 This work is part of the semester thesis at the university of applied science Rapperswil (HSR).
 
