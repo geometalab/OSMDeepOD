@@ -3,6 +3,7 @@ from rq import Queue
 from rq import Connection
 from src.base.Constants import Constants
 from src.role.WorkerFunctions import detect
+from src.role.WorkerFunctions import store
 
 class Worker:
     def __init__(self):

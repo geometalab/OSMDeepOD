@@ -24,14 +24,14 @@ class Street:
         street.highway = highway
         return street
 
-    def getLeftNode(self):
-        if(self.nodes[0].logitude < self.nodes[1].longitude):
+    def get_left_node(self):
+        if(self.nodes[0].longitude < self.nodes[1].longitude):
             return self.nodes[0]
         else:
             return self.nodes[1]
 
-    def getRightNode(self):
-        if(self.nodes[0].logitude > self.nodes[1].logitude):
+    def get_right_node(self):
+        if(self.nodes[0].longitude > self.nodes[1].longitude):
             return self.nodes[0]
         else:
             return self.nodes[1]

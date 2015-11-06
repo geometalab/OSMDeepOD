@@ -14,7 +14,7 @@ class Node(Point):
     def copy(self):
         return Node(self.latitude, self.longitude, self.osm_id)
 
-    def addMeter(self, verticalDistance, horizontalDistance):
+    def add_meter(self, verticalDistance, horizontalDistance):
         mercator = GlobalMercator()
         copy = self.copy()
         lat, lon = mercator.MetersToLatLon(horizontalDistance,verticalDistance)
@@ -23,11 +23,11 @@ class Node(Point):
         return copy
 
 
-    def getDistanceInMeter(self, node):
+    def get_distance_in_meter(self, node):
         return vincenty(self,node).meters
 
-    def stepTo(self, targetNode, distance):
-        distanceBetween = self.getDistanceInMeter(targetNode)
+    def step_to(self, targetNode, distance):
+        distanceBetween = self.get_distance_in_meter(targetNode)
 
         part = distance / distanceBetween
 

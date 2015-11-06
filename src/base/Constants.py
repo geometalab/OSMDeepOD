@@ -8,3 +8,4 @@ class Constants:
     QUEUE_JOBS = 'jobs'
     QUEUE_RESULTS = 'results'
     SMALL_BBOX_SIDE_LENGHT = 3000.0
+    PATH_TO_CROSSWALKS = './crosswalks.json'

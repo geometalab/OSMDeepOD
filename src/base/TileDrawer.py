@@ -15,11 +15,11 @@ class TileDrawer:
         return drawer
 
     def draw_point(self, node):
-        pixels = self.tile.getPixel(node)
+        pixels = self.tile.get_pixel(node)
         self.drawer.point(pixels)
 
     def draw_line(self, node1, node2):
-        pixels1 = self.tile.getPixel(node1)
-        pixels2 = self.tile.getPixel(node2)
+        pixels1 = self.tile.get_pixel(node1)
+        pixels2 = self.tile.get_pixel(node2)
         self.drawer.line([pixels1,pixels2])
 

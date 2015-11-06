@@ -10,30 +10,30 @@ class Bbox:
 
     @classmethod
     def from_lbrt(cls, left, bottom, right, top):
-        box = cls()
-        box.left = left
-        box.bottom = bottom
-        box.right = right
-        box.top = top
-        return box
+        bbox = cls()
+        bbox.left = left
+        bbox.bottom = bottom
+        bbox.right = right
+        bbox.top = top
+        return bbox
 
     @classmethod
     def from_bltr(cls, bottom, left, top, right):
-        box = cls()
-        box.left = left
-        box.bottom = bottom
-        box.right = right
-        box.top = top
-        return box
+        bbox = cls()
+        bbox.left = left
+        bbox.bottom = bottom
+        bbox.right = right
+        bbox.top = top
+        return bbox
 
     @classmethod
     def from_leftdown_rightup(cls, node_leftdown, node_rightup):
-        box = cls()
-        box.left = node_leftdown.longitude
-        box.bottom = node_leftdown.latitude
-        box.right = node_rightup.longitude
-        box.top = node_rightup.latitude
-        return box
+        bbox = cls()
+        bbox.left = node_leftdown.longitude
+        bbox.bottom = node_leftdown.latitude
+        bbox.right = node_rightup.longitude
+        bbox.top = node_rightup.latitude
+        return bbox
 
     def __str__(self):
         return "Bbox left: " + str(self.left) + " bottom: " + str(self.bottom) + " right: " + str(self.right) + " top: " + self.top
@@ -48,21 +48,16 @@ class Bbox:
         lat = node.latitude
         lon = node.longitude
 
-        inLat = lat >= float(self.bottom) and lat <= float(self.top)
-        intLon = lon >= float(self.left) and lon <= float(self.right)
+        inLat = lat >= self.bottom and lat <= self.top
+        inLon = lon >= self.left and lon <= self.right
 
-        return inLat and intLon
-
-    def centerpoint(self):
-        lon = self.left + ((self.right - self.left) / 2)
-        lat = self.bottom + ((self.top - self.bottom) / 2)
-        return Node(lat, lon)
+        return inLat and inLon
 
     def getBboxExludeBorder(self, borderDistance):
         leftDownNode = self.node_leftdown()
         rightUpNode = self.node_rightup()
 
-        newLeftDown = leftDownNode.addMeter(borderDistance, borderDistance)
-        newRightUp = rightUpNode.addMeter(-borderDistance,-borderDistance)
+        newLeftDown = leftDownNode.add_meter(borderDistance, borderDistance)
+        newRightUp = rightUpNode.add_meter(-borderDistance,-borderDistance)
         ret = Bbox.from_leftdown_rightup(newLeftDown,newRightUp)
         return ret

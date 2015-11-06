@@ -1,44 +1,56 @@
 import unittest
-import json
-import os
-from src.role.WorkerFunctions import store
-from src.base.Crosswalk import Crosswalk
+from src.role.Manager import Manager
+from src.base.Bbox import Bbox
+from src.base.Node import Node
 from src.base.Constants import Constants
 
-class TestWorkerFunctions(unittest.TestCase):
+class TestManager(unittest.TestCase):
 
-    def setUp(self):
-        self.remove_file()
+    def test(self):
+        manager = Manager()
+        manager.big_bbox = self.big_bbox()
+        columns = manager._calc_columns()
+        rows = manager._calc_rows()
+        self.assertTrue(rows > 40)
+        self.assertTrue(columns > 2)
 
-    def tearDown(self):
-        self.remove_file()
+    def test_with_two_columns(self):
+        node1 = Node('47.0', '8.0', 10)
+        node2 = node1.add_meter(200, Constants.SMALL_BBOX_SIDE_LENGHT + 50)
 
-    def test_store_zero_crosswalks(self):
-        store([])
-        with open(Constants.PATH_TO_CROSSWALKS, 'r') as f:
-            data = json.load(f)
-        self.assertTrue(len(data['crosswalks']) == 0);
+        manager = Manager()
+        bbox = Bbox.from_leftdown_rightup(node1, node2)
+        manager.big_bbox = bbox
+        columns = manager._calc_columns()
+        rows = manager._calc_rows()
+        self.assertTrue(rows == 1)
+        self.assertTrue(columns == 2)
 
-    def test_store_in_two_steps_crosswalks(self):
-        crosswalks = []
-        crosswalks.append(Crosswalk(47.0, 8.0))
-        crosswalks.append(Crosswalk(47.1, 8.1))
-        store(crosswalks)
-        store(crosswalks)
-        with open(Constants.PATH_TO_CROSSWALKS, 'r') as f:
-            data = json.load(f)
-        self.assertTrue(len(data['crosswalks']) == 4);
+    def test_with_two(self):
+        node1 = Node('47.0', '8.0', 10)
+        node2 = node1.add_meter(Constants.SMALL_BBOX_SIDE_LENGHT + 50, Constants.SMALL_BBOX_SIDE_LENGHT + 50)
+
+        manager = Manager()
+        bbox = Bbox.from_leftdown_rightup(node1, node2)
+        manager.big_bbox = bbox
+        columns = manager._calc_columns()
+        rows = manager._calc_rows()
+        self.assertTrue(rows == 2)
+        self.assertTrue(columns == 2)
+
+    def test_with_three(self):
+        node1 = Node('47.0', '8.0', 10)
+        node2 = node1.add_meter(2 * Constants.SMALL_BBOX_SIDE_LENGHT + 50, 2 * Constants.SMALL_BBOX_SIDE_LENGHT + 50)
+
+        manager = Manager()
+        bbox = Bbox.from_leftdown_rightup(node1, node2)
+        manager.big_bbox = bbox
+        columns = manager._calc_columns()
+        rows = manager._calc_rows()
+        self.assertTrue(rows == 3)
+        self.assertTrue(columns == 3)
 
 
-    def test_store_two_crosswalks(self):
-        crosswalks = []
-        crosswalks.append(Crosswalk(47.0, 8.0))
-        crosswalks.append(Crosswalk(47.1, 8.1))
-        store(crosswalks)
-        with open(Constants.PATH_TO_CROSSWALKS, 'r') as f:
-            data = json.load(f)
-        self.assertTrue(len(data['crosswalks']) == 2);
 
-    def remove_file(self):
-        if os.path.exists(Constants.PATH_TO_CROSSWALKS):
-            os.remove(Constants.PATH_TO_CROSSWALKS)
+    def big_bbox(self):
+        return Bbox.from_lbrt(8.8, 47.0, 8.9, 47.9)

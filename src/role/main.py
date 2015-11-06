@@ -50,7 +50,7 @@ if __name__ == "__main__":
             Usage("ERROR: 'right' must be bigger then 'left'")
         big_bbox = Bbox.from_lbrt(left, bottom, right, top)
         print 'Manger is running!'
-        Manager(big_bbox)
+        Manager.from_big_bbox(big_bbox)
         print 'Manger is finished!'
         resultWorker = Worker.from_worker([Constants.QUEUE_RESULTS])
         resultWorker.run()
