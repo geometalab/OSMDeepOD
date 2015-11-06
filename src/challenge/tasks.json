@@ -1,0 +1,46 @@
+[
+    {
+        "geometries": {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "osmid": null
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -77.0197697,
+                            38.8944569
+                        ]
+                    }
+                }
+            ]
+        },
+        "identifier": "-245422134830019020515072624911431000923134125997",
+        "instruction": "Is this a crosswalk?"
+    },
+    {
+        "geometries": {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "osmid": null
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            -77.0197697,
+                            38.8944569
+                        ]
+                    }
+                }
+            ]
+        },
+        "identifier": "-417552606960620657971358843856641634245254110348",
+        "instruction": "Is this a crosswalk?"
+    }
+]
