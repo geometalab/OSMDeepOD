@@ -5,5 +5,5 @@
   "instruction": "See if you can verify the crosswalks.",
   "help": "This challenge will show you possible positions of crosswalks.",
   "difficulty": 1,
-  "active": false
+  "active": true
 }
