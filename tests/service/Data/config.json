@@ -1,8 +1,0 @@
-{
-  "dbname": "crosswalkdb",
-  "user": "crosswalk",
-  "host": "152.96.56.62",
-  "port": "40000",
-  "password":"crosswalkUser"
-}
-

@@ -1,53 +1,39 @@
 from geopy import Point
 from geopy.distance import vincenty
-from src.service.PositionHandler import PositionHandler
+from src.data.globalmaptiles import GlobalMercator
 
 
-class Node:
-    def __init__(self, ident = 0, lat = 0, lon = 0):
-        self.ident = ident
-        self.lat = float(lat)
-        self.lon = float(lon)
+class Node(Point):
+    def __init__(self, lat = 0.0, lon = 0.0, osm_id = 0):
+        super(self.__class__, self).__init__(lat, lon)
+        self.osm_id = osm_id
 
-    def toPoint(self):
-       return Point(self.lat, self.lon)
+    def __str__(self):
+        return "Node " + str(self.osm_id) + ": Lat " + str(self.latitude) + ", Lon " + str(self.longitude)
 
-    def addLatitude(self,meter):
-        handler = PositionHandler()
-        newPoint = handler.addDistanceToPoint(self.toPoint(),0,meter)
-        return Node.create(newPoint)
+    def copy(self):
+        return Node(self.latitude, self.longitude, self.osm_id)
 
-    def addLongitude(self,meter):
-        handler = PositionHandler()
-        newPoint = handler.addDistanceToPoint(self.toPoint(),meter,0)
-        return Node.create(newPoint)
-
-    def addMeter(self, verticalDistance, horizontalDistance):
-        newNode = self.addLatitude(verticalDistance)
-        return newNode.addLongitude(horizontalDistance)
+    def add_meter(self, verticalDistance, horizontalDistance):
+        mercator = GlobalMercator()
+        copy = self.copy()
+        lat, lon = mercator.MetersToLatLon(horizontalDistance,verticalDistance)
+        copy.latitude += lat
+        copy.longitude += lon
+        return copy
 
 
-    def getDistanceInMeter(self, node):
-        return vincenty(self.toPoint(),node.toPoint()).meters
+    def get_distance_in_meter(self, node):
+        return vincenty(self, node).meters
 
-    def stepTo(self, targetNode, distance):
-        distanceBetween = self.getDistanceInMeter(targetNode)
+    def step_to(self, targetNode, distance):
+        distanceBetween = self.get_distance_in_meter(targetNode)
 
         part = distance / distanceBetween
 
-        latDiff = targetNode.lat - self.lat
-        lonDiff = targetNode.lon - self.lon
+        latDiff = targetNode.latitude - self.latitude
+        lonDiff = targetNode.longitude - self.longitude
 
-        newLat = self.lat + latDiff * part
-        newLon = self.lon + lonDiff * part
-        return Node.create(Point(newLat, newLon))
-
-
-    @staticmethod
-    def create(point):
-        node = Node()
-        node.lat = point.latitude
-        node.lon = point.longitude
-        return node
-
-
+        newLat = self.latitude + latDiff * part
+        newLon = self.longitude + lonDiff * part
+        return Node(newLat, newLon)

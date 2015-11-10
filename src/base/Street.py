@@ -9,43 +9,29 @@ class Street:
         self.ident = 0
         self.highway = "-"
 
-    def getLeftNode(self):
-        if(self.nodes[0].lon < self.nodes[1].lon):
+    @classmethod
+    def from_nodes(cls, node1, node2):
+        street = cls()
+        street.nodes.append(node1)
+        street.nodes.append(node2)
+        return street
+
+    @classmethod
+    def from_info(cls, name, ident, highway):
+        street = cls()
+        street.name = name
+        street.ident = ident
+        street.highway = highway
+        return street
+
+    def get_left_node(self):
+        if(self.nodes[0].longitude < self.nodes[1].longitude):
             return self.nodes[0]
         else:
             return self.nodes[1]
 
-    def getRightNode(self):
-        if(self.nodes[0].lon > self.nodes[1].lon):
+    def get_right_node(self):
+        if(self.nodes[0].longitude > self.nodes[1].longitude):
             return self.nodes[0]
         else:
             return self.nodes[1]
-
-    def getAngle(self):
-        zero = Point(0,0)
-        left = self.getLeftNode()
-        right = self.getRightNode()
-        latDiff = right.lat - left.lat
-        lonDiff = right.lon - left.lon
-        latPoint =  Point(latDiff, 0)
-        lonPoint = Point(0, lonDiff)
-
-        verticalDistance = vincenty(zero, latPoint).meters
-        horizontalDistance = vincenty(zero, lonPoint).meters
-
-        if(horizontalDistance == 0):
-            return np.pi/2
-
-        angle = np.arctan(verticalDistance/horizontalDistance)
-        if(latDiff<0): angle *= -1
-        return angle
-
-    def getAngleDegree(self):
-        rad = self.getAngle()
-        degree = rad / (2* np.pi) * 360
-        return degree
-
-
-
-
-

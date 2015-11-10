@@ -1,76 +1,63 @@
-from geopy import Point
-from src.base.Constants import Constants
 from src.base.Node import Node
 
 class Bbox:
-    def __init__(self, left = 0, bottom = 0, right = 0, top = 0):
-        self.bottom = str(bottom)
-        self.left = str(left)
-        self.top = str(top)
-        self.right = str(right)
-        self.__validation()
 
-    def set(self, leftDownPoint, rightUpPoint):
-        self.bottom = str(leftDownPoint.latitude)
-        self.left = str(leftDownPoint.longitude)
-        self.top = str(rightUpPoint.latitude)
-        self.right = str(rightUpPoint.longitude)
-        self.__validation()
+    def __init__(self):
+        self.left = None
+        self.bottom = None
+        self.right = None
+        self.top = None
 
-    def __validation(self):
-        if(float(self.bottom) > float(self.top)):
-            temp = self.bottom
-            self.bottom = self.top
-            self.top = temp
+    @classmethod
+    def from_lbrt(cls, left, bottom, right, top):
+        bbox = cls()
+        bbox.left = left
+        bbox.bottom = bottom
+        bbox.right = right
+        bbox.top = top
+        return bbox
 
-        if(float(self.left) > float(self.right)):
-            temp = self.left
-            self.left = self.right
-            self.right = temp
+    @classmethod
+    def from_bltr(cls, bottom, left, top, right):
+        bbox = cls()
+        bbox.left = left
+        bbox.bottom = bottom
+        bbox.right = right
+        bbox.top = top
+        return bbox
 
+    @classmethod
+    def from_leftdown_rightup(cls, node_leftdown, node_rightup):
+        bbox = cls()
+        bbox.left = node_leftdown.longitude
+        bbox.bottom = node_leftdown.latitude
+        bbox.right = node_rightup.longitude
+        bbox.top = node_rightup.latitude
+        return bbox
 
-    def toString(self):
-        return str(self.bottom) + "," + str(self.right) + "," + str(self.top)  + "," + str(self.left)
+    def __str__(self):
+        return "Bbox left: " + str(self.left) + " bottom: " + str(self.bottom) + " right: " + str(self.right) + " top: " + self.top
 
-    def getMapquestFormat(self):
-        return   str(self.left) + "," + str(self.bottom) + "," + str(self.right) + "," + str(self.top)
+    def node_leftdown(self):
+        return Node(self.bottom, self.left)
 
-    def getMapquestFormat(self):
-        return   str(self.left) + "," + str(self.bottom) + "," + str(self.right) + "," + str(self.top)
+    def node_rightup(self):
+        return Node(self.top, self.right)
 
-    def getBingFormat(self):
-        return str(self.bottom) + "," + str(self.left) + "," + str(self.top) + "," + str(self.right)
+    def in_bbox(self, node):
+        lat = node.latitude
+        lon = node.longitude
 
-    def printing(self):
-        return "Bottom: " + str(self.bottom) + ", Right: " + str(self.right) + ", Top: " + str(self.top)  + ", Left: " + str(self.left)
+        inLat = lat >= self.bottom and lat <= self.top
+        inLon = lon >= self.left and lon <= self.right
 
-    def getDownLeftPoint(self):
-        return Point(self.bottom,self.left)
-
-    def getUpRightPoint(self):
-        return Point(self.top,self.right)
-
-    def inBbox(self, point):
-        lat = point.latitude
-        lon = point.longitude
-
-        inLat = lat >= float(self.bottom) and lat <= float(self.top)
-        intLon = lon >= float(self.left) and lon <= float(self.right)
-
-        return inLat and intLon
-
-    def getCenterPoint(self):
-        lon = float(self.left) + ((float(self.right) - float(self.left)) / 2)
-        lat = float(self.bottom) + ((float(self.top) - float(self.bottom)) / 2)
-        return Point(lat, lon)
+        return inLat and inLon
 
     def getBboxExludeBorder(self, borderDistance):
-        leftDownNode = Node.create(self.getDownLeftPoint())
-        rightUpNode = Node.create(self.getUpRightPoint())
+        leftDownNode = self.node_leftdown()
+        rightUpNode = self.node_rightup()
 
-        newLeftDown = leftDownNode.addMeter(borderDistance, borderDistance)
-        newRightUp = rightUpNode.addMeter(-borderDistance,-borderDistance)
-        ret= Bbox()
-        ret.set(newLeftDown.toPoint(),newRightUp.toPoint())
+        newLeftDown = leftDownNode.add_meter(borderDistance, borderDistance)
+        newRightUp = rightUpNode.add_meter(-borderDistance,-borderDistance)
+        ret = Bbox.from_leftdown_rightup(newLeftDown,newRightUp)
         return ret
-
