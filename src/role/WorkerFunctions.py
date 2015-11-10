@@ -1,14 +1,22 @@
 from src.base.Constants import Constants
+from src.detection.BoxWalker import BoxWalker
+from src.base.Crosswalk import Crosswalk
 from rq import Queue
 import json
 import os
 
 def detect(bbox):
-    pass
-    #walker = DummyWalker()
-    #nodes = walker.detect(bbox)
-    #q = Queue(Constants.QUEUE_RESULTS, connection=Constants.REDIS)
-    #q.enqueue(store, nodes)
+    walker = BoxWalker(bbox)
+    walker.loadTiles()
+    walker.loadStreets()
+    crosswalks = []
+    crosswalkNodes = walker.walk()
+
+    for node in crosswalkNodes:
+        crosswalks.append(Crosswalk(node.latitude, node.longitude))
+
+    q = Queue(Constants.QUEUE_RESULTS, connection=Constants.REDIS)
+    q.enqueue(store, crosswalks)
 
 
 def store(crosswalks):
