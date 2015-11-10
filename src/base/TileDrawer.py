@@ -15,8 +15,9 @@ class TileDrawer:
         return drawer
 
     def draw_point(self, node):
-        pixels = self.tile.get_pixel(node)
-        self.drawer.point(pixels)
+        pointsize = 6
+        (x, y) = self.tile.get_pixel(node)
+        self.drawer.ellipse((x-pointsize, y-pointsize, x+pointsize, y+pointsize), outline=(0,255,0), fill=(0,255,0))
 
     def draw_line(self, node1, node2):
         pixels1 = self.tile.get_pixel(node1)

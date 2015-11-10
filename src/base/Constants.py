@@ -9,3 +9,5 @@ class Constants:
     QUEUE_RESULTS = 'results'
     SMALL_BBOX_SIDE_LENGHT = 3000.0
     PATH_TO_CROSSWALKS = './crosswalks.json'
+    SQUAREDIMAGE_PIXELPERSIDE = 50
+    METER_PER_PIXEL = 0.404428571/19
