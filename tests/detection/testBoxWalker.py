@@ -109,4 +109,7 @@ class testBoxWalker(unittest.TestCase):
         return Bbox.from_lbrt(8.804742, 47.215446, 8.850833, 47.237799)
 
     def ZurichUhuereGross(self):
+        return Bbox.from_lbrt(8.523379, 47.368823, 8.553379, 47.390823)
+
+    def ZurichUhuereGross2(self):
         return Bbox.from_lbrt(8.523379, 47.368823, 8.573379, 47.390823)

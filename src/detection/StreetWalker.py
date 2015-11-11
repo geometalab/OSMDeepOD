@@ -1,8 +1,8 @@
 from random import randint
 from src.data.globalmaptiles import GlobalMercator
 from src.base.Constants import Constants
-from src.detection.CrosswalkDetector import CrosswalkDetector
 from src.detection.NodeMerger import NodeMerger
+import src.detection.deep.Convnet as convnet
 
 
 
@@ -23,7 +23,7 @@ class StreetWalker:
         for t in squaredTiles:
             images.append(t.image)
 
-        predictions = CrosswalkDetector.predictCrosswalks(images)
+        predictions = convnet.predictCrosswalks(images)
 
         for i in range(len(squaredTiles)):
             isCrosswalk = predictions[i]
@@ -31,7 +31,7 @@ class StreetWalker:
                 crosswalkNodes.append(squaredTiles[i].getCentreNode())
 
 
-
+        #self.save_bad_images(images)
 
 
         merged = self.mergeNodes(crosswalkNodes)
@@ -40,20 +40,6 @@ class StreetWalker:
     def mergeNodes(self, nodeList):
         merger = NodeMerger.from_nodelist(nodeList)
         return merger.reduce()
-
-    def isCrosswalk(self, squaredTile):
-        detector = CrosswalkDetector.fromPilImage(squaredTile.image, self.street)
-        '''
-        detector.rotateImg()
-        detector.cut()
-        detector.normalize()
-        detector.calc2dFourier()
-        detector.convertToAbsolute()
-        detector.convertToPhase()
-        '''
-        return detector.isCrosswalk2()
-
-
 
 
     def getSquaredTiles(self, node1, node2):
@@ -84,12 +70,11 @@ class StreetWalker:
 
         return squaresTiles
 
+    def save_bad_images(self, images):
+        predictions = convnet.last_prediction
 
-    def saveSquaredImages(self):
-        squaredTiles = self.getSquaredTiles(self.node1, self.node2)
-        i = 0
-        for t in squaredTiles:
-            detector = CrosswalkDetector.fromPilImage(t.image, self.street)
-            detector.process()
-            detector.getPilImage().save("/home/osboxes/Documents/squaredImages/new/img" + str(i) + str(randint(99999,99999999)) +".png")
-            i+=1
+        for i in range(len(images)):
+            if(predictions[i][0] > 0.3):
+                print predictions[i]
+                images[i].save("/home/osboxes/Documents/images/imgZh" + str(predictions[i]) + "x" + str(randint(99999,99999999)) + ".png")
+

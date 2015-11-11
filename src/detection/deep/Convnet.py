@@ -7,10 +7,11 @@ from keras.layers.convolutional import Convolution2D, MaxPooling2D
 from keras.regularizers import l2
 import theano
 import os
+import numpy as np
 
 
 
-def load_64f4c(hd5f_path, verbose):
+def _load_64f4c(hd5f_path, verbose):
 
     batch_size = 128
     nb_classes = 2
@@ -56,7 +57,18 @@ def load_64f4c(hd5f_path, verbose):
 
     return model
 
-def predict_list(x):
+def predictCrosswalks(pilimg_list):
+    x = np.zeros((len(pilimg_list), 50, 50, 3))
+    for i in range(len(pilimg_list)):
+        img = np.array(pilimg_list[i])
+        x[i] = img
+    x = x.reshape(x.shape[0], 3, 50, 50)
+
+    results = _predict_list(x)
+    return results
+
+def _predict_list(x):
+    global last_prediction
     predictions = network.predict(x)
     results = []
     for predict in predictions:
@@ -64,20 +76,21 @@ def predict_list(x):
         if(isCrosswalk): print("Zerba " + str(predict))
         #else: print(str(predict))
         results.append(isCrosswalk)
-
+    last_prediction = predictions
     return results
 
 network = None
+last_prediction = None
 
 def initialize():
     global network
-    enable_keras_multithreading()
+    _enable_keras_multithreading()
     current_dir = os.path.join(os.getcwd(), os.path.dirname(__file__))
     #Best Net 64f4:
 
     network_path = current_dir + "/" + "klein64-4f.e11-l0.045.hdf5"
-    network = load_64f4c(network_path, True)
+    network = _load_64f4c(network_path, True)
     #Schwellwert: 1e-150, isCrosswalk = predict[0] > 0.9 and predict[1] < 1e-150
 
-def enable_keras_multithreading():
+def _enable_keras_multithreading():
     theano.config.openmp = True

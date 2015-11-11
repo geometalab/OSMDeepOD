@@ -46,7 +46,7 @@ class Tile:
         y1 = centrePixel[1] - side_length/2
         y2 = centrePixel[1] + side_length/2
 
-        img =  self.image.crop((x1, y1, x2, y2))
+        img = self.image.crop((x1, y1, x2, y2))
         assert img.size[0] == 50 and img.size[1] == 50
         leftDown = self.getNode((x1,y1))
         rightUp = self.getNode((x2,y2))
