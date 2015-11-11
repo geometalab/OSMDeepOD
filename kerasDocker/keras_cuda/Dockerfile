@@ -1,4 +1,4 @@
-FROM theano_cuda7.5
+FROM sebu/theano_cuda
 MAINTAINER Severin Buehler <sbuehler@hsr.ch>
 #Bases on https://github.com/Kaixhin/dockerfiles/blob/master/cuda-keras/cuda_v7.5/Dockerfile
 
