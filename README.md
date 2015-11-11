@@ -25,3 +25,8 @@ Rapperswil suburb (47.232803, 8.837321)
 ## Further informations
 http://wiki.hsr.ch/StefanKeller/SA_BA_Gamified_Extraction_of_Crosswalks_from_Aerial_Images
 
+## Links
+- www.hsr.ch
+- www.osm.org
+- www.maproulette.org
+
