@@ -1,4 +1,4 @@
-from rq import Worker
+import rq
 from rq import Queue
 from rq import Connection
 from src.base.Constants import Constants
@@ -7,12 +7,12 @@ from src.role.WorkerFunctions import store
 
 class Worker:
     def __init__(self):
-        self.queues = None
+        self.queues = []
 
     def run(self):
         with Connection(Constants.REDIS):
             qs = map(Queue, self.queues) or [Queue()]
-            w = Worker(qs)
+            w = rq.Worker(qs)
             w.work()
 
     @classmethod

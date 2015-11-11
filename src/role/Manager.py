@@ -20,13 +20,13 @@ class Manager:
 
     def _generate_jobs(self):
         mminx, mminy = self.mercator.LatLonToMeters(self.big_bbox.bottom, self.big_bbox.left)
-        rows = self._calc_rows(self.big_bbox)
-        columns = self._calc_columns(self.big_bbox)
+        rows = self._calc_rows()
+        columns = self._calc_columns()
         side = Constants.SMALL_BBOX_SIDE_LENGHT
         for y in range(0, columns):
             for x in range(0, rows):
-                left, bottom = self.mercator.MetersToLatLon(mminx + (side * x), mminy + (side * y))
-                right, top = self.mercator.MetersToLatLon(mminx + (side * (x + 1)), mminy + (side * (y + 1)))
+                bottom, left = self.mercator.MetersToLatLon(mminx + (side * x), mminy + (side * y))
+                top, right = self.mercator.MetersToLatLon(mminx + (side * (x + 1)), mminy + (side * (y + 1)))
                 small_bbox = Bbox.from_lbrt(left, bottom, right, top)
                 self._enqueue_job(small_bbox)
 
