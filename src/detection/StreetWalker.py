@@ -81,7 +81,7 @@ class StreetWalker:
         predictions = convnet.last_prediction
 
         for i in range(len(images)):
-            if(predictions[i][0] > 0.3):
+            if(predictions[i][0] > 0.1):
                 print predictions[i]
                 images[i].save("/home/osboxes/Documents/images/imgZh" + str(predictions[i]) + "x" + str(randint(99999,99999999)) + ".png")
 

@@ -10,8 +10,8 @@ class testBoxWalker(unittest.TestCase):
 
     def testBoxWalkerLuzern(self):
         walker = BoxWalker(self.ZurichBellvue())
-        walker.loadTiles()
-        walker.loadStreets()
+        walker.load_tiles()
+        walker.load_streets()
 
         crosswalkNodes = walker.walk()
 
