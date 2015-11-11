@@ -52,8 +52,6 @@ if __name__ == "__main__":
         print 'Manger is running!'
         Manager.from_big_bbox(big_bbox)
         print 'Manger is finished!'
-        resultWorker = Worker.from_worker([Constants.QUEUE_RESULTS])
-        resultWorker.run()
     elif role == 'jobworker':
         print 'JobWorker is running!'
         jobWorker = Worker.from_worker([Constants.QUEUE_JOBS])
