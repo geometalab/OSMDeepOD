@@ -16,7 +16,7 @@ def detect(bbox):
         crosswalks.append(Crosswalk(node.latitude, node.longitude))
 
     for c in crosswalks:
-        print c.latitude + " " + c.longitude
+        print str(c.latitude) + " " + str(c.longitude)
 
     q = Queue(Constants.QUEUE_RESULTS, connection=Constants.REDIS)
     q.enqueue_call(func=store, args=(crosswalks,), timeout=Constants.TIMEOUT)
@@ -30,7 +30,7 @@ def store(crosswalks):
         data = json.load(f)
 
     for crosswalk in crosswalks:
-        print crosswalk.latitude + " " + crosswalk.longitude
+        print str(crosswalk.latitude) + " " + str(crosswalk.longitude)
         data['crosswalks'].append({"latitude":crosswalk.latitude, "longitude":crosswalk.longitude, "osm_street_id":crosswalk.osm_street_id})
 
     with open(Constants.PATH_TO_CROSSWALKS, 'w') as f:
