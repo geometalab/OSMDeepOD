@@ -31,7 +31,7 @@ class Manager:
                 self._enqueue_job(small_bbox)
 
     def _enqueue_job(self, small_bbox):
-            self.queue.enqueue(detect, small_bbox)
+        self.queue.enqueue_call(func=detect, args=small_bbox, timeout=Constants.TIMEOUT)
 
     def _calc_rows(self):
         mminx, mminy = self.mercator.LatLonToMeters(self.big_bbox.bottom, self.big_bbox.left)
