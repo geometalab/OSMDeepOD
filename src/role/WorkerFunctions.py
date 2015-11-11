@@ -19,7 +19,7 @@ def detect(bbox):
         print c.latitude + " " + c.longitude
 
     q = Queue(Constants.QUEUE_RESULTS, connection=Constants.REDIS)
-    q.enqueue_call(func=store, args=crosswalks, timeout=Constants.TIMEOUT)
+    q.enqueue_call(func=store, args=(crosswalks,), timeout=Constants.TIMEOUT)
 
 def store(crosswalks):
     if not os.path.exists(Constants.PATH_TO_CROSSWALKS):
