@@ -14,9 +14,6 @@ class TileLoader:
         self.PRELINK_SECOUND = '.ssl.ak.tiles.virtualearth.net/tiles/a'
         self.POSTLINK = '.jpeg?g=4401&n=z'
 
-    def getTiles(self):
-        return self._download_tiles(self.bbox)
-
     def _build_url(self, quadtree):
         server = random.randint(0, 7)
         return self.PRELINK_FIRST+ str(server) + self.PRELINK_SECOUND + str(quadtree) + self.POSTLINK
@@ -61,8 +58,8 @@ class TileLoader:
 
         return tiles
 
-    def get_big_tile(self):
-        tiles = self.getTiles()
+    def load_tile(self):
+        tiles = self._download_tiles(self.bbox)
         numRows = len(tiles)
         numCols = len(tiles[0])
         width, height = tiles[0][0].image.size

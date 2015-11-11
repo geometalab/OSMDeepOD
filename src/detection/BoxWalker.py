@@ -16,7 +16,7 @@ class BoxWalker:
         self.status_printer.start_load_tiles()
 
         loader = TileLoader(self.bbox)
-        self.tile = loader.get_big_tile()
+        self.tile = loader.load_tile()
 
     def load_streets(self):
         self.status_printer.start_load_streets()
@@ -67,6 +67,7 @@ class StatusPrinter:
 
     def set_nb_streets(self, nb_streets):
         self.nb_streets = nb_streets
+        self._out(str(self.nb_streets) + " streets loaded")
 
     def start_walking(self):
         self.start_time = datetime.datetime.now()
