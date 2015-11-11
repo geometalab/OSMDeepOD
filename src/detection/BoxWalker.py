@@ -34,7 +34,7 @@ class BoxWalker:
         nb_images = 0
         for street in self.streets:
             iCount += 1
-            streetwalker = StreetWalker(street, self.tile)
+            streetwalker = StreetWalker.from_street_tile(street, self.tile)
             streetResults =  streetwalker.walk()
             nb_images += streetwalker.nb_images
             crosswalkNodes += streetResults
