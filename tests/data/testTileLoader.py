@@ -8,7 +8,7 @@ class TestTileLoader(unittest.TestCase):
     def test_orthophoto_download(self):
         bbox = self.ZurichBellvue()
         tl = TileLoader(bbox)
-        tile = tl.get_big_tile()
+        tile = tl.load_tile()
         img = tile.image
         self.assertEquals(img.size[0], 1792)
         self.assertEquals(img.size[1], 1280)

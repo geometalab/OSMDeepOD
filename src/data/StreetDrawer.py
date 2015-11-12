@@ -24,7 +24,7 @@ class StreetDrawer:
         drawer.streets = streetloader.load_streets(bbox)
 
         tileloader = TileLoader(bbox)
-        drawer.tile = tileloader.get_big_tile()
+        drawer.tile = tileloader.load_tile()
 
         return drawer
 
