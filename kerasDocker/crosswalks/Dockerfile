@@ -1,6 +1,5 @@
 FROM sebu/keras_cuda:latest
 MAINTAINER Samuel Kurath <skurath@hsr.ch>
-Dockerfile
 
 # Clone 
 RUN cd /root \
