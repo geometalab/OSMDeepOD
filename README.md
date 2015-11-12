@@ -1,3 +1,5 @@
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+
 # OSM-Crosswalk-Detection: Deep learning based image recognition
 
 ## You just have found this project
