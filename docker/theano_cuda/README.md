@@ -2,7 +2,7 @@
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
 
-## Theano docker image with cuda backend
+## Theano docker image for nvidia-docker
 
 This image bases on the docker file of kaixhin/cuda-theano, but instead of his own cuda image, this image implements the experimental nvidia-docker image.
 
