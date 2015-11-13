@@ -26,8 +26,8 @@ if __name__ == "__main__":
                         "geometry": {
                             "type": "Point",
                             "coordinates": [
-                                crosswalk.longitude,
-                                crosswalk.longitude
+                                crosswalk['latitude'],
+                                crosswalk['longitude']
                             ]
                         }
                     }
@@ -54,7 +54,8 @@ if __name__ == "__main__":
     for crosswalk in data['crosswalks']:
         tasks.append(build_task(crosswalk))
 
-    print tasks
+    value = str(tasks)
+    value = value.replace("'", '"')
 
     with open('tasks.json', 'w') as f:
-        f.write(str(tasks))
+        f.write(value)
