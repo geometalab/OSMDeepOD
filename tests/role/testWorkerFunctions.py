@@ -9,7 +9,7 @@ class TestWorkerFunctions(unittest.TestCase):
 
     def setUp(self):
         self.remove_file()
-
+    '''
     def tearDown(self):
         self.remove_file()
 
@@ -18,7 +18,7 @@ class TestWorkerFunctions(unittest.TestCase):
         with open(Constants.PATH_TO_CROSSWALKS, 'r') as f:
             data = json.load(f)
         self.assertTrue(len(data['crosswalks']) == 0);
-
+    '''
     def test_store_in_two_steps_crosswalks(self):
         crosswalks = []
         crosswalks.append(Crosswalk(47.0, 8.0))
