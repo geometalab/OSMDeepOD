@@ -1,6 +1,7 @@
 if __name__ == "__main__":
     import sys, os
     import json
+    import uuid
 
     def Usage(s = ""):
         print "Usage: TaskGenerator.py crosswalks.json"
@@ -12,6 +13,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     def build_task(crosswalk):
+
         task = \
         {
             "geometries": {
@@ -24,14 +26,14 @@ if __name__ == "__main__":
                         "geometry": {
                             "type": "Point",
                             "coordinates": [
-                                8.818630,
-                                47.226682
+                                crosswalk.longitude,
+                                crosswalk.longitude
                             ]
                         }
                     }
                 ]
             },
-            "identifier": "-245422134830019020515072624911431000923134125097",
+            "identifier": str(uuid.uuid4()),
             "instruction": "Is this a crosswalk?"
         }
         return task
