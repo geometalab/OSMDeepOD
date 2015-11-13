@@ -24,16 +24,16 @@ class Node(Point):
 
 
     def get_distance_in_meter(self, node):
-        return vincenty(self,node).meters
+        return vincenty(self, node).meters
 
     def step_to(self, targetNode, distance):
         distanceBetween = self.get_distance_in_meter(targetNode)
 
         part = distance / distanceBetween
 
-        latDiff = targetNode.lat - self.lat
-        lonDiff = targetNode.lon - self.lon
+        latDiff = targetNode.latitude - self.latitude
+        lonDiff = targetNode.longitude - self.longitude
 
-        newLat = self.lat + latDiff * part
-        newLon = self.lon + lonDiff * part
-        return Node.create(Point(newLat, newLon))
+        newLat = self.latitude + latDiff * part
+        newLon = self.longitude + lonDiff * part
+        return Node(newLat, newLon)
