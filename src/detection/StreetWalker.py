@@ -8,8 +8,6 @@ class StreetWalker:
     def __init__(self):
         self.street = None
         self.tile = None
-        self.node1 = None
-        self.node2 = None
         self.nb_images = 0
 
     @classmethod
@@ -17,14 +15,12 @@ class StreetWalker:
         walker = cls()
         walker.street = street
         walker.street = street
-        walker.node1 = street.nodes[0]
-        walker.node2 = street.nodes[1]
         walker.tile = tile
 
         return walker
 
     def walk(self):
-        squaredTiles = self._get_squared_tiles(self.node1, self.node2)
+        squaredTiles = self._get_squared_tiles(self.street.nodes[0], self.street.nodes[1])
         self.nb_images = len(squaredTiles)
         crosswalkNodes = []
 
@@ -55,14 +51,16 @@ class StreetWalker:
         assert self.tile.bbox.in_bbox(node1)
         assert self.tile.bbox.in_bbox(node2)
 
-        stepDistance = 10
+        stepDistance = 8
         distanceBetweenNodes = node1.get_distance_in_meter(node2)
 
         squaresTiles = []
-        for i in range(0, int(distanceBetweenNodes/stepDistance) + 1):
+        for i in range(0, int(distanceBetweenNodes/stepDistance) + 2):
             currentDistance = stepDistance * i
+            if(currentDistance > distanceBetweenNodes):
+                currentDistance = distanceBetweenNodes
             currentNode = node1.step_to(node2, currentDistance)
-            assert self.tile.bbox.in_bbox(currentNode)
+
 
             tile = self.tile.getTile_byNode(currentNode, Constants.SQUAREDIMAGE_PIXELPERSIDE)
             squaresTiles.append(tile)
@@ -85,3 +83,23 @@ class StreetWalker:
                 print predictions[i]
                 images[i].save("/home/osboxes/Documents/images/imgZh" + str(predictions[i]) + "x" + str(randint(99999,99999999)) + ".png")
 
+
+    '''
+        def _get_squared_tiles(self, node1, node2):
+        assert self.tile.bbox.in_bbox(node1)
+        assert self.tile.bbox.in_bbox(node2)
+
+        stepDistance = 10
+        distanceBetweenNodes = node1.get_distance_in_meter(node2)
+
+        squaresTiles = []
+        for i in range(0, int(distanceBetweenNodes/stepDistance) + 1):
+            currentDistance = stepDistance * i
+            currentNode = node1.step_to(node2, currentDistance)
+            assert self.tile.bbox.in_bbox(currentNode)
+
+            tile = self.tile.getTile_byNode(currentNode, Constants.SQUAREDIMAGE_PIXELPERSIDE)
+            squaresTiles.append(tile)
+
+        return squaresTiles
+    '''

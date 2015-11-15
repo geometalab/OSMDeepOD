@@ -7,9 +7,30 @@ from src.base.TileDrawer import TileDrawer
 
 
 class testBoxWalker(unittest.TestCase):
+    def test_load_tile(self):
+        walker = BoxWalker(self.smallTestBbox(), False)
+        walker.load_tiles()
+        self.assertIsNotNone(walker.tile)
 
-    def testBoxWalkerLuzern(self):
-        walker = BoxWalker(self.ZurichBellvue())
+    def test_load_streets(self):
+        walker = BoxWalker(self.smallTestBbox(), False)
+        walker.load_streets()
+        self.assertIsNotNone(walker.streets)
+
+    def test_walk(self):
+        walker = BoxWalker(self.smallTestBbox2(), False)
+        walker.load_convnet()
+        walker.load_tiles()
+        walker.load_streets()
+
+        crosswalkNodes = walker.walk()
+        self.assertIsNotNone(crosswalkNodes)
+        self.assertGreater(len(crosswalkNodes), 0)
+
+
+    def test_walk_with_show(self):
+        walker = BoxWalker(self.ZurichUhuereGross3())
+        walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
 
@@ -23,6 +44,12 @@ class testBoxWalker(unittest.TestCase):
             drawer.draw_point(node)
         drawer.drawsection.save("boxsave.jpg")
         drawer.drawsection.show()
+
+    def smallTestBbox(self):
+        return Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.543088251618977, 47.36781249586627)
+
+    def smallTestBbox2(self):
+        return Bbox.from_bltr(47.226327, 8.818031, 47.227014, 8.818868)
 
     def ZurichBellvue(self):
         #Trainset
@@ -113,3 +140,6 @@ class testBoxWalker(unittest.TestCase):
 
     def ZurichUhuereGross2(self):
         return Bbox.from_lbrt(8.523379, 47.368823, 8.573379, 47.390823)
+
+    def ZurichUhuereGross3(self):
+        return Bbox.from_bltr(47.372759, 8.473965, 47.399972, 8.510429)
