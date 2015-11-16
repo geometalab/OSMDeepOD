@@ -9,7 +9,7 @@ import theano
 import os
 import numpy as np
 
-def convnet40():
+def convnet44():
     batch_size = 128
     nb_classes = 2
     nb_epoch = 500
@@ -18,7 +18,7 @@ def convnet40():
     img_rows, img_cols = 50, 50
     # number of convolutional filters to use
     # number of convolutional filters to use
-    nb_filters1 = 64
+    nb_filters1 = 48
     nb_filters2 = 128
     nb_filters3 = 256
     # size of pooling area for max pooling
@@ -36,13 +36,15 @@ def convnet40():
 
     model.add(Convolution2D(nb_filters1, nb_conv, nb_conv, border_mode='full', input_shape=(img_channels, img_rows, img_cols)))
     model.add(Activation('relu'))
+    model.add(Dropout(0.2))
     model.add(Convolution2D(nb_filters1, nb_conv, nb_conv))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
 
-    model.add(Dropout(0.3))
+    model.add(Dropout(0.5))
     model.add(Convolution2D(nb_filters2, nb_conv, nb_conv))
     model.add(Activation('relu'))
+    model.add(Dropout(0.2))
     model.add(Convolution2D(nb_filters2, nb_conv, nb_conv))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
@@ -50,6 +52,10 @@ def convnet40():
     model.add(Dropout(0.5))
     model.add(Convolution2D(nb_filters3, nb_conv, nb_conv))
     model.add(Activation('relu'))
+    model.add(Dropout(0.2))
+    model.add(Convolution2D(nb_filters3, nb_conv, nb_conv))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.2))
     model.add(Convolution2D(nb_filters3, nb_conv, nb_conv))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
@@ -57,7 +63,7 @@ def convnet40():
     model.add(Flatten())
 
     model.add(Dropout(0.5))
-    model.add(Dense(4096, W_regularizer=l2(lmda)))
+    model.add(Dense(2048, W_regularizer=l2(lmda)))
     model.add(Activation('relu'))
 
     model.add(Dropout(0.5))
@@ -73,7 +79,7 @@ def convnet40():
     current_dir = os.path.join(os.getcwd(), os.path.dirname(__file__))
     #Best Net 64f4:
 
-    network_path = current_dir + "/" + "convnet40.e26-l0.086.hdf5"
+    network_path = current_dir + "/" + "convnet44.e99-l0.054.hdf5"
     model.load_weights(network_path)
     return model
 
@@ -144,7 +150,7 @@ def _predict_list(x):
     for predict in predictions:
         #isCrosswalk = predict[0] > 0.999 and predict[1] < 1e-300
         #isCrosswalk =  predict[1] < 1e-20
-        isCrosswalk =  predict[0] > 0.01
+        isCrosswalk =  predict[0] > 0.99999
         if(isCrosswalk): print("Zerba " + str(predict))
         else: print(str(predict))
         results.append(isCrosswalk)
@@ -160,7 +166,7 @@ def initialize():
     _enable_keras_multithreading()
 
     #network = _load_64f4c(True)
-    network = convnet40()
+    network = convnet44()
     #Schwellwert: 1e-150, isCrosswalk = predict[0] > 0.9 and predict[1] < 1e-150
 
 def _enable_keras_multithreading():
