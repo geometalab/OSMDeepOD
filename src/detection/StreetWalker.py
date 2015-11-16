@@ -36,7 +36,7 @@ class StreetWalker:
                 crosswalkNodes.append(squaredTiles[i].getCentreNode())
 
 
-        #_self.save_bad_images(images)
+        self._save_bad_images(images)
 
 
         merged = self._merge_nodes(crosswalkNodes)

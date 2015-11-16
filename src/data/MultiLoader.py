@@ -9,7 +9,7 @@ class MultiLoader:
     def __init__(self):
         self.urls = []
         self.results = []
-        self.nb_threads = 5
+        self.nb_threads = 10
         self.nb_tile_per_trial = 20
         self.useragent = UserAgent()
 
@@ -39,20 +39,20 @@ class MultiLoader:
             results += result
             newpercentage = (float(end)/nb_urls) * 100
             if(percentage + 5 < newpercentage):
-                #time.sleep(7)
                 percentage = newpercentage
                 print "-- " + str(int(percentage)) + "%"
 
         self.results = self._convert_to_image(results)
 
     def _try_download(self, requests):
-        for i in range(3):
+        for i in range(4):
             try:
                 results = self._download(requests)
                 return results
             except:
+                time.sleep(i*10)
                 pass
-        raise Exception("Download of tiles have failed 4 times...")
+        raise Exception("Download of tiles have failed 5 times...")
 
     def _download(self, urls):
         pool = ThreadPool(self.nb_threads)

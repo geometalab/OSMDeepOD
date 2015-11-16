@@ -29,7 +29,7 @@ class testBoxWalker(unittest.TestCase):
 
 
     def test_walk_with_show(self):
-        walker = BoxWalker(self.zh_schlieren_test())
+        walker = BoxWalker(self.ZurichUhuereGrossHalb())
         walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
@@ -134,6 +134,9 @@ class testBoxWalker(unittest.TestCase):
 
     def RappiUhuereGross(self):
         return Bbox.from_lbrt(8.804742, 47.215446, 8.850833, 47.237799)
+
+    def ZurichUhuereGrossHalb(self):
+        return Bbox.from_lbrt(8.523379, 47.368823, 8.543379, 47.380823)
 
     def ZurichUhuereGross(self):
         return Bbox.from_lbrt(8.523379, 47.368823, 8.553379, 47.390823)
