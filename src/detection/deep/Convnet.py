@@ -17,6 +17,7 @@ def convnet40():
     # input image dimensions
     img_rows, img_cols = 50, 50
     # number of convolutional filters to use
+    # number of convolutional filters to use
     nb_filters1 = 64
     nb_filters2 = 128
     nb_filters3 = 256
@@ -27,9 +28,8 @@ def convnet40():
     #image is rgb
     img_channels = 3
 
-    #Lamda for L2 regularization
-    lmda = 5e-4
-
+    #Lamda for the L2 regularization
+    lmda = 0.01
 
     print("put convnet together")
     model = Sequential()
@@ -143,9 +143,10 @@ def _predict_list(x):
     results = []
     for predict in predictions:
         #isCrosswalk = predict[0] > 0.999 and predict[1] < 1e-300
-        isCrosswalk =  predict[1] < 1e-20
+        #isCrosswalk =  predict[1] < 1e-20
+        isCrosswalk =  predict[0] > 0.01
         if(isCrosswalk): print("Zerba " + str(predict))
-        #else: print(str(predict))
+        else: print(str(predict))
         results.append(isCrosswalk)
     last_prediction = predictions
     return results

@@ -29,7 +29,7 @@ class testBoxWalker(unittest.TestCase):
 
 
     def test_walk_with_show(self):
-        walker = BoxWalker(self.ZurichUhuereGross3())
+        walker = BoxWalker(self.ZurichUhuereGross2())
         walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
