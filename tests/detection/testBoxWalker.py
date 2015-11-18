@@ -1,7 +1,8 @@
-from src.detection import BoxWalker
+from src.detection.BoxWalker import BoxWalker
 import unittest
-from src.base import Bbox, TileDrawer
-from src.data import StreetDrawer
+from src.base.Bbox import Bbox
+from src.base.TileDrawer import TileDrawer
+from src.data.StreetDrawer import StreetDrawer
 
 
 

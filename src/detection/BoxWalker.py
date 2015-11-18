@@ -28,7 +28,7 @@ class BoxWalker:
     def load_streets(self):
         self.status_printer.start_load_streets()
         if self.tile is None:
-            raise Exception("Download tiles first")
+            print "Download tiles first"
 
         streetLoader = StreetLoader()
         self.streets = streetLoader.load_streets(self.bbox)

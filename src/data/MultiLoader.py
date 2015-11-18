@@ -54,7 +54,6 @@ class MultiLoader:
             except Exception as e:
                 print "Tile download failed", i , "wait", i*10, e
                 time.sleep(i*10)
-                pass
         raise Exception("Download of tiles have failed 4 times " + str(e))
 
     def _download_async(self, urls):
