@@ -1,8 +1,6 @@
 from src.base.Street import Street
 from src.base.Node import Node
 from src.data.MapquestApi import MapquestApi
-from src.base.Crosswalk import Crosswalk
-
 class StreetLoader:
     def __init__(self):
         self.api = MapquestApi()
@@ -27,7 +25,7 @@ class StreetLoader:
         for node in tree.iter('node'):
             for tag in node.iter('tag'):
                 if self._is_crosswalk(tag):
-                    self.crosswalks.append(Crosswalk(node.get('lat'), node.get('lon')))
+                    self.crosswalks.append(Node(node.get('lat'), node.get('lon')))
 
     def _parse_tree(self, tree, bbox):
         node_map = self._get_node_map(tree)

@@ -2,7 +2,6 @@ from random import randint
 from src.detection.NodeMerger import NodeMerger
 import src.detection.deep.Convnet as convnet
 from src.base.Constants import Constants
-from src.base.Crosswalk import Crosswalk
 
 class StreetWalker:
     def __init__(self):
@@ -40,8 +39,7 @@ class StreetWalker:
 
 
         merged = self._merge_nodes(crosswalkNodes)
-        crosswalks = self._nodes_to_crosswalks(merged)
-        return crosswalks
+        return merged
 
     def _merge_nodes(self, nodelist):
         merger = NodeMerger.from_nodelist(nodelist)
@@ -64,13 +62,6 @@ class StreetWalker:
 
         return squaresTiles
 
-    def _nodes_to_crosswalks(self, nodelist):
-        crosswalks = []
-        for n in nodelist:
-            crosswalk = Crosswalk.from_node_id(n, self.street.ident)
-            crosswalks.append(crosswalk)
-
-        return crosswalks
 
     def _save_bad_images(self, images):
 
