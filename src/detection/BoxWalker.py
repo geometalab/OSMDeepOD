@@ -11,6 +11,7 @@ class BoxWalker:
     def __init__(self, bbox, verbose=True):
         self.bbox = bbox
         self.tile = None
+        self.streets = None
         self.verbose = verbose
         self.status_printer = StatusPrinter.from_nb_streets(verbose)
 
@@ -26,6 +27,8 @@ class BoxWalker:
 
     def load_streets(self):
         self.status_printer.start_load_streets()
+        if self.tile is None:
+            raise Exception("Download tiles first")
 
         streetLoader = StreetLoader()
         self.streets = streetLoader.load_streets(self.bbox)
@@ -34,6 +37,9 @@ class BoxWalker:
 
     def walk(self):
         self.status_printer.start_walking()
+
+        ready_for_walk = (not self.tile is None) and (not self.streets is None) and (not Convnet.network is None)
+        if(not ready_for_walk): raise Exception("Not ready for walk. Load tiles, streets and convnet first")
 
         results = []
         nb_images = 0
