@@ -48,8 +48,8 @@ class StreetWalker:
         return merger.reduce()
 
     def _get_squared_tiles(self, node1, node2):
-        assert self.tile.bbox.in_bbox(node1)
-        assert self.tile.bbox.in_bbox(node2)
+        #assert self.tile.bbox.in_bbox(node1)
+        #assert self.tile.bbox.in_bbox(node2)
 
         stepDistance = 8
         distanceBetweenNodes = node1.get_distance_in_meter(node2)

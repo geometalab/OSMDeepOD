@@ -23,6 +23,7 @@ class BoxWalker:
 
         loader = TileLoader(self.bbox)
         self.tile = loader.load_tile()
+        self.bbox = self.tile.bbox
 
     def load_streets(self):
         self.status_printer.start_load_streets()

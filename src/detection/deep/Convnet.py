@@ -79,7 +79,7 @@ def convnet44():
     current_dir = os.path.join(os.getcwd(), os.path.dirname(__file__))
     #Best Net 64f4:
 
-    network_path = current_dir + "/" + "convnet44.e99-l0.054.hdf5"
+    network_path = current_dir + "/" + "convnet48.e158-l0.055.hdf5"
     model.load_weights(network_path)
     return model
 
@@ -150,7 +150,7 @@ def _predict_list(x):
     for predict in predictions:
         #isCrosswalk = predict[0] > 0.999 and predict[1] < 1e-300
         #isCrosswalk =  predict[1] < 1e-20
-        isCrosswalk =  predict[0] > 0.99999
+        isCrosswalk =  predict[0] > 0.9
         if(isCrosswalk): print("Zerba " + str(predict))
         else: print(str(predict))
         results.append(isCrosswalk)

@@ -22,6 +22,11 @@ class TestTileLoader(unittest.TestCase):
         self.assertAlmostEqual(tile_bbox.right, 8.5432434082, 5)
         self.assertAlmostEqual(tile_bbox.top, 47.3681292923, 5)
 
+    def test_show(self):
+        tl = TileLoader(self.Rappi())
+        tile = tl.load_tile()
+        tile.show()
+
     def ZurichBellvue(self):
         return Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
 

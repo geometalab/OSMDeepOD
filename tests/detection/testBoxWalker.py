@@ -2,6 +2,7 @@ from src.detection.BoxWalker import BoxWalker
 import unittest
 from src.base.Bbox import Bbox
 from src.base.TileDrawer import TileDrawer
+from src.data.StreetDrawer import StreetDrawer
 
 
 
@@ -29,7 +30,7 @@ class testBoxWalker(unittest.TestCase):
 
 
     def test_walk_with_show(self):
-        walker = BoxWalker(self.ZurichUhuereGrossHalb())
+        walker = BoxWalker(self.zh_europabrucke())
         walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
@@ -37,6 +38,10 @@ class testBoxWalker(unittest.TestCase):
         crosswalkNodes = walker.walk()
 
         self.printResults(walker.tile, crosswalkNodes)
+
+    def test_streetdrawer(self):
+        drawer = StreetDrawer.from_bbox(self.ZurichBellvue())
+        drawer.show()
 
     def printResults(self, tile, crosswalkNodes):
         drawer = TileDrawer.from_tile(tile)
@@ -57,7 +62,7 @@ class testBoxWalker(unittest.TestCase):
 
     def Rappi(self):
 
-        return Bbox.from_lbrt(8.814650, 47.222553, 8.825035, 47.228935)
+        return Bbox.from_lbrt(8.814650, 47.222553, 8.820035, 47.225935)
 
     def Luzern(self):
         return Bbox.from_lbrt(8.301307, 47.046349, 8.305528, 47.051053)
