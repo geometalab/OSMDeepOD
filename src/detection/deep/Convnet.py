@@ -99,7 +99,7 @@ def _load_64f4c(verbose):
     img_channels = 3
 
 
-    if(verbose):
+    if verbose:
         print("put convnet together")
     model = Sequential()
 
@@ -116,17 +116,17 @@ def _load_64f4c(verbose):
     model.add(Dropout(0.5))
     model.add(Dense(nb_classes))
     model.add(Activation('softmax'))
-    if(verbose):
+    if verbose:
         print("start compiling")
     model.compile(loss='categorical_crossentropy', optimizer='adadelta')
-    if(verbose):
+    if verbose:
         print("load weights")
     current_dir = os.path.join(os.getcwd(), os.path.dirname(__file__))
     #Best Net 64f4:
 
     network_path = current_dir + "/" + "klein64-4f.e11-l0.045.hdf5"
     model.load_weights(network_path)
-    if(verbose):
+    if verbose:
         print("network loaded")
 
     return model
@@ -160,7 +160,7 @@ last_prediction = None
 
 def initialize():
     global network
-    if(not network is None): return
+    if not network is None: return
     _enable_keras_multithreading()
 
     #network = _load_64f4c(True)

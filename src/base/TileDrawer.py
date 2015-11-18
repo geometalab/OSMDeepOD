@@ -1,5 +1,4 @@
-from src.base.Tile import Tile
-import Image, ImageDraw
+import ImageDraw
 class TileDrawer:
     def __init__(self):
         self.tile = None

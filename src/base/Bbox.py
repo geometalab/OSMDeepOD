@@ -48,8 +48,8 @@ class Bbox:
         lat = node.latitude
         lon = node.longitude
 
-        inLat = lat >= self.bottom and lat <= self.top
-        inLon = lon >= self.left and lon <= self.right
+        inLat = self.bottom <= lat <= self.top
+        inLon = self.left <= lon <= self.right
 
         return inLat and inLon
 

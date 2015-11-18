@@ -42,12 +42,12 @@ if __name__ == "__main__":
     if len(argv) < 2:
         Usage("ERROR: You have to specify all needed arguments.")
 
-    file = argv[1]
+    input_file = argv[1]
 
-    if not os.path.exists(file):
+    if not os.path.exists(input_file):
         Usage("ERROR: File does not exist.")
 
-    with open(file, 'r') as f:
+    with open(input_file, 'r') as f:
         data = json.load(f)
 
     tasks = []

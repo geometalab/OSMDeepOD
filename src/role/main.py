@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    import sys, os
+    import sys
     from src.base.Bbox import Bbox
     from src.role.Worker import Worker
     from src.role.Manager import Manager
@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     def _get_float(arg):
         try:
-            return (float(arg))
+            return float(arg)
         except ValueError:
             Usage("ERROR: All boundingbox parameters needs to be floats")
 

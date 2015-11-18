@@ -19,7 +19,7 @@ class testBoxWalker(unittest.TestCase):
         self.assertIsNotNone(walker.streets)
 
     def test_walk(self):
-        walker = BoxWalker(self.smallTestBbox2(), False)
+        walker = BoxWalker(self.ZurichBellvue(), False)
         walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()

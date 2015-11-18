@@ -7,8 +7,8 @@ import os
 def detect(bbox):
     walker = BoxWalker(bbox)
     walker.load_convnet()
-    walker.loadTiles()
-    walker.loadStreets()
+    walker.load_tiles()
+    walker.load_streets()
     crosswalkNodes = walker.walk()
 
 

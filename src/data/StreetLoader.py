@@ -18,7 +18,7 @@ class StreetLoader:
 
     def _load_data(self, bbox):
         tree = self.api.request(bbox)
-        self._parse_tree(tree, bbox)
+        self._parse_tree(tree)
         self._filter_crosswalks(tree)
 
     def _filter_crosswalks(self, tree):
@@ -27,7 +27,7 @@ class StreetLoader:
                 if self._is_crosswalk(tag):
                     self.crosswalks.append(Node(node.get('lat'), node.get('lon')))
 
-    def _parse_tree(self, tree, bbox):
+    def _parse_tree(self, tree):
         node_map = self._get_node_map(tree)
         for way in tree.iter('way'):
             for tag in way.iter('tag'):
@@ -47,11 +47,11 @@ class StreetLoader:
         nodes = self._create_node_list(way, node_map)
         for i in range(len(nodes) -1):
             me = nodes[i]
-            next = nodes[i + 1]
+            next_node = nodes[i + 1]
 
             street = self._create_street(way)
             street.nodes.append(me)
-            street.nodes.append(next)
+            street.nodes.append(next_node)
             result.append(street)
 
         return result
@@ -74,7 +74,7 @@ class StreetLoader:
         nodes = []
         for node in way.iter('nd'):
             nid = node.get('ref')
-            if(nid in node_map) :
+            if nid in node_map:
                 nodes.append(node_map[nid])
         return nodes
 

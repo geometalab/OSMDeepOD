@@ -19,7 +19,7 @@ class NodeMerger:
             neighbors = []
             for other in self.nodelist:
                 distance = me.get_distance_in_meter(other)
-                if(distance < self.max_distance and me != other):
+                if distance < self.max_distance and me != other:
                     neighbors.append(other)
 
             nearDict[me] = neighbors
@@ -30,13 +30,13 @@ class NodeMerger:
         self._generate_neardict()
         nodes = list(self.nodelist)
 
-        while(len(nodes) > 0):
+        while len(nodes) > 0:
             me = nodes[0]
             subGraph = self.get_neighbors(me)
             merged = self._merge(subGraph)
             mergedNodes.append(merged)
             for node in subGraph:
-                if(not node in nodes):
+                if not node in nodes:
                     print ""
                 nodes.remove(node)
         return  mergedNodes
@@ -61,12 +61,12 @@ class NodeMerger:
         return ret
 
     def _get_neighbors(self, node, nodeNotYetConsiderd = []):
-        if(len(nodeNotYetConsiderd) == 0):
+        if len(nodeNotYetConsiderd) == 0:
             return []
         nodeNotYetConsiderd.remove(node)
         ret = []
         for other in self.neardict[node]:
-            if(other in nodeNotYetConsiderd):
+            if other in nodeNotYetConsiderd:
                 ret.append(other)
                 ret += self._get_neighbors(other,nodeNotYetConsiderd)
         return ret
@@ -74,6 +74,6 @@ class NodeMerger:
     def remove_node_in_dict(self, node):
         self.neardict[node] = []
         for other in self.nodelist:
-            list = self.neardict[other]
-            list.remove(other)
-            self.neardict[other] = list
+            new_list = self.neardict[other]
+            new_list.remove(other)
+            self.neardict[other] = new_list

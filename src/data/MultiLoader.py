@@ -29,7 +29,7 @@ class MultiLoader:
         for i in range(int(nb_urls/self.nb_tile_per_trial)+1):
             start = i * self.nb_tile_per_trial
             end = start + self.nb_tile_per_trial
-            if(end >= nb_urls): end = nb_urls
+            if end >= nb_urls: end = nb_urls
             urlpart = self.urls[start:end]
 
             result = self._try_download(urlpart)
@@ -41,9 +41,9 @@ class MultiLoader:
         self.results = results
 
     def _set_progress(self, new_percentage):
-        if(self._progress + 5 < new_percentage):
+        if self._progress + 5 < new_percentage:
             self._progress = new_percentage
-            if(self.verbose):
+            if self.verbose:
                 print "-- " + str(int(new_percentage)) + "%"
 
     def _try_download(self, urls):
