@@ -20,9 +20,7 @@ class TestWorkerFunctions(unittest.TestCase):
         self.assertTrue(len(data['crosswalks']) == 0);
 
     def test_store_in_two_steps_crosswalks(self):
-        crosswalks = []
-        crosswalks.append(Node(47.0, 8.0))
-        crosswalks.append(Node(47.1, 8.1))
+        crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
         store(crosswalks)
         store(crosswalks)
         with open(Constants.PATH_TO_CROSSWALKS, 'r') as f:
@@ -31,9 +29,7 @@ class TestWorkerFunctions(unittest.TestCase):
 
 
     def test_store_two_crosswalks(self):
-        crosswalks = []
-        crosswalks.append(Node(47.0, 8.0))
-        crosswalks.append(Node(47.1, 8.1))
+        crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
         store(crosswalks)
         with open(Constants.PATH_TO_CROSSWALKS, 'r') as f:
             data = json.load(f)

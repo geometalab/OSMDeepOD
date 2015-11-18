@@ -16,7 +16,9 @@ class Worker:
             w.work()
 
     @classmethod
-    def from_worker(cls, queues=[Constants.QUEUE_JOBS]):
+    def from_worker(cls, queues=None):
+        if not queues:
+            queues = [Constants.QUEUE_JOBS]
         worker = cls()
         worker.queues = queues
         return worker

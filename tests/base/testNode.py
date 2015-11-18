@@ -19,7 +19,7 @@ class TestNode(unittest.TestCase):
         node1 = Node('47.0', '8.0', 10)
         node2 = node1.add_meter(3000, 4000)
         distance = node1.get_distance_in_meter(node2)
-        self.assertTrue(distance > 3900 and distance < 4100)
+        self.assertTrue(3900 < distance < 4100)
 
     def test_copy(self):
         node1 = Node('47.0', '8.0', 10)

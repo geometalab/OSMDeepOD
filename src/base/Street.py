@@ -1,7 +1,3 @@
-from geopy import Point
-from geopy.distance import vincenty
-import numpy as np
-
 class Street:
     def __init__(self):
         self.nodes = []
@@ -25,13 +21,13 @@ class Street:
         return street
 
     def get_left_node(self):
-        if(self.nodes[0].longitude < self.nodes[1].longitude):
+        if self.nodes[0].longitude < self.nodes[1].longitude:
             return self.nodes[0]
         else:
             return self.nodes[1]
 
     def get_right_node(self):
-        if(self.nodes[0].longitude > self.nodes[1].longitude):
+        if self.nodes[0].longitude > self.nodes[1].longitude:
             return self.nodes[0]
         else:
             return self.nodes[1]

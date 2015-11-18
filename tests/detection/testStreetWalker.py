@@ -14,16 +14,6 @@ class testStreetWalker(unittest.TestCase):
         self.assertIsNotNone(walker.tile)
         self.assertIsNotNone(walker.street)
 
-    def test_nodes_to_crosswalks(self):
-        street = Street.from_info("Zurcherstrasse 5", 5, "highway=irgendwas")
-        walker = StreetWalker.from_street_tile(street, None)
-        node = Node(1,2,3)
-        crosswalks = walker._nodes_to_crosswalks([node])
-
-        self.assertEquals(len(crosswalks), 1)
-        self.assertEquals(crosswalks[0].latitude, node.latitude)
-        self.assertEquals(crosswalks[0].longitude, node.longitude)
-        self.assertEquals(crosswalks[0].osm_street_id, walker.street.ident)
 
     def test_get_squared_tiles(self):
         (tile, streets) = self.get_tile_streets(self.smallTestBbox())
@@ -45,7 +35,7 @@ class testStreetWalker(unittest.TestCase):
         boxwalker = BoxWalker(bbox, False)
         boxwalker.load_tiles()
         boxwalker.load_streets()
-        return (boxwalker.tile, boxwalker.streets)
+        return boxwalker.tile, boxwalker.streets
 
     def smallTestBbox(self):
         return Bbox.from_bltr(47.226327, 8.818031, 47.227014, 8.818868)

@@ -31,7 +31,7 @@ class StreetWalker:
 
         for i in range(len(squaredTiles)):
             isCrosswalk = predictions[i]
-            if(isCrosswalk):
+            if isCrosswalk:
                 crosswalkNodes.append(squaredTiles[i].getCentreNode())
 
 
@@ -52,7 +52,7 @@ class StreetWalker:
         squaresTiles = []
         for i in range(0, int(distanceBetweenNodes/stepDistance) + 2):
             currentDistance = stepDistance * i
-            if(currentDistance > distanceBetweenNodes):
+            if currentDistance > distanceBetweenNodes:
                 currentDistance = distanceBetweenNodes
             currentNode = node1.step_to(node2, currentDistance)
 

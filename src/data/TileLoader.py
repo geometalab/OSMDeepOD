@@ -41,7 +41,7 @@ class TileLoader:
         mmaxx, mmaxy = self._mercator.LatLonToMeters(bbox.top, bbox.right)
         tmaxx, tmaxy = self._mercator.MetersToTile( mmaxx, mmaxy, Constants.ZOOM)
         tminx, tminy = self._mercator.MetersToTile( mminx, mminy, Constants.ZOOM)
-        return (tminx, tminy, tmaxx, tmaxy)
+        return tminx, tminy, tmaxx, tmaxy
 
     def _download_tiles(self, bbox):
         tminx, tminy, tmaxx, tmaxy = self._bbox_to_tiles(bbox)

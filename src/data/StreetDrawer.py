@@ -3,7 +3,7 @@ from src.data.TileLoader import TileLoader
 from src.base.TileDrawer import TileDrawer
 
 class StreetDrawer:
-    def __init(self):
+    def __init__(self):
         self.streets = None
         self.tile = None
         self.bbox = None

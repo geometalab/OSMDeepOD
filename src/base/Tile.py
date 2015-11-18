@@ -21,7 +21,7 @@ class Tile:
 
         pixel_x =  int(self.image.size[0] * (x/image_width))
         pixel_y = self.image.size[1] - int(self.image.size[1] * (y/image_height))
-        return (pixel_x, pixel_y)
+        return pixel_x, pixel_y
 
     def getNode(self, pixel):
         x = pixel[0]

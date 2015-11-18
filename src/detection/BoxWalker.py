@@ -92,7 +92,7 @@ class StatusPrinter:
     def set_state(self, nb_streets_done, nb_detected_crosswalks):
         current_percentage = (nb_streets_done / float(self.nb_streets)) * 100
 
-        if(self.last_percentage + 1 < current_percentage):
+        if self.last_percentage + 1 < current_percentage:
             self.last_percentage = current_percentage
             remaing_time = self._calc_remaining_duration(self.last_percentage)
             msg = str(int(current_percentage)) + "% - " + str(nb_detected_crosswalks) + " crosswalks found, " + str(remaing_time) + " seconds remaining"
@@ -107,9 +107,9 @@ class StatusPrinter:
 
 
     def _out(self,msg, show_time=False):
-        if(self.verbose):
+        if self.verbose:
             output = msg
-            if(show_time):
+            if show_time:
                 output = str(datetime.datetime.now()) + ": " + output
                 print ""
             print output
