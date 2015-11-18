@@ -1,0 +1,2 @@
+curl -u devuser:mylittlesony -vX POST http://dev.maproulette.org/api/admin/challenge/crosswalk-detection/tasks -d @tasks.json --header "Content-Type: application:json"
+curl -u devuser:mylittlesony -vX POST http://dev.maproulette.org/api/admin/challenge/crosswalk-detection -d @challenge.json --header "Content-Type: application:json"
