@@ -1,8 +1,7 @@
-from src.detection.BoxWalker import BoxWalker
+from src.detection import BoxWalker
 import unittest
-from src.base.Bbox import Bbox
-from src.base.TileDrawer import TileDrawer
-from src.data.StreetDrawer import StreetDrawer
+from src.base import Bbox, TileDrawer
+from src.data import StreetDrawer
 
 
 
@@ -30,7 +29,7 @@ class testBoxWalker(unittest.TestCase):
 
 
     def test_walk_with_show(self):
-        walker = BoxWalker(self.ZurichBellvue(), False)
+        walker = BoxWalker(self.ZurichBellvue())
         walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
