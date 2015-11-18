@@ -10,6 +10,7 @@ import os
 import numpy as np
 
 def convnet44():
+    print("start loading convnet")
     batch_size = 128
     nb_classes = 2
     nb_epoch = 500
@@ -78,6 +79,7 @@ def convnet44():
     #Best Net 64f4:
 
     network_path = current_dir + "/" + "convnet48.e158-l0.055.hdf5"
+    print("load ", network_path)
     model.load_weights(network_path)
     return model
 
@@ -125,6 +127,7 @@ def _load_64f4c(verbose):
     #Best Net 64f4:
 
     network_path = current_dir + "/" + "klein64-4f.e11-l0.045.hdf5"
+
     model.load_weights(network_path)
     if verbose:
         print("network loaded")
