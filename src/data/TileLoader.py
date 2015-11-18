@@ -46,6 +46,10 @@ class TileLoader:
     def _download_tiles(self, bbox):
         tminx, tminy, tmaxx, tmaxy = self._bbox_to_tiles(bbox)
         images = self._download_images(tminx, tminy, tmaxx, tmaxy)
+        tiles = self._to_tiles(images, tminx, tminy, tmaxx, tmaxy)
+        return tiles
+
+    def _to_tiles(self, images, tminx, tminy, tmaxx, tmaxy):
         tiles = []
         row = 0
         url_number = 0
@@ -74,6 +78,12 @@ class TileLoader:
 
     def load_tile(self):
         tiles = self._download_tiles(self.bbox)
+        image = TileLoader._tilematrix_to_image(tiles)
+        bbox = TileLoader._get_bbox_by_tiles(tiles)
+        return Tile.from_tile(image, bbox)
+
+    @staticmethod
+    def _tilematrix_to_image(tiles):
         numRows = len(tiles)
         numCols = len(tiles[0])
         width, height = tiles[0][0].image.size
@@ -83,8 +93,14 @@ class TileLoader:
         for y in range(0, numRows):
             for x in range(0, numCols):
                 result.paste(tiles[y][x].image,(x * width, (numRows -1 -y) * height))
+        return result
 
+    @staticmethod
+    def _get_bbox_by_tiles(tiles):
+        numRows = len(tiles)
+        numCols = len(tiles[0])
         first = tiles[0][0]
         last = tiles[numRows -1][numCols -1]
         bbox = Bbox.from_leftdown_rightup(first.bbox.node_leftdown(), last.bbox.node_rightup())
-        return Tile.from_tile(result, bbox)
+        return bbox
+
