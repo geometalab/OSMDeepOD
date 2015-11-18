@@ -7,5 +7,7 @@ RUN cd /root \
 && cd OSM-Crosswalk-Detection \
 && python setup.py install
 
+ENTRYPOINT [ "python", "/root/OSM-Crosswalk-Detection/src/role/main.py", "--role" ]
+
 # Set ~/OSM-Crosswalk-Detection as working directory
 WORKDIR /root/OSM-Crosswalk-Detection
