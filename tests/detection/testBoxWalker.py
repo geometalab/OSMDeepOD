@@ -2,20 +2,46 @@ from src.detection.BoxWalker import BoxWalker
 import unittest
 from src.base.Bbox import Bbox
 from src.base.TileDrawer import TileDrawer
+from src.data.StreetDrawer import StreetDrawer
 
 
 
 
 class testBoxWalker(unittest.TestCase):
+    def test_load_tile(self):
+        walker = BoxWalker(self.smallTestBbox(), False)
+        walker.load_tiles()
+        self.assertIsNotNone(walker.tile)
 
-    def testBoxWalkerLuzern(self):
-        walker = BoxWalker(self.ZurichBellvue())
+    def test_load_streets(self):
+        walker = BoxWalker(self.smallTestBbox(), False)
+        walker.load_streets()
+        self.assertIsNotNone(walker.streets)
+
+    def test_walk(self):
+        walker = BoxWalker(self.smallTestBbox2(), False)
+        walker.load_convnet()
+        walker.load_tiles()
+        walker.load_streets()
+
+        crosswalkNodes = walker.walk()
+        self.assertIsNotNone(crosswalkNodes)
+        self.assertGreater(len(crosswalkNodes), 0)
+
+
+    def test_walk_with_show(self):
+        walker = BoxWalker(self.ZurichBellvue(), False)
+        walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
 
         crosswalkNodes = walker.walk()
 
         self.printResults(walker.tile, crosswalkNodes)
+
+    def test_streetdrawer(self):
+        drawer = StreetDrawer.from_bbox(self.ZurichBellvue())
+        drawer.show()
 
     def printResults(self, tile, crosswalkNodes):
         drawer = TileDrawer.from_tile(tile)
@@ -24,13 +50,19 @@ class testBoxWalker(unittest.TestCase):
         drawer.drawsection.save("boxsave.jpg")
         drawer.drawsection.show()
 
+    def smallTestBbox(self):
+        return Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.543088251618977, 47.36781249586627)
+
+    def smallTestBbox2(self):
+        return Bbox.from_bltr(47.226327, 8.818031, 47.227014, 8.818868)
+
     def ZurichBellvue(self):
         #Trainset
         return Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
 
     def Rappi(self):
 
-        return Bbox.from_lbrt(8.814650, 47.222553, 8.825035, 47.228935)
+        return Bbox.from_lbrt(8.814650, 47.222553, 8.820035, 47.225935)
 
     def Luzern(self):
         return Bbox.from_lbrt(8.301307, 47.046349, 8.305528, 47.051053)
@@ -108,8 +140,14 @@ class testBoxWalker(unittest.TestCase):
     def RappiUhuereGross(self):
         return Bbox.from_lbrt(8.804742, 47.215446, 8.850833, 47.237799)
 
+    def ZurichUhuereGrossHalb(self):
+        return Bbox.from_lbrt(8.523379, 47.368823, 8.543379, 47.380823)
+
     def ZurichUhuereGross(self):
         return Bbox.from_lbrt(8.523379, 47.368823, 8.553379, 47.390823)
 
     def ZurichUhuereGross2(self):
         return Bbox.from_lbrt(8.523379, 47.368823, 8.573379, 47.390823)
+
+    def ZurichUhuereGross3(self):
+        return Bbox.from_bltr(47.372759, 8.473965, 47.399972, 8.510429)

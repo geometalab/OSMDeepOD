@@ -3,27 +3,33 @@ from src.data.TileLoader import TileLoader
 from src.data.StreetLoader import StreetLoader
 import datetime
 import src.detection.deep.Convnet as Convnet
+from src.detection.NodeMerger import NodeMerger
+from random import shuffle
 
 
 class BoxWalker:
-    def __init__(self, bbox):
+    def __init__(self, bbox, verbose=True):
         self.bbox = bbox
         self.tile = None
-        self.status_printer = StatusPrinter.from_nb_streets(True)
+        self.verbose = verbose
+        self.status_printer = StatusPrinter.from_nb_streets(verbose)
+
+    def load_convnet(self):
         Convnet.initialize()
 
     def load_tiles(self):
         self.status_printer.start_load_tiles()
 
-        loader = TileLoader(self.bbox)
+        loader = TileLoader.from_bbox(self.bbox, self.verbose)
         self.tile = loader.load_tile()
+        self.bbox = self.tile.bbox
 
     def load_streets(self):
         self.status_printer.start_load_streets()
 
         streetLoader = StreetLoader()
         self.streets = streetLoader.load_streets(self.bbox)
-
+        shuffle(self.streets)
         self.status_printer.set_nb_streets(len(self.streets))
 
     def walk(self):
@@ -42,7 +48,11 @@ class BoxWalker:
 
         self.status_printer.end_walking(nb_images)
 
-        return results
+        return self._merge_near_nodes(results)
+
+    def _merge_near_nodes(self, nodelist):
+        merger = NodeMerger.from_nodelist(nodelist)
+        return merger.reduce()
 
 
 class StatusPrinter:
@@ -84,8 +94,17 @@ class StatusPrinter:
 
         if(self.last_percentage + 1 < current_percentage):
             self.last_percentage = current_percentage
-            msg = str(int(current_percentage)) + "% - " + str(nb_detected_crosswalks) + " crosswalks found"
+            remaing_time = self._calc_remaining_duration(self.last_percentage)
+            msg = str(int(current_percentage)) + "% - " + str(nb_detected_crosswalks) + " crosswalks found, " + str(remaing_time) + " seconds remaining"
             self._out(msg)
+
+
+    def _calc_remaining_duration(self, percentage):
+        to_do_percentage = 100 - percentage
+        time_used = (datetime.datetime.now() - self.start_time).seconds
+        time_remain = (time_used / percentage) * to_do_percentage
+        return int(time_remain)
+
 
     def _out(self,msg, show_time=False):
         if(self.verbose):

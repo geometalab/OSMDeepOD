@@ -3,31 +3,29 @@ import urllib2
 import StringIO
 from PIL import Image
 from fake_useragent import UserAgent
+import time
+
 
 class MultiLoader:
     def __init__(self):
         self.urls = []
         self.results = []
         self.nb_threads = 10
-        self.nb_tile_per_trial = 20
-        self.useragent = UserAgent()
+        self.nb_tile_per_trial = 40
+        self.verbose = True
+        self._progress = 0
 
 
     @classmethod
-    def from_url_list(cls, urls):
+    def from_url_list(cls, urls, verbose=True):
         loader = cls()
         loader.urls = urls
+        loader.verbose = verbose
         return loader
-
-    def generate_request(self, url):
-        header ={'User-Agent': self.useragent.random}
-        req = urllib2.Request(url, headers=header)
-        return req
 
     def download(self):
         results = []
         nb_urls = len(self.urls)
-        percentage = 0
         for i in range(int(nb_urls/self.nb_tile_per_trial)+1):
             start = i * self.nb_tile_per_trial
             end = start + self.nb_tile_per_trial
@@ -36,34 +34,47 @@ class MultiLoader:
 
             result = self._try_download(urlpart)
             results += result
-            newpercentage = (float(end)/nb_urls) * 100
-            if(percentage + 5 < newpercentage):
-                percentage = newpercentage
-                print "-- " + str(int(percentage)) + "%"
 
-        self.results = self._convert_to_image(results)
+            new_percentage = (float(end)/nb_urls) * 100
+            self._set_progress(new_percentage)
 
-    def _try_download(self, requests):
-        for i in range(3):
+        self.results = results
+
+    def _set_progress(self, new_percentage):
+        if(self._progress + 5 < new_percentage):
+            self._progress = new_percentage
+            if(self.verbose):
+                print "-- " + str(int(new_percentage)) + "%"
+
+    def _try_download(self, urls):
+        for i in range(4):
             try:
-                results = self._download(requests)
+                results = self._download_async(urls)
                 return results
-            except:
+            except Exception as e:
+                print "Tile download failed", i , "wait", i*10, e
+                time.sleep(i*10)
                 pass
-        raise Exception("Download of tiles have failed 4 times...")
+        raise Exception("Download of tiles have failed 4 times " + str(e))
 
-    def _download(self, urls):
+    def _download_async(self, urls):
         pool = ThreadPool(self.nb_threads)
-        results = pool.map(urllib2.urlopen, urls)
+        results = pool.map(_download_image, urls)
         pool.close()
         pool.join()
         return results
 
-    def _convert_to_image(self, results):
-        ret = []
-        for loads in results:
-            img = loads.read()
-            img = Image.open(StringIO.StringIO(img))
-            ret.append(img)
 
-        return ret
+def _generate_request(url):
+    header ={'User-Agent': UserAgent().random}
+    req = urllib2.Request(url, headers=header)
+    return req
+
+
+def _download_image(url):
+    request = _generate_request(url)
+    response = urllib2.urlopen(request)
+    content = response.read()
+    img = Image.open(StringIO.StringIO(content))
+    return img
+
