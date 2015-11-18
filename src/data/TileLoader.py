@@ -6,6 +6,7 @@ from src.data.MultiLoader import MultiLoader
 from PIL import Image
 import random
 
+
 class TileLoader:
     def __init__(self):
         self.bbox = None
