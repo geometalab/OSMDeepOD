@@ -31,7 +31,6 @@ def convnet44():
     #Lamda for the L2 regularization
     lmda = 0.01
 
-    print("put convnet together")
     model = Sequential()
 
     model.add(Convolution2D(nb_filters1, nb_conv, nb_conv, border_mode='full', input_shape=(img_channels, img_rows, img_cols)))
@@ -74,7 +73,6 @@ def convnet44():
     model.add(Dense(nb_classes, W_regularizer=l2(lmda)))
     model.add(Activation('softmax'))
 
-    print("start compiling")
     model.compile(loss='categorical_crossentropy', optimizer='adadelta')
     current_dir = os.path.join(os.getcwd(), os.path.dirname(__file__))
     #Best Net 64f4:
@@ -151,8 +149,8 @@ def _predict_list(x):
         #isCrosswalk = predict[0] > 0.999 and predict[1] < 1e-300
         #isCrosswalk =  predict[1] < 1e-20
         isCrosswalk =  predict[0] > 0.9
-        if(isCrosswalk): print("Zerba " + str(predict))
-        else: print(str(predict))
+        #if(isCrosswalk): print("Zerba " + str(predict))
+        #else: print(str(predict))
         results.append(isCrosswalk)
     last_prediction = predictions
     return results

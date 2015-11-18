@@ -7,12 +7,11 @@ from src.detection.NodeMerger import NodeMerger
 from random import shuffle
 
 
-
-
 class BoxWalker:
     def __init__(self, bbox, verbose=True):
         self.bbox = bbox
         self.tile = None
+        self.verbose = verbose
         self.status_printer = StatusPrinter.from_nb_streets(verbose)
 
     def load_convnet(self):
@@ -21,7 +20,7 @@ class BoxWalker:
     def load_tiles(self):
         self.status_printer.start_load_tiles()
 
-        loader = TileLoader(self.bbox)
+        loader = TileLoader.from_bbox(self.bbox, self.verbose)
         self.tile = loader.load_tile()
         self.bbox = self.tile.bbox
 

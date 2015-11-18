@@ -7,14 +7,14 @@ class TestTileLoader(unittest.TestCase):
 
     def test_orthophoto_download(self):
         bbox = self.ZurichBellvue()
-        tl = TileLoader(bbox)
+        tl = TileLoader.from_bbox(bbox, False)
         tile = tl.load_tile()
         img = tile.image
         self.assertEquals(img.size[0], 1792)
         self.assertEquals(img.size[1], 1280)
 
     def test_new_bbox(self):
-        tl = TileLoader(self.smallTestBbox())
+        tl = TileLoader.from_bbox(self.smallTestBbox(), False)
         tile = tl.load_tile()
         tile_bbox = tile.bbox
         self.assertAlmostEqual(tile_bbox.left, 8.5425567627, 5)
@@ -23,7 +23,7 @@ class TestTileLoader(unittest.TestCase):
         self.assertAlmostEqual(tile_bbox.top, 47.3681292923, 5)
 
     def test_show(self):
-        tl = TileLoader(self.Rappi())
+        tl = TileLoader.from_bbox(self.ZurichBellvue())
         tile = tl.load_tile()
         tile.show()
 

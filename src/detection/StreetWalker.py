@@ -36,7 +36,7 @@ class StreetWalker:
                 crosswalkNodes.append(squaredTiles[i].getCentreNode())
 
 
-        self._save_bad_images(images)
+        #self._save_bad_images(images)
 
 
         merged = self._merge_nodes(crosswalkNodes)
@@ -48,9 +48,6 @@ class StreetWalker:
         return merger.reduce()
 
     def _get_squared_tiles(self, node1, node2):
-        #assert self.tile.bbox.in_bbox(node1)
-        #assert self.tile.bbox.in_bbox(node2)
-
         stepDistance = 8
         distanceBetweenNodes = node1.get_distance_in_meter(node2)
 
@@ -76,6 +73,7 @@ class StreetWalker:
         return crosswalks
 
     def _save_bad_images(self, images):
+
         predictions = convnet.last_prediction
 
         for i in range(len(images)):

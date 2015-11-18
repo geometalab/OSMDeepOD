@@ -13,6 +13,7 @@ class StreetLoader:
         self.crosswalks = []
         self.streets = []
 
+
     def load_streets(self, bbox):
         self._load_data(bbox)
         return self.streets
@@ -34,7 +35,7 @@ class StreetLoader:
             for tag in way.iter('tag'):
                 for category in self._STREET_CATEGORIES:
                     if self._is_in_category(tag,category):
-                        results = self._parse_way(way, node_map, bbox)
+                        results = self._parse_way(way, node_map)
                         self.streets += results
 
     def _is_in_category(self,tag, category):
@@ -43,20 +44,17 @@ class StreetLoader:
     def _is_crosswalk(self, tag):
         return str(tag.attrib) == "{'k': 'highway', 'v': 'crossing'}"
 
-    def _parse_way(self, way, node_map, bbox):
+    def _parse_way(self, way, node_map):
         result = []
         nodes = self._create_node_list(way, node_map)
-        borderdBox = bbox
         for i in range(len(nodes) -1):
             me = nodes[i]
             next = nodes[i + 1]
 
-            isValidStreet = True#borderdBox.in_bbox(me) and borderdBox.in_bbox(next)
-            if(isValidStreet):
-                street = self._create_street(way)
-                street.nodes.append(me)
-                street.nodes.append(next)
-                result.append(street)
+            street = self._create_street(way)
+            street.nodes.append(me)
+            street.nodes.append(next)
+            result.append(street)
 
         return result
 
