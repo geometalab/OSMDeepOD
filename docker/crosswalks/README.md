@@ -16,6 +16,6 @@ docker run murthy10/osm-crosswalk-detection manager left bottom right top
 # Jobworker
 docker run murthy10/osm-crosswalk-detection jobworker
 
-# Resultworkerdocker
-run murthy10/osm-crosswalk-detection resultworker
+# Resultworker
+docker run murthy10/osm-crosswalk-detection resultworker
 ```
