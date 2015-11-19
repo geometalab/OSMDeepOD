@@ -1,6 +1,7 @@
 from src.detection.BoxWalker import BoxWalker
 import unittest
 from src.base.Bbox import Bbox
+from src.base.Node import Node
 from src.base.TileDrawer import TileDrawer
 from src.data.StreetDrawer import StreetDrawer
 
@@ -41,7 +42,20 @@ class testBoxWalker(unittest.TestCase):
         drawer = StreetDrawer.from_bbox(self.ZurichBellvue())
         drawer.show()
 
-    
+    def test_compare_detected_with_osm_same_points(self):
+        walker = BoxWalker(self.smallTestBbox(), False)
+        detected_crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
+        walker.osm_crosswalks = detected_crosswalks
+        result = walker._compare_osm_with_detected_crosswalks(detected_crosswalks)
+        self.assertTrue(len(result) == 0)
+
+    def test_compare_detected_with_osm_different_points(self):
+        walker = BoxWalker(self.smallTestBbox(), False)
+        detected_crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
+        walker.osm_crosswalks = [Node(48.0, 8.0), Node(48.1, 8.1)]
+        result = walker._compare_osm_with_detected_crosswalks(detected_crosswalks)
+        self.assertTrue(len(result) == 2)
+
 
     def printResults(self, tile, crosswalkNodes):
         drawer = TileDrawer.from_tile(tile)
