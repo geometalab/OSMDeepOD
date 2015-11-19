@@ -13,4 +13,5 @@ class Constants:
     PATH_TO_CROSSWALKS = './crosswalks.json'
     SQUAREDIMAGE_PIXELPERSIDE = 50
     TIMEOUT = 5400
+    DISTANCE_TO_CROSSWALK = 5
 

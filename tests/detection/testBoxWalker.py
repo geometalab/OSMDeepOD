@@ -5,8 +5,6 @@ from src.base.TileDrawer import TileDrawer
 from src.data.StreetDrawer import StreetDrawer
 
 
-
-
 class testBoxWalker(unittest.TestCase):
     def test_load_tile(self):
         walker = BoxWalker(self.smallTestBbox(), False)
@@ -42,6 +40,8 @@ class testBoxWalker(unittest.TestCase):
     def test_streetdrawer(self):
         drawer = StreetDrawer.from_bbox(self.ZurichBellvue())
         drawer.show()
+
+    
 
     def printResults(self, tile, crosswalkNodes):
         drawer = TileDrawer.from_tile(tile)
