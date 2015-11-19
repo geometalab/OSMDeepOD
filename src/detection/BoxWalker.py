@@ -56,7 +56,7 @@ class BoxWalker:
 
         self.status_printer.end_walking(nb_images)
         detected_crosswalks = self._merge_near_nodes(results)
-        return self._compare_osm_with_detected_crosswalks(self, detected_crosswalks)
+        return self._compare_osm_with_detected_crosswalks(detected_crosswalks)
 
     def _merge_near_nodes(self, nodelist):
         merger = NodeMerger.from_nodelist(nodelist)
