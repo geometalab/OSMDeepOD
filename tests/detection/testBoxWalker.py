@@ -49,6 +49,14 @@ class testBoxWalker(unittest.TestCase):
         result = walker._compare_osm_with_detected_crosswalks(detected_crosswalks)
         self.assertTrue(len(result) == 0)
 
+    def test_compare_detected_with_osm_near_points(self):
+        walker = BoxWalker(self.smallTestBbox(), False)
+        detected_crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1), Node(47.2, 8.2)]
+        walker.osm_crosswalks = [Node(47.000001, 8.0), Node(47.100001, 8.1), Node(48.2, 8.2)]
+        result = walker._compare_osm_with_detected_crosswalks(detected_crosswalks)
+        self.assertTrue(len(result) == 1)
+
+
     def test_compare_detected_with_osm_different_points(self):
         walker = BoxWalker(self.smallTestBbox(), False)
         detected_crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
