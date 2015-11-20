@@ -1,0 +1,11 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker pull murthy10/osm-crosswalk-detection
+
+test:
+  override:
+    - docker run -it --entrypoint="python" murthy10/osm-crosswalk-detection -m unittest discover tests
