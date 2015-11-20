@@ -78,7 +78,10 @@ def convnet44():
     current_dir = os.path.join(os.getcwd(), os.path.dirname(__file__))
     #Best Net 64f4:
 
-    network_path = current_dir + "/" + "convnet48.e158-l0.055.hdf5"
+    if os.path.exists('/root/OSM-Crosswalk-Detection/DockerIam'):
+        network_path = '/root/OSM-Crosswalk-Detection/src/detection/deep/convnet48.e158-l0.055.hdf5'
+    else:
+        network_path = current_dir + "/" + "convnet48.e158-l0.055.hdf5"
     print("load ", network_path)
     model.load_weights(network_path)
     return model
