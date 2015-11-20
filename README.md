@@ -1,5 +1,6 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/05519d68c18145d6a885276e70cb6770)](https://www.codacy.com/app/samuel-kurath/OSM-Crosswalk-Detection)
+[![Circle CI](https://circleci.com/gh/geometalab/OSM-Crosswalk-Detection.svg?style=svg)](https://circleci.com/gh/geometalab/OSM-Crosswalk-Detection)
 
 # OSM-Crosswalk-Detection: Deep learning based image recognition
 
