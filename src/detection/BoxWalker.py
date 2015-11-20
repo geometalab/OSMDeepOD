@@ -5,13 +5,14 @@ import datetime
 import src.detection.deep.Convnet as Convnet
 from src.detection.NodeMerger import NodeMerger
 from random import shuffle
-
+from src.base.Constants import Constants
 
 class BoxWalker:
     def __init__(self, bbox, verbose=True):
         self.bbox = bbox
         self.tile = None
         self.streets = None
+        self.osm_crosswalks = None
         self.verbose = verbose
         self.status_printer = StatusPrinter.from_nb_streets(verbose)
 
@@ -32,6 +33,7 @@ class BoxWalker:
 
         streetLoader = StreetLoader()
         self.streets = streetLoader.load_streets(self.bbox)
+        self.osm_crosswalks = streetLoader.crosswalks
         shuffle(self.streets)
         self.status_printer.set_nb_streets(len(self.streets))
 
@@ -53,13 +55,28 @@ class BoxWalker:
             self.status_printer.set_state(i,len(results))
 
         self.status_printer.end_walking(nb_images)
-
-        return self._merge_near_nodes(results)
+        detected_crosswalks = self._merge_near_nodes(results)
+        return self._compare_osm_with_detected_crosswalks(detected_crosswalks)
 
     def _merge_near_nodes(self, nodelist):
         merger = NodeMerger.from_nodelist(nodelist)
         return merger.reduce()
 
+    def _compare_osm_with_detected_crosswalks(self, detected_crosswalks):
+        result = []
+        is_near = False
+
+        for detected_crosswalk in detected_crosswalks:
+            for osm_crosswalk in self.osm_crosswalks:
+                if osm_crosswalk.get_distance_in_meter(detected_crosswalk) < Constants.DISTANCE_TO_CROSSWALK:
+                    is_near = True
+                    break
+
+            if not is_near:
+                result.append(detected_crosswalk)
+            is_near = False
+
+        return result
 
 class StatusPrinter:
     def __init__(self):
