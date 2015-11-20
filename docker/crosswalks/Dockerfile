@@ -5,7 +5,8 @@ MAINTAINER Samuel Kurath <skurath@hsr.ch>
 RUN cd /root \
 && git clone https://github.com/geometalab/OSM-Crosswalk-Detection.git \
 && cd OSM-Crosswalk-Detection \
-&& python setup.py install
+&& python setup.py install \
+&& touch DockerIam
 
 ENTRYPOINT [ "python", "/root/OSM-Crosswalk-Detection/src/role/main.py", "--role" ]
 
