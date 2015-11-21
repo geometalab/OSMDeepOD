@@ -30,7 +30,7 @@ class testBoxWalker(unittest.TestCase):
 
 
     def test_walk_with_show(self):
-        walker = BoxWalker(self.ZurichBellvue())
+        walker = BoxWalker(self.zh_zollikon_test_gross())
         walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
@@ -151,3 +151,9 @@ class testBoxWalker(unittest.TestCase):
 
     def ZurichUhuereGross3(self):
         return Bbox.from_bltr(47.372759, 8.473965, 47.399972, 8.510429)
+
+    def Zug_sz(self):
+        return Bbox.from_bltr(47.171100, 8.511467, 47.173771, 8.519041)
+
+    def zh_zollikon_test_gross(self):
+        return Bbox.from_bltr(47.355633, 8.543026, 47.372811, 8.570957)
