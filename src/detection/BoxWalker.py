@@ -2,7 +2,7 @@ from src.detection.StreetWalker import StreetWalker
 from src.data.TileLoader import TileLoader
 from src.data.StreetLoader import StreetLoader
 import datetime
-import src.detection.deep.Convnet as Convnet
+from src.detection.deep.Convnet import Convnet
 from src.detection.NodeMerger import NodeMerger
 from random import shuffle
 from src.base.Constants import Constants
@@ -14,10 +14,14 @@ class BoxWalker:
         self.streets = None
         self.osm_crosswalks = None
         self.verbose = verbose
+        self.convnet = None
+        self.plain_result = None
+        self.compared_with_osm_result = []
         self.status_printer = StatusPrinter.from_nb_streets(verbose)
 
     def load_convnet(self):
-        Convnet.initialize()
+        self.convnet = Convnet.from_verbose(self.verbose)
+        self.convnet.initialize()
 
     def load_tiles(self):
         self.status_printer.start_load_tiles()
@@ -40,7 +44,7 @@ class BoxWalker:
     def walk(self):
         self.status_printer.start_walking()
 
-        ready_for_walk = (not self.tile is None) and (not self.streets is None) and (not Convnet.network is None)
+        ready_for_walk = (not self.tile is None) and (not self.streets is None) and (not self.convnet is None)
         if(not ready_for_walk): raise Exception("Not ready for walk. Load tiles, streets and convnet first")
 
         results = []
@@ -48,18 +52,20 @@ class BoxWalker:
 
         for i in range(len(self.streets)):
             street = self.streets[i]
-            streetwalker = StreetWalker.from_street_tile(street, self.tile)
+            streetwalker = StreetWalker.from_street_tile(street, self.tile, self.convnet)
             street_results = streetwalker.walk()
             results += street_results
             nb_images += streetwalker.nb_images
             self.status_printer.set_state(i,len(results))
 
         self.status_printer.end_walking(nb_images)
-        detected_crosswalks = self._merge_near_nodes(results)
-        return self._compare_osm_with_detected_crosswalks(detected_crosswalks)
+        self.plain_result = self._merge_near_nodes(results)
+        self.compared_with_osm_result = self._compare_osm_with_detected_crosswalks(self.plain_result)
+        return self.compared_with_osm_result
 
     def _merge_near_nodes(self, nodelist):
         merger = NodeMerger.from_nodelist(nodelist)
+        merger.max_distance = 7
         return merger.reduce()
 
     def _compare_osm_with_detected_crosswalks(self, detected_crosswalks):

@@ -7,14 +7,17 @@ class StreetWalker:
     def __init__(self):
         self.street = None
         self.tile = None
+        self.convnet = None
         self.nb_images = 0
+        self.step_distance = 8
 
     @classmethod
-    def from_street_tile(cls, street, tile):
+    def from_street_tile(cls, street, tile, convnet):
         walker = cls()
         walker.street = street
         walker.street = street
         walker.tile = tile
+        walker.convnet = convnet
 
         return walker
 
@@ -27,7 +30,7 @@ class StreetWalker:
         for t in squaredTiles:
             images.append(t.image)
 
-        predictions = convnet.predictCrosswalks(images)
+        predictions = self.convnet.predict_crosswalks(images)
 
         for i in range(len(squaredTiles)):
             isCrosswalk = predictions[i]
@@ -39,14 +42,15 @@ class StreetWalker:
 
 
         merged = self._merge_nodes(crosswalkNodes)
-        return merged
+        return crosswalkNodes
 
     def _merge_nodes(self, nodelist):
         merger = NodeMerger.from_nodelist(nodelist)
+        merger.max_distance = 16
         return merger.reduce()
 
     def _get_squared_tiles(self, node1, node2):
-        stepDistance = 8
+        stepDistance = self.step_distance
         distanceBetweenNodes = node1.get_distance_in_meter(node2)
 
         squaresTiles = []
@@ -62,12 +66,12 @@ class StreetWalker:
 
         return squaresTiles
 
-
+    '''
     def _save_bad_images(self, images):
 
         predictions = convnet.last_prediction
 
         for i in range(len(images)):
                 images[i].save("/home/osboxes/Documents/images/imgZh2" + str(predictions[i]) + "x" + str(randint(99999,99999999)) + ".png")
-
+    '''
 

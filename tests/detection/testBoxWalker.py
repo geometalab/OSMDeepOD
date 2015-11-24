@@ -23,18 +23,21 @@ class testBoxWalker(unittest.TestCase):
         walker.load_tiles()
         walker.load_streets()
 
-        crosswalkNodes = walker.walk()
+        walker.walk()
+        crosswalkNodes = walker.plain_result
         self.assertIsNotNone(crosswalkNodes)
         self.assertGreater(len(crosswalkNodes), 0)
 
 
     def test_walk_with_show(self):
-        walker = BoxWalker(self.zh_zollikon_test_gross())
+        walker = BoxWalker(self.ZurichBellvue())
         walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
+        #walker.convnet.very_verbose = True
 
-        crosswalkNodes = walker.walk()
+        walker.walk()
+        crosswalkNodes = walker.plain_result
 
         self.printResults(walker.tile, crosswalkNodes)
 
@@ -179,3 +182,6 @@ class testBoxWalker(unittest.TestCase):
 
     def zh_zollikon_test_gross(self):
         return Bbox.from_bltr(47.355633, 8.543026, 47.372811, 8.570957)
+
+    def zh_kilchberg(self):
+        return Bbox.from_bltr(47.320074, 8.547435, 47.323934, 8.550514)
