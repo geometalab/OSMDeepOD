@@ -18,7 +18,7 @@ class testBoxWalker(unittest.TestCase):
         self.assertIsNotNone(walker.streets)
 
     def test_walk(self):
-        walker = BoxWalker(self.ZurichBellvue(), False)
+        walker = BoxWalker(self.ZurichBellvue(), True)
         walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
@@ -34,7 +34,6 @@ class testBoxWalker(unittest.TestCase):
         walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
-        #walker.convnet.very_verbose = True
 
         walker.walk()
         crosswalkNodes = walker.plain_result
