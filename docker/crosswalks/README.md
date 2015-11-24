@@ -13,9 +13,9 @@ You can directly start the different worker roles described in the next paragrap
 #Manager
 docker run murthy10/osm-crosswalk-detection manager left bottom right top
 
-# Jobworker
+#Jobworker
 docker run murthy10/osm-crosswalk-detection jobworker
 
-# Resultworker
+#Resultworker
 docker run murthy10/osm-crosswalk-detection resultworker
 ```
