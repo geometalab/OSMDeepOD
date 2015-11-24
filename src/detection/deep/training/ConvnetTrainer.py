@@ -91,7 +91,7 @@ def compile_model():
     return model
 
 def create_train_callbacks(model_number):
-    filepath = "kerasSerialization/convnet" + model_number + ".e{epoch:02d}-l{val_loss:.3f}.hdf5"
+    filepath = "kerasSerialization/convnet" + str(model_number) + ".e{epoch:02d}-l{val_loss:.3f}.hdf5"
     save_callback = ModelCheckpoint(filepath, verbose=1, save_best_only=True)
     early_stopping = EarlyStopping(monitor='val_loss', patience=50)
     remote = callbacks.RemoteMonitor(root='http://localhost:9000')
