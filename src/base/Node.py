@@ -29,7 +29,10 @@ class Node(Point):
     def step_to(self, targetNode, distance):
         distanceBetween = self.get_distance_in_meter(targetNode)
 
-        part = distance / distanceBetween
+        if distanceBetween == 0:
+            part = 0
+        else:
+            part = distance / distanceBetween
 
         latDiff = targetNode.latitude - self.latitude
         lonDiff = targetNode.longitude - self.longitude
