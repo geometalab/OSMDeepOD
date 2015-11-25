@@ -48,12 +48,8 @@ class TestManager(unittest.TestCase):
         manager._generate_small_bboxes()
         self.assertTrue(manager.small_bboxes[0].left == node1.longitude)
         self.assertTrue(manager.small_bboxes[0].bottom == node1.latitude)
-        print manager.small_bboxes[length - 1].right
-        print node2.longitude
-        print manager.small_bboxes[length - 1].top
-        print node2.latitude
-        self.assertTrue(manager.small_bboxes[length - 1].right == node2.longitude)
-        self.assertTrue(manager.small_bboxes[length - 1].top == node2.latitude)
+        self.assertTrue(manager.small_bboxes[length - 1].right >= node2.longitude and manager.small_bboxes[length - 1].right <= node2.longitude + 0.05)
+        self.assertTrue(manager.small_bboxes[length - 1].top >= node2.latitude and manager.small_bboxes[length - 1].top <= node2.latitude + 0.05)
 
     def test_with_two(self):
         node1 = Node('47.0', '8.0', 10)
