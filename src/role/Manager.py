@@ -10,28 +10,33 @@ class Manager:
         self.big_bbox = Bbox()
         self.mercator = GlobalMercator()
         self.queue = Queue(Constants.QUEUE_JOBS, connection=Constants.REDIS)
+        self.small_bboxes = []
 
     @classmethod
     def from_big_bbox(cls, big_bbox):
         manager = cls()
         manager.big_bbox = big_bbox
-        manager._generate_jobs()
+        manager._generate_small_bboxes()
+        manager._enqueue_jobs()
         return manager
 
-    def _generate_jobs(self):
+    def _generate_small_bboxes(self):
         mminx, mminy = self.mercator.LatLonToMeters(self.big_bbox.bottom, self.big_bbox.left)
         rows = self._calc_rows()
         columns = self._calc_columns()
         side = Constants.SMALL_BBOX_SIDE_LENGHT
-        for y in range(0, columns):
-            for x in range(0, rows):
+
+        for x in range(0, columns):
+            for y in range(0, rows):
                 bottom, left = self.mercator.MetersToLatLon(mminx + (side * x), mminy + (side * y))
                 top, right = self.mercator.MetersToLatLon(mminx + (side * (x + 1)), mminy + (side * (y + 1)))
                 small_bbox = Bbox.from_lbrt(left, bottom, right, top)
-                self._enqueue_job(small_bbox)
+                self.small_bboxes.append(small_bbox)
+        self._enqueue_jobs()
 
-    def _enqueue_job(self, small_bbox):
-        self.queue.enqueue_call(func=detect, args=(small_bbox,), timeout=Constants.TIMEOUT)
+    def _enqueue_jobs(self):
+        for small_bbox in self.small_bboxes:
+            self.queue.enqueue_call(func=detect, args=(small_bbox,), timeout=Constants.TIMEOUT)
 
     def _calc_rows(self):
         mminx, mminy = self.mercator.LatLonToMeters(self.big_bbox.bottom, self.big_bbox.left)
