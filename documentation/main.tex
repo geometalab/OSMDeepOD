@@ -1,0 +1,40 @@
+\documentclass[11pt,twoside]{hsrthesis}
+
+\makeindex
+
+% do this here, so you can \gls{...} to it
+\input{index/glossar}
+\makeglossaries
+
+\begin{document}
+
+\input{chapter/01title}
+
+\tableofcontents
+
+
+% The main content
+%%%%%%%%%%%%%%%%%%
+\input{chapter/02examples}
+\input{chapter/03introduction}
+% \input{chapter/04mychapter}
+% ...
+
+
+% List of figures & glossary
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\listoffigures
+\printglossary[style=altlist,title=Glossar]
+
+% Bibliography
+%%%%%%%%%%%%%%
+\bibliographystyle {alpha}
+\bibliography{index/bibliography}
+
+
+% Attached sources
+%%%%%%%%%%%%%%%%%%
+ \input{attachments/attachments}
+
+
+\end{document}
