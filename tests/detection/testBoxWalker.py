@@ -2,8 +2,6 @@ from src.detection.BoxWalker import BoxWalker
 import unittest
 from src.base.Bbox import Bbox
 from src.base.Node import Node
-from src.base.TileDrawer import TileDrawer
-from src.data.StreetDrawer import StreetDrawer
 
 
 class testBoxWalker(unittest.TestCase):
@@ -18,7 +16,7 @@ class testBoxWalker(unittest.TestCase):
         self.assertIsNotNone(walker.streets)
 
     def test_walk(self):
-        walker = BoxWalker(self.ZurichBellvue(), False)
+        walker = BoxWalker(self.ZurichBellvue(), True)
         walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
@@ -28,22 +26,6 @@ class testBoxWalker(unittest.TestCase):
         self.assertIsNotNone(crosswalkNodes)
         self.assertGreater(len(crosswalkNodes), 0)
 
-
-    def test_walk_with_show(self):
-        walker = BoxWalker(self.ZurichBellvue())
-        walker.load_convnet()
-        walker.load_tiles()
-        walker.load_streets()
-        #walker.convnet.very_verbose = True
-
-        walker.walk()
-        crosswalkNodes = walker.plain_result
-
-        self.printResults(walker.tile, crosswalkNodes)
-
-    def test_streetdrawer(self):
-        drawer = StreetDrawer.from_bbox(self.ZurichBellvue())
-        drawer.show()
 
     def test_compare_detected_with_osm_same_points(self):
         walker = BoxWalker(self.smallTestBbox(), False)
@@ -68,12 +50,6 @@ class testBoxWalker(unittest.TestCase):
         self.assertTrue(len(result) == 2)
 
 
-    def printResults(self, tile, crosswalkNodes):
-        drawer = TileDrawer.from_tile(tile)
-        for node in crosswalkNodes:
-            drawer.draw_point(node)
-        drawer.drawsection.save("boxsave.jpg")
-        drawer.drawsection.show()
 
     def smallTestBbox(self):
         return Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.543088251618977, 47.36781249586627)

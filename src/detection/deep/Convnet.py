@@ -39,15 +39,24 @@ class Convnet:
         return not self.model is None
 
     def predict_crosswalks(self, pil_image_list):
+        numpy_arr = self._to_numpy_array(pil_image_list)
+        x = self._normalize(numpy_arr)
+        results = self._predict_list(x)
+        return results
+
+    def _to_numpy_array(self, pil_image_list):
         x = np.zeros((len(pil_image_list), 50, 50, 3))
         for i in range(len(pil_image_list)):
             img = np.array(pil_image_list[i])
             x[i] = img
-        x = x.reshape(x.shape[0], 3, 50, 50)
+        return x
+
+    def _normalize(self, numpy_array):
+        x = numpy_array.reshape(numpy_array.shape[0], 3, 50, 50)
         x = x.astype("float32")
         x /= 255
-        results = self._predict_list(x)
-        return results
+        return x
+
 
     def _predict_list(self, x):
         predictions = self.model.predict(x)
