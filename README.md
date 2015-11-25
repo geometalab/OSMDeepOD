@@ -25,8 +25,7 @@ Rapperswil trainstation (47.226468, 8.818477)
 Rapperswil suburb (47.232803, 8.837321)
 
 ## Dataset
-During this work, we have collected our own dataset with swiss crosswalks and non-crosswalks. The pictures have a size of 50x50 pixels and are available under the following link:
-- https://owncloud.hsr.ch/public.php?service=files&t=f203bf3f486e25a9f10b1292491a69fc
+During this work, we have collected our own dataset with swiss crosswalks and non-crosswalks. The pictures have a size of 50x50 pixels and are available.
 
 ## Links
 - http://wiki.hsr.ch/StefanKeller/SA_BA_Gamified_Extraction_of_Crosswalks_from_Aerial_Images
