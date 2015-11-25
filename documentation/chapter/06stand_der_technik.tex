@@ -1,0 +1,55 @@
+\chapter{Stand der Technik}
+Um abzuklären, ob es schon Arbeiten gab, die ein ähnliches Problem lösen, nahmen wir uns im Rahmen der Semesterarbeit Zeit für ein Literaturrecherche. Dabei gingen wir auf die HSR Bibliothek und deren Mitarbeiter zu.
+\section{Literaturrecherche}
+\subsection{Suchquellen}
+Folgende Quellen wurden uns empfohlen, um Recherchen in diesem Umfeld durchzuführen:
+\begin{itemize}
+	\item http://recherche.nebis.ch/
+    \item http://ieeexplore.ieee.org/
+    \item http://scholar.google.ch/
+\end{itemize}
+
+\subsection{Auswertung}
+Bei der Recherche stiessen wir auf verschieden Projekte, die sich mit der Problematik des Erkennens von Fussgängerstreifen auseinander setzen. Leider sind diese Arbeiten eher im Bereich der Bilderkennung für die Steuerung von autonom fahrenden Autos/Robotern angesiedelt. Arbeiten die treffender sind, werden im Anschluss angeführt.
+\subsection{Extraction of Road Markings from Aerial Images}
+Yuichi Ishino und Hitoshi Saji (Japan, 2008)
+http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=4655024
+
+An der Univerisität Shizuoka in Japan gab es vor einigen Jahren eine Arbeit zur Erkennung von Fussgängerstreifen und Mittellinien (Traffic Lane Lines) auf Orthofotos (Aerial images).
+
+Ihr Algorithmus befolgt dabei folgende Strategie:
+Der Algorithmus geht den Strassen entlang und richtet die Bilder aus, dass die Fussgängerstreifen immer vertikal zur Achse laufen. Danach wird eine sogenannte Binarization durchgeführt. Es setzt alle Pixel unter einem Schwellwert auf 0 (weiss) und alle Pixel darüber auf 1 (schwarz). Es wurden zwei Schwellwerte zurvor berechnet, einmal für sonnige und einmal für schattige Bilder.
+Mit der Annahme, dass die Strasse schwarz/grau und der Fussgängerstreifen leuchtend weiss sind, sieht man nun ein gleichmässiges Muster in der Helligkeitsverteilung des Bildes. Ein Fouriertransformation würde eine saubere Frequenz liefern.
+
+Die Arbeit von Ishino und Saji geht von einigen Grundannahmen und Vorraussetzungen aus, die die Erkennung sehr erleichtern:
+
+\begin{itemize}
+	\item Die Fussgängerstreifen sind immer gerade und werden durch keine Inseln unterbrochen.
+	\item Die Auflösung der Bilder ist genug gross, um das Streifenmuster ohne Probleme zu erkennen.
+	\item Der Fussgängerstreifen ist immer deutlich heller als die Strasse selbst.
+	\item Der Streifen werden durch keine Hindernisse wie Bäume, Autos verdeckt oder beeinflusst.
+	\item Die Bilder wurde zuvor in die Kategorien schattig und sonnig eingeteilt worden. Auf ihnen wird mit verschiedenen Treshholds gearbeitet.
+	\item Die Strassen müssen die Fussgängerstreifen immer vertikal schneiden.
+\end{itemize}
+
+\subsubsection{Schlussfolgerung}
+Die Arbeit der Univerisität von Shizuoka verfolgte einen ähnlichen Ansatz, den wir mit der Fouriertransformation in Betracht ziehen. Leider gehen die Dokumentverfasser von einigen Grundannahmen aus, die sich nicht mit der unseren Arbeit decken. Man kann fast schon von Laborbedingungen sprechen.
+Doch gibt es einigen Techniken, die sich auch für unsere Arbeit verwenden lassen. Diese sind unten aufgeführt.
+
+\subsection{Segmentation of Occluded Sidewalks in Satellite Images}
+Turgay Senlet und Ahmed Elgammal, The State University of New Jersey, USA (2012)
+http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=\&arnumber=6460256
+
+Das Projekt von Turgay Selent und Ahmed Elgammal setzte sich mit der Erkennung von primär Gehwege (sidewalks) und Fussgängerstreifen auf Satellitenbildern auseinander.
+
+Dabei waren die Hauptprobleme, dass viel Gehweg von Bäumen oder Schatten verdeckt werden. Um diesem Problem Herr zu werden, benutzten sie einen Farbklassifizierer.
+Um Fussgängerstreifen zu klassifizieren stellten sie eine Sammlung an Frequenzen in allen möglichen Winkeln zusammen. 
+
+Leider wird im Artikel zu dieser Arbeit nicht weiter in die Erkennungsmethoden eigegangen.
+
+\section{Fazit}
+Aus allen Arbeiten konnten wir doch einige Techniken finden, die uns die Erkennung erleichtern könnten. Diese sind hier aufgelistet:
+\begin{itemize}
+	\item Binarization image 
+	\item Median Filter (für Verbesserung der Bildqualität von ungenauen Bildern)
+\end{itemize}
