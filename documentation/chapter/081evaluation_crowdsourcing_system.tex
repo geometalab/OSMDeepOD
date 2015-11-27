@@ -1,0 +1,28 @@
+\section{Evaluation Crowdsourcing-System}
+\subsection{Kandidaten}
+\begin{itemize}
+	\item MapRoulette\footnote{\url{http://maproulette.org/}} 
+	\item To-Fix\footnote{\url{http://osmlab.github.io/to-fix/\#/task/tigerdelta}}
+\end{itemize}
+
+\subsection{MapRoulette}
+MapRoulette verwendet für ihre Challenges und Tasks ein einfaches JSON Format. Der erstellt werden Challenges mittels POST und mit PUT können diese upgedatet werden.
+
+\subsection*{Beispiel Challenge}
+\begin{tabbing}
+    \hspace*{2cm}\=\hspace*{3cm}\= \kill
+    Erstellen: \> POST /api/admin/challenge/<slug>  \\
+    Updaten: \> PUT /api/admin/challenge/<slug> \\
+    Challenge JSON: \\
+\end{tabbing}		
+\begin{python}
+{
+  "title": "Repair Motorways",
+  "description": "Repair all motorways",
+  "blurb": "For this challenge, the idea is to repair all motorways",
+  "help": "Repair the motorway where it is broken as indicated on the map",
+  "instruction": "Look at the map for broken pieces of way.",
+  "active": true,
+  "difficulty": 2
+}
+\end{python}
