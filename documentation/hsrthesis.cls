@@ -29,6 +29,7 @@
 \usepackage{booktabs}
 \usepackage{setspace} 
 
+
 % Table Stylings
 % http://tex.stackexchange.com/a/13748
 %%%%%%%%%%%%%%%%%%%%
@@ -39,10 +40,25 @@
 \newcommand*\normalline{}
 \newcommand*\lastline{\bottomrule}
 
+% Desicion Table of Content
+% own Table of content for desicions
+%http://texblog.org/2008/07/13/define-your-own-list-of/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tocloft}
+\newcommand\decision[1]{%
+	\refstepcounter{decision}
+	\par\noindent\textbf{Entscheid \thedecision. #1}
+	\addcontentsline{dec}{decision}
+	{\protect\numberline{\thechapter.\thedecision}#1}\par}
+
+\newcommand\listdecisionname{Liste der Entscheidungen}
+\newlistof{decision}{dec}{\listdecisionname}
+
+
 
 %Python Code Stylings
+%http://tex.stackexchange.com/questions/83882/how-to-highlight-python-syntax-in-latex-listings-lstinputlistings-command
 %%%%%%%%%%%%%%%%%%%%%%%
-\ProvidesClass{pyton}
 % Default fixed font does not support bold face
 \DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
 \DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
