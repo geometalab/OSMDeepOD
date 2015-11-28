@@ -2,6 +2,7 @@ from src.detection.deep.Convnet import Convnet
 import unittest
 import glob
 from PIL import Image
+import os
 
 
 class testConvnet(unittest.TestCase):
@@ -34,12 +35,13 @@ class testConvnet(unittest.TestCase):
         self.assertGreater(len(images), 5)
 
     def load_test_images(self):
-        filenames = glob.glob("test_images/*.png")
-        if len(filenames) == 0:
-            filenames = glob.glob("detection/deep/test_images/*.png")
+        filenames = glob.glob(self.get_dataset_path() + "*.png")
         images = []
         for file in filenames:
             img = Image.open(file)
             images.append(img)
 
         return images
+
+    def get_dataset_path(self):
+        return os.path.dirname(__file__) + "/test_images/"
