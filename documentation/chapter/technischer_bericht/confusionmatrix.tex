@@ -1,0 +1,58 @@
+\section{Evaluation Suchalgorithmus}
+Die Evaluation verschiedener Algorithmen zur Erkennung von Fussgängerstreifen stellt ein wichtiger Teil unserer Arbeit dar. Um die Kandidaten zu vergleichen griffen wir auf das Werkzeug der Confusion Matrix (Wahrheitsmatrix) zurück.
+
+\subsection{Algorithmen Vergleich}
+Um einen nachvollziehbaren Vergleich durchzuführen haben wir mit folgenden Eckdaten gearbeitet:
+\begin{tabbing}
+    \hspace*{6cm}\=\hspace*{6cm}\= \kill
+    Bounding Box (Rapperswil): \> (8.814650, 47.222553, 8.825035, 47.228935) \\
+    Anzahl Fussgängerstreifen: \> 37 \\
+\end{tabbing}
+
+\subsubsection{Haar Feature-based Cascade Classifier}
+\begin{figure}[ht]
+\includegraphics[width=\textwidth]{images/haar_conf.png}
+\caption[Haar Feature-based Cascade Classifier]{Haar Feature-based Cascade Classifier}
+\end{figure}
+\subsubsection{Fast Fourier Transform}	
+\begin{figure}[ht]
+\includegraphics[width=\textwidth]{images/fast_fourier_conf.png}
+\caption[Fast Fourier Transform]{Fast Fourier Transform}
+\end{figure}
+\subsubsection{Scale-invariant Feature Transform}	
+\begin{figure}[ht]
+\includegraphics[width=\textwidth]{images/sif_conf.png}
+\caption[Scale-invariant Feature Transform]{Scale-invariant Feature Transform}
+\end{figure}
+\subsubsection{Deep Learning}	
+
+\subsection{Auswertung}
+Damit die Auswertung verständlich ist, wird hier noch auf die Berechnung und die angeführte Legende verwiesen.
+\subsubsection{Legende}
+\begin{tabbing}
+    \hspace*{3cm}\=\hspace*{6cm}\= \kill
+    TP:	\> Zahl der richtig positiven Klassifikationen\\
+	FP:	\> Zahl der falsch positiven Klassifikationen\\
+	TN:	\> Zahl der richtig negativen Klassifikationen\\
+	FN:	\> Zahl der falsch negativen Klassifikationen\\
+\end{tabbing}
+
+\subsubsection{Berechnung}
+\begin{tabbing}
+    \hspace*{3cm}\=\hspace*{3cm}\=\hspace*{6cm}\= \kill
+	Trefferquote \> = \> TP / (TP+FN)\\
+	Richtigkeit \> = \> (TP + TN) / (TP + FP + TN + FN)\\
+	Relevanz \> = \> TP / (TP + FP)\\
+\end{tabbing}
+
+\begin{figure}[ht]
+\includegraphics[width=\textwidth]{images/auserwertung_conf.png}
+\caption[Auswertung Confusion Matrix]{Auswertung Confusion Matrix}
+\end{figure}
+
+\decision{Evaluation Suchalgorithmus}
+An dieser stelle ist zu erwähnen, dass Bilderkennung im Allgemeinen ein nicht triviales Problem ist. Man hat mit den unterschiedlichsten Schwierigkeiten zu kämpfen, wie der qualität oder die Belichtung der Bilder. Das führte dazu, dass
+mit keinem der Algorithmen ausser dem Deep Learing Ansatz ein Resultat erziehlt wurde, welches eine angemessene Erkennungsrate bietet. Deshalb haben wir uns klar für den Deep Learning Algorithmus entschieden und fokusierten uns auf dessen Verbesserung.  
+
+
+
