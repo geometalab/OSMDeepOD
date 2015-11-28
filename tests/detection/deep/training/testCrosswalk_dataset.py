@@ -4,15 +4,11 @@ import os
 
 
 class testCrosswalk_dataset(unittest.TestCase):
+
+
     def get_test_dataset_path(self):
-        path1 = "dataset/"
-        path2 = "detection/deep/training/dataset/"
-        if os.path.exists(path1):
-            return path1
-        if os.path.exists(path2):
-            return path2
-        else:
-            raise Exception("Path to test_dataset not found")
+        return os.path.dirname(__file__)  + "/dataset/"
+
 
     def testDataset_read_samples(self):
         dataset_path = self.get_test_dataset_path()
