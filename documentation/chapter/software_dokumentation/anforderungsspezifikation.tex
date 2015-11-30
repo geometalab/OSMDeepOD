@@ -9,7 +9,7 @@
 	CrosswalkDetector & Erkennt Fussgängerstreifen \\ \hline 
 	TileProvider & Stellt Orthofotos für die Erkennung der Fussgängerstreifen zu Verfügung.\\ \hline
 	OSMProvider & Stellt Strassen - und Fussgängersteifen Informationen zur Verfügung. \\ \hline
-	Database & Speicherort für die Positionen der ermittelten Fussgängersteifen und deren Strassenzugehörigkeit.\\ \hline
+	JSON File & Speicherort für die Positionen der ermittelten Fussgängersteifen und deren Strassenzugehörigkeit.\\ \hline
     \end{tabular}
 \end{center}
 
@@ -30,7 +30,7 @@ Ein TileProvider stellt Orthofotos zur Verfügung, welche herunter geladen werde
 Ein OSMProvider stellt Informationen zu Strassen und Fussgängerstreifen zur Verfügung, welche vom Erkennungsalgorithumus genutzt werden. Mit diesen Daten kann die Suche präzisiert werden, sowie der Download von Orthofotos reduziert werden.
 
 \paragraph{UC13: Daten sichern}
-Die Erkannten Fussgängerstreifen werden in einer Datenbank persistiert. Dabei sind die Positon (Koordinate lat/lon) wie auch die Strassenzugehörigkeit relevant.
+Die Erkannten Fussgängerstreifen werden in einem JSON File persistiert. Dabei sind die Positon (Koordinate lat/lon) relevant.
 
 \paragraph{UC14: Challenge generieren}
 Mit Hilfe der persistieren Daten wird ein Challenge generiert, welche die Daten über eine Crowdsourcing-System in OpenStreetMap integriert.
@@ -76,6 +76,5 @@ Das Hindernis um sich zu registrieren sollte möglichst klein sein. \\ \hline
 	Open Issues & Falls ein Unterbruch statt findet, soll von diesem Zustand weiter gearbeiten werden. \\ \hline
     \end{tabular}
 \end{center}
-
 
 

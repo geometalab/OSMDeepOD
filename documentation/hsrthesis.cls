@@ -8,6 +8,7 @@
 \RequirePackage{graphicx}
 \newcommand{\nothing}{}
 
+\renewcommand*\familydefault{\sfdefault}
 
 % Including mostly used packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -28,6 +29,8 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{setspace} 
+\usepackage{xcolor}
+\usepackage{colortbl}
 
 
 % Table Stylings
@@ -51,7 +54,7 @@
 	\addcontentsline{dec}{decision}
 	{\protect\numberline{\thechapter.\thedecision}#1}\par}
 
-\newcommand\listdecisionname{Liste der Entscheidungen}
+\newcommand\listdecisionname{Entscheidungsverzeichnis}
 \newlistof{decision}{dec}{\listdecisionname}
 
 
@@ -67,6 +70,7 @@
 \definecolor{deepblue}{rgb}{0,0,0.5}
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{lightblue}{RGB}{100,149,237}
 
 \usepackage{listings}
 
