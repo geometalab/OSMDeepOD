@@ -1,8 +1,8 @@
 \section{Anforderungsspezifikation}
 \subsection{Use Case}
 \subsubsection{Aktoren und Stakeholder}
-\begin{center}
-    \begin{tabular}{ | p{3cm} | p{9cm}  | }
+\begin{table}
+    \begin{tabular}{|p{3cm}|p{9cm}|}
     \hline
     Aktor & Tätigkeit   \\ \hline
 	User  & Startet CrosswalkDetector mit Boundingbox als Eingabeparameter \\ \hline
@@ -11,7 +11,8 @@
 	OSMProvider & Stellt Strassen - und Fussgängersteifen Informationen zur Verfügung. \\ \hline
 	JSON File & Speicherort für die Positionen der ermittelten Fussgängersteifen und deren Strassenzugehörigkeit.\\ \hline
     \end{tabular}
-\end{center}
+    \caption[Aktoren und Stakeholder]{Aktoren und Stakeholder}
+\end{table}
 
 \subsubsection{Diagramm}
 \begin{figure}[H]
@@ -37,7 +38,7 @@ Mit Hilfe der persistieren Daten wird ein Challenge generiert, welche die Daten 
 
 \subsubsection{Use Cases Fully Dressed}
 \paragraph{UC1: Fussgängerstreifen erkennen}
-\begin{center}
+\begin{table}
     \begin{tabular}{ | p{3cm} | p{9cm}  | }
     \hline
     Scope & CrosswalkDetection System   \\ \hline
@@ -75,6 +76,7 @@ Das Hindernis um sich zu registrieren sollte möglichst klein sein. \\ \hline
 	Frequency of Occurrence & Der Vorgang darf beliebig oft wiederholt werden. \\ \hline
 	Open Issues & Falls ein Unterbruch statt findet, soll von diesem Zustand weiter gearbeiten werden. \\ \hline
     \end{tabular}
-\end{center}
+    \caption[Use Case Fully Dressed]{Use Case Fully Dressed}
+\end{table}
 
 

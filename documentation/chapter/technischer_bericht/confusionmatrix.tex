@@ -10,17 +10,17 @@ Um einen nachvollziehbaren Vergleich durchzuführen haben wir mit folgenden Eckd
 \end{tabbing}
 
 \subsubsection{Haar Feature-based Cascade Classifier}
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{images/haar_conf.png}
 \caption[Haar Feature-based Cascade Classifier]{Haar Feature-based Cascade Classifier}
 \end{figure}
 \subsubsection{Fast Fourier Transform}	
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{images/fast_fourier_conf.png}
 \caption[Fast Fourier Transform]{Fast Fourier Transform}
 \end{figure}
 \subsubsection{Scale-invariant Feature Transform}	
-\begin{figure}[ht]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{images/sif_conf.png}
 \caption[Scale-invariant Feature Transform]{Scale-invariant Feature Transform}
 \end{figure}
@@ -45,7 +45,7 @@ Damit die Auswertung verständlich ist, wird hier noch auf die Berechnung und di
 	Relevanz \> = \> TP / (TP + FP)\\
 \end{tabbing}
 
-\begin{center}
+\begin{table}
     \begin{tabular}{ | p{3cm} | p{3cm}  | p{3cm} | p{3cm}  | }
     \hline    
     \rowcolor{lightblue}
@@ -55,7 +55,8 @@ Damit die Auswertung verständlich ist, wird hier noch auf die Berechnung und di
 	Fast Fourier Transform & 0.77 & 0.99 & 0.8 \\ \hline
 	Deep learning & 0.95 & 0.99 & 1.0 \\ \hline
     \end{tabular}
-\end{center}
+    \caption[Algorithmen Vergleich]{Algorithmen Vergleich}
+\end{table}
 
 \decision{Evaluation Suchalgorithmus}
 An dieser stelle ist zu erwähnen, dass Bilderkennung im Allgemeinen ein nicht triviales Problem ist. Man hat mit den unterschiedlichsten Schwierigkeiten zu kämpfen, wie der qualität oder die Belichtung der Bilder. Das führte dazu, dass nur mit dem Fast Fourier Transform und dem Deep Learning Ansatz Resultate erziehlt wurden, welche ein brauchbares Ergebnis lieferten. Der Deep Learning ist jedoch der klare Favoirt und sticht insbesondere beim Fals Positive Wert hervor. Deshalb entschieden wir uns, unser Fokus auf diesen Algorithmus zu legen. 
