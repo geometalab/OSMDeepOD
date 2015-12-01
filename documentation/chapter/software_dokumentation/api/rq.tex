@@ -1,0 +1,30 @@
+\subsection{RQ}
+RQ\footnote{\url{http://python-rq.org/}} (Redis Queue) ist eine einfache Library für Python um Jobs in Redis einzureihen.
+
+\subsubsection{Beispiel Queue}
+\begin{python}
+from rq import Queue, use_connection
+from redis import Redis
+
+class RQueue:
+   def __init__(self):
+       redis = Redis(ip, port, password)
+       q = Queue(connection=redis)
+       job = q.enqueue(self.add, 2, 3)
+       print job.result
+
+   def add(self, x, y):
+       return x + y
+\end{python}
+
+\subsubsection{Beispiel Worker}
+\begin{python}
+from rq import Queue, Connection, Worker
+from redis import Redis
+
+redis = Redis(ip, port, password)
+with Connection(redis):
+   qs = map(Queue, sys.argv[1:]) or [Queue()]
+   w = Worker(qs)
+   w.work()
+\end{python}
