@@ -3,7 +3,7 @@ Die Evaluation verschiedener Algorithmen zur Erkennung von Fussgängerstreifen s
 
 \subsection{Algorithmen Vergleich}
 Um einen nachvollziehbaren Vergleich durchzuführen haben wir mit folgenden Eckdaten gearbeitet:
-\begin{tabbing}
+\begin{tabbing}[H]
     \hspace*{6cm}\=\hspace*{6cm}\= \kill
     Bounding Box (Rapperswil): \> (8.814650, 47.222553, 8.825035, 47.228935) \\
     Anzahl Fussgängerstreifen: \> 37 \\
@@ -25,7 +25,10 @@ Um einen nachvollziehbaren Vergleich durchzuführen haben wir mit folgenden Eckd
 \caption[Scale-invariant Feature Transform]{Scale-invariant Feature Transform}
 \end{figure}
 \subsubsection{Deep Learning}	
-
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{images/deep_conf.png}
+\caption[Deep Learning]{Deep Learning}
+\end{figure}
 \subsection{Auswertung}
 Damit die Auswertung verständlich ist, wird hier noch auf die Berechnung und die angeführte Legende verwiesen.
 \subsubsection{Legende}
@@ -45,7 +48,7 @@ Damit die Auswertung verständlich ist, wird hier noch auf die Berechnung und di
 	Relevanz \> = \> TP / (TP + FP)\\
 \end{tabbing}
 
-\begin{table}
+\begin{table}[H]
     \begin{tabular}{|l|l|l|l|}
     \hline    
     \rowcolor{lightblue}

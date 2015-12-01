@@ -9,6 +9,7 @@
 \newcommand{\nothing}{}
 
 \renewcommand*\familydefault{\sfdefault}
+\newcommand{\sectionbreak}{\clearpage} % new page before section
 
 % Including mostly used packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31,6 +32,8 @@
 \usepackage{setspace} 
 \usepackage{xcolor}
 \usepackage{colortbl}
+\usepackage{titlesec}
+
 
 
 % Table Stylings
