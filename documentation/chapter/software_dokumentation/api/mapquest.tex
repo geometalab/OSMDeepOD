@@ -31,7 +31,9 @@ Bounding Box:  47.367,8.545,47.367,8.544 (Rapperswil)
 \begin{python}
 import httplib2
 
-url =  'http://open.mapquestapi.com/xapi/api/0.6/node[highway=*][bbox=8.544,47.367,8.545,47.367]?key=YKqJ7JffQIBKyTgALLNXLVrDSaiQGtiI}'
+url =  'http://open.mapquestapi.com/xapi/api/0.6/node
+		[highway=*][bbox=8.544,47.367,8.545,47.367]?
+		key=YKqJ7JffQIBKyTgALLNXLVrDSaiQGtiI}'
 resp, content = httplib2.Http().request(url)
 \end{python}
 
