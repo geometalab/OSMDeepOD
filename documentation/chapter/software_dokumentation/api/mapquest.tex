@@ -1,5 +1,5 @@
 \subsection{MapQuest}
-MapQuest\footnote{\url{http://www.mapquest.com/}} wird in diesem Projekt als Schnittstelle zu den OpenStreetMap Daten verwendet. Dazu bieten sich die Developer Accounts an, welche auf 15000 Abfragen pro Monat begrenz sind, was unseren Abfrageumfang abdeckt.
+MapQuest\footnote{\url{http://www.mapquest.com/}} wird in diesem Projekt als Schnittstelle zu den OpenStreetMap Daten verwendet. Dazu bieten sich die Developer Accounts an, welche auf 15000 Abfragen pro Monat begrenz sind, was unseren Abfrageumfang ausreichend bdeckt.
 
 \subsubsection{Application Key}
 In der Tabelle ist der Application Key aufgeführt, der für das Projekt Crosswalk Deteciton eingesetzt wurde.
@@ -19,6 +19,21 @@ Um den Entwicklern beim erstellen der Abfragen zu unterstüzen wird folgende Web
 \begin{itemize}
 	\item \url{http://open.mapquestapi.com/xapi/}
 \end{itemize}
+
+\subparagraph{HTTP Request}
+Bounding Box:  47.367,8.545,47.367,8.544 (Rapperswil)
+\begin{itemize}
+	\item \url{http://open.mapquestapi.com/xapi/api/0.6/node[highway=*][bbox=8.544,47.367,8.545,47.367]?key=YKqJ7JffQIBKyTgALLNXLVrDSaiQGtiI}
+\end{itemize}
+
+\subparagraph{Python Request} Beispiel einer einfachen Abfrage mit Verwendung der httplib2 Library. \\ 
+
+\begin{python}
+import httplib2
+
+url =  'http://open.mapquestapi.com/xapi/api/0.6/node[highway=*][bbox=8.544,47.367,8.545,47.367]?key=YKqJ7JffQIBKyTgALLNXLVrDSaiQGtiI}'
+resp, content = httplib2.Http().request(url)
+\end{python}
 
 
 
