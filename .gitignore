@@ -145,3 +145,4 @@ target/
 *.vrb
 *.xdy
 *.tdo
+*.def
