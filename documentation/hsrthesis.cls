@@ -11,6 +11,10 @@
 \renewcommand*\familydefault{\sfdefault}
 \newcommand{\sectionbreak}{\clearpage} % new page before section
 
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0mm}
+\setlist[itemize]{itemsep=0mm}
+
 % Including mostly used packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[utf8]{inputenc}
@@ -35,6 +39,7 @@
 \usepackage{titlesec}
 \usepackage{pdflscape}
 \usepackage{pdfpages}
+
 
 %Title Styling
 %\titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
@@ -74,8 +79,8 @@
 %http://tex.stackexchange.com/questions/83882/how-to-highlight-python-syntax-in-latex-listings-lstinputlistings-command
 %%%%%%%%%%%%%%%%%%%%%%%
 % Default fixed font does not support bold face
-\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
-\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{9} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{9}  % for normal
 
 % Custom colors
 \definecolor{deepblue}{rgb}{0,0,0.5}
