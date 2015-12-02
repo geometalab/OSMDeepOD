@@ -8,7 +8,7 @@ RUN cd /root \
 && python setup.py install \
 && touch DockerIam
 
-ENTRYPOINT [ "python", "/root/OSM-Crosswalk-Detection/src/role/main.py", "--role" ]
+ENTRYPOINT [ "python", "/root/OSM-Crosswalk-Detection/src/role/main.py", "--redis" ]
 
 # Set ~/OSM-Crosswalk-Detection as working directory
 WORKDIR /root/OSM-Crosswalk-Detection

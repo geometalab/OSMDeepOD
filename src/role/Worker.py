@@ -4,21 +4,21 @@ from rq import Connection
 from src.base.Constants import Constants
 from src.role.WorkerFunctions import detect
 from src.role.WorkerFunctions import store
+from redis import Redis
 
 class Worker:
     def __init__(self):
         self.queues = []
 
-    def run(self):
-        with Connection(Constants.REDIS):
+    def run(self,redis):
+        redis_connection = Redis(redis[0], redis[1], password=redis[2])
+        with Connection(redis_connection):
             qs = map(Queue, self.queues) or [Queue()]
             w = rq.Worker(qs)
             w.work()
 
     @classmethod
-    def from_worker(cls, queues=None):
-        if not queues:
-            queues = [Constants.QUEUE_JOBS]
+    def from_worker(cls, queue):
         worker = cls()
-        worker.queues = queues
+        worker.queues = queue
         return worker

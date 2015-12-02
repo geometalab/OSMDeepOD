@@ -3,21 +3,21 @@ from src.base.Constants import Constants
 from src.data.globalmaptiles import GlobalMercator
 from src.base.Bbox import Bbox
 from rq import Queue
+from redis import Redis
 import math
 
 class Manager:
     def __init__(self):
         self.big_bbox = Bbox()
         self.mercator = GlobalMercator()
-        self.queue = Queue(Constants.QUEUE_JOBS, connection=Constants.REDIS)
         self.small_bboxes = []
 
     @classmethod
-    def from_big_bbox(cls, big_bbox):
+    def from_big_bbox(cls, big_bbox, redis):
         manager = cls()
         manager.big_bbox = big_bbox
         manager._generate_small_bboxes()
-        manager._enqueue_jobs()
+        manager._enqueue_jobs(redis)
         return manager
 
     def _generate_small_bboxes(self):
@@ -32,11 +32,13 @@ class Manager:
                 top, right = self.mercator.MetersToLatLon(mminx + (side * (x + 1)), mminy + (side * (y + 1)))
                 small_bbox = Bbox.from_lbrt(left, bottom, right, top)
                 self.small_bboxes.append(small_bbox)
-        self._enqueue_jobs()
 
-    def _enqueue_jobs(self):
+    def _enqueue_jobs(self, redis):
+        redis_connection = Redis(redis[0], redis[1], password=redis[2])
+        queue = Queue(Constants.QUEUE_JOBS, connection=redis_connection)
+        print redis
         for small_bbox in self.small_bboxes:
-            self.queue.enqueue_call(func=detect, args=(small_bbox,), timeout=Constants.TIMEOUT)
+            queue.enqueue_call(func=detect, args=(small_bbox, redis,), timeout=Constants.TIMEOUT)
 
     def _calc_rows(self):
         mminx, mminy = self.mercator.LatLonToMeters(self.big_bbox.bottom, self.big_bbox.left)
