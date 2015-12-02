@@ -1,0 +1,45 @@
+\section{Codestatistik}
+\subsection{Test Coverage}
+Test Coverage wurde mit dem Tool nose\footnote{\url{https://nose.readthedocs.org}} durchgeführt.
+
+\begin{table}[H]
+    \begin{tabular}{|l|l|}
+    \hline    
+    \rowcolor{lightblue}
+	Datei & Coverage [\%] \\ \hline
+	src/base/Bbox.py & 85 \\ \hline    
+	src/base/Constants.py & 93 \\ \hline   
+	src/base/Node.py & 97 \\ \hline   
+	src/base/Street.py & 92 \\ \hline  
+	src/base/Tile.py & 98 \\ \hline   
+	src/base/TileDrawer.py & 24 \\ \hline  
+	src/data/MapquestApi.py & 100 \\ \hline   
+	src/data/MultiLoader.py & 94 \\ \hline   
+	src/data/StreetLoader.py & 100 \\ \hline   
+	src/data/TileLoader.py & 100 \\ \hline   
+	src/detection/BoxWalker.py & 100 \\ \hline   
+	src/detection/NodeMerger.py & 89 \\ \hline  
+	src/detection/StreetWalker.py & 100 \\ \hline   
+	src/detection/deep/Convnet.py & 97 \\ \hline   
+	src/detection/deep/training/Crosswalk\_dataset.py & 100 \\ \hline  
+	src/detection/deep/training.py & 100 \\ \hline   
+	src/role/Manager.py & 91 \\ \hline  
+	src/role/WorkerFunctions.py & 70 \\ \hline
+	\rowcolor{lightblue}
+	Durchschnitt &   90.5 \\ \hline
+    \end{tabular}
+    \caption[Test Coverage]{Test Coverage}
+\end{table}
+
+\subsection{Codezeilen}
+Die Codezeilen wurden mit Hilfe von CLOC\footnote{\url{http://cloc.sourceforge.net/}} ausgezählt.
+\begin{table}[H]
+    \begin{tabular}{|l|l|l|}
+    \hline    
+    \rowcolor{lightblue}
+	Sprache & Dateien & Zeilen  \\ \hline   
+	Python & 43 & 2045 \\ \hline
+    \end{tabular}
+    \caption[Codezeilen]{Codezeilen}
+\end{table}
+

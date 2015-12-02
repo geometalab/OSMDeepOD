@@ -1,19 +1,18 @@
 from src.base.Constants import Constants
 from src.detection.BoxWalker import BoxWalker
 from rq import Queue
+from redis import Redis
 import json
 import os
 
-def detect(bbox):
+def detect(bbox, redis):
     walker = BoxWalker(bbox)
     walker.load_convnet()
     walker.load_tiles()
     walker.load_streets()
     crosswalkNodes = walker.walk()
-
-
-
-    q = Queue(Constants.QUEUE_RESULTS, connection=Constants.REDIS)
+    redis_connection = Redis(redis[0], redis[1], password=redis[2])
+    q = Queue(Constants.QUEUE_RESULTS, connection=redis_connection)
     q.enqueue_call(func=store, args=(crosswalkNodes,), timeout=Constants.TIMEOUT)
 
 def store(crosswalks):

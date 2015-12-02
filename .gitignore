@@ -110,6 +110,7 @@ docs/_build/
 target/
 
 ### LaTeX ###
+documentation/main.pdf
 *.acn
 *.acr
 *.alg
@@ -145,3 +146,4 @@ target/
 *.vrb
 *.xdy
 *.tdo
+*.def

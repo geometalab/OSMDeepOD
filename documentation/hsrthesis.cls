@@ -8,6 +8,8 @@
 \RequirePackage{graphicx}
 \newcommand{\nothing}{}
 
+\renewcommand*\familydefault{\sfdefault}
+\newcommand{\sectionbreak}{\clearpage} % new page before section
 
 % Including mostly used packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -28,7 +30,19 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{setspace} 
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{titlesec}
+\usepackage{pdflscape}
+\usepackage{pdfpages}
 
+%Title Styling
+%\titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
+%%%%%%%%%%%%%%%%%%%%%%%
+\titlespacing{\section}{0pt}{10pt}{6pt}
+\titlespacing{\subsection}{0pt}{10pt}{6pt}
+\titlespacing{\subsubsection}{0pt}{10pt}{6pt}
+\titlespacing{\paragraph}{0pt}{10pt}{6pt}[6pt]
 
 % Table Stylings
 % http://tex.stackexchange.com/a/13748
@@ -51,7 +65,7 @@
 	\addcontentsline{dec}{decision}
 	{\protect\numberline{\thechapter.\thedecision}#1}\par}
 
-\newcommand\listdecisionname{Liste der Entscheidungen}
+\newcommand\listdecisionname{Entscheidungsverzeichnis}
 \newlistof{decision}{dec}{\listdecisionname}
 
 
@@ -67,6 +81,7 @@
 \definecolor{deepblue}{rgb}{0,0,0.5}
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{lightblue}{RGB}{100,149,237}
 
 \usepackage{listings}
 

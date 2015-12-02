@@ -1,18 +1,20 @@
 \section{Entwicklungsumgebung und Infrastruktur}
 \subsection{IDE (Integrated Development Environment)}
-\decision{PyCharm}
-Wieso:\\		
+\decision{PyCharm}	
 Beiden Projektmitgliedern ist JetBrains Intellij bekannt und PyCharm ist im Umgang nahe zu identisch.
 Für Studenten sind die Entwicklungsumgebungen kostenlos verfügbar.
 \subsection{SCM (Source Control Management)}
 \decision{GitHub}
-Wieso:\\
 Der Umgang mit Git ist beiden Projektmitglieder bestens bekannt.
 GitHub ist ohne Unkosten von überall verfügbar
 Das Geometalab der HSR publiziert über diesen Weg diverse Projekte
+
+\subsection{CI (Continuous Integration)}
+\decision{CircleCI}
+Das finden eines passenden Continuous Integration Tools stellte sich schwieriger dar, als zu Beginn des Projektes erwartet. Während dem SE2 Projekt haben wir Bekanntschaft mit Travis CI gemacht, welches die vielen Abhängigkeiten useres Codes nicht abdecken konnte. Mit CircleCI fanden wir eine Lösung, die auf Docker Hub zugreifen kann, dann den Build des Images durchführt und Sschlussendlich die Test durchführt.
+
 \subsection{Projektmanagement Tool}
 \decision{Jira}
-Wieso:\\
 Jira ist den Projektmitgliedern schon aus dem SE2-Projekt bekannt und hat sich sehr bewährt
 Das Dashboard ist übersichtlich gestalltet, es ermöglicht eine Übersicht über die aktuellen Tasks auf einen Blick
 Alle Mitglieder haben zu jederzeit Zugriff auf die Plattform, dies erhöt die Transparenz
