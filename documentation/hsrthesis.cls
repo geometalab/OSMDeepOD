@@ -33,7 +33,7 @@
 \usepackage{xcolor}
 \usepackage{colortbl}
 \usepackage{titlesec}
-
+\usepackage{pdflscape}
 
 
 % Table Stylings
