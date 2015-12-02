@@ -34,7 +34,15 @@
 \usepackage{colortbl}
 \usepackage{titlesec}
 \usepackage{pdflscape}
+\usepackage{pdfpages}
 
+%Title Styling
+%\titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
+%%%%%%%%%%%%%%%%%%%%%%%
+\titlespacing{\section}{0pt}{10pt}{6pt}
+\titlespacing{\subsection}{0pt}{10pt}{6pt}
+\titlespacing{\subsubsection}{0pt}{10pt}{6pt}
+\titlespacing{\paragraph}{0pt}{10pt}{6pt}[6pt]
 
 % Table Stylings
 % http://tex.stackexchange.com/a/13748
