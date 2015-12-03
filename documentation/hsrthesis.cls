@@ -14,6 +14,7 @@
 \usepackage{enumitem}
 \setlist[enumerate]{itemsep=0mm}
 \setlist[itemize]{itemsep=0mm}
+\setlength{\intextsep}{0mm}
 
 % Including mostly used packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
