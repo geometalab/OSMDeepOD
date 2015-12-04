@@ -40,7 +40,7 @@
 \usepackage{titlesec}
 \usepackage{pdflscape}
 \usepackage{pdfpages}
-
+\usepackage{listings}
 
 %Title Styling
 %\titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
@@ -74,7 +74,22 @@
 \newcommand\listdecisionname{Entscheidungsverzeichnis}
 \newlistof{decision}{dec}{\listdecisionname}
 
+%Shell Stylings
+%http://tex.stackexchange.com/questions/46953/unix-command-highlighting-latex
+\lstdefinestyle{BashInputStyle}{
+  language=bash,
+  basicstyle=\small\sffamily,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=3pt,
+  frame=tb,
+  columns=fullflexible,
+  backgroundcolor=\color{yellow!20},
+  linewidth=0.9\linewidth,
+  xleftmargin=0.1\linewidth
+}
 
+\newcommand*{\Package}[1]{\texttt{#1}}%
 
 %Python Code Stylings
 %http://tex.stackexchange.com/questions/83882/how-to-highlight-python-syntax-in-latex-listings-lstinputlistings-command
