@@ -1,13 +1,16 @@
 \section{Evaluation Suchalgorithmus}
-Die Evaluation verschiedener Algorithmen zur Erkennung von Fussgängerstreifen stellt ein wichtiger Teil unserer Arbeit dar. Um die Kandidaten zu vergleichen griffen wir auf das Werkzeug der Confusion Matrix (Wahrheitsmatrix) zurück.
+Die Evaluation verschiedener Algorithmen zur Erkennung von Fussgängerstreifen stellte ein wichtiger Teil unserer Arbeit dar. Nach Absprachen mit unseren Dozenten und Recherchen im Internet sind wir auf die unteren Methoden zur Bilderkennung gestossen.Um die Kandidaten zu vergleichen, griffen wir auf das Werkzeug der Confusion Matrix\footnote{\url{https://de.wikipedia.org/wiki/Beurteilung_eines_Klassifikators}} (Wahrheitsmatrix) zurück.
 
 \subsection{Algorithmen Vergleich}
-Um einen nachvollziehbaren Vergleich durchzuführen haben wir mit folgenden Eckdaten gearbeitet:
+Um einen neutralen Vergleich der verschiedenen Erkennungsmethoden zu erreichen, haben wir alle Methoden testweise implementiert und mit ihnen eine Erkennung im Raum Rapperswil durchgeführt.
+
+Wir haben mit folgenden Eckdaten gearbeitet:
 \begin{tabbing}[H]
-    \hspace*{6cm}\=\hspace*{6cm}\= \kill
+    \hspace*{5cm}\=\hspace*{6cm}\= \kill
     Bounding Box (Rapperswil): \> (8.814650, 47.222553, 8.825035, 47.228935) \\
     Anzahl Fussgängerstreifen: \> 37 \\
 \end{tabbing}
+
 
 \subsubsection{Haar Feature-based Cascade Classifier}
 \begin{figure}[H]
@@ -19,16 +22,24 @@ Um einen nachvollziehbaren Vergleich durchzuführen haben wir mit folgenden Eckd
 \includegraphics[width=\textwidth]{images/fast_fourier_conf.png}
 \caption[Fast Fourier Transform]{Fast Fourier Transform}
 \end{figure}
+Die Orthofotos entlang der Strasse wurde so ausgerichtet, dass die Strasse horizontal zum Bild liegt. Der Zebrastreifen hat nun die Eigenschaft, dass wenn eine Fourier Transformation vertikal zum Bild angewendet wird, ein eindeutiges Frequenzmuster entstehen sollte. Genau genommen ist der 8. Fourierkoeffizient gegenüber seinen Nachbar erhöht (Je nach Bildqualität auch der 7. oder 9.).
+Die Methode versagt jedoch, sobald der Zebrastreifen undeutlich wird, Objekte wie Autos auf dem Zebrastreifen sind oder andere Gegenstände diese dominante Frequenz auch beinhalten.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{images/Unsharp_Crosswalk2.png}\caption[Scale-invariant Feature Transform]{Undeutlicher Zebrastreifen ohne dominanten Fourierkoeffizienten}
+\end{figure}
 \subsubsection{Scale-invariant Feature Transform}	
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/sif_conf.png}
 \caption[Scale-invariant Feature Transform]{Scale-invariant Feature Transform}
 \end{figure}
-\subsubsection{Deep Learning}	
+\subsubsection{Deep Learning - Convnet}	
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/deep_conf.png}
-\caption[Deep Learning]{Deep Learning}
+\caption[Deep Learning]{Deep Learning - Convnet}
 \end{figure}
+Das Convolutional Neural Network (Convnet) hat die Zebrastreifen mit Abstand am besten erkannt. Anzumerken ist hier, dass die False Positive (FP) Rate von 0 ein schlichtes Zufallsergebnis ist. Wir haben diese Technik nach der Evaluation auf grösseren Flächen innerhalb der Stadt Zürich getestet und sind auf 1 FP pro 1000 Bildern gekommen. Eine Beschreibung der Technik des Covnets können sie dem nächsten Kapitel Umsetzungskonzept entnehmen.
+
 \subsection{Auswertung}
 Damit die Auswertung verständlich ist, wird hier noch auf die Berechnung und die angeführte Legende verwiesen.
 \subsubsection{Legende}
