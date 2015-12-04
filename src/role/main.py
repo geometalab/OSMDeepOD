@@ -4,9 +4,10 @@ if __name__ == "__main__":
     from src.role.Worker import Worker
     from src.role.Manager import Manager
     from src.base.Constants import Constants
+    from redis import Redis
 
     def Usage(s = ""):
-        print "Usage: main.py --role 'manager' left bottom right top |'jobworker' | 'resultworker' "
+        print "Usage: main.py --redis REDIS_IP_ADDR --role 'manager' left bottom right top |'jobworker' | 'resultworker' "
         print
         if s:
             print s
@@ -22,9 +23,16 @@ if __name__ == "__main__":
 
     bottom, left, top, right = None, None, None, None
     argv = sys.argv
-    if len(argv) < 3:
+    if len(argv) < 5:
         Usage("ERROR: You have to specify all needed arguments.")
     i = 1
+    redis_ip = ''
+    if argv[i] == '--redis':
+        i += 1
+        redis_ip = argv[i]
+        redis = [str(redis_ip), '40001', 'crosswalks']
+        i += 1
+
     role = ''
     if argv[i] == '--role':
         i += 1
@@ -50,16 +58,16 @@ if __name__ == "__main__":
             Usage("ERROR: 'right' must be bigger then 'left'")
         big_bbox = Bbox.from_lbrt(left, bottom, right, top)
         print 'Manger is running!'
-        Manager.from_big_bbox(big_bbox)
+        Manager.from_big_bbox(big_bbox, redis)
         print 'Manger is finished!'
     elif role == 'jobworker':
         print 'JobWorker is running!'
         jobWorker = Worker.from_worker([Constants.QUEUE_JOBS])
-        jobWorker.run()
+        jobWorker.run(redis)
     elif role == 'resultworker':
         print 'ResultWorker is running!'
         resultWorker = Worker.from_worker([Constants.QUEUE_RESULTS])
-        resultWorker.run()
+        resultWorker.run(redis)
     else:
         Usage("ERROR: Sorry, given role is not implemented yet.")
 

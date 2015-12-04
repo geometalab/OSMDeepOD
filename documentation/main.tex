@@ -5,7 +5,7 @@
 % do this here, so you can \gls{...} to it
 \input{index/glossar}
 \makeglossaries
-
+\raggedbottom %http://blog.emeidi.com/2009/03/07/damit-latex-paragraphen-nicht-vertikal-auf-die-seite-verteilt/
 \begin{document}
 
 \input{chapter/title}
@@ -17,9 +17,11 @@
 %%%%%%%%%%%%%%%%%%
 \input{chapter/abstract}
 \input{chapter/management_summary}
-\input{chapter/technischer_bericht/technischer_bericht}
+\input{chapter/aufgabenstellung}
+\input{chapter/technischer_bericht/technischer_bericht}	
 \input{chapter/software_dokumentation/software_dokumentation}
 \input{chapter/projektmanagement/projektmanagement}
+\input{chapter/softwaredokumentation/softwaredokumentation}
 
 \newpage
 % List of figures & glossary

@@ -11,6 +11,11 @@
 \renewcommand*\familydefault{\sfdefault}
 \newcommand{\sectionbreak}{\clearpage} % new page before section
 
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0mm}
+\setlist[itemize]{itemsep=0mm}
+\setlength{\intextsep}{0mm}
+
 % Including mostly used packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[utf8]{inputenc}
@@ -34,7 +39,16 @@
 \usepackage{colortbl}
 \usepackage{titlesec}
 \usepackage{pdflscape}
+\usepackage{pdfpages}
+\usepackage{listings}
 
+%Title Styling
+%\titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
+%%%%%%%%%%%%%%%%%%%%%%%
+\titlespacing{\section}{0pt}{10pt}{6pt}
+\titlespacing{\subsection}{0pt}{10pt}{6pt}
+\titlespacing{\subsubsection}{0pt}{10pt}{6pt}
+\titlespacing{\paragraph}{0pt}{10pt}{6pt}[6pt]
 
 % Table Stylings
 % http://tex.stackexchange.com/a/13748
@@ -60,14 +74,29 @@
 \newcommand\listdecisionname{Entscheidungsverzeichnis}
 \newlistof{decision}{dec}{\listdecisionname}
 
+%Shell Stylings
+%http://tex.stackexchange.com/questions/46953/unix-command-highlighting-latex
+\lstdefinestyle{BashInputStyle}{
+  language=bash,
+  basicstyle=\small\sffamily,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=3pt,
+  frame=tb,
+  columns=fullflexible,
+  backgroundcolor=\color{yellow!20},
+  linewidth=0.9\linewidth,
+  xleftmargin=0.1\linewidth
+}
 
+\newcommand*{\Package}[1]{\texttt{#1}}%
 
 %Python Code Stylings
 %http://tex.stackexchange.com/questions/83882/how-to-highlight-python-syntax-in-latex-listings-lstinputlistings-command
 %%%%%%%%%%%%%%%%%%%%%%%
 % Default fixed font does not support bold face
-\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
-\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{9} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{9}  % for normal
 
 % Custom colors
 \definecolor{deepblue}{rgb}{0,0,0.5}

@@ -1,0 +1,69 @@
+\newpage
+\section{Installation}
+\subsection{Redis}
+\label{subsec:redis}
+Die Installation wurde auf einem Ubuntu Server durchgeführt, welcher das Paketverwaltungssystem Advanced Packaging Tool (APT) verwendet. Die im Anschluss aufgeführten Befehle werden in einer Shell ausgeführt.
+Fals Probleme auftreten bietet Redis ein Quick Start Dokumentation an, welche unter  folgenden Link erreichbar ist:
+\begin{itemize}
+	\item \url{http://redis.io/topics/quickstart}
+\end{itemize}
+
+\subsubsection{Installaiton}
+\begin{lstlisting}[style=BashInputStyle]
+	# sudo apt-get install redis-server
+\end{lstlisting}
+
+\subsubsection{Konfiguration}
+\begin{lstlisting}[style=BashInputStyle]
+	# redis-cli -p 40001
+	# CONFIG SET requirepass "crosswalks"
+	# redis-cli AUTH crosswalks
+\end{lstlisting}
+
+\subsubsection{Starten}
+\begin{lstlisting}[style=BashInputStyle]
+	# redis-server --port 40001
+\end{lstlisting}
+
+\newpage
+
+\subsection{Docker}
+\label{subsec:docker}
+Die Installaton unserer Applikation beinhaltet diverse Dependencies, welche für die Installation einerseits viel Zeit in Anspruch nehmen und anderseits auch nicht wirklich trivial sind (An dieser Stelle ist Keras zu erwähnen, welches für den Deep Learnig Ansatz verwendet wird). \\
+\decision{Docker}
+Deshalb haben wir ein Docker Image ersellt, das auf Dockerhub frei zur Verfügung gestellt wird und somit den DevOps Prozess massiv vereinfach.\\
+Der Link dazu ist:
+\begin{itemize}
+	\item \url{https://hub.docker.com/r/murthy10/osm-crosswalk-detection/}
+\end{itemize}
+
+\subsubsection{Installaiton}
+Bei der Installation von Docker ist zu beachten, dass die Anwendung nur auf 64-Bit Maschinen läuft. Weiter wurden die nachfolgenden Befehle auf Ubuntu durchgeführt und variieren deshalbt zwisch unterschiedlichen Betriebssystemen. 
+
+\paragraph{Vorarbeit}
+\begin{lstlisting}[style=BashInputStyle]
+	# sudo apt-key adv --keyserver hkp://p80.pool.sks
+	-keyservers.net:80 --recv-		
+	keys 58118E89F3A912897C070ADBF76221572C52609D
+	# echo 'deb https://apt.dockerproject.org/repo ubuntu-precise main' 
+	>> /etc/apt/sources.list.d/docker.list
+	# apt-get update
+	# apt-cache policy docker-engine
+	# sudo apt-get install linux-image-extra-$(uname -r)
+\end{lstlisting}
+\paragraph{Docker installieren}
+\begin{lstlisting}[style=BashInputStyle]
+	# sudo apt-get install docker-engine
+\end{lstlisting}
+
+Eine detailiertere Anleitung findet man unter folgendem Link:
+\begin{itemize}
+	\item \url{https://docs.docker.com/engine/installation/ubuntulinux/}
+\end{itemize}
+
+\subsubsection{Starten}
+\begin{lstlisting}[style=BashInputStyle]
+	# sudo service docker start
+	# sudo docker run hello-world
+\end{lstlisting}
+
