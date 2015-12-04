@@ -1,4 +1,59 @@
 \section{Benutzerhandbuch}
 \subsection{Suche der Fussgängerstreifen}
 Um die Suche der Fussgängerstreifen durchzuführen muss eine Redis Datenbank zur Verfügung stehen , weiter muss auf den Rechnern die als Jobworker tätig sind Docker installiert sein. \\
-Die Installation und Konfiguration von Redis ist unter Abschnitt~\ref{subsec:redis} auf der Seite~\pageref{subsec:redis} beschrieben.
+Die Installationen sind in folgendne Abschnitten aufgeführt:
+\begin{itemize}
+	\item Redis:  Abschnitt~\ref{subsec:redis} auf der Seite~\pageref{subsec:redis}
+	\item Docker: Abschnitt~\ref{subsec:docker} auf der Seite~\pageref{subsec:docker}
+\end{itemize}
+
+\subsubsection{Einführung}
+Wir haben unsere Applikation in drei Rollen aufgeteilt:
+\begin{itemize}
+	\item Manager
+	\begin{itemize}
+		\item Unterteilt eine grosse Boundingbox in Kleinere mit einer Höhe und Breite von jeweils 2 Kilometern und stellt dies als Jobs in die Queue.
+	\end{itemize}
+	\item Jobworker
+	\begin{itemize}
+		\item Arbeite die Jobs der Queue ab
+		\item Gefundene Fussgängerstreifen , welche noch nicht in OpenSteetMap erfasst sind, werden als "Resultat Job" in die Queue gestellt
+	\end{itemize}
+	\item Resultworker
+	\begin{itemize}
+		\item Schlussendlich werden die Resultate zusammen getragen und in ein JSON File geschrieben
+	\end{itemize}
+\end{itemize}
+
+Dieser Ablauf ist genauer beschrieben unter dem Abschnitt~\ref{subsec:ablauf} auf   auf der Seite~\pageref{subsec:ablauf}
+\newpage
+\subsubsection{Anwendung}
+Dank Docker kann unsere Applikation innert Minuten gestartet werden.
+
+\paragraph{Docker Pull}
+\begin{lstlisting}[style=BashInputStyle]
+	# docker pull murthy10/osm-crosswalk-detection
+\end{lstlisting}
+
+\paragraph{Manager}
+\begin{lstlisting}[style=BashInputStyle]
+ # docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
+ --role manager left bottom right top
+\end{lstlisting}
+Left, Bottom, Right, Top entsprechen den Koordinaten im WGS84 Format. \\
+Ostschweiz: left=8.361002, bottom=47.166994, right=8.977610, top=47.706676) \\
+
+\paragraph{Jobworker}
+\begin{lstlisting}[style=BashInputStyle]
+ # docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
+ --role jobworker
+\end{lstlisting}
+Jobworker können auf bliebig vielen Rechnern gestartet werden.\\
+
+\paragraph{Resultworker}
+\begin{lstlisting}[style=BashInputStyle]
+ # docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
+ --role resultworker
+\end{lstlisting}
+Die Resultate werden im File crosswalks.json gespeichert, dieses findet man im Verzeichnis in dem der Resultworker gestartet wurde.
+
