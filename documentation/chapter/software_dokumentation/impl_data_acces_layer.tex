@@ -1,0 +1,48 @@
+\subsection{Data Access}
+Der Data Accss Layer regelt den Zugriff auf die Orthofotos mit Bing Maps, sowie die Strassen und Fussgängerstreifen, welche mit Hilfe von OpenStreetMap Daten über die MapQuest API zur Verfügung gestellt werden. Die Daten werden von den entsprechenden Quellen heruntergeladen und für die Detection zu einem passenden Format aufbereitet.
+
+\subsubsection{MapQuest}
+Folgende Daten benöitien wir von der API:
+\begin{tabbing}[H]
+    \hspace*{3cm}\=\hspace*{9cm}\= \kill
+    Strassen: \> Der Suchalgorithmus folgen den Strassenverläufen, \\
+     			\> was die Suche effizeinter und einfach werden lässt.\\
+    Fussgängerstreifen: \> Schon erfasste Fussgängerstreifen werden mit den von uns  \\ \> Entdeckten verglichen und nur diejenigen, welche noch nicht in erfasst sind,\\ \> werden abgespeichert.
+\end{tabbing}
+
+\paragraph{Abfrage}
+Um das Resultat einer Abfrage einzugrenzen, bietet die API diverse Parameter und Tags die angegeben werden können. Damit wir nicht zu viele API Requests haben, können wir eine \textbf{Boundingbox}, sowie den Tag \textbf{highway=*} verwendet werden. Damit ist nur noch eine Abfrage pro Boundingbox (ca. 2 auf 2 Kilometer) nötig. Im Code sieht dies folgendermassen aus:
+\subparagraph{Python Request} Abfrage mit Verwendung der httplib2 Library. \\ 
+\begin{python}
+import httplib2
+
+url =  'http://open.mapquestapi.com/xapi/api/0.6/node
+		[highway=*][bbox=8.544,47.367,8.545,47.367]?
+		key=YKqJ7JffQIBKyTgALLNXLVrDSaiQGtiI}'
+resp, content = httplib2.Http().request(url)
+\end{python}
+
+Das Resultat der Abfrage ist im XML Format, Python bietet für die Verarbeitung von XML Daten die Library \textbf{ElementTree}.\\
+In einem nächsten Schritt schränken wir das Resultat weiter ein. Denn nicht auf allen Strassen sind Fussgängerstreifen möglich. Für uns relevant sind:
+\begin{itemize}
+	\item road
+	\item trunk
+	\item primary
+	\item secondary 
+	\item tertiary
+	\item unclassified
+	\item residential
+	\item service 
+	\item trunk\_link 
+	\item primary\_link 
+	\item secondary\_link 
+	\item tertiary\_link 
+	\item pedestrian
+\end{itemize}
+
+Am Ende der Verarbeitung resultiert eine Liste aller relevanten Strassen und alle Fussgängerstreifen.
+
+\subsubsection{Bing Maps}
+Die wichtigsten Daten für die Suche sind die Orthofotos, welche wir über Bing Maps beschaffen. Dabei Hilft und das Python Script globalmaptiles.py. Welches den Umgang mit dem QuadTree Format von Bing Maps und das Umrechnen der Koordinaten zu den entprechenden Tiles stark vereinfacht. (Mehr dazu unter dem Abschnitt~\ref{subsec:tiles} auf der Seite~\pageref{subsec:tiles})
+
+
