@@ -43,6 +43,32 @@ In einem nächsten Schritt schränken wir das Resultat weiter ein. Denn nicht au
 Am Ende der Verarbeitung resultiert eine Liste aller relevanten Strassen und alle Fussgängerstreifen.
 
 \subsubsection{Bing Maps}
-Die wichtigsten Daten für die Suche sind die Orthofotos, welche wir über Bing Maps beschaffen. Dabei Hilft und das Python Script globalmaptiles.py. Welches den Umgang mit dem QuadTree Format von Bing Maps und das Umrechnen der Koordinaten zu den entprechenden Tiles stark vereinfacht. (Mehr dazu unter dem Abschnitt~\ref{subsec:tiles} auf der Seite~\pageref{subsec:tiles})
+Die wichtigsten Daten für die Suche sind die Orthofotos, welche wir über Bing Maps beschaffen. Dabei Hilft und das Python Script globalmaptiles.py. Welches den Umgang mit dem QuadTree Format von Bing Maps und das Umrechnen der Koordinaten zu den entprechenden Tiles stark vereinfacht. (Mehr dazu unter dem Abschnitt~\ref{subsec:tiles} auf der Seite~\pageref{subsec:tiles}). Das herunterladen der Bilder lässt sich parallelisieren, was die Performance enorm steigert. In Python kann dazu die Library \textbf{multiprocessing.dummy import Pool as ThreadPool} verwendet werden.
+
+\paragraph{Beispiel Download} Im Nachfolgenden Code ist gezeigt, wie der parallele Download implementiert wird. \\
+\begin{python}
+from multiprocessing.dummy import Pool as ThreadPool
+from PIL import Image
+import urllib2
+import StringIO
+
+def start_download(urls):
+     pool = ThreadPool(self.nb_threads)       
+     images = pool.map(download_image, urls)
+     pool.close()
+     pool.join()
+     return images
+
+def download_image(url):
+    request = urllib2.Request(url)
+    response = urllib2.urlopen(request)
+    content = response.read()
+    image = Image.open(StringIO.StringIO(content))
+    return image
+
+\end{python}
+
+Das Resultat des Downloads ist eine Liste mit den Orthofotos, welche im Anschluss von dem Suchalgorithmus weiter verwendet werden.
+
 
 
