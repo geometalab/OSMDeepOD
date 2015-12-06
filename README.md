@@ -18,14 +18,22 @@ This work is part of the semester thesis at the university of applied science Ra
 ## Examples
 ![Detection-Example1](imgs/preview_crosswalk_rappi2.png)
 
-Rapperswil trainstation (47.226468, 8.818477)
+Picture 1: Rapperswil trainstation (47.226468, 8.818477)
 
 ![Detection-Example2](imgs/preview_crosswalk_rappi.png)
 
-Rapperswil suburb (47.232803, 8.837321)
+Picture 2: Rapperswil residential (47.232803, 8.837321)
 
 ## Dataset
 During this work, we have collected our own dataset with swiss crosswalks and non-crosswalks. The pictures have a size of 50x50 pixels and are available by request.
+
+![Crosswalk Examples](imgs/Zebrastreifen_examples.png)
+
+Picture 3: Crosswalk Examples
+    
+![No-Crosswalk Examples](imgs/No_Zebrastreifen_examples.png)
+
+Picture 4: No Crosswalk Examples
 
 ## Links
 - http://wiki.hsr.ch/StefanKeller/SA_BA_Gamified_Extraction_of_Crosswalks_from_Aerial_Images
