@@ -17,6 +17,12 @@ Wir haben mit folgenden Eckdaten gearbeitet:
 \includegraphics[width=\textwidth]{images/haar_conf.png}
 \caption[Haar Feature-based Cascade Classifier]{Haar Feature-based Cascade Classifier}
 \end{figure}
+Auf der Suche nach möglichen Algorithmen, welche Objekte auf Bildern erkennen stiessen wir auf den Haar Feature-based Cascade Classifier. Dieser erlaubt es Objekte unabhängig von der Drehung oder Skalierung wieder zu erkennen. In einer Erweiterung von OpenCV ist der Algorithmus implementiert und kann wie in folgenden Beispiel verwendet werden: 
+\begin{itemize}
+	\item \url{http://coding-robin.de/2013/07/22/train-your-own-opencv-haar-classifier.html}
+\end{itemize}
+Für das Trainieren braucht es sehr viele Bilder und noch mehr Rechenleistung, um diese Hürden zu überwinden, schrieben wir ein Python Script, welches uns Bilder von Fussgägnerstreifen liefert. Dabei konnten wir auf OpenStreetMap Daten zurückgreifen, welche die Koordinaten von Fussgängerstreifen lieferten. Weiter stellte die HSR ihren Dev-Server zur Verfügung um die enorme Rechenleistung abzudecken. Leider wurde auch mit diversen unterschiedlichen Trainingsdaten kein brauchbares Resultat erziehlt. Eine Schwierigkeit beim trainieren war, dass man kein Feedback bekam, was gute oder eher schlechtes Bildmaterial für das Training ist.
+
 \subsubsection{Fast Fourier Transform}	
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/fast_fourier_conf.png}
@@ -33,6 +39,8 @@ Die Methode versagt jedoch, sobald der Zebrastreifen undeutlich wird, Objekte wi
 \includegraphics[width=\textwidth]{images/sif_conf.png}
 \caption[Scale-invariant Feature Transform]{Scale-invariant Feature Transform}
 \end{figure}
+Scale-invariant Feature Transform (SIFT) ist ein Algorithumus, welcher Merkmale von Bildern beschreibt. Seine stärken sind, dass es keine Probleme mit Translation, Rotation oder Skalierung gibt. Die Idee dies Verfahrens ist jedoch mehr auf einem Bild schon bekannte Objekte wieder zu erkennen. Mit Input, welcher eine Unbekannte Situation zeigen kommt der Algorithums nicht klar.\\
+OpenCV bietet eine Implementation von SIFT, welche wir nutzten um die Evaluation durchzuführen. Das Resultat war für unsere Problemstellung alles andere als ausreichend.
 \subsubsection{Deep Learning - Convnet}	
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/deep_conf.png}
