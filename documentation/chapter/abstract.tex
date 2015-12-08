@@ -1,7 +1,7 @@
 \chapter*{Abstract}
 
-Zebrastreifen sind ein essentieller Bestandteil der Fussgängernavigation, diese sind jedoch nur spärlich erfasst, was zu nicht optimalen Routen führt. 
+Zebrastreifen sind ein essentieller Bestandteil der Fussgängernavigation. Sie sind jedoch  nur spärlich erfasst, was somit zu nicht optimalen Routen führt. Ohne Fussgängerstreifen ist keine Strassenüberquerung möglich. 
 Um dem entgegen zu wirken,  befasst sich dieses Projekt mit der automatischen Erkennung von Zebrastreifen auf Orthofotos (Satellitenbildern). 
-Dabei entstand eine Applikation, die auf den Orthofotos den Strassen folgt, diese in kleine Bilder unterteilt und mit Hilfe eines Deep learnig Ansatzes entscheidet, ob es sich um ein Zebrastreifen handelt oder nicht.
-Das führte zu einer Erkennungsrate von über 85\% und könnte in Zukunft den Behöreden bei der Erfassung der Daten (derzeit noch händisch) unterstützen.
-Weiter ist es möglich diese Lösung auszubauen und auf andere Objekte anzuwenden.
+Dabei entstand eine hoch skalierbare Applikation, die gelbe Fussgängerstreifen entlang von Strassen findet und ihre Koordinaten extrahiert. Die Erkennung erfolgt durch ein Convolutional Neural Network, welches im Bereich Deep Learning anzusiedeln ist.
+Das Projekt erreichte eine Erkennungsrate von über 85\% der visuell sichtbaren Fussgängerstreifen mit einer Fehlerrate von weniger als 10\%. Der Erkennungsprozess konnte mithilfe von Message Queuing auf eine grosse Anzahl von Computern verteilt werden. Die Wartezeit für die Erkennung konnte so auf mehrere Tage beschränkt werden.
+Es ist möglich diese Lösung so auszubauen, dass es auf weitere Objekte angewendet werden kann.
