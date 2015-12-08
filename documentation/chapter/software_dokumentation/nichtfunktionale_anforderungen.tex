@@ -1,10 +1,10 @@
 \subsection{Nichtfunktionale Anforderungen}
 \subsubsection{Funktionalität}
 \paragraph{Sicherheit}
-Sicherheitsaspekte müssen nicht beachtet werden, es wird nicht mit Personen- oder stark Schützenswertendaten gearbeitet. Der Sourcecode steht unter der MIT Lizenz und ist auf Github verfügbar. Weiter werden die gesammelten Daten über OpenStreetMap für jederman zugänglich.
+Sicherheitsaspekte müssen nicht beachtet werden, es wird nicht mit Personen- oder stark schützenswerten Daten gearbeitet. Der Sourcecode steht unter der MIT Lizenz und ist auf Github verfügbar. Weiter werden die gesammelten Daten über OpenStreetMap für jedermann zugänglich.
 \paragraph{Interoperabilität}
 Das System ist auf Orthofotos, sowie Strassen- und Füssgängerinformationen angewiesen.
-Dazu stehen folgende API zur auswahl:
+Dazu stehen folgende API zur Auswahl:
 \begin{itemize}
 	\item Bing Static Map Data
 	\item Google Static Map API
@@ -16,16 +16,16 @@ Dazu stehen folgende API zur auswahl:
 Die Richtigkeit der erkannten Fussgängerstreifen wird mit Hilfe eines Crowdsourcing-Systems sichergestellt. Dabei verifizieren Freiwillige die erkannten Fussgängerstreifen.
 \subsubsection{Zuverlässigkeit}
 \paragraph{Wiederherstellbarkeit}
-Nach einem Systemabsturz oder Stopp der Anwendung, soll die Anwendung ohne Komplikationen wieder gestartet werden können. Beim Neustart soll ab der Absturzstelle weitergearbeitet werden können, ohne das Daten oder bis anhin erbrachte Rechenleistungen verlohren gehen.
+Nach einem Systemabsturz oder Stopp der Anwendung, soll die Anwendung ohne Komplikationen wieder gestartet werden können. Beim Neustart soll ab der Absturzstelle weitergearbeitet werden können, ohne das Daten oder bis anhin erbrachte Rechenleistungen verloren gehen.
 \paragraph{Fehlertoleranz}
-Fehler in einzelnen Jobs sollen keine Systemweiten auswirkungen haben. Jede Operation soll im Fehlerfall wiederholt werden können.
+Fehler in einzelnen Jobs sollen keine Systemweiten Auswirkungen haben. Jede Operation soll im Fehlerfall wiederholt werden können.
 \paragraph{Availability}
 Bei Nichtverfügbarkeit des Systems entsteht kein direkter finanzieller Schaden, deshalb ist die Systemverfügbarkeit nicht von oberster Priorität. 
 \subsubsection{Benutzbarkeit}
-Die Benutzung der Anwenung beschränkt sich auf die Eingabe der Bounding Box für den Bereich an dem Fussgängerstreifen erkannt werden sollen. Ansonsten soll keine Interreakton mit dem Benutzer statt finden. Auf eine grafische Oberfläche wird verzeichte, es ist ein reine Konsolenapplikation.
+Die Benutzung der Anwendung beschränkt sich auf die Eingabe der Bounding Box für den Bereich an dem Fussgängerstreifen erkannt werden sollen. Ansonsten soll keine Interreakton mit dem Benutzer statt finden. Auf eine grafische Oberfläche wird verzichtet, es ist ein reine Konsolenapplikation.
 
 \paragraph{Robustheit}
-Die Eingabe der Bounding Box durch den Benutzer muss auf Korrektheit überprüft werden. Da die Applikation sehr rechenintensiv ist, soll bei einem Absturz, an der Absturz stelle weiter gearbeiten werden können.
+Die Eingabe der Bounding Box durch den Benutzer muss auf Korrektheit überprüft werden. Da die Applikation sehr rechenintensiv ist, soll bei einem Absturz, an der Absturz stelle weiter gearbeitet werden können.
 \subsubsection{Effizienz}
 Eine Erkennungsrate von 80\% wird angestrebt.\\
 Schnittstellen:

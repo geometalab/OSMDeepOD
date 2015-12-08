@@ -26,13 +26,13 @@
 Der User startet die Applikation und gibt als Eingabeparameter ein Boundingbox an, welche nach Fussgängerstreifen durchsucht wird. Dabei werden Orthofotos mit Hilfe eines Erkennungsalgortithmus abgearbeitet.
 
 \paragraph{UC11: Tiles downloaden} 
-Ein TileProvider stellt Orthofotos zur Verfügung, welche herunter geladen werden müssen. Diese werden im Anschluss dem Erkennungsalgorithums zur Verfügung gestellt.
+Ein TileProvider stellt Orthofotos zur Verfügung, welche herunter geladen werden müssen. Diese werden im Anschluss dem Erkennungsalgorithmus zur Verfügung gestellt.
 
 \paragraph{UC12: Stassen downloaden}
-Ein OSMProvider stellt Informationen zu Strassen und Fussgängerstreifen zur Verfügung, welche vom Erkennungsalgorithumus genutzt werden. Mit diesen Daten kann die Suche präzisiert werden, sowie der Download von Orthofotos reduziert werden.
+Ein OSMProvider stellt Informationen zu Strassen und Fussgängerstreifen zur Verfügung, welche vom Erkennungsalgorithmus genutzt werden. Mit diesen Daten kann die Suche präzisiert werden, sowie der Download von Orthofotos reduziert werden.
 
 \paragraph{UC13: Daten sichern}
-Die Erkannten Fussgängerstreifen werden in einem JSON File persistiert. Dabei sind die Positon (Koordinate lat/lon) relevant.
+Die Erkannten Fussgängerstreifen werden in einem JSON File persistiert. Dabei sind die Position (Koordinate lat/lon) relevant.
 
 \paragraph{UC14: Challenge generieren}
 Mit Hilfe der persistieren Daten wird ein Challenge generiert, welche die Daten über eine Crowdsourcing-System in OpenStreetMap integriert.
@@ -47,7 +47,7 @@ Mit Hilfe der persistieren Daten wird ein Challenge generiert, welche die Daten 
 	Stakeholders & 
 	\begin{itemize}
 		\item System: Möglichst alle Fussgängerstreifen erkennen
-		\item User: Einmal gestarten, läuft alles autonom
+		\item User: Einmal gestartet, läuft alles autonom
     \end{itemize} \\ \hline
 	Preconditions & 
 		\begin{itemize}
@@ -74,7 +74,7 @@ Mit Hilfe der persistieren Daten wird ein Challenge generiert, welche die Daten 
 Eingabefeldern Informationen erhalten.
 Das Hindernis um sich zu registrieren sollte möglichst klein sein. \\ \hline
 	Frequency of Occurrence & Der Vorgang darf beliebig oft wiederholt werden. \\ \hline
-	Open Issues & Falls ein Unterbruch statt findet, soll von diesem Zustand weiter gearbeiten werden. \\ \hline
+	Open Issues & Falls ein Unterbruch statt findet, soll von diesem Zustand weiter gearbeitet werden. \\ \hline
     \end{tabular}
     \caption[Use Case Fully Dressed]{Use Case Fully Dressed}
 \end{table}

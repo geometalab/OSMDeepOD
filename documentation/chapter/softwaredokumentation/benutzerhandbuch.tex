@@ -1,7 +1,7 @@
 \section{Benutzerhandbuch}
 \subsection{Suche der Fussgängerstreifen}
 Um die Suche der Fussgängerstreifen durchzuführen muss eine Redis Datenbank zur Verfügung stehen , weiter muss auf den Rechnern die als Jobworker tätig sind Docker installiert sein. \\
-Die Installationen sind in folgendne Abschnitten aufgeführt:
+Die Installationen sind in folgenden Abschnitten aufgeführt:
 \begin{itemize}
 	\item Redis:  Abschnitt~\ref{subsec:redis} auf der Seite~\pageref{subsec:redis}
 	\item Docker: Abschnitt~\ref{subsec:docker} auf der Seite~\pageref{subsec:docker}
@@ -59,7 +59,7 @@ Die Resultate werden im File crosswalks.json gespeichert, dieses findet man im V
 \newpage
 
 \subsection{Challenge erstellen}
-Nach dem die Fussgängerstreifen detektiert wurden und das File crosswalks.json erstellt wurde, muss dies noch in ein passendes Format für MapRoulette gebracht werden. Dazu haben wir ein Python Script geschrieben, welches aus jedem gefundenen Fussgängerstreifen einen Task generiert.
+Nach dem die Fussgängerstreifen detektiert wurden und das File crosswalks.json erstellt wurde, muss dies noch in ein passendes Format für MapRoulette gebracht werden. Dazu haben wir ein Python Skript geschrieben, welches aus jedem gefundenen Fussgängerstreifen einen Task generiert.
 
 \subsubsection{Anwendung}
 Für eine Challenge benötigt es ein File challange.json, welches die Challenge beschreibt und ein zweites File tasks.json in dem sich die Tasks befinden.\\
