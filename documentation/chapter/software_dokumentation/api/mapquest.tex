@@ -1,5 +1,5 @@
 \subsection{MapQuest}
-MapQuest\footnote{\url{http://www.mapquest.com/}} wird in diesem Projekt als Schnittstelle zu den OpenStreetMap Daten verwendet. Dazu bieten sich die Developer Accounts an, welche auf 15000 Abfragen pro Monat begrenz sind, was unseren Abfrageumfang ausreichend bdeckt.\\
+MapQuest\footnote{\url{http://www.mapquest.com/}} wird in diesem Projekt als Schnittstelle zu den OpenStreetMap Daten verwendet. Dazu bieten sich die Developer Accounts an, welche auf 15000 Abfragen pro Monat begrenz sind, was unseren Abfrageumfang ausreichend bdeckt.
 
 \subsubsection{Application Key}
 In der Tabelle ist der Application Key aufgeführt, der für das Projekt Crosswalk Deteciton eingesetzt wurde.
@@ -27,7 +27,20 @@ Bounding Box:  47.367,8.545,47.367,8.544 (Rapperswil)
 \end{itemize}
 
 
+\subparagraph{XML File Response}
+Als Antwort auf den HTTP Request gibt es ein XML File, welches die Strassen in Form von Nodes beinhaltet.\\
 
+\begin{python}
+<osm xmlns:xapi="http://jxapi.openstreetmap.org/">
+	<node id="32860913" version="8"
+		timestamp="2015-08-06T15:21:13Z" uid="6087"
+		lat="47.2254172" lon="8.8175171">
+		<tag k="highway" v="traffic_signals"/>
+	</node>
+</osm>
+\end{python}
+
+\newpage
 
 
 

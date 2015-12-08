@@ -6,7 +6,7 @@ from src.base.TileDrawer import TileDrawer
 This example visualizes the results of the boxwalker
 '''
 
-zurich_bellevue = Bbox.from_lbrt(8.814650, 47.222553, 8.825035, 47.228935)
+zurich_bellevue = Bbox.from_bltr(47.224553, 8.816052, 47.227839, 8.820165)
 walker = BoxWalker(zurich_bellevue)
 walker.load_convnet()
 walker.load_tiles()

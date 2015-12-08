@@ -41,7 +41,7 @@ Dank Docker kann unsere Applikation innert Minuten gestartet werden.
  --role manager left bottom right top
 \end{lstlisting}
 Left, Bottom, Right, Top entsprechen den Koordinaten im WGS84 Format. \\
-Ostschweiz: left=8.361002, bottom=47.166994, right=8.977610, top=47.706676) \\
+Ostschweiz: left=8.361002, bottom=47.166994, right=8.977610, top=47.706676) 
 
 \paragraph{Jobworker}
 \begin{lstlisting}[style=BashInputStyle]
@@ -56,4 +56,37 @@ Jobworker können auf bliebig vielen Rechnern gestartet werden.\\
  --role resultworker
 \end{lstlisting}
 Die Resultate werden im File crosswalks.json gespeichert, dieses findet man im Verzeichnis in dem der Resultworker gestartet wurde.
+\newpage
 
+\subsection{Challenge erstellen}
+Nach dem die Fussgängerstreifen detektiert wurden und das File crosswalks.json erstellt wurde, muss dies noch in ein passendes Format für MapRoulette gebracht werden. Dazu haben wir ein Python Script geschrieben, welches aus jedem gefundenen Fussgängerstreifen einen Task generiert.
+
+\subsubsection{Anwendung}
+Für eine Challenge benötigt es ein File challange.json, welches die Challenge beschreibt und ein zweites File tasks.json in dem sich die Tasks befinden.\\
+
+\paragraph{Tasks generieren}
+\begin{lstlisting}[style=BashInputStyle]
+ # python TaskGenerator.py crosswalks.json
+\end{lstlisting}
+
+\paragraph{Challenge publizieren}
+\begin{lstlisting}[style=BashInputStyle]
+ # curl -u devuser:mylittlesony -vX 
+   POST http://maproulette.org/api/admin/challenge/
+   crosswalk-detection/tasks -d @tasks.json 
+   --header "Content-Type: application:json"
+\end{lstlisting}
+
+\paragraph{Tasks publizieren}
+\begin{lstlisting}[style=BashInputStyle]
+ # curl -u devuser:mylittlesony -vX 
+   POST http://maproulette.org/api/admin/challenge/
+   crosswalk-detection -d @challenge.json 
+   --header "Content-Type: application:json"
+\end{lstlisting}
+
+
+Als Hilfestellung zum erstellen von MapRoulette Challanges ist folgendes Tutorial zu empfehlen:
+\begin{itemize}
+	\item \url{https://gist.github.com/mvexel/b5ad1cb0c91ac245ea3f}
+\end{itemize}

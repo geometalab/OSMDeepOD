@@ -41,6 +41,8 @@
 \usepackage{pdflscape}
 \usepackage{pdfpages}
 \usepackage{listings}
+\usepackage{dirtree}
+\usepackage[toc,page]{appendix}
 
 %Title Styling
 %\titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
