@@ -53,6 +53,61 @@ Die Klasse src/detection/deep/Convnet.py wrappt das neuronale Netz in eine einfa
 \subsection{Zebrasteifenerkennung entlang der Strassen}
 In diesem Abschnitt kommen die Strasseninformationen, Orthofotos, Inputbilder und das Convnet zusammen. Die Klassen StreetWalker und BoxWalker stellen Funktionen zur Verfügung, mithilfe derer alle Strassen innerhalb einer Bounding Box entlang "'gelaufen"' und die Fussgängerstreifen erkannt werden.
 
+\subsubsection{StreetWalker}
+Der StreetWalker löst das Erkennungsproblem entlang eines Strassenabschnitts. Ein Strassenabschnitt besteht aus zwei Koordinaten. Der Walker geht von der ersten Koordinate auf die zweite Koordinate zu entlang einer geraden Linie. Zum Schluss fasst er doppelt gefundene Zebrastreifen mithilfe des NodeMergers zusammen (siehe unten).
+\begin{python}
+	from src.detection.StreetWalker import StreetWalker
+	
+	1. walker = StreetWalker.from_street_tile(street, tile, convnet)
+	2. crosswalks = walker.walk()
+\end{python}
+\begin{enumerate}
+	\item Erstelle einen StreetWalker anhand eines Strassenabschnitts, des Orthofoto und des Convnets
+	\item Walker läuft entlang dieses Strassenabschnitts und gibt eine Liste von Koordinaten der gefundenen Zebrastreifen zurück.
+\end{enumerate}
+
+\subsubsection{BoxWalker}
+Der BoxWalker löst das Erkennungsproblem für eine ganze Bounding Box. Zuerst lädt er die Orthofotos, die Strassen- und Zebrastreifeninformationen herunter. Danach erfolgt der eigentliche Erkennungsprozess, indem er für jeden Strassenabschnitt einen Streetwalker initialisiert. Zu guter Letzt vergleicht er die gefundenen Zebrastreifen mit den bestehenden aus Open Street Map und lässt den NodeMerger doppelt gefundene Zebrastreifen zusammenfassen (Siehe unten).
+
+\begin{python}
+	from src.detection.BoxWalker import BoxWalker
+	
+	1. rapperswil = Bbox.from_bltr(47.224553, 8.816052, 47.227839, 8.820165)
+	
+	2. walker = BoxWalker(rapperswil)
+	3. walker.load_convnet()
+	4. walker.load_tiles()
+	5. walker.load_streets()
+	
+	6. walker.walk()
+	
+	7. all_crosswalk_nodes = walker.plain_result
+	8. compared_crosswalk_nodes = walker.compared_with_osm_result
+\end{python}
+\begin{enumerate}
+	\item Erstelle eine Bounding Box anhand von Koordinaten.
+	\item Erstelle einen BoxWalker mit der BBox.
+	\item Lade das Convnet.
+	\item Lade die Orthofotos.
+	\item Lade die Strasseninformationen.
+	\item Eigentlicher Erkennungsprozess.
+	\item In plain\_result sind nun alle gefundenen Zebrastreifen enthalten.
+	\item In compared\_with\_osm\_result sind nur noch die Zebrastreifen enthalten, die nicht schon in Open Street Map vorhanden sind.
+\end{enumerate}
+
+\subsubsection{NodeMerger}
+Die NodeMerger-Klasse versucht das Problem der doppelten Erkennung zu lösen. Dadurch, das sich die Inputbilder überlappen, kann es dazu kommen, das Fussgängerstreifen doppelt erkannt werden. Das gleiche Problem tritt auf, wenn mehrere Strassen über den gleichen Zebrastreifen führen.
+
+Der NodeMerger nimmt alle gefundenen Koordinaten entgegen und berechnet alle Abstände von gefundenem Zebrastreifen zu gefundenem Zebrastreifen. Sind die Koordinaten genug nah beieinander, werden sie zusammengefasst. Genau genommen wird hier ein Graph mit Knoten und Kanten aufgebaut. Die Koordinaten sind die Knoten und die Knoten werden verbunden, wenn sie genug nahe beieinander sind. Zum Schluss werden alle Knoten zusammengefasst, welche verbunden sind.
+
+Kritisch ist hier die richtige Distanz zu finden. Zu grosse Distanzen fassen mehrere Zebrastreifen zu einem zusammen. Zu kleine Distanzen lassen zu viele Punkte übrig.
+
+\decision{NodeMerger Distanzen} StreetWalker: 10 Meter, BoxWalker: 7 Meter
+
+\subsubsection{Vergleich gefundene Zebrastreifen mit bestehenden Zebrastreifen in OSM}
+Der Boxwalker führt nach dem Erkennungsvorgang ein Vergleich mit den bestehenden Zebrastreifen in Open Street Map durch. Dabei rechnen wir die Distanz von den gefundenen Zebrastreifen zu den bestehenden Zebrastreifen aus. Ist die Distanz kleiner 5 Meter, so besteht der Zebrastreifen schon und wird in walker.compared\_with\_osm\_result nicht aufgelistet.
+
+
 
 
 
