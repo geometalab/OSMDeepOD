@@ -1,1 +1,61 @@
-\subsection{Erkennung}
+\section{Bilderkennung - detection}
+
+\subsection{Anfertigung der Bilder entlang der Strassen}
+Damit das Convnet die Einteilung zwischen Zebrastreifen und Nicht-Zebrastreifen machen kann, braucht es ein RBG Bild mit 50 x 50 Pixeln als Input. Diese Inputbilder werden aus dem gedownloadetem Orthofoto ausgeschnitten. Mithilfe der Strassenkoordinaten muss nicht das ganze Orthofoto in kleine Bilder aufgeteilt, sondern die Inputbilder können nur entlang der Strassen ausgeschnitten werden. Der Abstand zwischen zwei Inputbildern (auch Schrittweite) ist so gewählt, das eine gewisse Überlappung vorliegt.
+\\
+\decision{Eckdaten Anfertigung Inputbilder} 
+Die Inputbilder für das Convnet sind 50 x 50 Pixel gross, da auf Zoomstufe 19 50 Pixel etwa der Breite von zwei Strassen entspricht. Die Schrittweite wurde so angepasst, dass auch Zebrastreifen, die zwischen zwei Inputbildern liegen, erkannt werden.
+\\
+\begin{figure}[H]
+	\centering
+	\includegraphics{images/squared_images.png}
+	\caption{Blau: Strassenverlauf, Rot: Ausgeschnittene Bilder 50 x 50 Pixel. Diese Visualisierung der Inputbilder kann für jede beliebige BBox selbst durchgeführt werden. Siehe dazu examples/VisualizeSquaredImages.py im Projektordner}
+\end{figure}
+
+
+
+\subsection{Convnet}
+Wir verwenden ein Convolutional Neuronal Network (Convnet) um die automatische Einteilung von Zebrastreifen und Nicht-Zebrastreifen zu machen. Um ein Convnet verwenden zu können, muss man es zuerst mit entsprechendem Bildmaterial trainieren. Wir sprechen hier über Inputbilder, welche zum Teil automatisch mithilfe der Open Street Map Datenbank generiert werden konnten, aber meistens von Hand erstellt werden mussten. Wir haben uns während dieses Projektes ein Datenset aus über 4'400 Zebrastreifen- und 32'000 Nicht-Zebrastreifenbilder erarbeitet. Diese Arbeit beinhaltete stundelanges Aussortieren von Bildern.
+\\
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{images/Zebrastreifen_examples.png}
+	\caption{6 x 2 Beispiele für Zebrastreifen. Wie auf den Bildern zu sehen ist, verdecken immer wieder Gegenstände das gelbe Muster. Die unterschiedliche Bildqualität der Orthofotos behinderte das Erkennen stark.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{images/No_Zebrastreifen_examples.png}
+	\caption{6 x 2 Beispiele für Nicht-Zebrastreifen. Das Nicht-Zebrastreifen Set beinhaltet alle möglichen Strassensituationen von Stadt bis Land. Besonders bei gelben Autos oder Strassenmarkierungen hat das Convnet mühe.}
+\end{figure}
+
+Ein Beispiel für ein Training eines Convnets kann unter der Datei examples/ConvnetTrainer.py eingesehen werden. Die detaillierte Beschreibung der Funktionsweise eines Neuronalen Netzes würde den Rahmen dieser Arbeit sprengen. Eine genaue Beschreibung der Abläufe kann aus den Vorlesungsunterlagen von Stanford\footnote{\url{http://cs231n.github.io/convolutional-networks}} genommen werden. Das in dieser Arbeit benutzte Netz ist unter dem Namen VGGNet (Karen Simonyan, Andrew Zisserman 2014)\footnote{\url{http://arxiv.org/abs/1409.1556}} bekannt. Es wurde Ende 2014 veröffentlicht und ist seit diesem Zeitpunkt eines der besten Neuronalen Netze für Bilderkennung. Ein mithilfe der Library Keras trainiertes Neuronales Netz kann in eine .hdf5 Datei abgespeichert werden. Nach dem Laden der Datei kann man das Netz dann immer wieder verwenden.
+
+\subsubsection{Convnet Klasse}
+Die Klasse src/detection/deep/Convnet.py wrappt das neuronale Netz in eine einfach zu verwendende Klasse ein.
+\begin{python}
+	   from src.detection.deep.Convnet import Convnet
+	   
+	1. convnet = Convnet.from_verbose(verbose=True)
+	2. convnet.initialize()
+	3. convnet.treshold = 0.7
+	
+	4. result_list = convnet.predict_crosswalks(pil_image_list)
+\end{python}
+\begin{enumerate}
+	\item Konstruiert die Convnet Klasse mit einer Factory
+	\item Lädt das gespeichert Neuronale Netz mithilfe der .hdf5 Datei. Keras übersetzt das Netz in diesem Schritt in C++ und kompiliert es. Die Ausführung ist dementsprechend schnell.
+	\item Manuelles setzen eines Schwellwerts. Der Schwellwert muss zwischen 0 und 1 liegen. Standartmässig ist er auf 0.9 gesetzt. Somit muss das Netz zu 90\% sicher sein, dass es ein Zebrastreifen ist. Dieser Wert ergab in unseren Experimenten die besten Resultate.
+	\item Kategorisiert eine Liste von 50 x 50 Pixel RGB PIL Bilder. Diese Funktion nimmt eine Liste entgegen, da Keras die Bilder so parallel auf mehreren CPU Kernen verarbeiten kann. Als Rückgabewert erhält result\_list eine Liste von Booleans.
+\end{enumerate}
+
+\subsection{Zebrasteifenerkennung entlang der Strassen}
+In diesem Abschnitt kommen die Strasseninformationen, Orthofotos, Inputbilder und das Convnet zusammen. Die Klassen StreetWalker und BoxWalker stellen Funktionen zur Verfügung, mithilfe derer alle Strassen innerhalb einer Bounding Box entlang "'gelaufen"' und die Fussgängerstreifen erkannt werden.
+
+
+
+
+
+
+
