@@ -42,11 +42,11 @@ class StreetWalker:
 
 
         merged = self._merge_nodes(crosswalkNodes)
-        return crosswalkNodes
+        return merged
 
     def _merge_nodes(self, nodelist):
         merger = NodeMerger.from_nodelist(nodelist)
-        merger.max_distance = 16
+        merger.max_distance = 10
         return merger.reduce()
 
     def _get_squared_tiles(self, node1, node2):
