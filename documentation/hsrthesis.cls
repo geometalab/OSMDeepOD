@@ -16,6 +16,17 @@
 \setlist[itemize]{itemsep=0mm}
 \setlength{\intextsep}{0mm}
 
+%Page Size
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Template definitions
+\oddsidemargin = 0pt
+\textwidth = 460pt
+\marginparwidth = 0pt
+\hoffset = -60pt
+\topmargin = 0pt
+\voffset = -40pt
+\textheight = 700pt
+
 % Including mostly used packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[utf8]{inputenc}
