@@ -9,7 +9,7 @@ Die Inputbilder für das Convnet sind 50 x 50 Pixel gross, da auf Zoomstufe 19 5
 \begin{figure}[H]
 	\centering
 	\includegraphics{images/squared_images.png}
-	\caption{Blau: Strassenverlauf, Rot: Ausgeschnittene Bilder 50 x 50 Pixel. Diese Visualisierung der Inputbilder kann für jede beliebige BBox selbst durchgeführt werden. Siehe dazu examples/VisualizeSquaredImages.py im Projektordner}
+	\caption[Anfertigung Inputbilder]{Blau: Strassenverlauf, Rot: Ausgeschnittene Bilder 50 x 50 Pixel. Diese Visualisierung der Inputbilder kann für jede beliebige BBox selbst durchgeführt werden. Siehe dazu examples/VisualizeSquaredImages.py im Projektordner}
 \end{figure}
 
 
@@ -21,13 +21,13 @@ Wir verwenden ein Convolutional Neuronal Network (Convnet) um die automatische E
 \begin{figure}[H]
 	\centering
 	\includegraphics{images/Zebrastreifen_examples.png}
-	\caption{6 x 2 Beispiele für Zebrastreifen. Wie auf den Bildern zu sehen ist, verdecken immer wieder Gegenstände das gelbe Muster. Die unterschiedliche Bildqualität der Orthofotos behinderte das Erkennen stark.}
+	\caption[Beispiele für Zebrastreifen]{6 x 2 Beispiele für Zebrastreifen. Wie auf den Bildern zu sehen ist, verdecken immer wieder Gegenstände das gelbe Muster. Die unterschiedliche Bildqualität der Orthofotos behinderte das Erkennen stark.}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics{images/No_Zebrastreifen_examples.png}
-	\caption{6 x 2 Beispiele für Nicht-Zebrastreifen. Das Nicht-Zebrastreifen Set beinhaltet alle möglichen Strassensituationen von Stadt bis Land. Besonders bei gelben Autos oder Strassenmarkierungen hat das Convnet mühe.}
+	\caption[Beispiele für Nicht-Zebrastreife]{6 x 2 Beispiele für Nicht-Zebrastreifen. Das Nicht-Zebrastreifen Set beinhaltet alle möglichen Strassensituationen von Stadt bis Land. Besonders bei gelben Autos oder Strassenmarkierungen hat das Convnet mühe.}
 \end{figure}
 
 Ein Beispiel für ein Training eines Convnets kann unter der Datei examples/ConvnetTrainer.py eingesehen werden. Die detaillierte Beschreibung der Funktionsweise eines Neuronalen Netzes würde den Rahmen dieser Arbeit sprengen. Eine genaue Beschreibung der Abläufe kann aus den Vorlesungsunterlagen von Stanford\footnote{\url{http://cs231n.github.io/convolutional-networks}} genommen werden. Das in dieser Arbeit benutzte Netz ist unter dem Namen VGGNet (Karen Simonyan, Andrew Zisserman 2014)\footnote{\url{http://arxiv.org/abs/1409.1556}} bekannt. Es wurde Ende 2014 veröffentlicht und ist seit diesem Zeitpunkt eines der besten Neuronalen Netze für Bilderkennung. Ein mithilfe der Library Keras trainiertes Neuronales Netz kann in eine .hdf5 Datei abgespeichert werden. Nach dem Laden der Datei kann man das Netz dann immer wieder verwenden.

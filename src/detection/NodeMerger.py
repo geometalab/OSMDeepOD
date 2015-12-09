@@ -15,7 +15,11 @@ class NodeMerger:
 
     def _generate_neardict(self):
         nearDict = {}
+        i = 0
+        all = len(self.nodelist)
         for me in self.nodelist:
+            i+= 1
+            print str(i) + "/" + str(all)
             neighbors = []
             for other in self.nodelist:
                 distance = me.get_distance_in_meter(other)
@@ -27,17 +31,17 @@ class NodeMerger:
 
     def reduce(self):
         mergedNodes = []
+        print "generate near dict"
         self._generate_neardict()
         nodes = list(self.nodelist)
-
+        print "start merging"
         while len(nodes) > 0:
+            print "todo" + str(len(nodes))
             me = nodes[0]
             subGraph = self.get_neighbors(me)
             merged = self._merge(subGraph)
             mergedNodes.append(merged)
             for node in subGraph:
-                if not node in nodes:
-                    print ""
                 nodes.remove(node)
         return  mergedNodes
 
