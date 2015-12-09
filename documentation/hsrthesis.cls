@@ -25,7 +25,7 @@
 \usepackage[scaled=0.85]{helvet}
 \usepackage{hyperref}
 \usepackage{array}
-\usepackage{ngerman}
+\usepackage[ngerman]{babel}
 \usepackage{glossaries}
 \usepackage{color}
 \usepackage{wrapfig}

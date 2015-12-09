@@ -1,12 +1,12 @@
 \subsection{Data Access}
-Der Data Accss Layer regelt den Zugriff auf die Orthofotos mit Bing Maps, sowie die Strassen und Fussgängerstreifen, welche mit Hilfe von OpenStreetMap Daten über die MapQuest API zur Verfügung gestellt werden. Die Daten werden von den entsprechenden Quellen heruntergeladen und für die Detection zu einem passenden Format aufbereitet.
+Der Data Accss Layer regelt den Zugriff auf die Orthofotos mit Bing Maps, sowie die Strassen und Fussgängerstreifen, welche mit Hilfe von OpenStreetMap Daten über die MapQuest API zur Verfügung gestellt werden. Die Daten werden von den entsprechenden Quellen heruntergeladen und für die Detektion zu einem passenden Format aufbereitet.
 
 \subsubsection{MapQuest}
 Folgende Daten benöitien wir von der API:
 \begin{tabbing}[H]
     \hspace*{3cm}\=\hspace*{9cm}\= \kill
     Strassen: \> Der Suchalgorithmus folgen den Strassenverläufen, \\
-     			\> was die Suche effizeinter und einfach werden lässt.\\
+     			\> was die Suche effizienter und einfach werden lässt.\\
     Fussgängerstreifen: \> Schon erfasste Fussgängerstreifen werden mit den von uns  \\ \> Entdeckten verglichen und nur diejenigen, welche noch nicht in erfasst sind,\\ \> werden abgespeichert.
 \end{tabbing}
 
@@ -43,7 +43,7 @@ In einem nächsten Schritt schränken wir das Resultat weiter ein. Denn nicht au
 Am Ende der Verarbeitung resultiert eine Liste aller relevanten Strassen und alle Fussgängerstreifen.
 
 \subsubsection{Bing Maps}
-Die wichtigsten Daten für die Suche sind die Orthofotos, welche wir über Bing Maps beschaffen. Dabei Hilft und das Python Script globalmaptiles.py. Welches den Umgang mit dem QuadTree Format von Bing Maps und das Umrechnen der Koordinaten zu den entprechenden Tiles stark vereinfacht. (Mehr dazu unter dem Abschnitt~\ref{subsec:tiles} auf der Seite~\pageref{subsec:tiles}). Das herunterladen der Bilder lässt sich parallelisieren, was die Performance enorm steigert. In Python kann dazu die Library \textbf{multiprocessing.dummy import Pool as ThreadPool} verwendet werden.
+Die wichtigsten Daten für die Suche sind die Orthofotos, welche wir über Bing Maps beschaffen. Dabei Hilft und das Python Skript globalmaptiles.py. Welches den Umgang mit dem QuadTree Format von Bing Maps und das Umrechnen der Koordinaten zu den entsprechenden Tiles stark vereinfacht. (Mehr dazu unter dem Abschnitt~\ref{subsec:tiles} auf der Seite~\pageref{subsec:tiles}). Das herunterladen der Bilder lässt sich parallelisieren, was die Performance enorm steigert. In Python kann dazu die Library \textbf{multiprocessing.dummy import Pool as ThreadPool} verwendet werden.
 
 \paragraph{Beispiel Download} Im Nachfolgenden Code ist gezeigt, wie der parallele Download implementiert wird. \\
 \begin{python}

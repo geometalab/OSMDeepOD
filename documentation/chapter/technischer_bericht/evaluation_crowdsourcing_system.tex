@@ -9,7 +9,7 @@
 \subsection{MapRoulette}
 MapRoulette verwendet für ihre Challenges und Tasks ein einfaches JSON Format. Der erstellt werden Challenges mittels POST und mit PUT können diese upgedatet werden.
 
-\subsection*{Beispiel Challenge}
+\subsubsection{Beispiel Challenge}
 \begin{tabbing}
     \hspace*{4cm}\=\hspace*{5cm}\= \kill
     Erstellen: \> POST /api/admin/challenge/<slug>  \\
@@ -27,8 +27,8 @@ MapRoulette verwendet für ihre Challenges und Tasks ein einfaches JSON Format. 
   "difficulty": 2
 }
 \end{python}
-
-\subsection*{Beispiel Task}
+\newpage
+\subsubsection{Beispiel Task}
 \begin{tabbing}
     \hspace*{4cm}\=\hspace*{5cm}\= \kill
     Erstellen: \> POST /api/admin/challenge/<slug>/task/<task\_identifier> \\
@@ -55,7 +55,7 @@ MapRoulette verwendet für ihre Challenges und Tasks ein einfaches JSON Format. 
 
 \subsection{To-Fix}
 To-Fix verwendet für ihre Task ein CSV Format, welches direkt über das grafische Benutzerinterface publiziert werden kann.
-\subsection*{Beispiel CSV}
+\subsubsection{Beispiel CSV}
 \begin{python}
 object_type,object_id,st_astext
 way,51446110,POINT(-94.4176451 43.3273692)
@@ -65,9 +65,10 @@ way,223982938,POINT(18.4823301 59.6732909)
 way,109819283,POINT(-83.1888421 40.0485764)
 \end{python}
 
+\newpage
 
 \subsection{Evaluationsmatrix}
-Um die beiden Kandidaten zu vergleich haben wir eine Evaluationsmatrix erstellt, dabei haben wir diverse für uns relevante Kriterien erarbeiten und diesen jeweils auf einer Skala von 1 bis 10 gewichtet.
+Um die beiden Kandidaten zu vergleichen, haben wir eine Evaluationsmatrix erstellt, dabei haben wir diverse für uns relevante Kriterien erarbeiten und diesen jeweils auf einer Skala von 1 bis 10 gewichtet.
 In einem zweiten Schritt haben wir den Kandidaten für die jeweiligen Kriterien Punkte vergeben.
 
 \begin{table}[H]
