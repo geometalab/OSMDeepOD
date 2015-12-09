@@ -3,7 +3,7 @@ from xml.etree import ElementTree
 
 class MapquestApi:
     #"http://open.mapquestapi.com/xapi/api/0.6/node[highway=crossing][bbox=8.815191135900864,47.22491209728128,8.823774204748178,47.22819078179419]?key=YKqJ7JffQIBKyTgALLNXLVrDSaiQGtiI"
-    def __init__(self, developerKey = "YKqJ7JffQIBKyTgALLNXLVrDSaiQGtiI"):
+    def __init__(self, developerKey = "EvJpuGmEWWrmMrL4fcV4ZkWe7AIh6TcB"):
         self.developerKey = developerKey
         self.__LINK_PREFIX = "http://open.mapquestapi.com/xapi/api/0.6/way[highway=*][bbox="
         self.__LINK_POSTFIX = "]?key="
