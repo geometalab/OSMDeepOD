@@ -62,11 +62,11 @@ if __name__ == "__main__":
         print 'Manger is finished!'
     elif role == 'jobworker':
         print 'JobWorker is running!'
-        jobWorker = Worker.from_worker([Constants.QUEUE_JOBS])
+        jobWorker = Worker.from_worker(['jobs'])
         jobWorker.run(redis)
     elif role == 'resultworker':
         print 'ResultWorker is running!'
-        resultWorker = Worker.from_worker([Constants.QUEUE_RESULTS])
+        resultWorker = Worker.from_worker(['results'])
         resultWorker.run(redis)
     else:
         Usage("ERROR: Sorry, given role is not implemented yet.")

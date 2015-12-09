@@ -15,7 +15,8 @@ class TestTileLoader(unittest.TestCase):
 
     def test_new_bbox(self):
         tl = TileLoader.from_bbox(self.smallTestBbox(), False)
-        tile = tl.load_tile()
+        tl.load_tile()
+        tile = tl.tile
         tile_bbox = tile.bbox
         self.assertAlmostEqual(tile_bbox.left, 8.5425567627, 5)
         self.assertAlmostEqual(tile_bbox.bottom, 47.3658039665, 5)

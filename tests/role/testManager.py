@@ -2,7 +2,6 @@ import unittest
 from src.role.Manager import Manager
 from src.base.Bbox import Bbox
 from src.base.Node import Node
-from src.base.Constants import Constants
 
 class TestManager(unittest.TestCase):
 
@@ -15,10 +14,11 @@ class TestManager(unittest.TestCase):
         self.assertTrue(columns > 2)
 
     def test_with_two_columns(self):
-        node1 = Node('47.0', '8.0', 10)
-        node2 = node1.add_meter(200, Constants.SMALL_BBOX_SIDE_LENGHT + 50)
-
         manager = Manager()
+        node1 = Node('47.0', '8.0', 10)
+        node2 = node1.add_meter(200, manager._SMALL_BBOX_SIDE_LENGHT + 50)
+
+
         bbox = Bbox.from_leftdown_rightup(node1, node2)
         manager.big_bbox = bbox
         columns = manager._calc_columns()
@@ -52,10 +52,11 @@ class TestManager(unittest.TestCase):
         self.assertTrue(manager.small_bboxes[length - 1].top >= node2.latitude and manager.small_bboxes[length - 1].top <= node2.latitude + 0.05)
 
     def test_with_two(self):
-        node1 = Node('47.0', '8.0', 10)
-        node2 = node1.add_meter(Constants.SMALL_BBOX_SIDE_LENGHT + 50, Constants.SMALL_BBOX_SIDE_LENGHT + 50)
-
         manager = Manager()
+        node1 = Node('47.0', '8.0', 10)
+        node2 = node1.add_meter(manager._SMALL_BBOX_SIDE_LENGHT + 50, manager._SMALL_BBOX_SIDE_LENGHT + 50)
+
+
         bbox = Bbox.from_leftdown_rightup(node1, node2)
         manager.big_bbox = bbox
         columns = manager._calc_columns()
@@ -64,10 +65,11 @@ class TestManager(unittest.TestCase):
         self.assertTrue(columns == 2)
 
     def test_with_three(self):
-        node1 = Node('47.0', '8.0', 10)
-        node2 = node1.add_meter(2 * Constants.SMALL_BBOX_SIDE_LENGHT + 50, 2 * Constants.SMALL_BBOX_SIDE_LENGHT + 50)
-
         manager = Manager()
+        node1 = Node('47.0', '8.0', 10)
+        node2 = node1.add_meter(2 * manager._SMALL_BBOX_SIDE_LENGHT + 50, 2 * manager._SMALL_BBOX_SIDE_LENGHT + 50)
+
+
         bbox = Bbox.from_leftdown_rightup(node1, node2)
         manager.big_bbox = bbox
         columns = manager._calc_columns()

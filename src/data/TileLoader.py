@@ -1,5 +1,4 @@
 from src.data.globalmaptiles import GlobalMercator
-from src.base.Constants import Constants
 from src.base.Bbox import Bbox
 from src.base.Tile import Tile
 from src.data.MultiLoader import MultiLoader
@@ -15,6 +14,8 @@ class TileLoader:
         self._PRELINK_SECOUND = '.ssl.ak.tiles.virtualearth.net/tiles/a'
         self._POSTLINK = '.jpeg?g=4401&n=z'
         self.verbose = True
+        self._ZOOMLEVEL = 19
+        self.tile = None
 
     @classmethod
     def from_bbox(cls, bbox, verbose=True):
@@ -31,7 +32,7 @@ class TileLoader:
         urls = []
         for ty in range(tminy, tmaxy+1):
             for tx in range(tminx, tmaxx+1):
-                quadtree = self._mercator.QuadTree(tx, ty, Constants.ZOOM)
+                quadtree = self._mercator.QuadTree(tx, ty, self._ZOOMLEVEL)
                 url = self._build_url(quadtree)
                 urls.append(url)
 
@@ -40,8 +41,8 @@ class TileLoader:
     def _bbox_to_tiles(self, bbox):
         mminx, mminy = self._mercator.LatLonToMeters(bbox.bottom, bbox.left)
         mmaxx, mmaxy = self._mercator.LatLonToMeters(bbox.top, bbox.right)
-        tmaxx, tmaxy = self._mercator.MetersToTile( mmaxx, mmaxy, Constants.ZOOM)
-        tminx, tminy = self._mercator.MetersToTile( mminx, mminy, Constants.ZOOM)
+        tmaxx, tmaxy = self._mercator.MetersToTile( mmaxx, mmaxy, self._ZOOMLEVEL)
+        tminx, tminy = self._mercator.MetersToTile( mminx, mminy, self._ZOOMLEVEL)
         return tminx, tminy, tmaxx, tmaxy
 
     def _download_tiles(self, bbox):
@@ -58,7 +59,7 @@ class TileLoader:
             tiles.append([])
             for tx in range(tminx, tmaxx+1):
                 image = images[url_number]
-                bbox = self._generate_bbox(tx, ty, Constants.ZOOM)
+                bbox = self._generate_bbox(tx, ty, self._ZOOMLEVEL)
                 tile = Tile.from_tile(image, bbox)
                 tiles[row].append(tile)
                 url_number += 1
@@ -81,7 +82,8 @@ class TileLoader:
         tiles = self._download_tiles(self.bbox)
         image = TileLoader._tilematrix_to_image(tiles)
         bbox = TileLoader._get_bbox_by_tiles(tiles)
-        return Tile.from_tile(image, bbox)
+        self.tile = Tile.from_tile(image, bbox)
+        return self.tile
 
     @staticmethod
     def _tilematrix_to_image(tiles):

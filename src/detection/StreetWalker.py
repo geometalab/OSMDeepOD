@@ -1,15 +1,15 @@
 from random import randint
 from src.detection.NodeMerger import NodeMerger
 import src.detection.deep.Convnet as convnet
-from src.base.Constants import Constants
 
 class StreetWalker:
     def __init__(self):
         self.street = None
         self.tile = None
         self.convnet = None
-        self.nb_images = 0
-        self.step_distance = 8
+        self._nb_images = 0
+        self._step_distance = 8
+        self._SQUAREDIMAGE_PIXELPERSIDE = 50
 
     @classmethod
     def from_street_tile(cls, street, tile, convnet):
@@ -23,7 +23,7 @@ class StreetWalker:
 
     def walk(self):
         squaredTiles = self._get_squared_tiles(self.street.nodes[0], self.street.nodes[1])
-        self.nb_images = len(squaredTiles)
+        self._nb_images = len(squaredTiles)
         crosswalkNodes = []
 
         images = []
@@ -50,7 +50,7 @@ class StreetWalker:
         return merger.reduce()
 
     def _get_squared_tiles(self, node1, node2):
-        stepDistance = self.step_distance
+        stepDistance = self._step_distance
         distanceBetweenNodes = node1.get_distance_in_meter(node2)
 
         squaresTiles = []
@@ -61,7 +61,7 @@ class StreetWalker:
             currentNode = node1.step_to(node2, currentDistance)
 
 
-            tile = self.tile.getTile_byNode(currentNode, Constants.SQUAREDIMAGE_PIXELPERSIDE)
+            tile = self.tile.getTile_byNode(currentNode, self._SQUAREDIMAGE_PIXELPERSIDE)
             squaresTiles.append(tile)
 
         return squaresTiles

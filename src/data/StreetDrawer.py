@@ -1,4 +1,4 @@
-from src.data.StreetLoader import StreetLoader
+from src.data.StreetCrosswalkLoader import StreetLoader
 from src.data.TileLoader import TileLoader
 from src.base.TileDrawer import TileDrawer
 
@@ -24,9 +24,10 @@ class StreetDrawer:
 
 
         tileloader = TileLoader.from_bbox(bbox)
-        drawer.tile = tileloader.load_tile()
+        tileloader.load_tile()
+        drawer.tile = tileloader.tile
         streetloader = StreetLoader()
-        drawer.streets = streetloader.load_streets(drawer.tile.bbox)
+        drawer.streets = streetloader.load_data(drawer.tile.bbox)
 
         return drawer
 
