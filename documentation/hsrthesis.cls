@@ -84,7 +84,7 @@
 	\addcontentsline{dec}{decision}
 	{\protect\numberline{\thechapter.\thedecision}#1}\par}
 
-\newcommand\listdecisionname{Entscheidungsverzeichnis}
+\newcommand\listdecisionname{Verzeichnis der Entscheide}
 \newlistof{decision}{dec}{\listdecisionname}
 
 %Shell Stylings
