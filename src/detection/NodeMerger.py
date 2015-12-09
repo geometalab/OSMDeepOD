@@ -32,7 +32,7 @@ class NodeMerger:
 
         while len(nodes) > 0:
             me = nodes[0]
-            subGraph = self.get_neighbors(me)
+            subGraph = self._get_neighbors(me)
             merged = self._merge(subGraph)
             mergedNodes.append(merged)
             for node in subGraph:
@@ -55,12 +55,12 @@ class NodeMerger:
         return merged
 
 
-    def get_neighbors(self, node):
+    def _get_neighbors(self, node):
         ret = [node]
-        ret += self._get_neighbors(node,list(self.nodelist))
+        ret += self._get_neighbors2(node,list(self.nodelist))
         return ret
 
-    def _get_neighbors(self, node, nodeNotYetConsiderd = []):
+    def _get_neighbors2(self, node, nodeNotYetConsiderd = []):
         if len(nodeNotYetConsiderd) == 0:
             return []
         nodeNotYetConsiderd.remove(node)
@@ -68,12 +68,6 @@ class NodeMerger:
         for other in self.neardict[node]:
             if other in nodeNotYetConsiderd:
                 ret.append(other)
-                ret += self._get_neighbors(other,nodeNotYetConsiderd)
+                ret += self._get_neighbors2(other,nodeNotYetConsiderd)
         return ret
 
-    def remove_node_in_dict(self, node):
-        self.neardict[node] = []
-        for other in self.nodelist:
-            new_list = self.neardict[other]
-            new_list.remove(other)
-            self.neardict[other] = new_list

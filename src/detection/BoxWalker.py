@@ -1,11 +1,10 @@
 from src.detection.StreetWalker import StreetWalker
 from src.data.TileLoader import TileLoader
-from src.data.StreetLoader import StreetLoader
+from src.data.StreetCrosswalkLoader import StreetCrosswalkLoader
 import datetime
 from src.detection.deep.Convnet import Convnet
 from src.detection.NodeMerger import NodeMerger
 from random import shuffle
-from src.base.Constants import Constants
 
 class BoxWalker:
     def __init__(self, bbox, verbose=True):
@@ -27,7 +26,8 @@ class BoxWalker:
         self.status_printer.start_load_tiles()
 
         loader = TileLoader.from_bbox(self.bbox, self.verbose)
-        self.tile = loader.load_tile()
+        loader.load_tile()
+        self.tile = loader.tile
         self.bbox = self.tile.bbox
 
     def load_streets(self):
@@ -35,8 +35,8 @@ class BoxWalker:
         if self.tile is None:
             print "Download tiles first"
 
-        streetLoader = StreetLoader()
-        self.streets = streetLoader.load_streets(self.bbox)
+        streetLoader = StreetCrosswalkLoader()
+        self.streets = streetLoader.load_data(self.bbox)
         self.osm_crosswalks = streetLoader.crosswalks
         shuffle(self.streets)
         self.status_printer.set_nb_streets(len(self.streets))
@@ -55,7 +55,7 @@ class BoxWalker:
             streetwalker = StreetWalker.from_street_tile(street, self.tile, self.convnet)
             street_results = streetwalker.walk()
             results += street_results
-            nb_images += streetwalker.nb_images
+            nb_images += streetwalker._nb_images
             self.status_printer.set_state(i,len(results))
 
         self.status_printer.end_walking(nb_images)
@@ -71,10 +71,11 @@ class BoxWalker:
     def _compare_osm_with_detected_crosswalks(self, detected_crosswalks):
         result = []
         is_near = False
+        DISTANCE_TO_CROSSWALK = 5.0
 
         for detected_crosswalk in detected_crosswalks:
             for osm_crosswalk in self.osm_crosswalks:
-                if osm_crosswalk.get_distance_in_meter(detected_crosswalk) < Constants.DISTANCE_TO_CROSSWALK:
+                if osm_crosswalk.get_distance_in_meter(detected_crosswalk) < DISTANCE_TO_CROSSWALK:
                     is_near = True
                     break
 

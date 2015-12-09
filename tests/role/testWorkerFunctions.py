@@ -1,9 +1,8 @@
 import unittest
 import json
 import os
-from src.role.WorkerFunctions import store
+from src.role.WorkerFunctions import store, PATH_TO_CROSSWALKS
 from src.base.Node import Node
-from src.base.Constants import Constants
 
 class TestWorkerFunctions(unittest.TestCase):
 
@@ -15,7 +14,7 @@ class TestWorkerFunctions(unittest.TestCase):
 
     def test_store_zero_crosswalks(self):
         store([])
-        with open(Constants.PATH_TO_CROSSWALKS, 'r') as f:
+        with open(PATH_TO_CROSSWALKS, 'r') as f:
             data = json.load(f)
         self.assertTrue(len(data['crosswalks']) == 0);
 
@@ -23,7 +22,7 @@ class TestWorkerFunctions(unittest.TestCase):
         crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
         store(crosswalks)
         store(crosswalks)
-        with open(Constants.PATH_TO_CROSSWALKS, 'r') as f:
+        with open(PATH_TO_CROSSWALKS, 'r') as f:
             data = json.load(f)
         self.assertTrue(len(data['crosswalks']) == 4);
 
@@ -31,10 +30,10 @@ class TestWorkerFunctions(unittest.TestCase):
     def test_store_two_crosswalks(self):
         crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
         store(crosswalks)
-        with open(Constants.PATH_TO_CROSSWALKS, 'r') as f:
+        with open(PATH_TO_CROSSWALKS, 'r') as f:
             data = json.load(f)
         self.assertTrue(len(data['crosswalks']) == 2);
 
     def remove_file(self):
-        if os.path.exists(Constants.PATH_TO_CROSSWALKS):
-            os.remove(Constants.PATH_TO_CROSSWALKS)
+        if os.path.exists(PATH_TO_CROSSWALKS):
+            os.remove(PATH_TO_CROSSWALKS)

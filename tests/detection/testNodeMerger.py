@@ -18,10 +18,10 @@ class NodeMergerTest(unittest.TestCase):
         nodelist = [n1, n2, n3, n4, n5]
         merger = NodeMerger.from_nodelist(nodelist)
         merger._generate_neardict()
-        resultList = merger.get_neighbors(n1)
+        resultList = merger._get_neighbors(n1)
         self.assertEquals(len(resultList), 3)
 
-        resultList = merger.get_neighbors(n4)
+        resultList = merger._get_neighbors(n4)
         self.assertEquals(len(resultList), 2)
 
     def test_reduce(self):
