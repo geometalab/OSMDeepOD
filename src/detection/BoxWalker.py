@@ -1,6 +1,6 @@
 from src.detection.StreetWalker import StreetWalker
 from src.data.TileLoader import TileLoader
-from src.data.StreetCrosswalkLoader import StreetLoader
+from src.data.StreetCrosswalkLoader import StreetCrosswalkLoader
 import datetime
 from src.detection.deep.Convnet import Convnet
 from src.detection.NodeMerger import NodeMerger
@@ -35,7 +35,7 @@ class BoxWalker:
         if self.tile is None:
             print "Download tiles first"
 
-        streetLoader = StreetLoader()
+        streetLoader = StreetCrosswalkLoader()
         self.streets = streetLoader.load_data(self.bbox)
         self.osm_crosswalks = streetLoader.crosswalks
         shuffle(self.streets)

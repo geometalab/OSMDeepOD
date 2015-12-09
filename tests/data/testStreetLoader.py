@@ -1,12 +1,12 @@
 import unittest
-from src.data.StreetCrosswalkLoader import StreetLoader
+from src.data.StreetCrosswalkLoader import StreetCrosswalkLoader
 from src.base.Bbox import Bbox
 
 class TestStreetLoader(unittest.TestCase):
 
     def test_load_streets(self):
         bbox = self.ZurichBellvue()
-        loader = StreetLoader()
+        loader = StreetCrosswalkLoader()
         streets = loader.load_data(bbox)
 
         self.assertTrue(len(streets) > 50)

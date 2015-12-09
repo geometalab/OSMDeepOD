@@ -2,7 +2,7 @@ from src.base.Street import Street
 from src.base.Node import Node
 from src.data.MapquestApi import MapquestApi
 
-class StreetLoader:
+class StreetCrosswalkLoader:
     def __init__(self):
         self.api = MapquestApi()
         self._ATTRIBNAME = "highway"

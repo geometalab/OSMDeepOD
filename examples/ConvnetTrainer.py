@@ -9,7 +9,9 @@ from keras.regularizers import l2
 from keras import callbacks
 from src.detection.deep.training.Crosswalk_dataset import Crosswalk_dataset
 
-
+'''
+Attention: The Keras library changes all the time. You can't be sure the interface will be changed tomorrow! Use the keras library on the delivered CD.
+'''
 def load_dataset(sourcefolder, split_factor):
     dataset = Crosswalk_dataset.from_sourcefolder(sourcefolder)
     dataset.read_samples()
