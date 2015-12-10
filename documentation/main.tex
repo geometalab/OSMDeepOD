@@ -4,6 +4,18 @@
 \input{index/glossar}
 \makeglossaries
 \raggedbottom %http://blog.emeidi.com/2009/03/07/damit-latex-paragraphen-nicht-vertikal-auf-die-seite-verteilt/
+%Anhang
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\g@addto@macro\appendix{%
+  \cleardoublepage
+  \hypertarget{appendixstart}{}%
+  \addtocontents{toc}{
+    \protect\contentsline{chapter}{\protect\hyperlink{appendixstart}{Anhang}}{}{}%
+  }%
+}
+\makeatother
+
 \begin{document}
 
 \input{chapter/title}
