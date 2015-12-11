@@ -3,15 +3,9 @@
 Open Street Map, eine online Kartenanwendung wie Google Maps, bietet seinen Benutzern eine Fussgängernavigation an. Der Nutzer wird entlang von Strassen und Wegen zu seinem Ziel geleitet. Dabei müssen die bestehenden Fussgängerstreifen in die Planung einbezogen werden, damit auch eine Überquerung der Strassen möglich ist. Unglücklicherweise sind Zebrastreifen nur lückenhaft in Open Street Map erfasst, was die Fussgängernavigation ungenau, wenn nicht sogar fehlerhaft macht.
 
 Dieses Projekt ist der Versuch einer automatischen Erkennung von Fussgängerstreifen auf Orthofotos (umgangssprachlich Satellitenbildern). Da das maschinelle Erfassen von Daten in Open Street Map nicht erlaubt ist, müssen die gefundenen Koordinaten in ein Crowdsourcing-System wie Maproulette eingespeist werden. In einem Crowdsourcing-System bewerten Nutzer, ob die eingefügten Daten stimmen oder nicht.
-\begin{figure}[H]
-	\centering
-	\includegraphics[]{images/Maproulette_management_summary.png}
-	\caption[Management Summery Maproulette]{Maproulette Challenge - Befindet sich hier ein Fussballfeld?}
-\end{figure}
-
 
 \subsection*{Ergebnisse}
-Aus diesem Projekt entstand einen Applikation für die automatische Erkennung von Fussgängerstreifen. Die Applikation bezieht in einem angegebenen Bereich automatisch die entsprechend Orthofotos und Strasseninformationen und extrahiert die Koordinaten der Fussgängerstreifen. Die Koordinaten werden in einer Json-Datei abgelegt und können in eine Maproulette Challenge umgewandelt werden.
+Aus diesem Projekt entstand einen Applikation für die automatische Erkennung von Fussgängerstreifen. Die Applikation bezieht in einem angegebenen Bereich automatisch die entsprechend Orthofotos und Strasseninformationen und extrahiert die Koordinaten der Fussgängerstreifen. Die Koordinaten werden in einer Json-Datei abgelegt und können in eine Maproulette Challenge umgewandelt werden. 
 \\
 \begin{figure}[H]
 	\centering
@@ -19,8 +13,10 @@ Aus diesem Projekt entstand einen Applikation für die automatische Erkennung vo
 	\caption[Management Summery Überblick]{Überblick}
 \end{figure}
 
+Diese Arbeit verwendet ein Convolutional Neuronal Network (Deep Learning) zur Klassifikation von Bildern. Der Erkennungprozess konnte durch eine Message Queue und einem Docker Image auf verschiedene Maschinen verteilt und somit der Erkennungsaufwand auf mehrere Tage beschränkt werden.
+
 \subsubsection{Kennzahlen}
-Die Applikation erkannte mehr als 80\% aller gelben Fussgängerstreifen mit einer Fehlerrate von weniger als 10\%. Die Koordinaten der Fussgängerstreifen im Raum des Kanton Zürich, Kanton Zugs und Teile des Kanton St. Gallen konnten an Maproulette zur Einpflegung in Open Street Map übergeben werden
+Die Applikation erkannte mehr als 80\% aller gelben Fussgängerstreifen mit einer Fehlerrate von weniger als 10\%. Die Koordinaten der Fussgängerstreifen im Raum des Kanton Zürich, Kanton Zugs und Teile des Kanton St. Gallen konnten an Maproulette zur Einpflegung in Open Street Map übergeben werden.
 \\
 \begin{figure}[H]
 	\centering
@@ -29,5 +25,7 @@ Die Applikation erkannte mehr als 80\% aller gelben Fussgängerstreifen mit eine
 \end{figure}
 
 \subsection*{Ausblick}
-Der Erkennungsalgorithmus ist zu Ende dieses Projektes auf die Region Zürich und Ostschweiz spezialisiert. Mit weiteren Optimierungen ist es möglich, alle Zebrastreifen in der Schweiz zu erfassen und sogar weisse Zebrastreifen für andere europäische Länder zu erkennen. Auch weitere Strassenmarkierungen sind denkbar.
+Der Erkennungsalgorithmus ist zu Ende dieses Projektes auf die Region Zürich und Ostschweiz spezialisiert. Mit weiteren Optimierungen beim Neuronalen Netz ist es möglich, alle Zebrastreifen in der Schweiz zu erfassen und sogar weisse Fussgängerstreifen für andere europäische Länder zu erkennen. Auch weitere Strassenmarkierungen sind denkbar.
+
+Weiter ist die Geschwindigkeit, in der Convolutional Neural Network verbessert werden, enorm. In 2 - 3 Jahren könnte es möglich sein, annähernd alle Fussgängerstreifen auf Orthofotos zu erkennen.
 \newpage
