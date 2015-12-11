@@ -1,9 +1,9 @@
 {
   "title": "Crosswalk Detection",
-  "blurb": "Verify if it is a crosswalk or not",
+  "blurb": "This challenge will show you possible positions of crosswalks. They are very important for pedestrian navigation. So help us to improve the missing information. The coordinate of the crosswalks were detected on satellite images from Bing Maps. For this automated process we used a convolutional neural network.",
   "description": "verify if it is a crosswalk or not",
   "instruction": "See if you can verify the crosswalks.",
-  "help": "This challenge will show you possible positions of crosswalks.",
+  "help": "The data were collected on the second of december 2015. For further information visit our GitHub repository: https://github.com/geometalab/OSM-Crosswalk-Detection",
   "difficulty": 1,
   "active": true
 }
