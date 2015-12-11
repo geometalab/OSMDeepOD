@@ -13,7 +13,7 @@ Aus diesem Projekt entstand einen Applikation für die automatische Erkennung vo
 	\caption[Management Summery Überblick]{Überblick}
 \end{figure}
 
-Diese Arbeit verwendet ein Convolutional Neuronal Network (Deep Learning) zur Klassifikation von Bildern. Der Erkennungprozess konnte durch eine Message Queue und einem Docker Image auf verschiedene Maschinen verteilt und somit der Erkennungsaufwand auf mehrere Tage beschränkt werden.
+Diese Arbeit verwendet ein Convolutional Neuronal Network (Deep Learning) zur Klassifikation von Bildern. Die Applikation ist in einem Docker Image verfügbar. Somit kann der Erkennungprozess konnte durch eine Message Queue und dem Docker Image auf verschiedene Maschinen verteilt und der Erkennungsaufwand auf mehrere Tage beschränkt werden. Ohne diese Parallelisierung hätten Wartezeiten von mehreren Wochen in Kauf genommen werden müssen.
 
 \subsubsection{Kennzahlen}
 Die Applikation erkannte mehr als 80\% aller gelben Fussgängerstreifen mit einer Fehlerrate von weniger als 10\%. Die Koordinaten der Fussgängerstreifen im Raum des Kanton Zürich, Kanton Zugs und Teile des Kanton St. Gallen konnten an Maproulette zur Einpflegung in Open Street Map übergeben werden.
