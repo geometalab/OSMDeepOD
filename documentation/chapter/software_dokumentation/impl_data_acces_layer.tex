@@ -25,19 +25,7 @@ resp, content = httplib2.Http().request(url)
 Das Resultat der Abfrage ist im XML Format, Python bietet für die Verarbeitung von XML Daten die Library \textbf{ElementTree}.\\
 In einem nächsten Schritt schränken wir das Resultat weiter ein. Denn nicht auf allen Strassen sind Fussgängerstreifen möglich. Für uns relevant sind:
 \begin{itemize}
-	\item road
-	\item trunk
-	\item primary
-	\item secondary 
-	\item tertiary
-	\item unclassified
-	\item residential
-	\item service 
-	\item trunk\_link 
-	\item primary\_link 
-	\item secondary\_link 
-	\item tertiary\_link 
-	\item pedestrian
+	\item road, trunk, primary, secondary, tertiary, unclassified, residential, service, trunk\_link, primary\_link, secondary\_link, tertiary\_link, pedestrian
 \end{itemize}
 
 Am Ende der Verarbeitung resultiert eine Liste aller relevanten Strassen und alle Fussgängerstreifen.
