@@ -97,6 +97,13 @@ Der BoxWalker löst das Erkennungsproblem für eine ganze Bounding Box. Zuerst l
 
 \subsubsection{NodeMerger}
 Die NodeMerger-Klasse versucht das Problem der doppelten Erkennung zu lösen. Dadurch, das sich die Inputbilder überlappen, kann es dazu kommen, das Fussgängerstreifen doppelt erkannt werden. Das gleiche Problem tritt auf, wenn mehrere Strassen über den gleichen Zebrastreifen führen.
+\\
+\begin{figure}[H]
+	\centering
+	\includegraphics{images/NodeMerger_Beispiel.png}
+	\caption[Beispiele NodeMerger]{Beispiel NodeMerger - Dieser Fussgängerstreifen liegt auf einer Kreuzung und ist ziemlich gross. Links vor der Zusammenfassung, Rechts danach. Der Merger nimmt den Durchschnitt aller drei Koordinaten als neue Koordinate.}
+\end{figure}
+
 
 Der NodeMerger nimmt alle gefundenen Koordinaten entgegen und berechnet alle Abstände von gefundenem Zebrastreifen zu gefundenem Zebrastreifen. Sind die Koordinaten genug nah beieinander, werden sie zusammengefasst. Genau genommen wird hier ein Graph mit Knoten und Kanten aufgebaut. Die Koordinaten sind die Knoten und die Knoten werden verbunden, wenn sie genug nahe beieinander sind. Zum Schluss werden alle Knoten zusammengefasst, welche verbunden sind.
 
