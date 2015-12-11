@@ -9,6 +9,23 @@ Als Resultat der Arbeit entstand eine Applikation, welche auf Orthofotos Fussgä
 \caption[Ostschweiz]{Ostschweiz}
 \end{figure}
 
+\subsubsection{Confusion Matrix}
+Um saubere Kennzahlen zur Erkennungrate zu erhalten, haben den Algortihmus auf die Fläche zwischen Zollikon und Zürich Zoo angewendet und die Daten in einer Confusion Matrix zusammengefasst.
+\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{images/Confusionmatrix_dl_end.png}
+	\caption{Resultierende Confusion Matrix - BBox (47.355633, 8.543026), (47.372811, 8.570957)}
+\end{figure}
+In Worten ausgedrückt, sind die Zahlen folgendermassen zu interpretieren:
+\begin{itemize}
+	\item 83\% aller visuell sichtbaren Fussgängerstreifen werden erkannt.
+	\item 17\% der Fussgängerstreifen werden nicht erkannt.
+	\item 9\% der erkannten Fussgängerstreifen sind falsch.
+\end{itemize}
+			
+
+
 \subsubsection{Ziel der Aufgabenstellung}
 \begin{table}[H]
     \begin{tabular}{|p{6cm}|p{8cm}|}
