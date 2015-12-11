@@ -80,9 +80,9 @@
 \usepackage{tocloft}
 \newcommand\decision[1]{%
 	\refstepcounter{decision}
-	\par\noindent\textbf{Entscheid \thedecision. #1}
+	\par\noindent\textbf{Entscheid  \thedecision. #1 }
 	\addcontentsline{dec}{decision}
-	{\protect\numberline{\thechapter.\thedecision}#1}\par}
+	{\protect\numberline{\thechapter.\thedecision}#1 }\par}
 
 \newcommand\listdecisionname{Verzeichnis der Entscheide}
 \newlistof{decision}{dec}{\listdecisionname}
