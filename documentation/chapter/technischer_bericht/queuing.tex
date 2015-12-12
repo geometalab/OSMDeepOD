@@ -1,11 +1,11 @@
-\section{Parallelisierung}
+\subsection{Parallelisierung}
 Zu Beginn unserer Arbeit unterschätzten wir die enorme Datenmenge in Form von Orthofotos (Beispiel Schweiz: 7.1 Millionen Bilder à $5820 m^{2}$ Fläche pro Bild). Weiter wird auch sehr viel Rechenleistung für die Erkennung der Fussgängerstreifen auf den Bilder benötigt. Um diesen nicht trivialen Problemen Herr zu werden, setzten wir auf eine Parallelisierungsstratege mit Hilfe einer Queue. \\ 
 
 \decision{Queueing Sytem}
 Den Entscheid für Redis\footnote{\url{http://redis.io/}} in Kombination mit RQ\footnote{\url{http://python-rq.org/}} haben wir während eines Meeting mit Hilfe von Mitarbeitern des Institut für Software erarbeitet. RQ ist eine relativ einfach zu verwendende Library, welche Redis (Key Value Store) als Queue einsetzt. Durch die Einfachheit und die gute Integration in Python haben wir uns für diesen Lösungsweg entschieden.
 
 \newpage
-\subsection{Aufbau}
+\subsubsection{Aufbau}
 \label{subsec:ablauf}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/queuing.png}
