@@ -38,23 +38,23 @@ Dank Docker kann unsere Applikation innert Minuten gestartet werden.
 
 \paragraph{Manager}
 \begin{lstlisting}[style=BashInputStyle]
- # docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
- --role manager left bottom right top
+	# docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
+ 	--role manager left bottom right top
 \end{lstlisting}
 Left, Bottom, Right, Top entsprechen den Koordinaten im WGS84 Format. \\
 Ostschweiz: left=8.361002, bottom=47.166994, right=8.977610, top=47.706676) 
 
 \paragraph{Jobworker}
 \begin{lstlisting}[style=BashInputStyle]
- # docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
- --role jobworker
+	# docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
+ 	--role jobworker
 \end{lstlisting}
 Jobworker können auf bliebig vielen Rechnern gestartet werden.\\
 
 \paragraph{Resultworker}
 \begin{lstlisting}[style=BashInputStyle]
- # docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
- --role resultworker
+	# docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
+ 	--role resultworker
 \end{lstlisting}
 Die Resultate werden im File crosswalks.json gespeichert, dieses findet man im Verzeichnis in dem der Resultworker gestartet wurde.
 \newpage
@@ -62,16 +62,21 @@ Die Resultate werden im File crosswalks.json gespeichert, dieses findet man im V
 Für das Training des Neuronalen Netzes steht ein eigenes Docker Image\footnote{\url{https://hub.docker.com/r/sebu/keras_cuda/}} auf Docker Hub bereit. Das Image basiert auf einem offiziellen Nvidia Cuda und ist fähig mit einer Nvidia Grafikkarte zur arbeiten. Die Grafikkarte wird mithilfe des nvidia-docker\footnote{\url{https://github.com/NVIDIA/nvidia-docker}} Projekts geladen. CUDA muss dabei auf dem Host Rechner installiert sein.
 
 
-\paragraph{Start Keras Image}
+\subsection{Keras Image}
+\paragraph{Download des nvidia-docker Projekts}
 \begin{lstlisting}[style=BashInputStyle]
-# Download des nvidia-docker Projekts
-git clone https://github.com/NVIDIA/nvidia-docker.git
-cd nvidia-docker
+	# git clone https://github.com/NVIDIA/nvidia-docker.git
+	# cd nvidia-docker
+\end{lstlisting}
 
-# Herunterladen des Images
-docker pull sebu/keras_cuda
-# Start des Containers und mount der Grafikkarte #0
-GPU=0 ./nvidia-docker run -i -t sebu/keras_cuda /bin/bash
+\paragraph{Herunterladen des Images}
+\begin{lstlisting}[style=BashInputStyle]
+	# docker pull sebu/keras_cuda
+\end{lstlisting}	
+
+\paragraph{Start des Containers und mount der Grafikkarte Nummer 0}
+\begin{lstlisting}[style=BashInputStyle]
+	#GPU=0 ./nvidia-docker run -i -t sebu/keras_cuda /bin/bash
 \end{lstlisting}
 
 Achtung: Die Keras Bibliothek entwickelt sich ständig weiter. Auch das Interface der populärsten Klassen können sich ändern und haben sich auch schon während diesem Projekt verändert! In diesem Keras Docker Image ist der Stand von Keras installiert, mit dem wir gearbeitet haben. Keras bietet leider keine Versionierung an. Der von uns verwendete Stand ist auch auf der mitglieferten CD erhältlich.
