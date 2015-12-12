@@ -1,0 +1,21 @@
+\subsection{MapRoulette Challenge}
+Maproulette ist ein Crowdsourcing-System, welches genutzt wird um mit Hilfe von Challenges Daten in OpenStreetMap einfliessen lässt, diese kontrolliert oder auch erweitert. Den Entscheid für diesen Anbieter haben wir unter dem Abschnitt~\ref{subsec:MapRoulette} auf der Seite~\pageref{subsec:MapRoulette} getroffen.
+
+\subsubsection{Daten in Tasks umwandeln}
+Am Ende des Suchprozesse werden alle gefundenen Fussgängerstreifen in einem JSON File abgespeichert. MapRoulette benötigt für die Tasks jedoch ein GeoJSON Format, somit müssen wir diese Daten nach passend umwandeln. 
+
+\paragraph{Challenge} Der Text für die Challenge ist in englisch zu verfassen und sollte folgende Punkte beinhalten:
+\begin{itemize}
+	\item Title
+	\item Blurb (Einzeiler, eine Art Untertitel)
+	\item Description
+	\item Help
+	\item Instruction
+\end{itemize}
+
+\paragraph{Task} Unsere Task beinhalte hauptsächlich nur die Position des zu verifizierenden Fussgängerstriefens, sowie eine kurze Beschreibung. Der Aufgebaut gliedert sich folgendermassen:
+\begin{itemize}
+	\item Identifier (Eindeutiger 72 Character String)
+	\item Geometries (Position des Fussgängerstreifens)
+	\item Instruction (Beschriebt den Task)
+\end{itemize}
