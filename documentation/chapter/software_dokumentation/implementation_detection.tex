@@ -1,11 +1,12 @@
+
 \subsection{Detection Layer - Bilderkennung}
 
 \subsubsection{Anfertigung der Bilder entlang der Strassen}
-Damit das Convnet die Einteilung zwischen Zebrastreifen und Nicht-Zebrastreifen machen kann, braucht es ein RBG Bild mit 50 x 50 Pixeln als Input. Diese Inputbilder werden aus dem gedownloadetem Orthofoto ausgeschnitten. Mithilfe der Strassenkoordinaten muss nicht das ganze Orthofoto in kleine Bilder aufgeteilt, sondern die Inputbilder können nur entlang der Strassen ausgeschnitten werden. Der Abstand zwischen zwei Inputbildern (auch Schrittweite) ist so gewählt, das eine gewisse Überlappung vorliegt.
-\\
+Damit das Convnet die Einteilung zwischen Zebrastreifen und Nicht-Zebrastreifen machen kann, braucht es ein RBG Bild mit 50 x 50 Pixeln als Input. Diese \Gls{Inputbild}er werden aus dem gedownloadetem Orthofoto ausgeschnitten. Mithilfe der Strassenkoordinaten muss nicht das ganze Orthofoto in kleine Bilder aufgeteilt, sondern die Inputbilder können nur entlang der Strassen ausgeschnitten werden. Der Abstand zwischen zwei Inputbildern (auch Schrittweite) ist so gewählt, das eine gewisse Überlappung vorliegt.
+
 \decision{Eckdaten Anfertigung Inputbilder} 
 Die Inputbilder für das Convnet sind 50 x 50 Pixel gross, da auf Zoomstufe 19 50 Pixel etwa der Breite von zwei Strassen entspricht. Die Schrittweite wurde so angepasst, dass auch Zebrastreifen, die zwischen zwei Inputbildern liegen, erkannt werden.
-\\
+
 \begin{figure}[H]
 	\centering
 	\includegraphics{images/squared_images.png}

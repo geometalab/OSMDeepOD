@@ -1,6 +1,6 @@
 \section{Evaluation Suchalgorithmus}
 \label{sec:suchalgorithmus}
-Die Evaluation verschiedener Algorithmen zur Erkennung von Fussgängerstreifen stellte ein wichtiger Teil unserer Arbeit dar. Nach Absprachen mit unseren Dozenten und Recherchen im Internet sind wir auf die unteren Methoden zur Bilderkennung gestossen. Um die Kandidaten zu vergleichen, griffen wir auf das Werkzeug der Confusion Matrix\footnote{\url{https://de.wikipedia.org/wiki/Beurteilung_eines_Klassifikators}} (Wahrheitsmatrix) zurück.
+Die Evaluation verschiedener Algorithmen zur Erkennung von Fussgängerstreifen stellte ein wichtiger Teil unserer Arbeit dar. Nach Absprachen mit unseren Dozenten und Recherchen im Internet sind wir auf die unteren Methoden zur Bilderkennung gestossen. Um die Kandidaten zu vergleichen, griffen wir auf das Werkzeug der \Gls{Confusion Matrix}\footnote{\url{https://de.wikipedia.org/wiki/Beurteilung_eines_Klassifikators}} (Wahrheitsmatrix) zurück.
 
 \subsection{Algorithmen Vergleich}
 Um einen neutralen Vergleich der verschiedenen Erkennungsmethoden zu erreichen, haben wir alle Methoden testweise implementiert und mit ihnen eine Erkennung im Raum Rapperswil durchgeführt.
@@ -13,7 +13,7 @@ Wir haben mit folgenden Eckdaten gearbeitet:
 \end{tabbing}
 
 
-\subsubsection{Haar Feature-based Cascade Classifier}
+\subsubsection{\Gls{Haar Feature-based Cascade Classifier}}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/haar_conf.png}
 \caption[Haar Feature-based Cascade Classifier]{Haar Feature-based Cascade Classifier}
@@ -29,14 +29,14 @@ Für das Trainieren braucht es sehr viele Bilder und noch mehr Rechenleistung, u
 \includegraphics[width=\textwidth]{images/fast_fourier_conf.png}
 \caption[Fast Fourier Transform]{Fast Fourier Transform}
 \end{figure}
-Die Orthofotos entlang der Strasse wurde so ausgerichtet, dass die Strasse horizontal zum Bild liegt. Der Zebrastreifen hat nun die Eigenschaft, dass wenn eine Fourier Transformation vertikal zum Bild angewendet wird, ein eindeutiges Frequenzmuster entstehen sollte. Genau genommen ist der 8. Fourierkoeffizient gegenüber seinen Nachbar erhöht (Je nach Bildqualität auch der 7. oder 9.).
+Die \Gls{Orthofotos} entlang der Strasse wurde so ausgerichtet, dass die Strasse horizontal zum Bild liegt. Der Zebrastreifen hat nun die Eigenschaft, dass wenn eine Fourier Transformation vertikal zum Bild angewendet wird, ein eindeutiges Frequenzmuster entstehen sollte. Genau genommen ist der 8. Fourierkoeffizient gegenüber seinen Nachbar erhöht (Je nach Bildqualität auch der 7. oder 9.).
 Die Methode versagt jedoch, sobald der Zebrastreifen undeutlich wird, Objekte wie Autos auf dem Zebrastreifen sind oder andere Gegenstände diese dominante Frequenz auch beinhalten.\\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=5cm]{images/Unsharp_Crosswalk2.png}\caption[Scale-invariant Feature Transform]{Undeutlicher Zebrastreifen ohne dominanten Fourierkoeffizienten}
 \end{figure}
 \newpage
-\subsubsection{Scale-invariant Feature Transform}	
+\subsubsection{\Gls{Scale-invariant Feature Transform}}	
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/sif_conf.png}
 \caption[Scale-invariant Feature Transform]{Scale-invariant Feature Transform}
@@ -46,9 +46,9 @@ OpenCV bietet eine Implementation von SIFT, welche wir nutzten um die Evaluation
 \subsubsection{Deep Learning - Convnet}	
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/deep_conf.png}
-\caption[Deep Learning]{Deep Learning - Convnet}
+\caption[Deep Learning]{\Gls{Deep Learning} - Convnet}
 \end{figure}
-Das Convolutional Neural Network (Convnet) hat die Zebrastreifen mit Abstand am besten erkannt. Anzumerken ist hier, dass die False Positive (FP) Rate von 0 ein schlichtes Zufallsergebnis ist. Wir haben diese Technik nach der Evaluation auf grösseren Flächen innerhalb der Stadt Zürich getestet und sind auf 1 FP pro 1000 Bildern gekommen. Eine Beschreibung der Technik des Covnets können sie dem nächsten Kapitel Umsetzungskonzept entnehmen.
+Das \Gls{Convolutional Neural Network} hat die Zebrastreifen mit Abstand am besten erkannt. Anzumerken ist hier, dass die False Positive (FP) Rate von 0 ein schlichtes Zufallsergebnis ist. Wir haben diese Technik nach der Evaluation auf grösseren Flächen innerhalb der Stadt Zürich getestet und sind auf 1 FP pro 1000 Bildern gekommen. Eine Beschreibung der Technik des \Gls{Convnet}s können sie dem nächsten Kapitel Umsetzungskonzept entnehmen.
 \newpage
 
 \subsection{Auswertung}
