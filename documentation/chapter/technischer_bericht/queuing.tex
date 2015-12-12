@@ -11,15 +11,15 @@ Den Entscheid für Redis\footnote{\url{http://redis.io/}} in Kombination mit RQ\
 \includegraphics[width=\textwidth]{images/queuing.png}
 \caption[Queueing]{Queueing}
 \end{figure}
-Auf der Abbildung ist zu sehen, dass wir für die verarbeiten der Jobs auf zwei Queues setzten, eine die die Abzuarbeitenden Bounding Boxes beinhält und eine weitere für das Sammeln der Resultate. Der genau Ablauf gestaltet sich wie folgt:
+Auf der Abbildung ist zu sehen, dass wir für das Verarbeiten der Jobs auf zwei Queues setzten, eine die die Abzuarbeitenden Bounding Boxes beinhaltet und eine weitere für das Sammeln der Resultate. Der genau Ablauf gestaltet sich wie folgt:
 \begin{enumerate}
-		\item Manager wird aufgerufen mit Grosser Bounding Box
-		\item Manager teilt Bounding Box auf
-		\item Kleine Bounding Boxes werden als Job in die Job Queue geladen
-		\item Jobs werden von den Worker aus der Queue geholt
-		\item Worker arbeiten kleine Bounding Boxen ab
-		\item Worker stellt die gefunden Punkt in Result Queue
-		\item Result Worker holt die gefunden Punkt aus der Result Queue und speichert diese in einem JSON File 
+		\item Manager wird aufgerufen mit der grosse Input Bounding Box.
+		\item Manager teilt Bounding Box auf.
+		\item Kleine Bounding Boxes werden als Jobs in die Job Queue geladen.
+		\item Jobs werden von den Worker aus der Queue geholt.
+		\item Worker arbeiten kleine Bounding Boxen ab.
+		\item Worker stellt die gefunden Punkt in Result Queue.
+		\item Result Worker holt die gefunden Punkt aus der Result Queue und speichert diese in einer JSON Datei ab. 
 \end{enumerate}
 
 
