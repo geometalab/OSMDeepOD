@@ -1,8 +1,8 @@
 \section{Management Summary}
 \subsection*{Ausgangslage}
-OpenStreetMap, eine online Kartenanwendung wie Google Maps, bietet seinen Benutzern eine Fussgängernavigation an. Der Nutzer wird entlang von Strassen und Wegen zu seinem Ziel geleitet. Dabei müssen die bestehenden Fussgängerstreifen in die Planung einbezogen werden, damit auch eine Überquerung der Strassen möglich ist. Unglücklicherweise sind Fussgängerstreifen nur lückenhaft in Open Street Map erfasst, was die Fussgängernavigation ungenau, wenn nicht sogar fehlerhaft macht.
+OpenStreetMap, eine online Kartenanwendung wie Google Maps, bietet seinen Benutzern eine Fussgängernavigation an. Der Nutzer wird entlang von Strassen und Wegen zu seinem Ziel geleitet. Dabei müssen die bestehenden Fussgängerstreifen in die Planung einbezogen werden, damit auch eine Überquerung der Strassen möglich ist. Unglücklicherweise sind Fussgängerstreifen nur lückenhaft in OpenStreetMap erfasst, was die Fussgängernavigation ungenau, wenn nicht sogar fehlerhaft macht.
 
-Dieses Projekt ist der Versuch einer automatischen Erkennung von Fussgängerstreifen auf Orthofotos (umgangssprachlich Satellitenbilder). Da das maschinelle Erfassen von Daten in Open Street Map nicht erlaubt ist, müssen die gefundenen Koordinaten in ein Crowdsourcing-System wie Maproulette eingespeist werden. In einem Crowdsourcing-System bewerten Nutzer, ob die eingefügten Daten stimmen oder nicht.
+Dieses Projekt ist der Versuch einer automatischen Erkennung von Fussgängerstreifen auf Orthofotos (umgangssprachlich Satellitenbilder). Da das maschinelle Erfassen von Daten in OpenStreetMap nicht erlaubt ist, müssen die gefundenen Koordinaten in ein Crowdsourcing-System wie Maproulette eingespeist werden. In einem Crowdsourcing-System bewerten Nutzer, ob die eingefügten Daten stimmen oder nicht.
 
 \subsection*{Ergebnisse}
 Aus diesem Projekt entstand einen Applikation für die automatische Erkennung von Fussgängerstreifen. Die Applikation bezieht in einem angegebenen Bereich automatisch die entsprechend Orthofotos und Strasseninformationen und extrahiert die Koordinaten der Fussgängerstreifen. Die Koordinaten werden in einer Json-Datei abgelegt und können in eine Maproulette Challenge umgewandelt werden. 
@@ -16,7 +16,7 @@ Aus diesem Projekt entstand einen Applikation für die automatische Erkennung vo
 Diese Arbeit verwendet ein Convolutional Neuronal Network (Deep Learning) zur Klassifikation von Bildern. Die Applikation ist in einem Docker Image verfügbar. Der Erkennungprozess kann durch eine Message Queue und dem Docker Image auf verschiedene Maschinen verteilt und der Erkennungsaufwand auf mehrere Tage beschränkt werden. Ohne diese Parallelisierung hätten Wartezeiten von mehreren Wochen in Kauf genommen werden müssen.
 
 \subsubsection{Kennzahlen}
-Die Applikation erkannte mehr als 80\% aller gelben Fussgängerstreifen mit einer Fehlerrate von weniger als 10\%. Die Koordinaten der Fussgängerstreifen im Raum des Kanton Zürich, Kanton Zugs und Teile des Kanton St. Gallen konnten an Maproulette zur Einpflegung in Open Street Map übergeben werden.
+Die Applikation erkannte mehr als 80\% aller gelben Fussgängerstreifen mit einer Fehlerrate von weniger als 10\%. Die Koordinaten der Fussgängerstreifen im Raum des Kanton Zürich, Kanton Zugs und Teile des Kanton St. Gallen konnten an Maproulette zur Einpflegung in OpenStreetMap übergeben werden.
 \\
 \begin{figure}[H]
 	\centering
