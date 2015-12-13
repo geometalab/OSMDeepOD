@@ -2,7 +2,7 @@
 Der Data Accss Layer regelt den Zugriff auf die Orthofotos mit Bing Maps, sowie die Strassen und Fussgängerstreifen, welche mit Hilfe von OpenStreetMap Daten über die MapQuest API zur Verfügung gestellt werden. Die Daten werden von den entsprechenden Quellen heruntergeladen und für die Detektion zu einem passenden Format aufbereitet.
 
 \subsubsection{MapQuest}
-\Gls{MapQuest}\footnote{\url{http://www.mapquest.com/}} wird in diesem Projekt als Schnittstelle zu den OpenStreetMap Daten verwendet. Dazu bieten sich die Developer Accounts an, welche auf 15000 Abfragen pro Monat begrenzt sind, was unseren Abfrageumfang ausreichend abdeckt.
+\Gls{MapQuest} \cite{Mapquest} wird in diesem Projekt als Schnittstelle zu den OpenStreetMap Daten verwendet. Dazu bieten sich die Developer Accounts an, welche auf 15000 Abfragen pro Monat begrenzt sind, was unseren Abfrageumfang ausreichend abdeckt.
 Folgende Daten benötigen wir von der API:
 \begin{tabbing}[H]
     \hspace*{3cm}\=\hspace*{9cm}\= \kill
@@ -26,10 +26,7 @@ In der Tabelle ist der Application Key aufgeführt, der für das Projekt Crosswa
 \end{table}
 
 \paragraph{Beispiel Abfragen}
-Um den Entwicklern beim erstellen der Abfragen zu unterstützen wird folgende Webseite zur Verfügung gestellt:
-\begin{itemize}
-	\item \url{http://open.mapquestapi.com/xapi/}
-\end{itemize}
+Um den Entwicklern beim erstellen der Abfragen zu unterstützen wird auf Webseite \cite{mapquestapi} ein Xapi Service Developer's Guide zur Verfügung gestellt.
 
 \subparagraph{HTTP Request}
 Bounding Box:  47.367,8.545,47.367,8.544 (Rapperswil)
@@ -37,7 +34,7 @@ Bounding Box:  47.367,8.545,47.367,8.544 (Rapperswil)
 	\item \url{http://open.mapquestapi.com/xapi/api/0.6/node[highway=*][bbox=8.544,47.367,8.545,47.367]?key=YKqJ7JffQIBKyTgALLNXLVrDSaiQGtiI}
 \end{itemize}
 
-
+\newpage
 \subparagraph{XML File Response}
 Als Antwort auf den HTTP Request gibt es ein XML File, welches die Strassen in Form von Nodes beinhaltet.\\
 
@@ -72,7 +69,7 @@ In einem nächsten Schritt schränken wir das Resultat weiter ein. Denn nicht au
 \end{itemize}
 
 Am Ende der Verarbeitung resultiert eine Liste aller relevanten Strassen und alle Fussgängerstreifen.
-
+\newpage
 \subsubsection{Bing Maps}
 Die wichtigsten Daten für die Suche sind die Orthofotos, welche wir über Bing Maps beschaffen. Dabei hilft uns das Python Skript globalmaptiles.py, welches den Umgang mit dem QuadTree Format von Bing Maps und das Umrechnen der Koordinaten zu den entsprechenden Tiles stark vereinfacht. (Mehr dazu unter dem Abschnitt~\ref{subsec:tiles} auf der Seite~\pageref{subsec:tiles}). Das herunterladen der Bilder lässt sich parallelisieren, was die Performance enorm steigert. In Python kann dazu die Library \textbf{multiprocessing.dummy import Pool as ThreadPool} verwendet werden.
 
@@ -100,10 +97,10 @@ def download_image(url):
 \end{python}
 
 Das Resultat des Downloads ist eine Liste mit den Orthofotos, welche im Anschluss von dem Suchalgorithmus weiter verwendet werden.
-
+\newpage
 \subsubsection{Tiles à la Google Maps}
 \label{subsec:tiles}
-\Gls{Maptiler} bietet auf ihrer Webseite\footnote{\url{http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/}} ein Python Script an, welches den Umgang mit Tiles stark vereinfacht. Unter anderem wird die Umrechnung von Meter zu Latitude/Longitude, Meter zu Pixel und Tiles zu QuadTree\footnote{\url{https://msdn.microsoft.com/en-us/library/bb259689.aspx}} (Bing Format für Tiles) zur Verfügung gestellt.\\
+\Gls{Maptiler} bietet auf ihrer Webseite \cite{Tiles} ein Python Script an, welches den Umgang mit Tiles stark vereinfacht. Unter anderem wird die Umrechnung von Meter zu Latitude/Longitude, Meter zu Pixel und Tiles zu QuadTree \cite{quadtree} (Bing Format für Tiles) zur Verfügung gestellt.\\
 
 \begin{figure}[H]
 	\centering

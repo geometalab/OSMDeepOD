@@ -1,6 +1,6 @@
 \section{Evaluation Suchalgorithmus}
 \label{sec:suchalgorithmus}
-Die Evaluation verschiedener Algorithmen zur Erkennung von Fussgängerstreifen stellte ein wichtiger Teil unserer Arbeit dar. Nach Absprachen mit unseren Dozenten und Recherchen im Internet sind wir auf die unteren Methoden zur Bilderkennung gestossen. Um die Kandidaten zu vergleichen, griffen wir auf das Werkzeug der \Gls{Confusion Matrix}\footnote{\url{https://de.wikipedia.org/wiki/Beurteilung_eines_Klassifikators}} (Wahrheitsmatrix) zurück.
+Die Evaluation verschiedener Algorithmen zur Erkennung von Fussgängerstreifen stellte ein wichtiger Teil unserer Arbeit dar. Nach Absprachen mit unseren Dozenten und Recherchen im Internet sind wir auf die unteren Methoden zur Bilderkennung gestossen. Um die Kandidaten zu vergleichen, griffen wir auf das Werkzeug der \Gls{Confusion Matrix} (Wahrheitsmatrix) zurück.
 
 \subsection{Algorithmen Vergleich}
 Um einen neutralen Vergleich der verschiedenen Erkennungsmethoden zu erreichen, haben wir alle Methoden testweise implementiert und mit ihnen eine Erkennung im Raum Rapperswil durchgeführt.
@@ -18,10 +18,8 @@ Wir haben mit folgenden Eckdaten gearbeitet:
 \includegraphics[width=\textwidth]{images/haar_conf.png}
 \caption[Haar Feature-based Cascade Classifier]{Haar Feature-based Cascade Classifier}
 \end{figure}
-Auf der Suche nach möglichen Algorithmen, welche Objekte auf Bildern erkennen, stiessen wir auf den Haar Feature-based Cascade Classifier. Dieser erlaubt es Objekte unabhängig von der Drehung oder Skalierung wieder zu erkennen. In einer Erweiterung von OpenCV ist der Algorithmus implementiert und kann wie in folgenden Beispiel verwendet werden: 
-\begin{itemize}
-	\item \url{http://coding-robin.de/2013/07/22/train-your-own-opencv-haar-classifier.html}
-\end{itemize}
+Auf der Suche nach möglichen Algorithmen, welche Objekte auf Bildern erkennen, stiessen wir auf den Haar Feature-based Cascade Classifier. Dieser erlaubt es Objekte unabhängig von der Drehung oder Skalierung wieder zu erkennen. In einer Erweiterung von OpenCV ist der Algorithmus implementiert und kann wie in dem Beispiel \cite{OpencvHaar} von Thorsten Ball  verwendet werden.
+
 Für das Trainieren braucht es sehr viele Bilder und noch mehr Rechenleistung, um diese Hürden zu überwinden, schrieben wir ein Python Script, welches uns Bilder von Fussgängerstreifen lieferte. Dabei konnten wir auf OpenStreetMap Daten zurückgreifen, welche die Koordinaten von Fussgängerstreifen lieferten. Weiter stellte die HSR ihren Dev-Server zur Verfügung, um die enorme Rechenleistung abzudecken. Leider wurde auch mit diversen unterschiedlichen Trainingsdaten kein brauchbares Resultat erzielt. Eine Schwierigkeit beim trainieren war, dass man kein Feedback bekam, was gute oder eher schlechtes Bildmaterial für das Training ist.
 
 \subsubsection{Fast Fourier Transform}	
