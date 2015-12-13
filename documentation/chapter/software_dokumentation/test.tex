@@ -1,6 +1,6 @@
 \section{Test}
 \subsection{Unittests}
-In der Python Standard Library gibt es das Unit Testing Framework \textbf{unittest}\footnote{\url{https://docs.python.org/2/library/unittest.html\#module-unittest}}, das es erlaubt Unittests zu implementieren.
+In der Python Standard Library gibt es das Unit Testing Framework \textbf{unittest}, das es erlaubt Unittests zu implementieren.
 
 \subsubsection{Beispiel Test}
 \begin{python}
@@ -29,4 +29,4 @@ class TestWorkerFunctions(unittest.TestCase):
             os.remove(PATH_TO_CROSSWALKS) 
 \end{python}
 \subsection{CircleCI}
-\Gls{CircleCI}\footnote{\url{https://circleci.com/}} ist ein Tool für Continuous Integration und Deployment, welches wir einsetzten um unsere Tests nach einen Update in unserem Githup Repository automatisch durchzuführen. CircleCI ermöglicht eine Anbindung zu einem Docker Image. Damit konnten wir die vielen Dependencies abdecken, welche unsere Applikation beinhaltet.
+\Gls{CircleCI}\cite{circleci} ist ein Tool für Continuous Integration und Deployment, welches wir einsetzten um unsere Tests nach einen Update in unserem Githup Repository automatisch durchzuführen. CircleCI ermöglicht eine Anbindung zu einem Docker Image. Damit konnten wir die vielen Dependencies abdecken, welche unsere Applikation beinhaltet.

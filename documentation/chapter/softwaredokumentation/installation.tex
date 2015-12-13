@@ -2,10 +2,7 @@
 \subsection{Redis}
 \label{subsec:redis}
 Die Installation wurde auf einem Ubuntu Server durchgeführt, welcher das Paketverwaltungssystem Advanced Packaging Tool (APT) verwendet. Die im Anschluss aufgeführten Befehle werden in einer Shell ausgeführt.
-Fals Probleme auftreten bietet Redis ein Quick Start Dokumentation an, welche unter  folgenden Link erreichbar ist:
-\begin{itemize}
-	\item \url{http://redis.io/topics/quickstart}
-\end{itemize}
+Fals Probleme auftreten bietet Redis ein Quick Start Dokumentation an.
 
 \subsubsection{Installaiton}
 \begin{lstlisting}[style=BashInputStyle]
@@ -30,11 +27,7 @@ Fals Probleme auftreten bietet Redis ein Quick Start Dokumentation an, welche un
 \label{subsec:docker}
 Die Installaton unserer Applikation beinhaltet diverse Dependencies, welche für die Installation einerseits viel Zeit in Anspruch nehmen und anderseits auch nicht wirklich trivial sind (An dieser Stelle ist Keras zu erwähnen, welches für den Deep Learnig Ansatz verwendet wird). \\
 \decision{Docker}
-Deshalb haben wir ein Docker Image ersellt, das auf Dockerhub frei zur Verfügung gestellt wird und somit den DevOps Prozess massiv vereinfach.\\
-Der Link dazu ist:
-\begin{itemize}
-	\item \url{https://hub.docker.com/r/murthy10/osm-crosswalk-detection/}
-\end{itemize}
+Deshalb haben wir ein Docker Image ersellt, das auf Dockerhub \cite{DokerCrosswalk} frei zur Verfügung gestellt wird und somit den DevOps Prozess massiv vereinfach.\\
 
 \subsubsection{Installaiton}
 Bei der Installation von Docker ist zu beachten, dass die Anwendung nur auf 64-Bit Maschinen läuft. Weiter wurden die nachfolgenden Befehle auf Ubuntu durchgeführt und variieren deshalbt zwisch unterschiedlichen Betriebssystemen. 
@@ -54,11 +47,6 @@ Bei der Installation von Docker ist zu beachten, dass die Anwendung nur auf 64-B
 \begin{lstlisting}[style=BashInputStyle]
 	# sudo apt-get install docker-engine
 \end{lstlisting}
-
-Eine detailiertere Anleitung findet man unter folgendem Link:
-\begin{itemize}
-	\item \url{https://docs.docker.com/engine/installation/ubuntulinux/}
-\end{itemize}
 
 \subsubsection{Starten}
 \begin{lstlisting}[style=BashInputStyle]

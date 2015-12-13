@@ -58,8 +58,9 @@ Jobworker können auf bliebig vielen Rechnern gestartet werden.\\
 \end{lstlisting}
 Die Resultate werden im File crosswalks.json gespeichert, dieses findet man im Verzeichnis in dem der Resultworker gestartet wurde.
 \newpage
+
 \subsection{Keras Training}
-Für das Training des Neuronalen Netzes steht ein eigenes Docker Image\footnote{\url{https://hub.docker.com/r/sebu/keras_cuda/}} auf Docker Hub bereit. Das Image basiert auf einem offiziellen Nvidia Cuda und ist fähig mit einer Nvidia Grafikkarte zur arbeiten. Die Grafikkarte wird mithilfe des nvidia-docker\footnote{\url{https://github.com/NVIDIA/nvidia-docker}} Projekts geladen. CUDA muss dabei auf dem Host Rechner installiert sein.
+Für das Training des Neuronalen Netzes steht ein eigenes Docker Image \cite{DokerKeras} auf Docker Hub bereit. Das Image basiert auf einem offiziellen Nvidia Cuda und ist fähig mit einer Nvidia Grafikkarte zur arbeiten. Die Grafikkarte wird mithilfe des nvidia-docker Projekts geladen. CUDA muss dabei auf dem Host Rechner installiert sein.
 
 
 \subsection{Keras Image}
@@ -111,7 +112,4 @@ Für eine Challenge benötigt es ein File challange.json, welches die Challenge 
 \end{lstlisting}
 
 
-Als Hilfestellung zum erstellen von MapRoulette Challanges ist folgendes Tutorial zu empfehlen:
-\begin{itemize}
-	\item \url{https://gist.github.com/mvexel/b5ad1cb0c91ac245ea3f}
-\end{itemize}
+Als Hilfestellung zum erstellen von MapRoulette Challanges gibt es ein empfehlenswertes Tutorial \cite{Tutorial}.

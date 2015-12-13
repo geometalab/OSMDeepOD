@@ -1,7 +1,7 @@
 
 \subsection{Role Layer - Parallelisierung RQ}
 
-\Gls{RQ}\footnote{\url{http://python-rq.org/}} (Redis Queue) ist eine einfache Library für Python um Jobs in Redis einzureihen. Im Anschluss sind Codebeispiele dazu angeführt.
+\Gls{RQ} \cite{RQ} (Redis Queue) ist eine einfache Library für Python um Jobs in Redis einzureihen. Im Anschluss sind Codebeispiele dazu angeführt.
 
 \subsubsection{Beispiel Queue}
 \begin{python}
@@ -30,4 +30,26 @@ with Connection(redis):
    w = Worker(qs)
    w.work()
 \end{python}
+
+\paragraph{Aufbau} Die Applikation beinhalten die Rollen:
+\begin{itemize}
+	\item Manger
+	\begin{itemize}
+		\item Teilt grosse Boundingbox in kleine auf.
+		\item Stellt kleine Boundingboxes als Workerjobs in die Queue.
+	\end{itemize}
+		\item Jobworker
+	\begin{itemize}
+		\item Verarbeitet die Workerjobs.
+		\item Führt den Erkennungsprozees durch.
+		\item Stellt die Resultate als Resultjobs in die Queue.
+	\end{itemize}
+		\item Resultworker
+	\begin{itemize}
+		\item Verarbeite die Resultjobs.
+		\item Speichert die Resultate in einem JSON File.
+	\end{itemize}
+\end{itemize}
+
+
 \newpage

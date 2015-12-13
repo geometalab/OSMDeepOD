@@ -54,6 +54,7 @@
 \usepackage{listings}
 \usepackage{dirtree}
 \usepackage[titletoc,toc,page]{appendix}
+\usepackage[nottoc,numbib]{tocbibind}
 
 %Title Styling
 %\titlespacing{command}{left spacing}{before spacing}{after spacing}[right]

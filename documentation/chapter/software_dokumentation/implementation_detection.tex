@@ -31,7 +31,7 @@ Wir verwenden ein Convolutional Neuronal Network (Convnet) um die automatische E
 	\caption[Beispiele für Nicht-Fussgängerstreifen]{6 x 2 Beispiele für Nicht-Fussgängerstreifen. Das Nicht-Fussgängerstreifen Set beinhaltet alle möglichen Strassensituationen von Stadt bis Land. Besonders bei gelben Autos oder Strassenmarkierungen hat das Convnet mühe.}
 \end{figure}
 
-Ein Beispiel für ein Training eines Convnets kann unter der Datei examples/ConvnetTrainer.py eingesehen werden. Die detaillierte Beschreibung der Funktionsweise eines Neuronalen Netzes würde den Rahmen dieser Arbeit sprengen. Eine genaue Beschreibung der Abläufe kann aus den Vorlesungsunterlagen von Stanford\footnote{\url{http://cs231n.github.io/convolutional-networks}} genommen werden. Das in dieser Arbeit benutzte Netz ist unter dem Namen VGGNet (Karen Simonyan, Andrew Zisserman 2014)\footnote{\url{http://arxiv.org/abs/1409.1556}} bekannt. Es wurde Ende 2014 veröffentlicht und ist seit diesem Zeitpunkt eines der besten Neuronalen Netze für Bilderkennung. Ein mithilfe der Library Keras trainiertes Neuronales Netz kann in eine .hdf5 Datei abgespeichert werden. Nach dem Laden der Datei kann man das trainierte Netz dann immer wieder verwenden.
+Ein Beispiel für ein Training eines Convnets kann unter der Datei examples/ConvnetTrainer.py eingesehen werden. Die detaillierte Beschreibung der Funktionsweise eines Neuronalen Netzes würde den Rahmen dieser Arbeit sprengen. Eine genaue Beschreibung der Abläufe kann aus den Vorlesungsunterlagen von Stanford \cite{Convolutional} genommen werden. Das in dieser Arbeit benutzte Netz ist unter dem Namen VGGNet (Karen Simonyan, Andrew Zisserman 2014)\cite{Deep} bekannt. Es wurde Ende 2014 veröffentlicht und ist seit diesem Zeitpunkt eines der besten Neuronalen Netze für Bilderkennung. Ein mithilfe der Library Keras trainiertes Neuronales Netz kann in eine .hdf5 Datei abgespeichert werden. Nach dem Laden der Datei kann man das trainierte Netz dann immer wieder verwenden.
 
 \subsubsection{Convnet Klasse}
 Die Klasse src/detection/deep/Convnet.py wrappt das neuronale Netz in eine einfach zu verwendende Klasse ein.
@@ -106,7 +106,7 @@ Die NodeMerger-Klasse versucht das Problem der doppelten Erkennung zu lösen. Da
 \end{figure}
 
 
-Der NodeMerger nimmt alle gefundenen Koordinaten entgegen und berechnet alle Abstände von gefundenem Fussgängerstreifen zu gefundenem Fussgängerstreifen. Sind die Koordinaten genug nah beieinander, werden sie zusammengefasst. Genau genommen wird hier ein Graph\footnote{\url{https://de.wikipedia.org/wiki/Graph_(Graphentheorie)}} mit Knoten und Kanten aufgebaut. Die Koordinaten sind die Knoten und die Knoten werden verbunden, wenn sie genug nahe beieinander sind. Zum Schluss werden alle Knoten zusammengefasst, welche verbunden sind.
+Der NodeMerger nimmt alle gefundenen Koordinaten entgegen und berechnet alle Abstände von gefundenem Fussgängerstreifen zu gefundenem Fussgängerstreifen. Sind die Koordinaten genug nah beieinander, werden sie zusammengefasst. Genau genommen wird hier ein Graph mit Knoten und Kanten aufgebaut. Die Koordinaten sind die Knoten und die Knoten werden verbunden, wenn sie genug nahe beieinander sind. Zum Schluss werden alle Knoten zusammengefasst, welche verbunden sind.
 
 Kritisch ist hier die richtige Distanz zu finden. Zu grosse Distanzen fassen mehrere Fussgängerstreifen zu einem zusammen. Zu kleine Distanzen lassen zu viele Punkte übrig.
 
