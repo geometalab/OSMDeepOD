@@ -21,6 +21,26 @@ Falls Probleme auftreten, bietet Redis ein Quick Start Dokumentation an.
 	# redis-server --port 40001
 \end{lstlisting}
 
+\subsection{Keras}
+Keras ist die Bibliothek, mit der das neuronale Netz betrieben wird. Die Installation hier muss nur durchgeführt werden, um das Projekt weiterzuentwickeln.
+
+Info: Der Stand von Keras, der wir während dieser Arbeit verwendet haben, ist auf der CD zu finden.
+\subsubsection{Installation Theano}
+\begin{lstlisting}[style=BashInputStyle]
+	# apt-get update
+	# apt-get install -y git libopenblas-dev python-dev python-pip 
+	python-nose python-numpy python-scipy
+	# pip install git+git://github.com/Theano/Theano.git
+\end{lstlisting}
+\subsubsection{Installation Keras}
+\begin{lstlisting}[style=BashInputStyle]
+	# apt-get install -y libhdf5-dev python-h5py python-yaml
+	# pip install --upgrade six
+	# cd /root
+	# git clone https://github.com/fchollet/keras.git 
+	# cd keras
+	# python setup.py install
+\end{lstlisting}
 \newpage
 
 \subsection{Docker}
