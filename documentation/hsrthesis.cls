@@ -82,11 +82,12 @@
 \newcommand\decision[1]{%
 	\refstepcounter{decision}
 	\par\noindent\textbf{Entscheid  \thedecision. #1 }
-	\addcontentsline{dec}{decision}
+	\addcontentsline{def}{decision}
 	{\protect\numberline{\thechapter.\thedecision}#1 }\par}
 
 \newcommand\listdecisionname{Verzeichnis der Entscheide}
-\newlistof{decision}{dec}{\listdecisionname}
+\newlistof{decision}{def}{\listdecisionname}
+
 
 %Shell Stylings
 %http://tex.stackexchange.com/questions/46953/unix-command-highlighting-latex
