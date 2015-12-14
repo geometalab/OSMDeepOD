@@ -1,6 +1,6 @@
 \section{Benutzerhandbuch}
 \subsection{Suche der Fussgängerstreifen}
-Um die Suche der Fussgängerstreifen durchzuführen muss eine Redis Datenbank zur Verfügung stehen , weiter muss auf den Rechnern die als Jobworker tätig sind Docker installiert sein. \\
+Um die Suche der Fussgängerstreifen durchzuführen, muss eine Redis Datenbank zur Verfügung stehen. Weiter muss auf den Rechnern, die als Jobworker tätig sind, Docker installiert sein. \\
 Die Installationen sind in folgenden Abschnitten aufgeführt:
 \begin{itemize}
 	\item Redis:  Abschnitt~\ref{subsec:redis} auf der Seite~\pageref{subsec:redis}
@@ -12,16 +12,16 @@ Wir haben unsere Applikation in drei Rollen aufgeteilt:
 \begin{itemize}
 	\item Manager
 	\begin{itemize}
-		\item Unterteilt eine grosse Boundingbox in Kleinere mit einer Höhe und Breite von jeweils 2 Kilometern und stellt dies als Jobs in die Queue.
+		\item Unterteilt eine grosse Bounding Box in kleinere Boxen mit einer Höhe und Breite von jeweils 2 Kilometern und stellt dies als Jobs in die Queue.
 	\end{itemize}
 	\item Jobworker
 	\begin{itemize}
-		\item Arbeite die Jobs der Queue ab
-		\item Gefundene Fussgängerstreifen , welche noch nicht in OpenSteetMap erfasst sind, werden als "Resultat Job" in die Queue gestellt
+		\item Arbeite die Jobs der Queue ab.
+		\item Gefundene Fussgängerstreifen , welche noch nicht in OpenSteetMap erfasst sind, werden als Job Resultat in die Queue gestellt.
 	\end{itemize}
 	\item Resultworker
 	\begin{itemize}
-		\item Schlussendlich werden die Resultate zusammen getragen und in ein JSON File geschrieben
+		\item Schlussendlich werden die Resultate zusammen getragen und in ein JSON File geschrieben.
 	\end{itemize}
 \end{itemize}
 
@@ -31,71 +31,71 @@ Dieser Ablauf ist genauer beschrieben unter dem Abschnitt~\ref{subsec:ablauf} au
 \subsubsection{Anwendung}
 Dank Docker kann unsere Applikation innert Minuten gestartet werden.
 
-\paragraph{Docker Pull}
+\paragraph{Docker Pull}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
 	# docker pull murthy10/osm-crosswalk-detection
 \end{lstlisting}
 
-\paragraph{Manager}
+\paragraph{Manager}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
 	# docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
  	--role manager left bottom right top
 \end{lstlisting}
 Left, Bottom, Right, Top entsprechen den Koordinaten im WGS84 Format. \\
-Ostschweiz: left=8.361002, bottom=47.166994, right=8.977610, top=47.706676) 
+Ostschweiz: left=8.361002, bottom=47.166994, right=8.977610, top=47.706676
 
-\paragraph{Jobworker}
+\paragraph{Jobworker}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
 	# docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
  	--role jobworker
 \end{lstlisting}
-Jobworker können auf bliebig vielen Rechnern gestartet werden.\\
+Jobworker können auf beliebig vielen Rechnern gestartet werden.\\
 
-\paragraph{Resultworker}
+\paragraph{Resultworker}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
 	# docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
  	--role resultworker
 \end{lstlisting}
-Die Resultate werden im File crosswalks.json gespeichert, dieses findet man im Verzeichnis in dem der Resultworker gestartet wurde.
+Die Resultate werden in der Datei crosswalks.json gespeichert. Diese findet man im Verzeichnis in dem der Resultworker gestartet wurde.
 \newpage
 
 \subsection{Keras Training}
-Für das Training des Neuronalen Netzes steht ein eigenes Docker Image \cite{DokerKeras} auf Docker Hub bereit. Das Image basiert auf einem offiziellen Nvidia Cuda und ist fähig mit einer Nvidia Grafikkarte zur arbeiten. Die Grafikkarte wird mithilfe des nvidia-docker Projekts geladen. CUDA muss dabei auf dem Host Rechner installiert sein.
+Für das Training des Neuronalen Netzes steht ein eigenes Docker Image \cite{DokerKeras} auf Docker Hub bereit. Das Image basiert auf einem offiziellen Nvidia Cuda Image und ist fähig mit einer Nvidia Grafikkarte zu arbeiten. Die Grafikkarte wird mit Hilfe des nvidia-docker Projekts geladen. CUDA muss dabei auf dem Host Rechner installiert sein.
 
 
 \subsubsection{Keras Image}
-\paragraph{Download des nvidia-docker Projekts}
+\paragraph{Download des nvidia-docker Projekts}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
 	# git clone https://github.com/NVIDIA/nvidia-docker.git
 	# cd nvidia-docker
 \end{lstlisting}
 
-\paragraph{Herunterladen des Images}
+\paragraph{Herunterladen des Images}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
 	# docker pull sebu/keras_cuda
 \end{lstlisting}	
 
-\paragraph{Start des Containers und mount der Grafikkarte Nummer 0}
+\paragraph{Start des Containers und mount der Grafikkarte Nummer 0}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
 	#GPU=0 ./nvidia-docker run -i -t sebu/keras_cuda /bin/bash
 \end{lstlisting}
 
-Achtung: Die Keras Bibliothek entwickelt sich ständig weiter. Auch das Interface der populärsten Klassen können sich ändern und haben sich auch schon während diesem Projekt verändert! In diesem Keras Docker Image ist der Stand von Keras installiert, mit dem wir gearbeitet haben. Keras bietet leider keine Versionierung an. Der von uns verwendete Stand ist auch auf der mitglieferten CD erhältlich.
+Achtung: Die Keras Bibliothek entwickelt sich ständig weiter. Auch die Interfaces der populärsten Klassen können sich ändern und haben sich auch schon während diesem Projekt verändert! In diesem Keras Docker Image ist der Stand von Keras installiert, mit dem wir gearbeitet haben. Keras bietet leider keine Versionierung an. Der von uns verwendete Stand ist auch auf der mitglieferten CD erhältlich.
 
 Ein Beispiel für das Training eines Neuronalen Netzes kann in examples/ConvnetTrainer.py und in den Keras eigenen Examples eingesehen werden.
 \newpage
 \subsection{Challenge erstellen}
-Nach dem die Fussgängerstreifen detektiert wurden und das File crosswalks.json erstellt wurde, muss dies noch in ein passendes Format für MapRoulette gebracht werden. Dazu haben wir ein Python Skript geschrieben, welches aus jedem gefundenen Fussgängerstreifen einen Task generiert.
+Nach dem die Fussgängerstreifen detektiert wurden und die Datei crosswalks.json erstellt wurde, muss dies noch in ein passendes Format für MapRoulette gebracht werden. Dazu haben wir ein Python Skript geschrieben, welches aus jedem gefundenen Fussgängerstreifen einen Task generiert.
 
 \subsubsection{Anwendung}
-Für eine Challenge benötigt es ein File challange.json, welches die Challenge beschreibt und ein zweites File tasks.json in dem sich die Tasks befinden.\\
+Für eine Challenge benötigt es die Datei challange.json, welches die Challenge beschreibt und ein zweite Datei tasks.json, in dem sich die Tasks befinden.\\
 
-\paragraph{Tasks generieren}
+\paragraph{Tasks generieren}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
  # python TaskGenerator.py crosswalks.json
 \end{lstlisting}
 
-\paragraph{Challenge publizieren}
+\paragraph{Challenge publizieren}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
  # curl -u devuser:mylittlesony -vX 
    POST http://maproulette.org/api/admin/challenge/
@@ -103,7 +103,7 @@ Für eine Challenge benötigt es ein File challange.json, welches die Challenge 
    --header "Content-Type: application:json"
 \end{lstlisting}
 
-\paragraph{Tasks publizieren}
+\paragraph{Tasks publizieren}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
  # curl -u devuser:mylittlesony -vX 
    POST http://maproulette.org/api/admin/challenge/
@@ -112,4 +112,4 @@ Für eine Challenge benötigt es ein File challange.json, welches die Challenge 
 \end{lstlisting}
 
 
-Als Hilfestellung zum erstellen von MapRoulette Challanges gibt es ein empfehlenswertes Tutorial \cite{Tutorial}.
+Als Hilfestellung zum Erstellen von MapRoulette Challanges gibt es ein empfehlenswertes Tutorial \cite{Tutorial}.
