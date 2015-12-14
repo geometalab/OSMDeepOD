@@ -4,14 +4,13 @@ Zu Beginn unserer Arbeit unterschätzten wir die enorme Datenmenge in Form von O
 \decision{Queueing Sytem}
 Den Entscheid für Redis \cite{Redis} in Kombination mit RQ \cite{RQ} haben wir während eines Meeting mit Hilfe von Mitarbeitern des Institut für Software erarbeitet. RQ ist eine relativ einfach zu verwendende Library, welche Redis (Key Value Store) als Queue einsetzt. Durch die Einfachheit und die gute Integration in Python haben wir uns für diesen Lösungsweg entschieden.
 
-\newpage
 \subsubsection{Aufbau}
 \label{subsec:ablauf}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/queuing.png}
 \caption[Queueing]{Queueing}
 \end{figure}
-Auf der Abbildung ist zu sehen, dass wir für das Verarbeiten der Jobs auf zwei Queues setzten, eine die die Abzuarbeitenden Bounding Boxes beinhaltet und eine weitere für das Sammeln der Resultate. Der genau Ablauf gestaltet sich wie folgt:
+Auf der Abbildung ist zu sehen, dass wir für das Verarbeiten der Jobs auf zwei Queues setzten, eine die die abzuarbeitenden Bounding Boxes beinhaltet und eine weitere für das Sammeln der Resultate. Der genau Ablauf gestaltet sich wie folgt:
 \begin{enumerate}
 		\item Manager wird aufgerufen mit der grosse Input Bounding Box.
 		\item Manager teilt Bounding Box auf.

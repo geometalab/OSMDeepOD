@@ -20,7 +20,7 @@ Wir haben mit folgenden Eckdaten gearbeitet:
 \end{figure}
 Auf der Suche nach möglichen Algorithmen, welche Objekte auf Bildern erkennen, stiessen wir auf den Haar Feature-based Cascade Classifier. Dieser erlaubt es Objekte unabhängig von der Drehung oder Skalierung wieder zu erkennen. In einer Erweiterung von OpenCV ist der Algorithmus implementiert und kann wie in dem Beispiel \cite{OpencvHaar} von Thorsten Ball  verwendet werden.
 
-Für das Trainieren braucht es sehr viele Bilder und noch mehr Rechenleistung, um diese Hürden zu überwinden, schrieben wir ein Python Script, welches uns Bilder von Fussgängerstreifen lieferte. Dabei konnten wir auf OpenStreetMap Daten zurückgreifen, welche die Koordinaten von Fussgängerstreifen lieferten. Weiter stellte die HSR ihren Dev-Server zur Verfügung, um die enorme Rechenleistung abzudecken. Leider wurde auch mit diversen unterschiedlichen Trainingsdaten kein brauchbares Resultat erzielt. Eine Schwierigkeit beim trainieren war, dass man kein Feedback bekam, was gute oder eher schlechtes Bildmaterial für das Training ist.
+Für das Trainieren braucht es sehr viele Bilder und noch mehr Rechenleistung. Um diese Hürden zu überwinden, schrieben wir ein Python Skript, welches uns Bilder von Fussgängerstreifen lieferte. Dabei konnten wir auf OpenStreetMap Daten zurückgreifen, welche die Koordinaten von Fussgängerstreifen lieferten. Weiter stellte die HSR ihren Dev-Server zur Verfügung, um die enorme Rechenleistung abzudecken. Leider wurde auch mit diversen unterschiedlichen Trainingsdaten kein brauchbares Resultat erzielt. Eine Schwierigkeit beim trainieren war, dass man kein Feedback bekam, was gutes oder eher schlechtes Bildmaterial für das Training ist.
 
 \subsubsection{Fast Fourier Transform}	
 \begin{figure}[H]
@@ -31,7 +31,7 @@ Die \Gls{Orthofotos} entlang der Strasse wurde so ausgerichtet, dass die Strasse
 Die Methode versagt jedoch, sobald der Fussgängerstreifen undeutlich wird, Objekte wie Autos auf dem Fussgängerstreifen sind oder andere Gegenstände diese dominante Frequenz auch beinhalten.\\
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=5cm]{images/Unsharp_Crosswalk2.png}\caption[Scale-invariant Feature Transform]{Undeutlicher Fussgängerstreifen ohne dominanten Fourierkoeffizienten}
+	\includegraphics[width=5cm]{images/Unsharp_Crosswalk2.png}\caption{Undeutlicher Fussgängerstreifen ohne dominanten Fourierkoeffizienten}
 \end{figure}
 \newpage
 \subsubsection{\Gls{Scale-invariant Feature Transform}}	
@@ -39,14 +39,14 @@ Die Methode versagt jedoch, sobald der Fussgängerstreifen undeutlich wird, Obje
 \includegraphics[width=\textwidth]{images/sif_conf.png}
 \caption[Scale-invariant Feature Transform]{Scale-invariant Feature Transform}
 \end{figure}
-Scale-invariant Feature Transform (SIFT) ist ein Algorithmus, welcher Merkmale von Bildern beschreibt. Seine stärken sind, dass es keine Probleme mit Translation, Rotation oder Skalierung gibt. Die Idee dies Verfahrens ist jedoch mehr auf einem Bild schon bekannte Objekte wieder zu erkennen. Mit Input, welches eine Unbekannte Situation zeigt, kommt der Algorithmus nicht klar.\\
+Scale-invariant Feature Transform (SIFT) ist ein Algorithmus, welcher Merkmale von Bildern beschreibt. Seine Stärken sind, dass es keine Probleme mit Translation, Rotation oder Skalierung gibt. Die Idee dies Verfahrens ist jedoch ein Objekt auf einem Bilder wieder zu erkennen. Mit Input, welches eine unbekannte Situation zeigt, kommt der Algorithmus nicht klar.\\
 OpenCV bietet eine Implementation von SIFT, welche wir nutzten um die Evaluation durchzuführen. Das Resultat war für unsere Problemstellung alles andere als ausreichend.
 \subsubsection{Deep Learning - Convnet}	
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/deep_conf.png}
 \caption[Deep Learning]{\Gls{Deep Learning} - Convnet}
 \end{figure}
-Das \Gls{Convolutional Neural Network} hat die Fussgängerstreifen mit Abstand am besten erkannt. Anzumerken ist hier, dass die False Positive (FP) Rate von 0 ein schlichtes Zufallsergebnis ist. Wir haben diese Technik nach der Evaluation auf grösseren Flächen innerhalb der Stadt Zürich getestet und sind auf 1 FP pro 1000 Bildern gekommen. Eine Beschreibung der Technik des \Gls{Convnet}s können sie dem nächsten Kapitel Umsetzungskonzept entnehmen.
+Das \Gls{Convolutional Neural Network} hat die Fussgängerstreifen mit Abstand am besten erkannt. Anzumerken ist hier, dass die False Positive (FP) Rate von 0 ein schlichtes Zufallsergebnis ist. Wir haben diese Technik nach der Evaluation auf grösseren Flächen innerhalb der Stadt Zürich getestet und sind auf 1 FP pro 1000 Bildern gekommen. Eine Beschreibung der Technik des \Gls{Convnet}s können sie dem  Abschnitt~\ref{sec:umsetzung} auf der Seite~\pageref{sec:umsetzung} entnehmen.
 \newpage
 
 \subsection{Auswertung}

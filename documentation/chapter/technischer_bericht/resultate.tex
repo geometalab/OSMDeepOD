@@ -9,7 +9,7 @@ Als Resultat der Arbeit entstand eine Applikation, welche auf Orthofotos Fussgä
 \caption[Ostschweiz]{Ostschweiz}
 \end{figure}
 
-\subsubsection{Confusion Matrix}
+\subsubsection{Wahrheitstabelle mit Kennzahlen}
 Um saubere Kennzahlen zur Erkennungrate zu erhalten, haben wir den Algortihmus auf die Fläche zwischen Zollikon und Zürich Zoo angewendet und die Daten in einer Confusion Matrix zusammengefasst.
 \\
 \begin{figure}[H]
@@ -17,6 +17,7 @@ Um saubere Kennzahlen zur Erkennungrate zu erhalten, haben wir den Algortihmus a
 	\includegraphics[]{images/Confusionmatrix_dl_end.png}
 	\caption[Resultierende Confusion Matrix]{Resultierende Confusion Matrix - BBox (47.355633, 8.543026), (47.372811, 8.570957)}
 \end{figure}
+\newpage
 In Worten ausgedrückt, sind die Zahlen folgendermassen zu interpretieren:
 \begin{itemize}
 	\item 83\% aller visuell sichtbaren Fussgängerstreifen wurden erkannt.
@@ -60,7 +61,7 @@ Weiter hatten wir es mit einer grossen Datenmenge zu tun. In Zahlen gesprochen:
     \hspace*{8cm}\=\hspace*{4cm}\= \kill
     Durchsuchte Fläche: \> $8800 km^{2}$  \\
     Anzahl Tiles: \> 1'512'028 (à $5820 m^{2}$ pro Tile)\\
-    Trainingsbilder \> 36'000 RGB Bilder 50 x 50 Pixel \\
+    Anzahl Trainingsbilder \> 36'400 RGB Bilder 50 x 50 Pixel \\
 \end{tabbing}
 Einerseits stellte die Datenbeschaffung schon ein grosse Herausforderung dar, andererseits war auch die parallele Verarbeitung nicht trivial. Mit der Queueing Lösung konnten wir dem jedoch erfolgreich entgegenwirken.
 \newpage
@@ -68,5 +69,7 @@ Einerseits stellte die Datenbeschaffung schon ein grosse Herausforderung dar, an
 Für die Betreuung während des ganzen Projektes möchten wir uns besonders bei Herr Prof. Stefan Keller Bedanken, der immer ein offenes Ohr für Problem aller Art hatte und uns freien Spielraum für die Suche nach einer optimalen Lösung gewährte. \\
 Weiter geht auch ein Dank an Herr Prof. Dr.  Guido Schuster, welcher uns in Bezug auf den Erkennungsalgorithmus unterstützte. \\
 Nicht zu vergessen sind die Mitarbeiter des Geometalabs (Teil des Institut für Software der HSR), welche uns bei der Findung einer passenden Lösung für die parallele Verarbeitung der Daten halfen.\\
-Und zu guter Letzt möchten wir auch noch Manuel Roth und Lukas Martinell Danken, die uns in Fragen rund um Tiles und deren Umrechnung unterstützten.
+Und zu guter Letzt möchten wir auch noch Manuel Roth und Lukas Martinelli Danken, die uns in Fragen rund um Tiles und deren Umrechnung unterstützten.
+
+Das Arbeiten an diesem Projekt mit all diesen neuen Technologien hat uns viel Spass gemacht. Die Motivation war dadurch auch permanent hoch.
 	
