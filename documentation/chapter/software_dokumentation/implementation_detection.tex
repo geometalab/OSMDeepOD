@@ -6,11 +6,11 @@ Damit das Convnet die Einteilung zwischen Fussgängerstreifen und Nicht-Fussgän
 
 \decision{Eckdaten Anfertigung Inputbilder} 
 Die Inputbilder für das Convnet sind 50 x 50 Pixel gross, da auf Zoomstufe 19 50 Pixel etwa der Breite von zwei Strassen entspricht. Die Schrittweite wurde so angepasst, dass auch Fussgängerstreifen, die zwischen zwei Inputbildern liegen, erkannt werden.
-
+\\
 \begin{figure}[H]
 	\centering
 	\includegraphics{images/squared_images.png}
-	\caption[Anfertigung Inputbilder]{Blau: Strassenverlauf, Rot: Ausgeschnittene Bilder 50 x 50 Pixel. Diese Visualisierung der Inputbilder kann für jede beliebige BBox selbst durchgeführt werden. Siehe dazu examples/VisualizeSquaredImages.py im Projektordner.}
+	\caption[Anfertigung Inputbilder]{Blau: Strassenverlauf, Rot: Ausgeschnittene Bilder 50 x 50 Pixel. Diese Visualisierung der Inputbilder kann für jede beliebige Bounding Box selbst durchgeführt werden. Siehe dazu examples/VisualizeSquaredImages.py im Projektordner.}
 \end{figure}
 
 
@@ -30,11 +30,12 @@ Wir verwenden ein Convolutional Neuronal Network (Convnet) um die automatische E
 	\includegraphics{images/No_Zebrastreifen_examples.png}
 	\caption[Beispiele für Nicht-Fussgängerstreifen]{6 x 2 Beispiele für Nicht-Fussgängerstreifen. Das Nicht-Fussgängerstreifen Set beinhaltet alle möglichen Strassensituationen von Stadt bis Land. Besonders bei gelben Autos oder Strassenmarkierungen hat das Convnet mühe.}
 \end{figure}
-
-Ein Beispiel für ein Training eines Convnets kann unter der Datei examples/ConvnetTrainer.py eingesehen werden. Die detaillierte Beschreibung der Funktionsweise eines Neuronalen Netzes würde den Rahmen dieser Arbeit sprengen. Eine genaue Beschreibung der Abläufe kann aus den Vorlesungsunterlagen von Stanford \cite{Convolutional} genommen werden. Das in dieser Arbeit benutzte Netz ist unter dem Namen VGGNet (Karen Simonyan, Andrew Zisserman 2014)\cite{Deep} bekannt. Es wurde Ende 2014 veröffentlicht und ist seit diesem Zeitpunkt eines der besten Neuronalen Netze für Bilderkennung. Ein mithilfe der Library Keras trainiertes Neuronales Netz kann in eine .hdf5 Datei abgespeichert werden. Nach dem Laden der Datei kann man das trainierte Netz dann immer wieder verwenden.
+\medskip
+Ein Beispiel für ein Training eines Convnets kann unter der Datei examples/ConvnetTrainer.py eingesehen werden. Die detaillierte Beschreibung der Funktionsweise eines Neuronalen Netzes würde den Rahmen dieser Arbeit sprengen. Eine genaue Beschreibung der Abläufe kann aus den Vorlesungsunterlagen von Stanford \cite{Convolutional} genommen werden. Das in dieser Arbeit benutzte Netz ist unter dem Namen VGGNet (Karen Simonyan, Andrew Zisserman 2014)\cite{Deep} bekannt. Es wurde Ende 2014 veröffentlicht und ist seit diesem Zeitpunkt eines der besten Neuronalen Netze für Bilderkennung. Ein mithilfe der Library Keras trainiertes Neuronales Netz kann in eine HDF5 Datei abgespeichert werden. Nach dem Laden der Datei kann man das trainierte Netz dann immer wieder verwenden.
 
 \subsubsection{Convnet Klasse}
-Die Klasse src/detection/deep/Convnet.py wrappt das neuronale Netz in eine einfach zu verwendende Klasse ein.
+Die Klasse src/detection/deep/Convnet.py schliesst das neuronale Netz in eine einfach zu verwendende Klasse ein.
+\\
 \begin{python}
 	   from src.detection.deep.Convnet import Convnet
 	   
@@ -46,16 +47,17 @@ Die Klasse src/detection/deep/Convnet.py wrappt das neuronale Netz in eine einfa
 \end{python}
 \begin{enumerate}
 	\item Konstruiert die Convnet Klasse mit einer Factory
-	\item Lädt das gespeichert Neuronale Netz mithilfe der .hdf5 Datei. Keras übersetzt das Netz in diesem Schritt in C++ und kompiliert es. Die Ausführung ist dementsprechend schnell.
-	\item Manuelles setzen eines Schwellwerts. Der Schwellwert muss zwischen 0 und 1 liegen. Standartmässig ist er auf 0.9 gesetzt. Somit muss das Netz zu 90\% sicher sein, dass es ein Fussgängerstreifen ist. Dieser Wert ergab in unseren Experimenten die besten Resultate.
+	\item Lädt das gespeichert Neuronale Netz mithilfe der HDF5 Datei. Keras übersetzt das Netz in diesem Schritt in C++ und kompiliert es. Die Ausführung ist dementsprechend schnell.
+	\item Manuelles Setzen eines Schwellwerts. Der Schwellwert muss zwischen 0 und 1 liegen. Standartmässig ist er auf 0.9 gesetzt. Somit muss das Netz zu 90\% sicher sein, dass es ein Fussgängerstreifen ist. Dieser Wert ergab in unseren Experimenten die besten Resultate.
 	\item Kategorisiert eine Liste von 50 x 50 Pixel RGB PIL Bilder. Diese Funktion nimmt eine Liste entgegen, da Keras die Bilder so parallel auf mehreren CPU Kernen verarbeiten kann. Als Rückgabewert erhält result\_list eine Liste von Booleans.
 \end{enumerate}
 
-\subsubsection{Zebrasteifenerkennung entlang der Strassen}
+\subsubsection{Fussgängersteifenerkennung entlang der Strassen}
 In diesem Abschnitt kommen die Strasseninformationen, Orthofotos, Inputbilder und das Convnet zusammen. Die Klassen StreetWalker und BoxWalker stellen Funktionen zur Verfügung, mithilfe derer alle Strassen innerhalb einer Bounding Box entlang "'gelaufen"' und die Fussgängerstreifen erkannt werden.
 
 \subsubsection{StreetWalker}
 Der StreetWalker löst das Erkennungsproblem entlang eines Strassenabschnitts. Ein Strassenabschnitt besteht aus zwei Koordinaten. Der Walker geht von der ersten Koordinate auf die zweite Koordinate zu entlang einer geraden Linie. Zum Schluss fasst er doppelt gefundene Fussgängerstreifen mithilfe des NodeMergers zusammen (siehe unten).
+\\
 \begin{python}
 	from src.detection.StreetWalker import StreetWalker
 	
@@ -69,7 +71,7 @@ Der StreetWalker löst das Erkennungsproblem entlang eines Strassenabschnitts. E
 
 \subsubsection{BoxWalker}
 Der BoxWalker löst das Erkennungsproblem für eine ganze Bounding Box. Zuerst lädt er die Orthofotos, die Strassen- und Fussgängerstreifeninformationen herunter. Danach erfolgt der eigentliche Erkennungsprozess, indem er für jeden Strassenabschnitt einen Streetwalker initialisiert. Zu guter Letzt vergleicht er die gefundenen Fussgängerstreifen mit den bestehenden aus OpenStreetMap und lässt den NodeMerger doppelt gefundene Fussgängerstreifen zusammenfassen (siehe unten).
-
+\\
 \begin{python}
 	from src.detection.BoxWalker import BoxWalker
 	
@@ -87,7 +89,7 @@ Der BoxWalker löst das Erkennungsproblem für eine ganze Bounding Box. Zuerst l
 \end{python}
 \begin{enumerate}
 	\item Erstelle eine Bounding Box anhand von Koordinaten.
-	\item Erstelle einen BoxWalker mit der BBox.
+	\item Erstelle einen BoxWalker mit der Bounding Box.
 	\item Lade das Convnet.
 	\item Lade die Orthofotos.
 	\item Lade die Strasseninformationen.
@@ -104,12 +106,12 @@ Die NodeMerger-Klasse versucht das Problem der doppelten Erkennung zu lösen. Da
 	\includegraphics{images/NodeMerger_Beispiel.png}
 	\caption[Beispiele NodeMerger]{Beispiel NodeMerger - Dieser Fussgängerstreifen liegt auf einer Kreuzung und ist ziemlich gross. Links vor der Zusammenfassung, rechts danach. Der Merger nimmt den Durchschnitt aller drei Koordinaten als neue Koordinate.}
 \end{figure}
-
+\medskip
 
 Der NodeMerger nimmt alle gefundenen Koordinaten entgegen und berechnet alle Abstände von gefundenem Fussgängerstreifen zu gefundenem Fussgängerstreifen. Sind die Koordinaten genug nah beieinander, werden sie zusammengefasst. Genau genommen wird hier ein Graph mit Knoten und Kanten aufgebaut. Die Koordinaten sind die Knoten und die Knoten werden verbunden, wenn sie genug nahe beieinander sind. Zum Schluss werden alle Knoten zusammengefasst, welche verbunden sind.
 
 Kritisch ist hier die richtige Distanz zu finden. Zu grosse Distanzen fassen mehrere Fussgängerstreifen zu einem zusammen. Zu kleine Distanzen lassen zu viele Punkte übrig.
-
+\\
 \decision{NodeMerger Distanzen} StreetWalker: 10 Meter, BoxWalker: 7 Meter
 
 \subsubsection{Vergleich gefundene Fussgängerstreifen mit bestehenden Fussgängerstreifen in OSM}

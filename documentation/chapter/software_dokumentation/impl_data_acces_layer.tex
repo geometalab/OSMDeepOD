@@ -72,7 +72,7 @@ In einem nächsten Schritt schränken wir das Resultat weiter ein. Denn nicht au
 Am Ende der Verarbeitung resultiert eine Liste aller relevanten Strassen und alle Fussgängerstreifen.
 \newpage
 \subsubsection{Bing Maps}
-Die wichtigsten Daten für die Suche sind die Orthofotos, welche wir über Bing Maps beschaffen. Dabei hilft uns das Python Skript globalmaptiles.py, welches den Umgang mit dem QuadTree Format von Bing Maps und das Umrechnen der Koordinaten zu den entsprechenden Tiles stark vereinfacht. (Mehr dazu unter dem Abschnitt~\ref{subsec:tiles} auf der Seite~\pageref{subsec:tiles}). Das herunterladen der Bilder lässt sich parallelisieren, was die Performance enorm steigert. In Python kann dazu die Library \textbf{multiprocessing.dummy import Pool as ThreadPool} verwendet werden.
+Die wichtigsten Daten für die Suche sind die Orthofotos, welche wir über Bing Maps beschaffen. Dabei hilft uns das Python Skript globalmaptiles.py, welches den Umgang mit dem QuadTree Format von Bing Maps und das Umrechnen der Koordinaten zu den entsprechenden Tiles stark vereinfacht. Das Herunterladen der Bilder lässt sich parallelisieren, was die Performance enorm steigert. In Python kann dazu die Library \textbf{multiprocessing.dummy import Pool as ThreadPool} verwendet werden.
 
 \paragraph{Beispiel Download} Im Nachfolgenden Code ist gezeigt, wie der parallele Download implementiert wird. \\
 \begin{python}
@@ -101,7 +101,7 @@ Das Resultat des Downloads ist eine Liste mit den Orthofotos, welche im Anschlus
 \newpage
 \subsubsection{Tiles à la Google Maps}
 \label{subsec:tiles}
-\Gls{Maptiler} bietet auf ihrer Webseite \cite{Tiles} ein Python Script an, welches den Umgang mit Tiles stark vereinfacht. Unter anderem wird die Umrechnung von Meter zu Latitude/Longitude, Meter zu Pixel und Tiles zu QuadTree \cite{quadtree} (Bing Format für Tiles) zur Verfügung gestellt.\\
+\Gls{Maptiler} bietet auf ihrer Webseite \cite{Tiles} ein Python Skript an, welches den Umgang mit Tiles stark vereinfacht. Unter anderem wird die Umrechnung von Meter zu Latitude/Longitude, Meter zu Pixel und Tiles zu QuadTree \cite{quadtree} (Bing Format für Tiles) zur Verfügung gestellt.\\
 
 \begin{figure}[H]
 	\centering
