@@ -12,22 +12,29 @@ Als Resultat der Arbeit entstand eine Applikation, welche auf Orthofotos Fussgä
 \subsubsection{Wahrheitstabelle mit Kennzahlen}
 Um saubere Kennzahlen zur Erkennungrate zu erhalten, haben wir den Algortihmus auf die Fläche zwischen Zollikon und Zürich Zoo angewendet und die Daten in einer Confusion Matrix zusammengefasst.
 \\
-\begin{figure}[H]
-	\centering
-	\includegraphics[]{images/Confusionmatrix_dl_end.png}
-	\caption[Resultierende Confusion Matrix]{Resultierende Confusion Matrix - BBox (47.355633, 8.543026), (47.372811, 8.570957)}
-\end{figure}
-
-
 \begin{table}[H]
 	\centering
     \begin{tabular}{|l|l|l|}
     \hline    
-    Absolute Zahlen & Positive & Maproulette \\ \hline
+        \rowcolor{lightblue} 
+        & Positive (Crosswalk Detector) & Negative (Crosswalk Detector)  \\ \hline
+     \cellcolor{lightblue}True (Human prediction) & 187 & 16364 \\ \hline
+     \cellcolor{lightblue}False (Human prediction) & 19 & 39 \\ \hline
     \end{tabular}    
-    \caption[Resultierende Confusion Matrix]{Resultierende Confusion Matrix - BBox (47.355633, 8.543026), (47.372811, 8.570957)}
+    \caption[Resultierende Confusion Matrix Absolute Zahlen]{Resultierende Confusion Matrix Absolute Zahlen - BBox (47.355633, 8.543026), (47.372811, 8.570957)}
 \end{table}
-
+\medskip
+\begin{table}[H]
+	\centering
+    \begin{tabular}{|l|l|l|}
+    \hline   
+    \rowcolor{lightblue} 
+     & Positive (Crosswalk Detector) & Negative (Crosswalk Detector)  \\ \hline
+     \cellcolor{lightblue}True (Human prediction) & 83\% & - \\ \hline
+     \cellcolor{lightblue}False (Human prediction) & 9\% & 17\% \\ \hline
+    \end{tabular}    
+    \caption[Resultierende Confusion Matrix Prozent Zahlen]{Resultierende Confusion Matrix Prozent Zahlen - BBox (47.355633, 8.543026), (47.372811, 8.570957)}
+\end{table}
 
 
 \newpage
