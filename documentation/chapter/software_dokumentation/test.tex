@@ -1,0 +1,32 @@
+\section{Test}
+\subsection{Unittests}
+In der Python Standard Library gibt es das Unit Testing Framework \textbf{unittest}, das es erlaubt Unittests zu implementieren.
+
+\subsubsection{Beispiel Test}
+\begin{python}
+import unittest
+import json, os
+from src.role.WorkerFunctions import store, PATH_TO_CROSSWALKS
+from src.base.Node import Node
+
+class TestWorkerFunctions(unittest.TestCase):
+
+    def setUp(self):
+        self.remove_file()
+
+    def tearDown(self):
+        self.remove_file()
+        
+    def test_store_two_crosswalks(self):
+        crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
+        store(crosswalks)
+        with open(Constants.PATH_TO_CROSSWALKS, 'r') as f:
+            data = json.load(f)
+        self.assertTrue(len(data['crosswalks']) == 2);
+        
+    def remove_file(self):
+        if os.path.exists(PATH_TO_CROSSWALKS):
+            os.remove(PATH_TO_CROSSWALKS) 
+\end{python}
+\subsection{CircleCI}
+\Gls{CircleCI}\cite{circleci} ist ein Tool für Continuous Integration und Deployment, welches wir einsetzen um unsere Tests nach einem Update in unserem Githup Repository automatisch durchzuführen. CircleCI ermöglicht eine Anbindung zu einem Docker Image. Damit konnten wir die vielen Dependencies abdecken, welche unsere Applikation beinhaltet.

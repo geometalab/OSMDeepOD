@@ -11,6 +11,22 @@
 \renewcommand*\familydefault{\sfdefault}
 \newcommand{\sectionbreak}{\clearpage} % new page before section
 
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=0mm}
+\setlist[itemize]{itemsep=0mm}
+\setlength{\intextsep}{0mm}
+
+%Page Size
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Template definitions
+\oddsidemargin = 0pt
+\textwidth = 460pt
+\marginparwidth = 0pt
+\hoffset = -60pt
+\topmargin = 0pt
+\voffset = -40pt
+\textheight = 700pt
+
 % Including mostly used packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[utf8]{inputenc}
@@ -20,7 +36,7 @@
 \usepackage[scaled=0.85]{helvet}
 \usepackage{hyperref}
 \usepackage{array}
-\usepackage{ngerman}
+\usepackage[ngerman]{babel}
 \usepackage{glossaries}
 \usepackage{color}
 \usepackage{wrapfig}
@@ -35,6 +51,10 @@
 \usepackage{titlesec}
 \usepackage{pdflscape}
 \usepackage{pdfpages}
+\usepackage{listings}
+\usepackage{dirtree}
+\usepackage[titletoc,toc,page]{appendix}
+\usepackage[nottoc,notlot,notlof,numbib]{tocbibind}
 
 %Title Styling
 %\titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
@@ -61,21 +81,37 @@
 \usepackage{tocloft}
 \newcommand\decision[1]{%
 	\refstepcounter{decision}
-	\par\noindent\textbf{Entscheid \thedecision. #1}
-	\addcontentsline{dec}{decision}
-	{\protect\numberline{\thechapter.\thedecision}#1}\par}
+	\par\noindent\textbf{Entscheid  \thedecision. #1 }
+	\addcontentsline{def}{decision}
+	{\protect\numberline{\thechapter.\thedecision}#1 }\par}
 
-\newcommand\listdecisionname{Entscheidungsverzeichnis}
-\newlistof{decision}{dec}{\listdecisionname}
+\newcommand\listdecisionname{Verzeichnis der Entscheide}
+\newlistof{decision}{def}{\listdecisionname}
 
 
+%Shell Stylings
+%http://tex.stackexchange.com/questions/46953/unix-command-highlighting-latex
+\lstdefinestyle{BashInputStyle}{
+  language=bash,
+  basicstyle=\small\sffamily,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=3pt,
+  frame=tb,
+  columns=fullflexible,
+  backgroundcolor=\color{yellow!20},
+  linewidth=0.9\linewidth,
+  xleftmargin=0.1\linewidth
+}
+
+\newcommand*{\Package}[1]{\texttt{#1}}%
 
 %Python Code Stylings
 %http://tex.stackexchange.com/questions/83882/how-to-highlight-python-syntax-in-latex-listings-lstinputlistings-command
 %%%%%%%%%%%%%%%%%%%%%%%
 % Default fixed font does not support bold face
-\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
-\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{9} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{9}  % for normal
 
 % Custom colors
 \definecolor{deepblue}{rgb}{0,0,0.5}

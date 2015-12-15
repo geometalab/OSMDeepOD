@@ -2,43 +2,46 @@
 \subsection{Use Case}
 \subsubsection{Aktoren und Stakeholder}
 \begin{table}[H]
+\centering
     \begin{tabular}{|p{3cm}|p{9cm}|}
     \hline
+    \rowcolor{lightblue}
     Aktor & Tätigkeit   \\ \hline
-	User  & Startet CrosswalkDetector mit Boundingbox als Eingabeparameter \\ \hline
+	User  & Startet CrosswalkDetector mit Bounding Box als Eingabeparameter \\ \hline
 	CrosswalkDetector & Erkennt Fussgängerstreifen \\ \hline 
-	TileProvider & Stellt Orthofotos für die Erkennung der Fussgängerstreifen zu Verfügung.\\ \hline
+	TileProvider & Stellt Orthofotos für die Erkennung der Fussgängerstreifen zur Verfügung.\\ \hline
 	OSMProvider & Stellt Strassen - und Fussgängersteifen Informationen zur Verfügung. \\ \hline
-	JSON File & Speicherort für die Positionen der ermittelten Fussgängersteifen und deren Strassenzugehörigkeit.\\ \hline
+	JSON File & Speicherort für die Positionen der ermittelten Fussgängersteifen.\\ \hline
     \end{tabular}
     \caption[Aktoren und Stakeholder]{Aktoren und Stakeholder}
 \end{table}
 
-\subsubsection{Diagramm}
+\subsubsection{Use Case Diagramm}
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{images/UseCase.png}
+\centering
+\includegraphics[width=420pt]{images/UseCase.png}
 \caption[Use Case Diagramm]{Use Case Diagramm}
 \end{figure}
 
 \subsubsection{Use Cases Brief}
 \paragraph{UC1: Fussgängerstreifen erkennen}
-Der User startet die Applikation und gibt als Eingabeparameter ein Boundingbox an, welche nach Fussgängerstreifen durchsucht wird. Dabei werden Orthofotos mit Hilfe eines Erkennungsalgortithmus abgearbeitet.
+Der User startet die Applikation und gibt als Eingabeparameter ein Bounding Box an, welche nach Fussgängerstreifen durchsucht wird. Dabei werden Orthofotos mit Hilfe eines Erkennungsalgortithmus abgearbeitet.
 
 \paragraph{UC11: Tiles downloaden} 
-Ein TileProvider stellt Orthofotos zur Verfügung, welche herunter geladen werden müssen. Diese werden im Anschluss dem Erkennungsalgorithums zur Verfügung gestellt.
+Ein TileProvider stellt Orthofotos zur Verfügung, welche heruntergeladen werden müssen. Diese werden im Anschluss dem Erkennungsalgorithmus zur Verfügung gestellt.
 
 \paragraph{UC12: Stassen downloaden}
-Ein OSMProvider stellt Informationen zu Strassen und Fussgängerstreifen zur Verfügung, welche vom Erkennungsalgorithumus genutzt werden. Mit diesen Daten kann die Suche präzisiert werden, sowie der Download von Orthofotos reduziert werden.
+Ein OSMProvider stellt Informationen zu Strassen und Fussgängerstreifen zur Verfügung, welche vom Erkennungsalgorithmus genutzt werden. Mit diesen Daten kann die Suche präzisiert werden, sowie der Download von Orthofotos reduziert werden.
 
 \paragraph{UC13: Daten sichern}
-Die Erkannten Fussgängerstreifen werden in einem JSON File persistiert. Dabei sind die Positon (Koordinate lat/lon) relevant.
+Die erkannten Fussgängerstreifen werden in einer JSON Datei persistiert. Dabei sind die Positionen (Koordinate lat/lon) relevant.
 
 \paragraph{UC14: Challenge generieren}
 Mit Hilfe der persistieren Daten wird ein Challenge generiert, welche die Daten über eine Crowdsourcing-System in OpenStreetMap integriert.
 
 \subsubsection{Use Cases Fully Dressed}
 \begin{table}[H]
-    \begin{tabular}{ | p{3cm} | p{9cm}  | }
+    \begin{tabular}{ | p{4cm} | p{10cm}  | }
     \hline
     Scope & CrosswalkDetection System   \\ \hline
 	Level  & User Goal \\ \hline
@@ -46,11 +49,11 @@ Mit Hilfe der persistieren Daten wird ein Challenge generiert, welche die Daten 
 	Stakeholders & 
 	\begin{itemize}
 		\item System: Möglichst alle Fussgängerstreifen erkennen
-		\item User: Einmal gestarten, läuft alles autonom
+		\item User: Einmal gestartet, läuft alles autonom
     \end{itemize} \\ \hline
 	Preconditions & 
 		\begin{itemize}
-		\item User muss Boundingbox bestimmen
+		\item User muss Bounding Box bestimmen
 		\item OSMProvider muss verfügbar sein
 		\item TileProvider muss verfügbar sein
     \end{itemize} \\ \hline
@@ -65,15 +68,14 @@ Mit Hilfe der persistieren Daten wird ein Challenge generiert, welche die Daten 
 	\end{enumerate} \\ \hline
 	Extensions & 
 	\begin{enumerate}
-		\item a) Boundingbox wird aufgeteilt für Parallelisierung
+		\item a) Bounding Box wird aufgeteilt für Parallelisierung
 		\item b) Nur Informationen für Strassen und Fussgängerstreifen sind relevant
-		\item b) Nur Orthofotos, welche Strassen beinhalten sind werden heruntergeladen
+		\item b) Nur Orthofotos, welche Strassen beinhalten, werden heruntergeladen.
 	\end{enumerate} \\ \hline
-	Special Requirements & Benutzer soll gut geführt werden und bei Unklarheiten bei
-Eingabefeldern Informationen erhalten.
-Das Hindernis um sich zu registrieren sollte möglichst klein sein. \\ \hline
+	Special Requirements & Benutzer soll gut geführt werden und bei Unklarheiten
+von Parametern Informationen erhalten. \\ \hline
 	Frequency of Occurrence & Der Vorgang darf beliebig oft wiederholt werden. \\ \hline
-	Open Issues & Falls ein Unterbruch statt findet, soll von diesem Zustand weiter gearbeiten werden. \\ \hline
+	Open Issues & Falls ein Unterbruch statt findet, soll von diesem Zustand weiter gearbeitet werden. \\ \hline
     \end{tabular}
     \caption[Use Case Fully Dressed]{Use Case Fully Dressed}
 \end{table}

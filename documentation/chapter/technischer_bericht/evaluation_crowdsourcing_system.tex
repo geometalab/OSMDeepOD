@@ -1,15 +1,19 @@
 \newpage
 \section{Evaluation Crowdsourcing-System}
-\subsection{Kandidaten}
+\label{sec:crowdsourcing}
+Da Daten nicht automatisch in OpenStreetMap integriert werden dürfen, wird ein Crowdsourcing-System benötigt. In diesem überprüfen Benutzer auf spielerische Art und Weise, ob die Daten korrekt sind.\\
+Es gibt verschiedene Produkte in diesem Bereich, somit haben wir als Teil unserer Arbeit eine Evaluation zweier relevanter Kandidaten durchgeführt.
+\subsubsection{Kandidaten}
 \begin{itemize}
-	\item MapRoulette\footnote{\url{http://maproulette.org/}} 
-	\item To-Fix\footnote{\url{http://osmlab.github.io/to-fix/\#/task/tigerdelta}}
+	\item MapRoulette \cite{MapRoulette}
+	\item To-Fix \cite{To-Fix}
 \end{itemize}
 
 \subsection{MapRoulette}
-MapRoulette verwendet für ihre Challenges und Tasks ein einfaches JSON Format. Der erstellt werden Challenges mittels POST und mit PUT können diese upgedatet werden.
+\label{subsec:MapRoulette}
+\Gls{MapRoulette} verwendet für ihre Challenges und Tasks ein einfaches JSON Format. Erstellt werden Challenges mittels POST und mit PUT können diese upgedatet werden.
 
-\subsection*{Beispiel Challenge}
+\subsubsection{Beispiel Challenge}
 \begin{tabbing}
     \hspace*{4cm}\=\hspace*{5cm}\= \kill
     Erstellen: \> POST /api/admin/challenge/<slug>  \\
@@ -27,8 +31,8 @@ MapRoulette verwendet für ihre Challenges und Tasks ein einfaches JSON Format. 
   "difficulty": 2
 }
 \end{python}
-
-\subsection*{Beispiel Task}
+\newpage
+\subsubsection{Beispiel Task}
 \begin{tabbing}
     \hspace*{4cm}\=\hspace*{5cm}\= \kill
     Erstellen: \> POST /api/admin/challenge/<slug>/task/<task\_identifier> \\
@@ -54,8 +58,8 @@ MapRoulette verwendet für ihre Challenges und Tasks ein einfaches JSON Format. 
 \end{python}	
 
 \subsection{To-Fix}
-To-Fix verwendet für ihre Task ein CSV Format, welches direkt über das grafische Benutzerinterface publiziert werden kann.
-\subsection*{Beispiel CSV}
+\Gls{To-Fix} verwendet für ihre Tasks ein CSV Format, welches direkt über das grafische Benutzerinterface publiziert werden kann.
+\subsubsection{Beispiel CSV}
 \begin{python}
 object_type,object_id,st_astext
 way,51446110,POINT(-94.4176451 43.3273692)
@@ -65,13 +69,14 @@ way,223982938,POINT(18.4823301 59.6732909)
 way,109819283,POINT(-83.1888421 40.0485764)
 \end{python}
 
+\newpage
 
-\subsection{Evaluationsmatrix}
-Um die beiden Kandidaten zu vergleich haben wir eine Evaluationsmatrix erstellt, dabei haben wir diverse für uns relevante Kriterien erarbeiten und diesen jeweils auf einer Skala von 1 bis 10 gewichtet.
-In einem zweiten Schritt haben wir den Kandidaten für die jeweiligen Kriterien Punkte vergeben.
+\subsection{Auswertung}
+Um die beiden Kandidaten zu vergleichen, haben wir eine Evaluationsmatrix erstellt. Dabei haben wir diverse für uns relevante Kriterien erarbeitet und diese jeweils auf einer Skala von 1 bis 10 gewichtet.
+In einem zweiten Schritt haben wir den Kandidaten für die jeweiligen Kriterien Punkte vergeben.\\
 
-\begin{table}
-    %\begin{tabular}{|p{5cm}|p{1.5cm}|p{2cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+\begin{table}[H]
+	\centering
     \begin{tabular}{|l|l|l|l|l|l|}
     \hline    
     \rowcolor{lightblue}
@@ -87,4 +92,4 @@ In einem zweiten Schritt haben wir den Kandidaten für die jeweiligen Kriterien 
 \end{table}
 
 \decision{Crowdsourcing-System}
-Beide Kandidaten haben Vor- und Nachteile, wie aus der Evaluationsmatrix ersichtlich ist. Für uns ist das wichtigste Kriterium, wie relevant der Anbieter bei der Community ist, was sich dann auch im Resultat stark ausgewirkt hat. Da MapRoulette Challenges gerne abgearbeitet werden, tendieren wir für diesen Kandidaten.  
+Beide Kandidaten haben Vor- und Nachteile, wie aus der Evaluationsmatrix ersichtlich ist. Für uns ist das wichtigste Kriterium, wie relevant der Anbieter bei der Community ist, was sich dann auch im Resultat stark ausgewirkt hat. Da MapRoulette Challenges gerne abgearbeitet werden, haben wir uns für diesen Kandidaten entschieden

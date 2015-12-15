@@ -1,7 +1,19 @@
-\chapter*{Abstract}
+\section{Abstract}
 
-Zebrastreifen sind ein essentieller Bestandteil der Fussgängernavigation, diese sind jedoch nur spärlich erfasst, was zu nicht optimalen Routen führt. 
-Um dem entgegen zu wirken,  befasst sich dieses Projekt mit der automatischen Erkennung von Zebrastreifen auf Orthofotos (Satellitenbildern). 
-Dabei entstand eine Applikation, die auf den Orthofotos den Strassen folgt, diese in kleine Bilder unterteilt und mit Hilfe eines Deep learnig Ansatzes entscheidet, ob es sich um ein Zebrastreifen handelt oder nicht.
-Das führte zu einer Erkennungsrate von über 85\% und könnte in Zukunft den Behöreden bei der Erfassung der Daten (derzeit noch händisch) unterstützen.
-Weiter ist es möglich diese Lösung auszubauen und auf andere Objekte anzuwenden.
+Fussgängerstreifen sind ein essentieller Bestandteil der Fussgängernavigation. Sie sind jedoch nur spärlich in OpenStreetMap erfasst, was somit zu nicht optimal geplanten Routen führt.
+
+Um dem entgegen zu wirken,  befasst sich dieses Projekt mit der automatischen Erkennung von Fussgängerstreifen auf Orthofotos (Satellitenbildern). 
+Dabei entstand eine hoch skalierbare Applikation, die gelbe Fussgängerstreifen entlang von Strassen findet und ihre Koordinaten extrahiert. Die Erkennung erfolgt durch ein Convolutional Neural Network, welches im Bereich des Deep Learnings angesiedelt ist.
+Es wurde eine Erkennungsrate von über 80\% der visuell sichtbaren Fussgängerstreifen mit einer Fehlerrate von weniger als 10\% erreicht. Dieser Prozess konnte mit Hilfe eines Queueing Systems auf eine grosse Anzahl von Computern verteilt werden, was die Verarbeitung so vieler Daten in angemessener Zeit überhaupt erst ermöglicht. Die Koordinaten der Fussgängerstreifen wurden im Anschluss an das Crowdsourcing-System MapRoulette übergeben. Auf diesem Weg konnten die Daten in OpenStreetMap integriert werden und zur Verbesserung der Fussgängernavigation ihren Anteil beitragen.
+
+Es ist möglich diese Lösung so auszubauen, dass der Erkennungsalgorithums auf weitere Objekte angewendet werden kann.\\ \\ \\ \\
+
+
+
+
+Crosswalks are an essential part of pedestrian navigation. Unfortunately, they are recorded only sparsely in OpenStreetMap. This leads to non-optimal routes.
+
+To counteract this problem, the topic of this poject is to automate the process of finding crosswalks on orthophotos (satellite images). The result is a highly scalable application which finds yellow crosswalks along streets and extracts their coordinates. The recognition is implemented with a convolutional neural network that is located in the area of deep learning. It has achieved a recognition rate of over 80\% with a false discovery rate of less than 10\%. This process could be shared on a large number of computer by using a queuing system that makes the processing of so much data possible. After that, the coordinates were added to the crowdsourcing system MapRoulette. With this solution the coordinates of the crosswalks can be integrated in openstreetmap to help improve pedestrian navigation.
+
+It is possible to expand this solution so that the the algorithm can be applied to other objects.
+

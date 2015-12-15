@@ -1,0 +1,76 @@
+\section{Installation}
+\subsection{Redis}
+\label{subsec:redis}
+Die Installation wurde auf einem Ubuntu Server durchgeführt, welcher das Paketverwaltungssystem Advanced Packaging Tool (APT) verwendet. Die im Anschluss aufgeführten Befehle werden in einer Shell ausgeführt.
+Falls Probleme auftreten, bietet Redis ein Quick Start Dokumentation an.
+
+\subsubsection{Installaiton}
+\begin{lstlisting}[style=BashInputStyle]
+	# sudo apt-get install redis-server
+\end{lstlisting}
+
+\subsubsection{Konfiguration}
+\begin{lstlisting}[style=BashInputStyle]
+	# redis-cli -p 40001
+	# CONFIG SET requirepass "crosswalks"
+	# redis-cli AUTH crosswalks
+\end{lstlisting}
+
+\subsubsection{Starten}
+\begin{lstlisting}[style=BashInputStyle]
+	# redis-server --port 40001
+\end{lstlisting}
+
+\subsection{Keras}
+Keras ist die Bibliothek, mit der das neuronale Netz betrieben wird. Die Installation hier muss nur durchgeführt werden, um das Projekt weiterzuentwickeln.
+
+Info: Der Stand von Keras, der wir während dieser Arbeit verwendet haben, ist auf der CD zu finden.
+\subsubsection{Installation Theano}
+\begin{lstlisting}[style=BashInputStyle]
+	# apt-get update
+	# apt-get install -y git libopenblas-dev python-dev python-pip 
+	python-nose python-numpy python-scipy
+	# pip install git+git://github.com/Theano/Theano.git
+\end{lstlisting}
+\subsubsection{Installation Keras}
+\begin{lstlisting}[style=BashInputStyle]
+	# apt-get install -y libhdf5-dev python-h5py python-yaml
+	# pip install --upgrade six
+	# cd /root
+	# git clone https://github.com/fchollet/keras.git 
+	# cd keras
+	# python setup.py install
+\end{lstlisting}
+\newpage
+
+\subsection{Docker}
+\label{subsec:docker}
+Die Installation unserer Applikation beinhaltet diverse Abhängigkeiten, welche für die Installation einerseits viel Zeit in Anspruch nehmen und anderseits auch nicht wirklich trivial sind.. \\
+\decision{Docker}
+Deshalb haben wir ein Docker Image ersellt, das auf Dockerhub \cite{DokerCrosswalk} frei zur Verfügung gestellt wird und somit den DevOps Prozess massiv vereinfach.\\
+
+\subsubsection{Installation}
+Bei der Installation von Docker ist zu beachten, dass die Anwendung nur auf 64-Bit Maschinen läuft. Weiter wurden die nachfolgenden Befehle auf Ubuntu durchgeführt und variieren deshalb je nach Betriebssystemen. 
+
+\paragraph{Vorarbeit}
+\begin{lstlisting}[style=BashInputStyle]
+	# sudo apt-key adv --keyserver hkp://p80.pool.sks
+	-keyservers.net:80 --recv-		
+	keys 58118E89F3A912897C070ADBF76221572C52609D
+	# echo 'deb https://apt.dockerproject.org/repo ubuntu-precise main' 
+	>> /etc/apt/sources.list.d/docker.list
+	# apt-get update
+	# apt-cache policy docker-engine
+	# sudo apt-get install linux-image-extra-$(uname -r)
+\end{lstlisting}
+\paragraph{Docker installieren}
+\begin{lstlisting}[style=BashInputStyle]
+	# sudo apt-get install docker-engine
+\end{lstlisting}
+
+\subsubsection{Starten}
+\begin{lstlisting}[style=BashInputStyle]
+	# sudo service docker start
+	# sudo docker run hello-world
+\end{lstlisting}
+

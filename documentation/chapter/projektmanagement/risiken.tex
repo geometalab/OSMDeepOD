@@ -1,20 +1,25 @@
 \begin{landscape}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=250mm]{images/Gantt.png}
+		\caption{Gantt Chart}
+	\end{figure}
 \section{Risiken}
 Um den Problemen, die während des Projekts auftreten können entgegenzuwirken, haben wir eine Risiko Analyse durchgeführt. Diese konnte dann bei der Planung eingesetzt werden.
 
 \subsection{Technische Risiken}
 \begin{table}[H]
-    \begin{tabular}{|p{0.5cm}|p{2cm}|p{6cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{3cm}|p{4cm}|}
+    \begin{tabular}{|p{0.4cm}|p{1.8cm}|p{7cm}|p{1.5cm}|p{2.25cm}|p{1.75cm}|p{3cm}|p{4cm}|}
     \hline    
     \rowcolor{lightblue}
-    Nr & Titel & Beschreibung & maximaler Schaden & Eintrittswahrscheinlichkeit & Gewichteter Schaden & Vorbeugung & Verhalten beim Eintreten \\ \hline
-	R1 & Einarbeitung Python & Python ist den Teammitgliedern teils bekannt, jedoch wurde noch kein grösseres Projekt mit dieser Sprache entwickelt. & 40h & 0\% &0h & Evaluation des Wissensstandes & Informationen bei Studenten einholen, die Python gut kennen \\ \hline
-	R2 & Installation OpenCV & Die Installation von OpenCV mit den Contrib Package ist bekanntermassen ein grosse Hürde & 15h & 0\% & 0h & Installation mit Tutorials durchführen & Rücksprache mit Felix Morgner \\ \hline
+    Nr & Titel & Beschreibung & maximaler Schaden & Eintrittswahr-scheinlichkeit & Gewichteter Schaden & Vorbeugung & Verhalten beim Eintreten \\ \hline
+	R1 & Einarbeitung Python & Python ist den Teammitgliedern teils bekannt, jedoch wurde noch kein grösseres Projekt mit dieser Sprache entwickelt. & 40h & 10\% &4h & Evaluation des Wissensstandes & Informationen bei Studenten einholen, die Python gut kennen \\ \hline
+	R2 & Installation OpenCV & Die Installation von OpenCV mit den Contrib Package ist bekanntermassen ein grosse Hürde & 16h & 50\% & 8h & Installation mit Tutorials durchführen & Rücksprache mit Felix Morgner \\ \hline
 	R3 & Detektion & Der Algorithmus, der Fussgängerstreifen erkennt, liefert zu schlechte Resultate und kann nicht gebraucht werden. & 40h & 50\% & 20h & Analyse diverser Algorithmen in der Evaluation & Gespräch mit Guido Schuster suchen \\ \hline
-	R4 & Download Orthofoto & Download der Orthofotos von Bing oder ähnlichen Quellen ist nicht möglich & 50h & 30\% & 15h & Alternativen im Augebehalten & Auf Bildmaterial der HSR zurückgreifen \\ \hline
+	R4 & Download Orthofoto & Download der Orthofotos von Bing oder ähnlichen Quellen ist nicht möglich & 50h & 30\% & 15h & Alternativen im Auge behalten & Auf Bildmaterial der HSR zurückgreifen \\ \hline
 	R5 & Software ist zu langsam & Der Download der Orthofotos oder die Detektion kann einige Zeit in Anspruch nehmen.	& 60h & 70\% & 42h & Konzept für Parallelisierung erarbeiten & Fläche einschränken, - Grössere und mehrere Maschinen verwenden. \\ \hline
     \end{tabular}
-    \caption[Risiken]{Risiken}
+    \caption[Risiken]{Risiken - Die technischen Risiken wurden zu Beginn des Projektes, wie in der Tabelle ersichtlich, definiert.}
 \end{table}
 \end{landscape}
 
@@ -26,16 +31,17 @@ Risiko ist nicht eingetreten, die Entwickler hatte keine Mühe mit Python zu arb
 Risiko ist in vollem Umfang eingetreten. Die Installation und Kompilation stellte sich als äusserst Trickreich heraus.
 
 \paragraph{R3 Detektion}
-Die Detektion stellt die Hauptaufgabe unserer Arbeit dar, ist jedoch gleichzeitig eine der Risikoreichsten, da Bilderkennung ein nicht ganz triviales Problem ist. Das Implementieren und Testen der verschieden Algorithmen war sehr Zeitaufwähnig, was dazu führte, dass auch dieses Risiko eingetroffen ist.
+Die Detektion stellte die Hauptaufgabe unserer Arbeit dar, ist jedoch gleichzeitig eine der Risiko reichsten, da Bilderkennung ein nicht ganz triviales Problem ist. Das Implementieren und Testen der verschieden Algorithmen war sehr zeitaufwändig, was dazu führte, dass auch dieses Risiko eingetroffen ist.
 
 \paragraph{R4 Download Orthofoto}
-Während des Projektes, wechselten wir mehrmals die API für den Download, was sich auch hier auf einen erhöten aufwand auswirkte. 
+Während des Projektes, wechselten wir mehrmals die API für den Download, was sich auch hier auf einen erhöhten Aufwand auswirkte. 
 
 \paragraph{R5 Software ist zu langsam}
-Durch den Einsatz von RQ in Kombination mit Redis wurde diesem Risiko Einhalt geboten.
+Durch den Einsatz von RQ in Kombination mit Redis wurde diesem Risiko Einhalt geboten. \\
 
 \begin{table}[H]
-    \begin{tabular}{|l|l|l|}
+	\centering
+    \begin{tabular}{|p{2cm}|p{5cm}|p{2cm}|}
     \hline    
     \rowcolor{lightblue}
 	Nr & Titel & Schaden \\ \hline   
@@ -44,8 +50,8 @@ Durch den Einsatz von RQ in Kombination mit Redis wurde diesem Risiko Einhalt ge
 	R3 & Detektion & 60h \\ \hline
 	R4 & Download Orthofoto & 12h \\ \hline
 	R5 & Software ist zu langsam & 0h \\ \hline
-	\rowcolor{lightblue}	
-	Total &  & 82h\\ \hline
+	\rowcolor{lightblue}
+	Total &  & 92h \\ \hline
     \end{tabular}
     \caption[Risikoauswertung]{Risikoauswertung}
 \end{table}

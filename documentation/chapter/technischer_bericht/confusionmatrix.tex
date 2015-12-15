@@ -1,34 +1,54 @@
 \section{Evaluation Suchalgorithmus}
-Die Evaluation verschiedener Algorithmen zur Erkennung von Fussgängerstreifen stellt ein wichtiger Teil unserer Arbeit dar. Um die Kandidaten zu vergleichen griffen wir auf das Werkzeug der Confusion Matrix (Wahrheitsmatrix) zurück.
+\label{sec:suchalgorithmus}
+Die Evaluation verschiedener Algorithmen zur Erkennung von Fussgängerstreifen stellte ein wichtiger Teil unserer Arbeit dar. Nach Absprachen mit unseren Dozenten und Recherchen im Internet sind wir auf die unteren Methoden zur Bilderkennung gestossen. Um die Kandidaten zu vergleichen, griffen wir auf das Werkzeug der \Gls{Confusion Matrix} (Wahrheitsmatrix) zurück.
 
 \subsection{Algorithmen Vergleich}
-Um einen nachvollziehbaren Vergleich durchzuführen haben wir mit folgenden Eckdaten gearbeitet:
+Um einen neutralen Vergleich der verschiedenen Erkennungsmethoden zu erreichen, haben wir alle Methoden testweise implementiert und mit ihnen eine Erkennung im Raum Rapperswil durchgeführt.
+
+Wir haben mit folgenden Eckdaten gearbeitet:
 \begin{tabbing}[H]
-    \hspace*{6cm}\=\hspace*{6cm}\= \kill
+    \hspace*{5cm}\=\hspace*{6cm}\= \kill
     Bounding Box (Rapperswil): \> (8.814650, 47.222553, 8.825035, 47.228935) \\
     Anzahl Fussgängerstreifen: \> 37 \\
 \end{tabbing}
 
-\subsubsection{Haar Feature-based Cascade Classifier}
+
+\subsubsection{\Gls{Haar Feature-based Cascade Classifier}}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/haar_conf.png}
 \caption[Haar Feature-based Cascade Classifier]{Haar Feature-based Cascade Classifier}
 \end{figure}
+Auf der Suche nach möglichen Algorithmen, welche Objekte auf Bildern erkennen, stiessen wir auf den Haar Feature-based Cascade Classifier. Dieser erlaubt es Objekte unabhängig von der Drehung oder Skalierung wieder zu erkennen. In einer Erweiterung von OpenCV ist der Algorithmus implementiert und kann wie in dem Beispiel \cite{OpencvHaar} von Thorsten Ball  verwendet werden.
+
+Für das Trainieren braucht es sehr viele Bilder und noch mehr Rechenleistung. Um diese Hürden zu überwinden, schrieben wir ein Python Skript, welches uns Bilder von Fussgängerstreifen lieferte. Dabei konnten wir auf OpenStreetMap Daten zurückgreifen, welche die Koordinaten von Fussgängerstreifen lieferten. Weiter stellte die HSR ihren Dev-Server zur Verfügung, um die enorme Rechenleistung abzudecken. Leider wurde auch mit diversen unterschiedlichen Trainingsdaten kein brauchbares Resultat erzielt. Eine Schwierigkeit beim trainieren war, dass man kein Feedback bekam, was gutes oder eher schlechtes Bildmaterial für das Training ist.
+
 \subsubsection{Fast Fourier Transform}	
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/fast_fourier_conf.png}
 \caption[Fast Fourier Transform]{Fast Fourier Transform}
 \end{figure}
-\subsubsection{Scale-invariant Feature Transform}	
+Die \Gls{Orthofotos} entlang der Strasse wurde so ausgerichtet, dass die Strasse horizontal zum Bild liegt. Der Fussgängerstreifen hat nun die Eigenschaft, dass wenn eine Fourier Transformation vertikal zum Bild angewendet wird, ein eindeutiges Frequenzmuster entstehen sollte. Genau genommen ist der 8. Fourierkoeffizient gegenüber seinen Nachbar erhöht (Je nach Bildqualität auch der 7. oder 9.).
+Die Methode versagt jedoch, sobald der Fussgängerstreifen undeutlich wird, Objekte wie Autos auf dem Fussgängerstreifen sind oder andere Gegenstände diese dominante Frequenz auch beinhalten.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{images/Unsharp_Crosswalk2.png}\caption{Undeutlicher Fussgängerstreifen ohne dominanten Fourierkoeffizienten}
+\end{figure}
+\newpage
+\subsubsection{\Gls{Scale-invariant Feature Transform}}	
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/sif_conf.png}
 \caption[Scale-invariant Feature Transform]{Scale-invariant Feature Transform}
 \end{figure}
-\subsubsection{Deep Learning}	
+Scale-invariant Feature Transform (SIFT) ist ein Algorithmus, welcher Merkmale von Bildern beschreibt. Seine Stärken sind, dass es keine Probleme mit Translation, Rotation oder Skalierung gibt. Die Idee dies Verfahrens ist jedoch ein Objekt auf einem Bilder wieder zu erkennen. Mit Input, welches eine unbekannte Situation zeigt, kommt der Algorithmus nicht klar.\\
+OpenCV bietet eine Implementation von SIFT, welche wir nutzten um die Evaluation durchzuführen. Das Resultat war für unsere Problemstellung alles andere als ausreichend.
+\subsubsection{Deep Learning - Convnet}	
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{images/deep_conf.png}
-\caption[Deep Learning]{Deep Learning}
+\caption[Deep Learning]{\Gls{Deep Learning} - Convnet}
 \end{figure}
+Das \Gls{Convolutional Neural Network} hat die Fussgängerstreifen mit Abstand am besten erkannt. Anzumerken ist hier, dass die False Positive (FP) Rate von 0 ein schlichtes Zufallsergebnis ist. Wir haben diese Technik nach der Evaluation auf grösseren Flächen innerhalb der Stadt Zürich getestet und sind auf 1 FP pro 1000 Bildern gekommen. Eine Beschreibung der Technik des \Gls{Convnet}s können sie dem  Abschnitt~\ref{sec:umsetzung} auf der Seite~\pageref{sec:umsetzung} entnehmen.
+\newpage
+
 \subsection{Auswertung}
 Damit die Auswertung verständlich ist, wird hier noch auf die Berechnung und die angeführte Legende verwiesen.
 \subsubsection{Legende}
@@ -49,6 +69,7 @@ Damit die Auswertung verständlich ist, wird hier noch auf die Berechnung und di
 \end{tabbing}
 
 \begin{table}[H]
+	\centering
     \begin{tabular}{|l|l|l|l|}
     \hline    
     \rowcolor{lightblue}
@@ -62,7 +83,7 @@ Damit die Auswertung verständlich ist, wird hier noch auf die Berechnung und di
 \end{table}
 
 \decision{Evaluation Suchalgorithmus}
-An dieser stelle ist zu erwähnen, dass Bilderkennung im Allgemeinen ein nicht triviales Problem ist. Man hat mit den unterschiedlichsten Schwierigkeiten zu kämpfen, wie der qualität oder die Belichtung der Bilder. Das führte dazu, dass nur mit dem Fast Fourier Transform und dem Deep Learning Ansatz Resultate erziehlt wurden, welche ein brauchbares Ergebnis lieferten. Der Deep Learning ist jedoch der klare Favoirt und sticht insbesondere beim Fals Positive Wert hervor. Deshalb entschieden wir uns, unser Fokus auf diesen Algorithmus zu legen. 
+An dieser Stelle ist zu erwähnen, dass Bilderkennung im Allgemeinen ein nicht triviales Problem ist. Man hat mit den unterschiedlichsten Schwierigkeiten zu kämpfen, wie der Qualität oder die Belichtung der Bilder. Das führte dazu, dass nur mit dem Fast Fourier Transform und dem Deep Learning Ansatz Resultate erziehlt wurden, welche ein brauchbares Ergebnis lieferten. Deep Learning ist jedoch der klare Favorit und sticht insbesondere beim False Positive Wert hervor. Deshalb entschieden wir uns unseren Fokus auf diesen Algorithmus zu legen. 
 
 
 
