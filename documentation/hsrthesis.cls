@@ -67,6 +67,7 @@
 % Table Stylings
 % http://tex.stackexchange.com/a/13748
 %%%%%%%%%%%%%%%%%%%%
+
 \newcommand*\heading[1]{\bfseries{#1}}
 \newcommand*\beforeheading{\toprule}
 \newcommand*\afterheading{\midrule}
@@ -77,14 +78,7 @@
 % own Table of content for desicions
 %http://texblog.org/2008/07/13/define-your-own-list-of/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{tocstyle}
-\usepackage[titles]{tocloft}
-\renewcommand{\contentsname}{Table of contents}
-\renewcommand{\cftchapfont}{\normalfont\bfseries}% titles in bold
-\renewcommand{\cftchappagefont}{\normalfont\bfseries}% page numbers in bold
-\renewcommand{\cftdotsep}{1}
-\renewcommand{\cftchapleader}{\bfseries\cftdotfill{\cftsecdotsep}}%s\cftdotfill{\cftsecdotsep}
-
+\usepackage{tocloft}
 \newcommand\decision[1]{%
 	\refstepcounter{decision}
 	\par\noindent\textbf{Entscheid  \thedecision. #1 }
@@ -94,8 +88,6 @@
 \newcommand\listdecisionname{Verzeichnis der Entscheide}
 \newlistof{decision}{def}{\listdecisionname}
 \renewcommand{\cftdecisionnumwidth}{3em}
-
-\renewcommand\cftchapfont{\bf}
 
 %Shell Stylings
 %http://tex.stackexchange.com/questions/46953/unix-command-highlighting-latex
