@@ -34,7 +34,7 @@
 \usepackage{textcomp}
 \usepackage{mathptmx}
 \usepackage[scaled=0.85]{helvet}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{array}
 \usepackage[ngerman]{babel}
 \usepackage{glossaries}
