@@ -87,7 +87,7 @@
 
 \newcommand\listdecisionname{Verzeichnis der Entscheide}
 \newlistof{decision}{def}{\listdecisionname}
-
+\renewcommand{\cftdecisionnumwidth}{3em}
 
 %Shell Stylings
 %http://tex.stackexchange.com/questions/46953/unix-command-highlighting-latex
