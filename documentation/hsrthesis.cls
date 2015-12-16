@@ -182,8 +182,6 @@ showstringspaces=false            %
 				% Checking Supporter
 				\ifthenelse{\equal{\professor}{}}{\\}{\emph{Betreuer:} & \professor\\[3pt]}
 					\emph{Arbeitsperiode:} & \timeperiode\\[3pt]
-					\emph{Arbeitsumfang:} & \workload\\[3pt]
-					\emph{Link:} & \url{\linktothesis}
 				\end{tabular}
 			\end{flushleft}
 		\end{minipage}

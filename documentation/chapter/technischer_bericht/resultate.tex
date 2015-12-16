@@ -1,12 +1,20 @@
 \newpage
 \section{Resultate}
 \subsection{Zielerreichung}
-Das Projekt OSM Crosswalk Detection barg einige Hürden, von der Schwierigkeit der Bilderkennung, dem Anbinden diverser Schnittstellen und die parallele Verarbeitung grosser Datenmengen.\\
+Das Projekt Extraction of Crosswalks from Aerial Images barg einige Hürden, von der Schwierigkeit der Bilderkennung, dem Anbinden diverser Schnittstellen und die parallele Verarbeitung grosser Datenmengen.\\
 Als Resultat der Arbeit entstand eine Applikation, welche auf Orthofotos Fussgängerstreifen erkennt und deren Koordinaten speichert. Im Bild unterhalb sind die vom Algorithmus gefundenen Fussgängerstreifen der Ostschweiz visualisiert. \\
 \begin{figure}[H]
 \centering
 \includegraphics[width=350pt]{images/result_points.png}
 \caption[Resultat visualisiert]{Resultat visualisiert, Zürich, Zug und Teile von St. Gallen}
+\end{figure}
+\newpage
+\subsection{Resultierende Dateien}
+Aus dem Projekt sind mehrere JSON Datei hervorgegangen, welche  auf der CD im Resultat/Daten Ordner zur Verfügung stehen. Diese Datei beinhalten die vom Projekt gefundenen Fussgängerstreifen abzüglich der bestehenden Fussgängerstreifen in OpenStreetMap. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=300pt]{images/Resultatmenge.png}
+	\caption[Resultatmengen]{Resultatmengen - Die vom Crosswalk Detector gefundenen Resultate sind Grün und Rot dargestellt. Die OpenStreetMap Daten sind Blau. Die Projektresultate beinhalten die Koordinaten Rot + Grün - Blau.}
 \end{figure}
 
 \newpage
