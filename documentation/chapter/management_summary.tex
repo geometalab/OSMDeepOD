@@ -10,6 +10,7 @@ Dieses Projekt ist der Versuch einer automatischen Erkennung von Fussgängerstre
 	\includegraphics[width=410pt]{images/management_summary_1.png}
 	\caption[Management Summery Überblick]{Überblick über den Datenfluss zur Erkennung und Erfassung von Fussgängerstreifen in OpenStreetMap.}
 \end{figure}
+\medskip
 Die Arbeit begann mit der Evaluation eines passenden Bilderkennungsalgorithmus. Dabei wurden diverse Algorithmen zur Klassifikation der Bilder geprüft, vom Haar Feature-based Cascade Classifier über Fast Fourier Transform bis zu Neuronalen Netzen. Ein neuronales Netz, genauer ein Convolutional Neural Network, brachte die besten Resultate.
 
 Weiter mussten Orthofotos, wie auch Informationen zu Strassenachsen und die Koordinaten der schon in OSM erfassten Fussgängerstreifen beschafft werden. Dabei konnte auf Bing Maps und die OSM-Programmierschnittstelle von MapQuest zurückgegriffen werden.
@@ -25,7 +26,7 @@ Aus diesem Projekt entstand eine Applikation für die automatische Erkennung von
 	\includegraphics[width=\textwidth -10mm]{images/boxsave_rappi.png}
 	\caption[Überblick]{Rapperswil Innenstadt - Gefundene Fussgängerstreifen sind mit einem grünen Punkt markiert.}
 \end{figure}
-
+\medskip
 Die Applikation erkannte mehr als 80\% aller gelben Fussgängerstreifen mit einer Fehlerrate von weniger als 10\%. Die Koordinaten der Fussgängerstreifen im Raum der Kantone Zürich und Zug konnten an MapRoulette zur Einpflege in OSM übergeben werden.
 \\
 \begin{figure}[H]

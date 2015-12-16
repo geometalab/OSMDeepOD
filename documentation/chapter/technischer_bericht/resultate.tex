@@ -5,10 +5,11 @@ Das Projekt OSM Crosswalk Detection barg einige Hürden, von der Schwierigkeit d
 Als Resultat der Arbeit entstand eine Applikation, welche auf Orthofotos Fussgängerstreifen erkennt und deren Koordinaten speichert. Im Bild unterhalb sind die vom Algorithmus gefundenen Fussgängerstreifen der Ostschweiz visualisiert. \\
 \begin{figure}[H]
 \centering
-\includegraphics[width=350pt]{images/ostschweiz.png}
-\caption[Ostschweiz]{Ostschweiz}
+\includegraphics[width=350pt]{images/result_points.png}
+\caption[Resultat visualisiert]{Resultat visualisiert, Zürich, Zug und Teile von St. Gallen}
 \end{figure}
 
+\newpage
 \subsubsection{Wahrheitstabelle mit Kennzahlen}
 Um saubere Kennzahlen zur Erkennungrate zu erhalten, haben wir den Algortihmus auf die Fläche zwischen Zollikon und Zürich Zoo angewendet und die Daten in einer Confusion Matrix zusammengefasst.
 \\
@@ -36,16 +37,12 @@ Um saubere Kennzahlen zur Erkennungrate zu erhalten, haben wir den Algortihmus a
     \caption[Resultierende Confusion Matrix Prozent Zahlen]{Resultierende Confusion Matrix Prozent Zahlen - BBox (47.355633, 8.543026), (47.372811, 8.570957)}
 \end{table}
 
-
-\newpage
 In Worten ausgedrückt, sind die Zahlen folgendermassen zu interpretieren:
 \begin{itemize}
 	\item 83\% aller visuell sichtbaren Fussgängerstreifen wurden erkannt.
 	\item 17\% der Fussgängerstreifen werden nicht erkannt.
 	\item 9\% der erkannten Fussgängerstreifen sind falsch.
 \end{itemize}
-			
-
 
 \subsubsection{Ziel der Aufgabenstellung}
 \begin{table}[H]
