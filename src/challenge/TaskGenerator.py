@@ -26,8 +26,8 @@ if __name__ == "__main__":
                         "geometry": {
                             "type": "Point",
                             "coordinates": [
-                                crosswalk['latitude'],
-                                crosswalk['longitude']
+                                crosswalk['longitude'],
+                                crosswalk['latitude']
                             ]
                         }
                     }
