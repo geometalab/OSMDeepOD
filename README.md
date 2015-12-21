@@ -4,12 +4,12 @@
 
 # OSM-Crosswalk-Detection: Deep learning based image recognition
 
-## You just have found this project
+## Introduction
 
-OSM-Crosswalk-Detection is a high scalable image recognition software for aerial photos (orthophotos). It uses the deep learning library Keras, more precisely a VGGNet like convolutional neural network, to detect crosswalks along streets.
-This python based project provides a keras docker container to train the neural network on a gpu and  several docker container to distribute the recognition work on multiple servers.
+OSM-Crosswalk-Detection is a highly scalable image recognition software for aerial photos (orthophotos). It uses the deep learning library Keras, more precisely a VGGNet like convolutional neural network, to detect crosswalks along streets.
+This Python based project provides a Keras docker container to train the neural network on a GPU and several docker containers to distribute the recognition work on multiple servers.
 
-This work is part of the semester thesis at the university of applied science Rapperswil (HSR).
+This work started as part of a semester thesis autumn 2015 at Geometa Lab, University of Applied Sciences Rapperswil (HSR).
 
 ## Overview
 
