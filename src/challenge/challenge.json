@@ -1,7 +1,7 @@
 {
   "title": "Missing Crosswalks of Zurich (Switzerland)",
   "blurb": "Verify the pedestrian crossings our image detection process found",
-  "description": "This challenge shows coordinates which represent yellow street crossings (crosswalks) our process found in areal images. Once integrated in OpenStreetMap (OSM) they are shown in online maps (e.g. OSM Cycle Map/OpenCycleMap); and they are useful for pedestrian navigation apps (e.g. OsmAnd). So help OSM to improve this missing information!",
+  "description": "This challenge shows coordinates which represent yellow street crossings (crosswalks) our process found in aerial images. Once integrated in OpenStreetMap (OSM) they are shown in online maps (e.g. OSM Cycle Map/OpenCycleMap); and they are useful for pedestrian navigation apps (e.g. OsmAnd). So help OSM to improve this missing information!",
   "instruction": "Check if there is a crosswalk. If yes, add it with tag highway=crossing, else skip it.",
   "help": "A crosswalk node needs to be placed as part of a way. It requires the tag highway=crossing (search for Crossing in iD editor). For additional tags see http://wiki.openstreetmap.org/wiki/Key:crossing . The coordinates have been extracted at December, 2nd. 2015, by using a parallel image detection process. This process works mainly with yellow crossings of Switzerland. For further information see:  http://geometalab.tumblr.com/post/135791594387/missing-crosswalks-targeted-editing",
   "difficulty": 1,

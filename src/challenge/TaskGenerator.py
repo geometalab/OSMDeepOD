@@ -33,8 +33,7 @@ if __name__ == "__main__":
                     }
                 ]
             },
-            "identifier": str(uuid.uuid4()),
-            "instruction": "Is this a crosswalk?"
+            "identifier": str(uuid.uuid4())
         }
         return task
 
