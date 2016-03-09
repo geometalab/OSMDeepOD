@@ -2,7 +2,7 @@
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
 
-## Keras docker image with hualos visualization
+## Keras docker image with hualos visualization (obsolete, see tensor-flow)
 
 This image bases on the docker file of kaixhin/cuda-keras, but instead of his own cuda image, this image implements the experimental nvidia-docker image.
 
