@@ -7,7 +7,7 @@ The Dockerfiles are automated build by docker hub. You can pull it on the follow
 - [osm_crosswalk_detection - Recognition image](https://hub.docker.com/r/murthy10/osm-crosswalk-detection/ "")
 - [keras_cuda - Training image](https://hub.docker.com/r/sebu/keras_cuda/ "")
 - [theano_cuda](https://hub.docker.com/r/sebu/theano_cuda/ "")
-- hualos_keras_cuda (ToDo)
+- hualos_keras_cuda (obsolete)
 
 
 ## How to use the images?
