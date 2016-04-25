@@ -1,4 +1,4 @@
-import ImageDraw
+from PIL import ImageDraw
 class TileDrawer:
     def __init__(self):
         self.tile = None
