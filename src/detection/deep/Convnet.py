@@ -97,7 +97,7 @@ class Convnet:
 
         model = Sequential()
 
-        model.add(Convolution2D(nb_filters1, nb_conv , nb_conv, W_regularizer=l2(lmda_conv), border_mode='full', input_shape=(img_channels, img_rows, img_cols)))
+        model.add(Convolution2D(nb_filters1, nb_conv , nb_conv, W_regularizer=l2(lmda_conv), border_mode='same', input_shape=(img_channels, img_rows, img_cols)))
         model.add(Activation('relu'))
         model.add(Dropout(0.2))
         model.add(Convolution2D(nb_filters1, nb_conv, nb_conv, W_regularizer=l2(lmda_conv)))
