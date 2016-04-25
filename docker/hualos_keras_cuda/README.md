@@ -18,9 +18,9 @@ git clone https://github.com/NVIDIA/nvidia-docker.git
 cd nvidia-docker
 
 # Pull this image
-docker pull sebu/hualos_keras_cuda
+docker pull geometalab/hualos_keras_cuda
 # Start container and mount GPU 0
-GPU=0 ./nvidia-docker run -i -t sebu/hualos_keras_cuda
+GPU=0 ./nvidia-docker run -i -t geometalab/hualos_keras_cuda
 ```
 
 ## Further informations

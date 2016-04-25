@@ -11,11 +11,11 @@ You can directly start the different worker roles described in the next paragrap
 
 ```bash
 #Manager
-docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR --role manager left bottom right top
+docker run geometalab/osm-crosswalk-detection REDIS_IP_ADDR --role manager left bottom right top
 
 #Jobworker
-docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR --role resultworker
+docker run geometalab/osm-crosswalk-detection REDIS_IP_ADDR --role resultworker
 
 #Resultworker
-docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR --role jobworker
+docker run geometalab/osm-crosswalk-detection REDIS_IP_ADDR --role jobworker
 ```

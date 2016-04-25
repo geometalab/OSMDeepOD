@@ -1,5 +1,5 @@
 FROM keras_cuda7.5
-MAINTAINER Severin Buehler <sbuehler@hsr.ch>
+MAINTAINER Marcel Huber <marcel.huber@hsr.ch>
 # Based on https://github.com/fchollet/hualos
 
 # Install dependencies

@@ -4,8 +4,8 @@ machine:
 
 dependencies:
   override:
-    - docker pull murthy10/osm-crosswalk-detection
+    - docker pull geometalab/osm-crosswalk-detection
 
 test:
   override:
-    - docker run -it --entrypoint="python" murthy10/osm-crosswalk-detection -m unittest discover tests
+    - docker run -it --entrypoint="python" geometalab/osm-crosswalk-detection -m unittest discover tests

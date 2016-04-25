@@ -16,9 +16,9 @@ git clone https://github.com/NVIDIA/nvidia-docker.git
 cd nvidia-docker
 
 # Pull this image
-docker pull sebu/theano_cuda
+docker pull geometalab/theano_cuda
 # Start container and mount GPU 0
-GPU=0 ./nvidia-docker run -i -t sebu/theano_cuda
+GPU=0 ./nvidia-docker run -i -t geometalab/theano_cuda
 ```
 
 ## Further informations
