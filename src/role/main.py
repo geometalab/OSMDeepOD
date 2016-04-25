@@ -3,7 +3,6 @@ if __name__ == "__main__":
     from src.base.Bbox import Bbox
     from src.role.Worker import Worker
     from src.role.Manager import Manager
-    from src.base.Constants import Constants
     from redis import Redis
 
     def Usage(s = ""):

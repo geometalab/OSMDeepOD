@@ -1,7 +1,6 @@
 import rq
 from rq import Queue
 from rq import Connection
-from src.base.Constants import Constants
 from src.role.WorkerFunctions import detect
 from src.role.WorkerFunctions import store
 from redis import Redis

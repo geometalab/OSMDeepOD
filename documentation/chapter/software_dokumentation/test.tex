@@ -20,7 +20,7 @@ class TestWorkerFunctions(unittest.TestCase):
     def test_store_two_crosswalks(self):
         crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
         store(crosswalks)
-        with open(Constants.PATH_TO_CROSSWALKS, 'r') as f:
+        with open(PATH_TO_CROSSWALKS, 'r') as f:
             data = json.load(f)
         self.assertTrue(len(data['crosswalks']) == 2);
         
