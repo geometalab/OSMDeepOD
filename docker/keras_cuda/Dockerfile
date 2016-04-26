@@ -2,22 +2,13 @@ FROM geometalab/theano_cuda:latest
 MAINTAINER Marcel Huber <marcel.huber@hsr.ch>
 #Bases on https://github.com/Kaixhin/dockerfiles/blob/master/cuda-keras/cuda_v7.5/Dockerfile
 
-# Install dependencies
-RUN apt-get update && apt-get --no-install-recommends install -y \
-  libhdf5-dev \
-  python-h5py \
-  python-yaml \
-  && apt-get autoclean autoremove \
-  && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+  apt-get install --no-install-recommends -y \
+  libhdf5-dev libyaml-0-2 && \
+  apt-get autoclean autoremove clean && \
+  rm -rf /var/lib/apt/lists/*
 
-# Upgrade six
-RUN pip install --upgrade six
+RUN pip install --upgrade \
+  h5py PyYAML "Keras==1.0.1"
 
-# Clone Keras repo and move into it
-RUN cd /root && git clone https://github.com/fchollet/keras.git && cd keras && \
-  # Install
-  python setup.py install
-
-# Set ~/keras as working directory
-WORKDIR /root/keras
-
+WORKDIR /root
