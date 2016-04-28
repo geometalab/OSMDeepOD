@@ -2,14 +2,17 @@ FROM skydjol/nvidia-docker:latest
 MAINTAINER Marcel Huber <marcel.huber@hsr.ch>
 #Bases on https://github.com/Kaixhin/dockerfiles/blob/master/cuda-theano/cuda_v7.5/Dockerfile
 
-RUN apt-get update && apt-get upgrade --no-install-recommends -y && \
+RUN apt-get update && apt-get upgrade -y && \
   apt-get install --no-install-recommends -y \
-  libopenblas-dev liblapack-dev gfortran \
-  git python-dev python-pip && \
-  apt-get autoclean autoremove clean && \
-  rm -rf /var/lib/apt/lists/*
+  git \
+  libopenblas-dev \
+  python-dev \
+  python-pip \
+  python-scipy \
+  && apt-get autoclean autoremove clean \
+  && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade \
+RUN pip install \
   "Theano==0.8.2"
 
 # Set CUDA_ROOT

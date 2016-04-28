@@ -147,3 +147,7 @@ documentation/main.pdf
 *.xdy
 *.tdo
 *.def
+
+.venv*/
+*.swp
+*.tar
