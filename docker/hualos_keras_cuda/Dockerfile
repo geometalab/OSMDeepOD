@@ -1,10 +1,9 @@
-FROM keras_cuda7.5
+FROM geometalab/keras_cuda
 MAINTAINER Marcel Huber <marcel.huber@hsr.ch>
 # Based on https://github.com/fchollet/hualos
 
 # Install dependencies
-RUN pip install Flask
-RUN pip install gevent
+RUN pip install Flask gevent
 
 # Install hualos visualization for keras
 RUN git clone https://github.com/fchollet/hualos.git && cd hualos
