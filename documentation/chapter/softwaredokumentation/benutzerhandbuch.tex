@@ -33,28 +33,26 @@ Dank Docker kann unsere Applikation innert Minuten gestartet werden.
 
 \paragraph{Docker Pull}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
-	# docker pull murthy10/osm-crosswalk-detection
+	# docker pull geometalab/osm-crosswalk-detection
 \end{lstlisting}
 
 \paragraph{Manager}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
-	# docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
- 	--role manager left bottom right top
+	# docker run geometalab/osm-crosswalk-detection manager
+ 	  left bottom right top
 \end{lstlisting}
 Left, Bottom, Right, Top entsprechen den Koordinaten im WGS84 Format. \\
 Ostschweiz: left=8.361002, bottom=47.166994, right=8.977610, top=47.706676
 
 \paragraph{Jobworker}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
-	# docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
- 	--role jobworker
+	# docker run geometalab/osm-crosswalk-detection jobworker
 \end{lstlisting}
 Jobworker können auf beliebig vielen Rechnern gestartet werden.\\
 
 \paragraph{Resultworker}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
-	# docker run murthy10/osm-crosswalk-detection REDIS_IP_ADDR 
- 	--role resultworker
+	# docker run geometalab/osm-crosswalk-detection resultworker
 \end{lstlisting}
 Die Resultate werden in der Datei crosswalks.json gespeichert. Diese findet man im Verzeichnis in dem der Resultworker gestartet wurde.
 
@@ -63,7 +61,7 @@ Die Struktur der crosswalks.json Datei ist folgendermassen aufgebaut:
 \medskip
 \begin{python}
 {
-	"crosswalks": 
+	"crosswalks":
 	[
 		{"latitude": 47.0, "longitude": 8.3},
 		{"latitude": 48.0, "longitude": 8.4}
@@ -109,8 +107,8 @@ SELECT * FROM dataset WHERE ST_WITHIN(
             [8.81429672241211,
              47.22971054221563]
           ]
-        ] }'), 
-   4326)) 
+        ] }'),
+   4326))
 \end{python}
 \newpage
 \subsection{Challenge erstellen}
@@ -126,17 +124,17 @@ Für eine Challenge benötigt es die Datei challange.json, welches die Challenge
 
 \paragraph{Challenge publizieren}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
- # curl -u devuser:mylittlesony -vX 
+ # curl -u devuser:mylittlesony -vX
    POST http://maproulette.org/api/admin/challenge/
-   crosswalk-detection/tasks -d @tasks.json 
+   crosswalk-detection/tasks -d @tasks.json
    --header "Content-Type: application:json"
 \end{lstlisting}
 
 \paragraph{Tasks publizieren}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
- # curl -u devuser:mylittlesony -vX 
+ # curl -u devuser:mylittlesony -vX
    POST http://maproulette.org/api/admin/challenge/
-   crosswalk-detection -d @challenge.json 
+   crosswalk-detection -d @challenge.json
    --header "Content-Type: application:json"
 \end{lstlisting}
 
@@ -157,12 +155,12 @@ Für das Training des Neuronalen Netzes steht ein eigenes Docker Image \cite{Dok
 
 \paragraph{Herunterladen des Images}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
-	# docker pull sebu/keras_cuda
-\end{lstlisting}	
+	# docker pull geometalab/keras_cuda
+\end{lstlisting}
 
 \paragraph{Start des Containers und mount der Grafikkarte Nummer 0}\mbox{}\\
 \begin{lstlisting}[style=BashInputStyle]
-	#GPU=0 ./nvidia-docker run -i -t sebu/keras_cuda /bin/bash
+	#GPU=0 ./nvidia-docker run -i -t geometalab/keras_cuda /bin/bash
 \end{lstlisting}
 
 Achtung: Die Keras Bibliothek entwickelt sich ständig weiter. Auch die Interfaces der populärsten Klassen können sich ändern und haben sich auch schon während diesem Projekt verändert! In diesem Keras Docker Image ist der Stand von Keras installiert, mit dem wir gearbeitet haben. Keras bietet leider keine Versionierung an. Der von uns verwendete Stand ist auch auf der mitglieferten CD erhältlich.
