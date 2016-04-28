@@ -20,6 +20,6 @@ ENV OUTPUT_DIR=/output
 VOLUME ["$OUTPUT_DIR"]
 
 ENTRYPOINT [ "python", "/root/OSM-Crosswalk-Detection/src/role/main.py" ]
-CMD [ "--redis" ]
+CMD [ "--help" ]
 
 WORKDIR /root/OSM-Crosswalk-Detection
