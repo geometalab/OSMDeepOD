@@ -17,6 +17,7 @@ class MapquestApi(object):
         resp, content = httplib2.Http().request(url)
         return ElementTree.fromstring(content)
 
-    def to_mapquest_format(self, bbox):
+    @staticmethod
+    def to_mapquest_format(bbox):
         return str(
             bbox.left) + "," + str(bbox.bottom) + "," + str(bbox.right) + "," + str(bbox.top)

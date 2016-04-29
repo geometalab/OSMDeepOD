@@ -8,5 +8,6 @@ class TestTile(unittest.TestCase):
         tile = Tile.from_tile(None, self.Rappi())
         self.assertTrue(tile.bbox.bottom == self.Rappi().bottom)
 
-    def Rappi(self):
+    @staticmethod
+    def Rappi():
         return Bbox.from_lbrt(8.81372, 47.218788, 8.852430, 47.239654)

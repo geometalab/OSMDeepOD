@@ -34,6 +34,7 @@ class TestWorkerFunctions(unittest.TestCase):
             data = json.load(f)
         self.assertTrue(len(data['crosswalks']) == 2);
 
-    def remove_file(self):
+    @staticmethod
+    def remove_file():
         if os.path.exists(PATH_TO_CROSSWALKS):
             os.remove(PATH_TO_CROSSWALKS)

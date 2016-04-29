@@ -36,5 +36,6 @@ class TestBbox(unittest.TestCase):
         node = Node(48.0, 8.8)
         self.assertFalse(bbox.in_bbox(node))
 
-    def Rappi(self):
+    @staticmethod
+    def Rappi():
         return Bbox.from_lbrt(8.81372, 47.218788, 8.852430, 47.239654)

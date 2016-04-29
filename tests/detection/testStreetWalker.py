@@ -11,7 +11,8 @@ class testStreetWalker(unittest.TestCase):
         self.assertIsNotNone(walker.tile)
         self.assertIsNotNone(walker.street)
 
-    def get_tile_streets(self,bbox):
+    @staticmethod
+    def get_tile_streets(bbox):
         boxwalker = BoxWalker(bbox, False)
         boxwalker.load_tiles()
         boxwalker.load_streets()
