@@ -34,10 +34,10 @@ class StreetWalker(object):
 
         predictions = self.convnet.predict_crosswalks(images)
 
-        for i in range(len(squaredTiles)):
-            isCrosswalk = predictions[i]
+        for idx, val in enumerate(squaredTiles):
+            isCrosswalk = predictions[idx]
             if isCrosswalk:
-                crosswalkNodes.append(squaredTiles[i].getCentreNode())
+                crosswalkNodes.append(val.getCentreNode())
 
 
         merged = self._merge_nodes(crosswalkNodes)
