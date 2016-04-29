@@ -54,17 +54,17 @@ class Manager(object):
                 timeout=self._TIMEOUT)
 
     def _calc_rows(self):
-        mminx, mminy = self.mercator.LatLonToMeters(
+        _, mminy = self.mercator.LatLonToMeters(
             self.big_bbox.bottom, self.big_bbox.left)
-        mmaxx, mmaxy = self.mercator.LatLonToMeters(
+        _, mmaxy = self.mercator.LatLonToMeters(
             self.big_bbox.top, self.big_bbox.right)
         meter_in_y = mmaxy - mminy
         return int(math.ceil(meter_in_y / self._SMALL_BBOX_SIDE_LENGHT))
 
     def _calc_columns(self):
-        mminx, mminy = self.mercator.LatLonToMeters(
+        mminx, _ = self.mercator.LatLonToMeters(
             self.big_bbox.bottom, self.big_bbox.left)
-        mmaxx, mmaxy = self.mercator.LatLonToMeters(
+        mmaxx, _ = self.mercator.LatLonToMeters(
             self.big_bbox.top, self.big_bbox.right)
         meter_in_x = mmaxx - mminx
         return int(math.ceil(meter_in_x / self._SMALL_BBOX_SIDE_LENGHT))

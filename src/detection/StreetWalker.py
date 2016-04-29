@@ -66,11 +66,3 @@ class StreetWalker(object):
 
         return squaresTiles
 
-    '''
-    def _save_bad_images(self, images):
-
-        predictions = convnet.last_prediction
-
-        for i in range(len(images)):
-                images[i].save("/home/osboxes/Documents/images/imgZh2" + str(predictions[i]) + "x" + str(randint(99999,99999999)) + ".png")
-    '''

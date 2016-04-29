@@ -1,9 +1,6 @@
 from src.base.Bbox import Bbox
 from src.detection.BoxWalker import BoxWalker
 from src.detection.StreetWalker import StreetWalker
-from src.base.Street import Street
-from src.base.Node import Node
-from src.base.TileDrawer import TileDrawer
 import unittest
 
 class testStreetWalker(unittest.TestCase):

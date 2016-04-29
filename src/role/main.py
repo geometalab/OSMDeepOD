@@ -92,7 +92,6 @@ def mainfunc():
         'manager',
         help='Splits up the given bounding box (WGS84, minlon/minlat/maxlon/maxlat) into small pieces and puts them into the redis queue to be consumed by the jobworkers.')
 
-    bb_left, bb_bottom, bb_right, bb_top = None, None, None, None
     p_manager.add_argument(
         'bb_left',
         type=float,
