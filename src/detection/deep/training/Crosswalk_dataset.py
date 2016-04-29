@@ -4,7 +4,7 @@ import glob
 from random import shuffle
 
 
-class Crosswalk_dataset:
+class Crosswalk_dataset(object):
 
     def __init__(self):
         self.sourcefolder = None
@@ -69,7 +69,7 @@ class Crosswalk_dataset:
         return (np.asarray(inputs), np.asarray(responses))
 
 
-class Categorie:
+class Categorie(object):
 
     def __init__(self):
         self.sourcefolder = ""
@@ -96,7 +96,7 @@ class Categorie:
             sample.load_image()
 
 
-class Sample:
+class Sample(object):
 
     def __init__(self):
         self.filepath = None

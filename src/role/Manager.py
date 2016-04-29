@@ -6,7 +6,7 @@ from redis import Redis
 import math
 
 
-class Manager:
+class Manager(object):
 
     def __init__(self):
         self.big_bbox = Bbox()

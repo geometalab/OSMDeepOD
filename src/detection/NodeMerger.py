@@ -1,7 +1,7 @@
 from src.base.Node import Node
 
 
-class NodeMerger:
+class NodeMerger(object):
 
     def __init__(self):
         self.nodelist = None

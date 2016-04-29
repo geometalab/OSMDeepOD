@@ -1,7 +1,7 @@
 from PIL import ImageDraw
 
 
-class TileDrawer:
+class TileDrawer(object):
 
     def __init__(self):
         self.tile = None
