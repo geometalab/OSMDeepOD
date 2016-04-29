@@ -42,7 +42,8 @@ class NodeMerger(object):
                 nodes.remove(node)
         return mergedNodes
 
-    def _merge(self, subGraph):
+    @staticmethod
+    def _merge(subGraph):
         nodeCount = len(subGraph)
         latitudeSum = 0
         longitudeSum = 0

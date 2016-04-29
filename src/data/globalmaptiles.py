@@ -259,14 +259,16 @@ class GlobalMercator(object):
             if pixelSize > self.Resolution(i):
                 return i - 1 if i != 0 else 0  # We don't want to scale up
 
-    def GoogleTile(self, tx, ty, zoom):
+    @staticmethod
+    def GoogleTile(tx, ty, zoom):
         "Converts TMS tile coordinates to Google Tile coordinates"
 
         # coordinate origin is moved from bottom-left to top-left corner of the
         # extent
         return tx, (2 ** zoom - 1) - ty
 
-    def QuadTree(self, tx, ty, zoom):
+    @staticmethod
+    def QuadTree(tx, ty, zoom):
         "Converts TMS tile coordinates to Microsoft QuadTree"
 
         quadKey = ""
@@ -324,7 +326,8 @@ class GlobalGeodetic(object):
     def __init__(self, tileSize=256):
         self.tileSize = tileSize
 
-    def LatLonToPixels(self, lat, lon, zoom):
+    @staticmethod
+    def LatLonToPixels(lat, lon, zoom):
         "Converts lat/lon to pixel coordinates in given zoom of the EPSG:4326 pyramid"
 
         res = 180 / 256.0 / 2 ** zoom
@@ -339,12 +342,14 @@ class GlobalGeodetic(object):
         ty = int(math.ceil(py / float(self.tileSize)) - 1)
         return tx, ty
 
-    def Resolution(self, zoom):
+    @staticmethod
+    def Resolution(zoom):
         "Resolution (arc/pixel) for given zoom level (measured at Equator)"
 
         return 180 / 256.0 / 2 ** zoom
     # return 180 / float( 1 << (8+zoom) )
 
+    @staticmethod
     def TileBounds(tx, ty, zoom):
         "Returns bounds of the given tile"
         res = 180 / 256.0 / 2 ** zoom

@@ -43,5 +43,6 @@ class testConvnet(unittest.TestCase):
 
         return images
 
-    def get_dataset_path(self):
+    @staticmethod
+    def get_dataset_path():
         return os.path.dirname(__file__) + "/test_images/"

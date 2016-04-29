@@ -52,10 +52,12 @@ class StreetCrosswalkLoader(object):
                         results = self._parse_way(way, node_map)
                         self.streets += results
 
-    def _is_in_category(self, tag, category):
+    @staticmethod
+    def _is_in_category(tag, category):
         return str(tag.attrib) == "{'k': 'highway', 'v': '" + category + "'}"
 
-    def _is_crosswalk(self, tag):
+    @staticmethod
+    def _is_crosswalk(tag):
         return str(tag.attrib) == "{'k': 'highway', 'v': 'crossing'}"
 
     def _parse_way(self, way, node_map):
@@ -72,7 +74,8 @@ class StreetCrosswalkLoader(object):
 
         return result
 
-    def _create_street(self, way):
+    @staticmethod
+    def _create_street(way):
         ident = way.get('id')
         name = ""
         highway = ""
@@ -86,7 +89,8 @@ class StreetCrosswalkLoader(object):
         street = Street.from_info(name, ident, highway)
         return street
 
-    def _create_node_list(self, way, node_map):
+    @staticmethod
+    def _create_node_list(way, node_map):
         nodes = []
         for node in way.iter('nd'):
             nid = node.get('ref')
@@ -94,7 +98,8 @@ class StreetCrosswalkLoader(object):
                 nodes.append(node_map[nid])
         return nodes
 
-    def _get_node_map(self, tree):
+    @staticmethod
+    def _get_node_map(tree):
         nodes = {}
         for node in tree.iter('node'):
             nodes[

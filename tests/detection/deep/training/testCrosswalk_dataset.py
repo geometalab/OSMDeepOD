@@ -5,10 +5,9 @@ import os
 
 class testCrosswalk_dataset(unittest.TestCase):
 
-
-    def get_test_dataset_path(self):
+    @staticmethod
+    def get_test_dataset_path():
         return os.path.dirname(__file__)  + "/dataset/"
-
 
     def testDataset_read_samples(self):
         dataset_path = self.get_test_dataset_path()

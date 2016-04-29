@@ -43,7 +43,8 @@ class StreetWalker(object):
         merged = self._merge_nodes(crosswalkNodes)
         return merged
 
-    def _merge_nodes(self, nodelist):
+    @staticmethod
+    def _merge_nodes(nodelist):
         merger = NodeMerger.from_nodelist(nodelist)
         merger.max_distance = 10
         return merger.reduce()

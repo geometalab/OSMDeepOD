@@ -77,7 +77,6 @@ class TestManager(unittest.TestCase):
         self.assertTrue(rows == 3)
         self.assertTrue(columns == 3)
 
-
-
-    def big_bbox(self):
+    @staticmethod
+    def big_bbox():
         return Bbox.from_lbrt(8.8, 47.0, 8.9, 47.9)

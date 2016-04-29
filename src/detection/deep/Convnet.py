@@ -45,14 +45,16 @@ class Convnet(object):
         results = self._predict_list(x)
         return results
 
-    def _to_numpy_array(self, pil_image_list):
+    @staticmethod
+    def _to_numpy_array(pil_image_list):
         x = np.zeros((len(pil_image_list), 50, 50, 3))
         for idx, val in enumerate(pil_image_list):
             img = np.array(val)
             x[idx] = img
         return x
 
-    def _normalize(self, numpy_array):
+    @staticmethod
+    def _normalize(numpy_array):
         x = numpy_array.reshape(numpy_array.shape[0], 3, 50, 50)
         x = x.astype("float32")
         x /= 255
@@ -73,10 +75,12 @@ class Convnet(object):
             results.append(isCrosswalk)
         return results
 
-    def _enable_multithreading(self):
+    @staticmethod
+    def _enable_multithreading():
         theano.config.openmp = True
 
-    def _compile_model(self):
+    @staticmethod
+    def _compile_model():
         # input image dimensions
         img_rows, img_cols = 50, 50
         # number of convolutional filters to use
@@ -187,5 +191,6 @@ class Convnet(object):
 
         self.model.load_weights(network_path)
 
-    def _is_docker_container(self):
+    @staticmethod
+    def _is_docker_container():
         return os.path.exists('/root/OSM-Crosswalk-Detection/DockerIam')

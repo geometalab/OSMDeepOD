@@ -122,7 +122,8 @@ class Sample(object):
         img = img.convert('RGB')
         return img
 
-    def _to_numpy_array_normalized(self, img):
+    @staticmethod
+    def _to_numpy_array_normalized(img):
         img_size = 50
         np_arr = np.asarray(img, dtype="int32")
         np_arr = np_arr.reshape(3, img_size, img_size)
