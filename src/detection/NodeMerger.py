@@ -60,7 +60,7 @@ class NodeMerger(object):
         ret += self._get_neighbors2(node, list(self.nodelist))
         return ret
 
-    def _get_neighbors2(self, node, nodeNotYetConsiderd=[]):
+    def _get_neighbors2(self, node, nodeNotYetConsiderd):
         if len(nodeNotYetConsiderd) == 0:
             return []
         nodeNotYetConsiderd.remove(node)
