@@ -74,7 +74,8 @@ class BoxWalker(object):
             self.plain_result)
         return self.compared_with_osm_result
 
-    def _merge_near_nodes(self, nodelist):
+    @staticmethod
+    def _merge_near_nodes(nodelist):
         merger = NodeMerger.from_nodelist(nodelist)
         merger.max_distance = 7
         return merger.reduce()

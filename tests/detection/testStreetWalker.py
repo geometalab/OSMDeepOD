@@ -18,5 +18,6 @@ class testStreetWalker(unittest.TestCase):
         boxwalker.load_streets()
         return boxwalker.tile, boxwalker.streets
 
-    def smallTestBbox(self):
+    @staticmethod
+    def smallTestBbox():
         return Bbox.from_bltr(47.226327, 8.818031, 47.227014, 8.818868)
