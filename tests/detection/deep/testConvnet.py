@@ -37,8 +37,8 @@ class testConvnet(unittest.TestCase):
     def load_test_images(self):
         filenames = glob.glob(self.get_dataset_path() + "*.png")
         images = []
-        for file in filenames:
-            img = Image.open(file)
+        for image_file in filenames:
+            img = Image.open(image_file)
             images.append(img)
 
         return images
