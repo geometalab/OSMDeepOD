@@ -7,6 +7,7 @@ import time
 
 
 class MultiLoader:
+
     def __init__(self):
         self.urls = []
         self.results = []
@@ -14,7 +15,6 @@ class MultiLoader:
         self.nb_tile_per_trial = 40
         self.verbose = True
         self._progress = 0
-
 
     @classmethod
     def from_url_list(cls, urls, verbose=True):
@@ -26,16 +26,17 @@ class MultiLoader:
     def download(self):
         results = []
         nb_urls = len(self.urls)
-        for i in range(int(nb_urls/self.nb_tile_per_trial)+1):
+        for i in range(int(nb_urls / self.nb_tile_per_trial) + 1):
             start = i * self.nb_tile_per_trial
             end = start + self.nb_tile_per_trial
-            if end >= nb_urls: end = nb_urls
+            if end >= nb_urls:
+                end = nb_urls
             urlpart = self.urls[start:end]
 
             result = self._try_download(urlpart)
             results += result
 
-            new_percentage = (float(end)/nb_urls) * 100
+            new_percentage = (float(end) / nb_urls) * 100
             self._set_progress(new_percentage)
 
         self.results = results
@@ -52,8 +53,8 @@ class MultiLoader:
                 results = self._download_async(urls)
                 return results
             except Exception as e:
-                print "Tile download failed", i , "wait", i*10, e
-                time.sleep(i*10)
+                print "Tile download failed", i, "wait", i * 10, e
+                time.sleep(i * 10)
         raise Exception("Download of tiles have failed 4 times " + str(e))
 
     def _download_async(self, urls):
@@ -65,7 +66,7 @@ class MultiLoader:
 
 
 def _generate_request(url):
-    header ={'User-Agent': UserAgent().random}
+    header = {'User-Agent': UserAgent().random}
     req = urllib2.Request(url, headers=header)
     return req
 
@@ -76,4 +77,3 @@ def _download_image(url):
     content = response.read()
     img = Image.open(StringIO.StringIO(content))
     return img
-

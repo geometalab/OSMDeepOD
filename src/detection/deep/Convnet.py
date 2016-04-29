@@ -11,6 +11,7 @@ import numpy as np
 
 
 class Convnet:
+
     def __init__(self):
         self.verbose = True
         self.very_verbose = False
@@ -57,12 +58,11 @@ class Convnet:
         x /= 255
         return x
 
-
     def _predict_list(self, x):
         predictions = self.model.predict(x)
         results = []
         for predict in predictions:
-            isCrosswalk =  predict[0] > self.threshold
+            isCrosswalk = predict[0] > self.threshold
 
             if self.very_verbose:
                 if isCrosswalk:
@@ -75,7 +75,6 @@ class Convnet:
 
     def _enable_multithreading(self):
         theano.config.openmp = True
-
 
     def _compile_model(self):
         # input image dimensions
@@ -91,32 +90,67 @@ class Convnet:
         #image is rgb
         img_channels = 3
 
-        #Lamda for L2 regularization
+        # Lamda for L2 regularization
         lmda_dense = 8e-5
         lmda_conv = 8e-5
 
         model = Sequential()
 
-        model.add(Convolution2D(nb_filters1, nb_conv , nb_conv, W_regularizer=l2(lmda_conv), border_mode='same', input_shape=(img_channels, img_rows, img_cols)))
+        model.add(
+            Convolution2D(
+                nb_filters1,
+                nb_conv,
+                nb_conv,
+                W_regularizer=l2(lmda_conv),
+                border_mode='same',
+                input_shape=(
+                    img_channels,
+                    img_rows,
+                    img_cols)))
         model.add(Activation('relu'))
         model.add(Dropout(0.2))
-        model.add(Convolution2D(nb_filters1, nb_conv, nb_conv, W_regularizer=l2(lmda_conv)))
+        model.add(
+            Convolution2D(
+                nb_filters1,
+                nb_conv,
+                nb_conv,
+                W_regularizer=l2(lmda_conv)))
         model.add(Activation('relu'))
         model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
 
         model.add(Dropout(0.5))
-        model.add(Convolution2D(nb_filters2, nb_conv, nb_conv, W_regularizer=l2(lmda_conv)))
+        model.add(
+            Convolution2D(
+                nb_filters2,
+                nb_conv,
+                nb_conv,
+                W_regularizer=l2(lmda_conv)))
         model.add(Activation('relu'))
         model.add(Dropout(0.2))
-        model.add(Convolution2D(nb_filters2, nb_conv, nb_conv, W_regularizer=l2(lmda_conv)))
+        model.add(
+            Convolution2D(
+                nb_filters2,
+                nb_conv,
+                nb_conv,
+                W_regularizer=l2(lmda_conv)))
         model.add(Activation('relu'))
         model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
 
         model.add(Dropout(0.5))
-        model.add(Convolution2D(nb_filters3, nb_conv, nb_conv, W_regularizer=l2(lmda_conv)))
+        model.add(
+            Convolution2D(
+                nb_filters3,
+                nb_conv,
+                nb_conv,
+                W_regularizer=l2(lmda_conv)))
         model.add(Activation('relu'))
         model.add(Dropout(0.2))
-        model.add(Convolution2D(nb_filters3, nb_conv, nb_conv, W_regularizer=l2(lmda_conv)))
+        model.add(
+            Convolution2D(
+                nb_filters3,
+                nb_conv,
+                nb_conv,
+                W_regularizer=l2(lmda_conv)))
         model.add(Activation('relu'))
         model.add(Dropout(0.2))
         model.add(Convolution2D(nb_filters3, nb_conv, nb_conv))
@@ -145,7 +179,8 @@ class Convnet:
 
         network_path = ""
         if self._is_docker_container():
-            #Docker makes some crucial tricks in the filesystem virtualization. If it's a docker then we use this path
+            # Docker makes some crucial tricks in the filesystem
+            # virtualization. If it's a docker then we use this path
             network_path = '/root/OSM-Crosswalk-Detection/src/detection/deep/' + hdf5_file
         else:
             network_path = current_dir + "/" + hdf5_file
@@ -154,5 +189,3 @@ class Convnet:
 
     def _is_docker_container(self):
         return os.path.exists('/root/OSM-Crosswalk-Detection/DockerIam')
-
-

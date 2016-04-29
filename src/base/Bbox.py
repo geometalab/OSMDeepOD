@@ -1,5 +1,6 @@
 from src.base.Node import Node
 
+
 class Bbox:
 
     def __init__(self):
@@ -36,7 +37,8 @@ class Bbox:
         return bbox
 
     def __str__(self):
-        return "Bbox left: " + str(self.left) + " bottom: " + str(self.bottom) + " right: " + str(self.right) + " top: " + str(self.top)
+        return "Bbox left: " + str(self.left) + " bottom: " + str(
+            self.bottom) + " right: " + str(self.right) + " top: " + str(self.top)
 
     def node_leftdown(self):
         return Node(self.bottom, self.left)
@@ -58,6 +60,6 @@ class Bbox:
         rightUpNode = self.node_rightup()
 
         newLeftDown = leftDownNode.add_meter(borderDistance, borderDistance)
-        newRightUp = rightUpNode.add_meter(-borderDistance,-borderDistance)
-        ret = Bbox.from_leftdown_rightup(newLeftDown,newRightUp)
+        newRightUp = rightUpNode.add_meter(-borderDistance, -borderDistance)
+        ret = Bbox.from_leftdown_rightup(newLeftDown, newRightUp)
         return ret
