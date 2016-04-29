@@ -24,9 +24,9 @@ class Crosswalk_dataset(object):
 
     @classmethod
     def from_samples(cls, samples):
-        set = cls()
-        set.samples_shuffled = samples
-        return set
+        instance = cls()
+        instance.samples_shuffled = samples
+        return instance
 
     def read_samples(self):
         self.samples_crosswalk = Categorie.from_default(
