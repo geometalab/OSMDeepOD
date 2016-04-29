@@ -1,8 +1,8 @@
-from random import randint
 from src.detection.NodeMerger import NodeMerger
-import src.detection.deep.Convnet as convnet
+
 
 class StreetWalker:
+
     def __init__(self):
         self.street = None
         self.tile = None
@@ -22,7 +22,9 @@ class StreetWalker:
         return walker
 
     def walk(self):
-        squaredTiles = self._get_squared_tiles(self.street.nodes[0], self.street.nodes[1])
+        squaredTiles = self._get_squared_tiles(
+            self.street.nodes[0],
+            self.street.nodes[1])
         self._nb_images = len(squaredTiles)
         crosswalkNodes = []
 
@@ -38,9 +40,6 @@ class StreetWalker:
                 crosswalkNodes.append(squaredTiles[i].getCentreNode())
 
 
-        #self._save_bad_images(images)
-
-
         merged = self._merge_nodes(crosswalkNodes)
         return merged
 
@@ -54,14 +53,15 @@ class StreetWalker:
         distanceBetweenNodes = node1.get_distance_in_meter(node2)
 
         squaresTiles = []
-        for i in range(0, int(distanceBetweenNodes/stepDistance) + 2):
+        for i in range(0, int(distanceBetweenNodes / stepDistance) + 2):
             currentDistance = stepDistance * i
             if currentDistance > distanceBetweenNodes:
                 currentDistance = distanceBetweenNodes
             currentNode = node1.step_to(node2, currentDistance)
 
-
-            tile = self.tile.getTile_byNode(currentNode, self._SQUAREDIMAGE_PIXELPERSIDE)
+            tile = self.tile.getTile_byNode(
+                currentNode,
+                self._SQUAREDIMAGE_PIXELPERSIDE)
             squaresTiles.append(tile)
 
         return squaresTiles
@@ -74,4 +74,3 @@ class StreetWalker:
         for i in range(len(images)):
                 images[i].save("/home/osboxes/Documents/images/imgZh2" + str(predictions[i]) + "x" + str(randint(99999,99999999)) + ".png")
     '''
-

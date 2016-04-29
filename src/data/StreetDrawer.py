@@ -2,7 +2,9 @@ from src.data.StreetCrosswalkLoader import StreetCrosswalkLoader
 from src.data.TileLoader import TileLoader
 from src.base.TileDrawer import TileDrawer
 
+
 class StreetDrawer:
+
     def __init__(self):
         self.streets = None
         self.tile = None
@@ -21,8 +23,6 @@ class StreetDrawer:
         drawer = cls()
         drawer.bbox = bbox
 
-
-
         tileloader = TileLoader.from_bbox(bbox)
         tileloader.load_tile()
         drawer.tile = tileloader.tile
@@ -36,7 +36,3 @@ class StreetDrawer:
         for street in self.streets:
             drawer.draw_line(street.nodes[0], street.nodes[1])
         drawer.show()
-
-
-
-

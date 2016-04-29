@@ -5,6 +5,7 @@ from random import shuffle
 
 
 class Crosswalk_dataset:
+
     def __init__(self):
         self.sourcefolder = None
         self.folder_crosswalk = "crosswalks/"
@@ -28,8 +29,14 @@ class Crosswalk_dataset:
         return set
 
     def read_samples(self):
-        self.samples_crosswalk = Categorie.from_default(self.sourcefolder + self.folder_crosswalk, self.tag_crosswalk)
-        self.samples_nocrosswalk = Categorie.from_default(self.sourcefolder + self.folder_nocrosswalk, self.tag_nocrosswalk)
+        self.samples_crosswalk = Categorie.from_default(
+            self.sourcefolder +
+            self.folder_crosswalk,
+            self.tag_crosswalk)
+        self.samples_nocrosswalk = Categorie.from_default(
+            self.sourcefolder +
+            self.folder_nocrosswalk,
+            self.tag_nocrosswalk)
 
         self.samples_crosswalk.read_folder()
         self.samples_nocrosswalk.read_folder()
@@ -62,12 +69,8 @@ class Crosswalk_dataset:
         return (np.asarray(inputs), np.asarray(responses))
 
 
-
-
-
-
-
 class Categorie:
+
     def __init__(self):
         self.sourcefolder = ""
         self.tag = None
@@ -93,11 +96,8 @@ class Categorie:
             sample.load_image()
 
 
-
-
-
-
 class Sample:
+
     def __init__(self):
         self.filepath = None
         self.pil_image = None
@@ -129,7 +129,3 @@ class Sample:
         np_arr = np_arr.astype("float32")
         np_arr /= 255
         return np_arr
-
-
-
-

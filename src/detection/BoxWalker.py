@@ -6,7 +6,9 @@ from src.detection.deep.Convnet import Convnet
 from src.detection.NodeMerger import NodeMerger
 from random import shuffle
 
+
 class BoxWalker:
+
     def __init__(self, bbox, verbose=True):
         self.bbox = bbox
         self.tile = None
@@ -44,23 +46,32 @@ class BoxWalker:
     def walk(self):
         self.status_printer.start_walking()
 
-        ready_for_walk = (not self.tile is None) and (not self.streets is None) and (not self.convnet is None)
-        if(not ready_for_walk): raise Exception("Not ready for walk. Load tiles, streets and convnet first")
+        ready_for_walk = (
+            not self.tile is None) and(
+            not self.streets is None) and(
+            not self.convnet is None)
+        if(not ready_for_walk):
+            raise Exception(
+                "Not ready for walk. Load tiles, streets and convnet first")
 
         results = []
         nb_images = 0
 
         for i in range(len(self.streets)):
             street = self.streets[i]
-            streetwalker = StreetWalker.from_street_tile(street, self.tile, self.convnet)
+            streetwalker = StreetWalker.from_street_tile(
+                street,
+                self.tile,
+                self.convnet)
             street_results = streetwalker.walk()
             results += street_results
             nb_images += streetwalker._nb_images
-            self.status_printer.set_state(i,len(results))
+            self.status_printer.set_state(i, len(results))
 
         self.status_printer.end_walking(nb_images)
         self.plain_result = self._merge_near_nodes(results)
-        self.compared_with_osm_result = self._compare_osm_with_detected_crosswalks(self.plain_result)
+        self.compared_with_osm_result = self._compare_osm_with_detected_crosswalks(
+            self.plain_result)
         return self.compared_with_osm_result
 
     def _merge_near_nodes(self, nodelist):
@@ -75,7 +86,8 @@ class BoxWalker:
 
         for detected_crosswalk in detected_crosswalks:
             for osm_crosswalk in self.osm_crosswalks:
-                if osm_crosswalk.get_distance_in_meter(detected_crosswalk) < DISTANCE_TO_CROSSWALK:
+                if osm_crosswalk.get_distance_in_meter(
+                        detected_crosswalk) < DISTANCE_TO_CROSSWALK:
                     is_near = True
                     break
 
@@ -85,7 +97,9 @@ class BoxWalker:
 
         return result
 
+
 class StatusPrinter:
+
     def __init__(self):
         self.nb_streets = 0
         self.last_percentage = 0.0
@@ -116,7 +130,9 @@ class StatusPrinter:
     def end_walking(self, nb_images):
         self.end_time = datetime.datetime.now()
         self._out("End Walking", True)
-        self._out("Time needed: " + str((self.end_time - self.start_time).seconds) + " seconds")
+        self._out(
+            "Time needed: " + str((self.end_time - self.start_time).seconds) +
+            " seconds")
         self._out(str(nb_images) + " images predicted")
 
     def set_state(self, nb_streets_done, nb_detected_crosswalks):
@@ -125,9 +141,9 @@ class StatusPrinter:
         if self.last_percentage + 1 < current_percentage:
             self.last_percentage = current_percentage
             remaing_time = self._calc_remaining_duration(self.last_percentage)
-            msg = str(int(current_percentage)) + "% - " + str(nb_detected_crosswalks) + " crosswalks found, " + str(remaing_time) + " seconds remaining"
+            msg = str(int(current_percentage)) + "% - " + str(
+                nb_detected_crosswalks) + " crosswalks found, " + str(remaing_time) + " seconds remaining"
             self._out(msg)
-
 
     def _calc_remaining_duration(self, percentage):
         to_do_percentage = 100 - percentage
@@ -135,8 +151,7 @@ class StatusPrinter:
         time_remain = (time_used / percentage) * to_do_percentage
         return int(time_remain)
 
-
-    def _out(self,msg, show_time=False):
+    def _out(self, msg, show_time=False):
         if self.verbose:
             output = msg
             if show_time:
