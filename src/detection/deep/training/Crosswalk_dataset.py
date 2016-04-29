@@ -18,9 +18,9 @@ class Crosswalk_dataset(object):
 
     @classmethod
     def from_sourcefolder(cls, sourcefolder):
-        set = cls()
-        set.sourcefolder = sourcefolder
-        return set
+        instance = cls()
+        instance.sourcefolder = sourcefolder
+        return instance
 
     @classmethod
     def from_samples(cls, samples):
@@ -86,8 +86,8 @@ class Categorie(object):
     def read_folder(self):
         self.samples = []
         files = glob.glob(self.sourcefolder + "*.png")
-        for file in files:
-            sample = Sample.from_file(file, self.tag)
+        for image_file in files:
+            sample = Sample.from_file(image_file, self.tag)
             sample.load_image()
             self.samples.append(sample)
 

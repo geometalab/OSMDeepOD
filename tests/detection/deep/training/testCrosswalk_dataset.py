@@ -22,9 +22,9 @@ class testCrosswalk_dataset(unittest.TestCase):
     def test_dataset_split(self):
         dataset_path = self.get_test_dataset_path()
         factor = 0.6
-        set = Crosswalk_dataset.from_sourcefolder(dataset_path)
-        set.read_samples()
-        (train_set, test_set) = set.split_train_test(factor)
+        testinstance = Crosswalk_dataset.from_sourcefolder(dataset_path)
+        testinstance.read_samples()
+        (train_set, test_set) = testinstance.split_train_test(factor)
         self.assertEquals(len(train_set.samples_shuffled), 6)
         self.assertEquals(len(test_set.samples_shuffled), 4)
 
