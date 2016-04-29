@@ -47,9 +47,9 @@ class Convnet(object):
 
     def _to_numpy_array(self, pil_image_list):
         x = np.zeros((len(pil_image_list), 50, 50, 3))
-        for i in range(len(pil_image_list)):
-            img = np.array(pil_image_list[i])
-            x[i] = img
+        for idx, val in enumerate(pil_image_list):
+            img = np.array(val)
+            x[idx] = img
         return x
 
     def _normalize(self, numpy_array):
