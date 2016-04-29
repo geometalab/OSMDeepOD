@@ -3,7 +3,7 @@ from src.base.Node import Node
 from src.data.MapquestApi import MapquestApi
 
 
-class StreetCrosswalkLoader:
+class StreetCrosswalkLoader(object):
 
     def __init__(self):
         self.api = MapquestApi()

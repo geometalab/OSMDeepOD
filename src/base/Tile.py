@@ -2,7 +2,7 @@ from src.base.Bbox import Bbox
 from src.base.Node import Node
 
 
-class Tile:
+class Tile(object):
 
     def __init__(self):
         self.image = None

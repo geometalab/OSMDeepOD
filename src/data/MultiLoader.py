@@ -6,7 +6,7 @@ from fake_useragent import UserAgent
 import time
 
 
-class MultiLoader:
+class MultiLoader(object):
 
     def __init__(self):
         self.urls = []

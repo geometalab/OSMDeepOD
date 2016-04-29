@@ -1,7 +1,7 @@
 from src.base.Node import Node
 
 
-class Bbox:
+class Bbox(object):
 
     def __init__(self):
         self.left = None

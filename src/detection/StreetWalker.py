@@ -1,7 +1,7 @@
 from src.detection.NodeMerger import NodeMerger
 
 
-class StreetWalker:
+class StreetWalker(object):
 
     def __init__(self):
         self.street = None

@@ -10,7 +10,7 @@ import os
 import numpy as np
 
 
-class Convnet:
+class Convnet(object):
 
     def __init__(self):
         self.verbose = True

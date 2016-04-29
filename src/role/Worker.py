@@ -4,7 +4,7 @@ from rq import Connection
 from redis import Redis
 
 
-class Worker:
+class Worker(object):
 
     def __init__(self):
         self.queues = []

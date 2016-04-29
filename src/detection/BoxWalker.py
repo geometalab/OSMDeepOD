@@ -7,7 +7,7 @@ from src.detection.NodeMerger import NodeMerger
 from random import shuffle
 
 
-class BoxWalker:
+class BoxWalker(object):
 
     def __init__(self, bbox, verbose=True):
         self.bbox = bbox
@@ -98,7 +98,7 @@ class BoxWalker:
         return result
 
 
-class StatusPrinter:
+class StatusPrinter(object):
 
     def __init__(self):
         self.nb_streets = 0

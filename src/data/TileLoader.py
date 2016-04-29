@@ -6,7 +6,7 @@ from PIL import Image
 import random
 
 
-class TileLoader:
+class TileLoader(object):
 
     def __init__(self):
         self.bbox = None
