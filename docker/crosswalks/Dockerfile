@@ -2,13 +2,15 @@ FROM geometalab/keras_cuda:latest
 MAINTAINER Marcel Huber <marcel.huber@hsr.ch>
 
 RUN pip install --upgrade \
-  nose django-environ
+  nose django-environ coverage codacy-coverage
 
-ARG CIRCLE_BRANCH
-ENV CIRCLE_BRANCH ${CIRCLE_BRANCH:-master}
+ARG GIT_BRANCH
+ARG GIT_REPO_URL
+ENV GIT_BRANCH=${GIT_BRANCH:-master} \
+    GIT_REPO_URL=${GIT_REPO_URL:-https://github.com/geometalab/OSM-Crosswalk-Detection.git}
 
 RUN cd /root \
-  && git clone --single-branch --branch $CIRCLE_BRANCH --depth 1 https://github.com/geometalab/OSM-Crosswalk-Detection.git \
+  && git clone --single-branch --branch $GIT_BRANCH --depth 1 $GIT_REPO_URL \
   && cd OSM-Crosswalk-Detection \
   && python setup.py install \
   && touch DockerIam

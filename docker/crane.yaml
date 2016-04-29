@@ -1,0 +1,80 @@
+groups:
+  default:
+  - crosswalk
+  crosswalk-all:
+  - crossdis
+  - crosswalk
+  - theano
+  - keras
+containers:
+  crossdis:
+    image: redis:alpine
+    run:
+      detach: true
+      stop-signal: SIGTERM
+      interactive: false
+      tty: false
+      publish:
+      - 40001:6379
+    exec:
+      interactive: true
+      tty: true
+  crossdis-init: &rref
+    image: redis:alpine
+    run: &rrefrun
+      cmd: /bin/sh -c 'printf "config set requirepass crosswalks\nauth crosswalks\n" | redis-cli -h db'
+      detach: false
+      interactive: false
+      tty: false
+      link:
+      - crossdis:db
+  redisshell: { <<: *rref, run: { <<: *rrefrun, cmd: /bin/sh, interactive: true, tty: true } }
+  crosswalk: &cref
+    build:
+      context: crosswalks
+      file: Dockerfile
+    image: geometalab/osm-crosswalk-detection
+    run: &crefrun
+      detach: false
+      stop-signal: SIGTERM
+      interactive: false
+      tty: false
+      link:
+      - crossdis:db
+    exec:
+      interactive: true
+      tty: true
+  crosswalk-stgallen: { <<: *cref, run: { <<: *crefrun, cmd: 'manager 8.795611 46.872886 9.674135 47.675419' } }
+  crosswalk-bellevue: { <<: *cref, run: { <<: *crefrun, cmd: 'manager 8.54279671719532 47.366177501999516 8.547088251618977 47.36781249586627' } }
+  cworker: { <<: *cref, run: { <<: *crefrun, detach: true, cmd: jobworker } }
+  cresults: { <<: *cref, run: { <<: *crefrun, detach: true, cmd: resultworker, volume: ['crosswalk-data_output:/output:rw'] } }
+  cshell: { <<: *cref, run: { <<: *crefrun, detach: false, entrypoint: /bin/bash, cmd, tty: true, interactive: true } }
+  ctests: { <<: *cref, run: { <<: *crefrun, detach: false, entrypoint: python, cmd: "-m nose --with-xunit --with-coverage --cover-package=src --cover-xml" } }
+  keras:
+    build:
+      context: keras_cuda
+      file: Dockerfile
+    image: geometalab/keras_cuda
+    run:
+      detach: false
+      stop-signal: SIGTERM
+      interactive: true
+      tty: true
+    exec:
+      interactive: true
+      tty: true
+  theano:
+    build:
+      context: theano_cuda
+      file: Dockerfile
+    image: geometalab/theano_cuda
+    run:
+      detach: false
+      stop-signal: SIGTERM
+      interactive: true
+      tty: true
+    exec:
+      interactive: true
+      tty: true
+volumes:
+  crosswalk-data_output:

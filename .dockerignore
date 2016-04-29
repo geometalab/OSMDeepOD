@@ -1,0 +1,7 @@
+build/
+.coverage
+coverage.xml
+dist/
+.eggs/
+OSM_Crosswalk_Detection.egg-info
+.venv*/
