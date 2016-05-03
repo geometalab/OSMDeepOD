@@ -2,6 +2,7 @@ from src.base.Bbox import Bbox
 from src.detection.BoxWalker import BoxWalker
 from src.detection.StreetWalker import StreetWalker
 from src.base.TileDrawer import TileDrawer
+from src import cwenv
 
 '''
 Visualizes the 50x50 images which are cutted out of the tile along the streets
@@ -9,19 +10,27 @@ Red square are the 50x50 boxes
 blue lines are the streets
 '''
 
+
 def load_tile_streets(bbox):
-    boxwalker = BoxWalker(bbox, False)
+    boxwalker = BoxWalker(
+        bbox,
+        apiKey=cwenv('MAPQUEST_API_KEY'),
+        verbose=False)
     boxwalker.load_tiles()
     boxwalker.load_streets()
     return boxwalker.tile, boxwalker.streets
+
 
 def cut_squared_images(streets, tile):
     squared_list = []
     for street in streets:
         walker = StreetWalker.from_street_tile(street, tile, None)
-        squared = walker._get_squared_tiles(walker.street.nodes[0], walker.street.nodes[1])
+        squared = walker._get_squared_tiles(
+            walker.street.nodes[0],
+            walker.street.nodes[1])
         squared_list += squared
     return squared_list
+
 
 def draw(tile, streets, squared_images):
     drawer = TileDrawer.from_tile(tile)
@@ -34,14 +43,20 @@ def draw(tile, streets, squared_images):
 
     return drawer
 
-zurich_bellevue = Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
+zurich_bellevue = Bbox.from_lbrt(
+    8.54279671719532,
+    47.366177501999516,
+    8.547088251618977,
+    47.36781249586627)
 
-(tile, streets) = load_tile_streets(zurich_bellevue) # Loads all tiles and streets within bbox
+# Loads all tiles and streets within bbox
+(tile, streets) = load_tile_streets(zurich_bellevue)
 
-squared_list = cut_squared_images(streets, tile) # Cuts the 50x50 images along the streets
+squared_list = cut_squared_images(
+    streets,
+    tile)  # Cuts the 50x50 images along the streets
 
-drawer = draw(tile,streets,squared_list) # Draws the streets and marks the squared images on the tile
+# Draws the streets and marks the squared images on the tile
+drawer = draw(tile, streets, squared_list)
 
 drawer.show()
-
-

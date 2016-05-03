@@ -1,6 +1,7 @@
 import unittest
 from src.base.Node import Node
 
+
 class TestNode(unittest.TestCase):
 
     def test_instantiate(self):

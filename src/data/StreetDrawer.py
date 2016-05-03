@@ -19,14 +19,14 @@ class StreetDrawer(object):
         return drawer
 
     @classmethod
-    def from_bbox(cls, bbox):
+    def from_bbox(cls, bbox, apiKey):
         drawer = cls()
         drawer.bbox = bbox
 
         tileloader = TileLoader.from_bbox(bbox)
         tileloader.load_tile()
         drawer.tile = tileloader.tile
-        streetloader = StreetCrosswalkLoader()
+        streetloader = StreetCrosswalkLoader(apiKey=apiKey)
         drawer.streets = streetloader.load_data(drawer.tile.bbox)
 
         return drawer

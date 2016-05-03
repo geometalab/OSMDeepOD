@@ -2,6 +2,8 @@ from src.base.Bbox import Bbox
 from src.detection.BoxWalker import BoxWalker
 from src.detection.StreetWalker import StreetWalker
 import unittest
+from src import cwenv
+
 
 class testStreetWalker(unittest.TestCase):
 
@@ -13,7 +15,10 @@ class testStreetWalker(unittest.TestCase):
 
     @staticmethod
     def get_tile_streets(bbox):
-        boxwalker = BoxWalker(bbox, False)
+        boxwalker = BoxWalker(
+            bbox,
+            apiKey=cwenv('MAPQUEST_API_KEY'),
+            verbose=False)
         boxwalker.load_tiles()
         boxwalker.load_streets()
         return boxwalker.tile, boxwalker.streets

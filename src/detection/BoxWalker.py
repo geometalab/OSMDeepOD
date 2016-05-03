@@ -9,8 +9,9 @@ from random import shuffle
 
 class BoxWalker(object):
 
-    def __init__(self, bbox, verbose=True):
+    def __init__(self, bbox, apiKey, verbose=True):
         self.bbox = bbox
+        self.apiKey = apiKey
         self.tile = None
         self.streets = None
         self.osm_crosswalks = None
@@ -37,7 +38,7 @@ class BoxWalker(object):
         if self.tile is None:
             print "Download tiles first"
 
-        streetLoader = StreetCrosswalkLoader()
+        streetLoader = StreetCrosswalkLoader(apiKey=self.apiKey)
         self.streets = streetLoader.load_data(self.bbox)
         self.osm_crosswalks = streetLoader.crosswalks
         shuffle(self.streets)

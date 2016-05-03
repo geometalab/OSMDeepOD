@@ -6,6 +6,7 @@ import os
 
 
 class testConvnet(unittest.TestCase):
+
     def testInitialize_model_is_loaded(self):
         net = Convnet.from_verbose(False)
         net.initialize()
@@ -17,7 +18,10 @@ class testConvnet(unittest.TestCase):
         net = Convnet.from_verbose(False)
         net.initialize()
         result = net.predict_crosswalks(images)
-        self.assertEquals(len(images), len(result), msg="Number of images is unequal number of results")
+        self.assertEquals(
+            len(images),
+            len(result),
+            msg="Number of images is unequal number of results")
 
     def test_threshold(self):
         images = self.load_test_images()
@@ -28,7 +32,6 @@ class testConvnet(unittest.TestCase):
 
         for res in results:
             self.assertEquals(res, True)
-
 
     def test_load_test_images(self):
         images = self.load_test_images()

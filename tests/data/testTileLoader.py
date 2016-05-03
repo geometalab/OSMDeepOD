@@ -23,10 +23,13 @@ class TestTileLoader(unittest.TestCase):
         self.assertAlmostEqual(tile_bbox.right, 8.5432434082, 5)
         self.assertAlmostEqual(tile_bbox.top, 47.3681292923, 5)
 
-
     @staticmethod
     def ZurichBellvue():
-        return Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
+        return Bbox.from_lbrt(
+            8.54279671719532,
+            47.366177501999516,
+            8.547088251618977,
+            47.36781249586627)
 
     @staticmethod
     def Luzern():
@@ -38,4 +41,8 @@ class TestTileLoader(unittest.TestCase):
 
     @staticmethod
     def smallTestBbox():
-        return Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.543088251618977, 47.36781249586627)
+        return Bbox.from_lbrt(
+            8.54279671719532,
+            47.366177501999516,
+            8.543088251618977,
+            47.36781249586627)

@@ -2,6 +2,7 @@ import unittest
 from src.base.Tile import Tile
 from src.base.Bbox import Bbox
 
+
 class TestTile(unittest.TestCase):
 
     def test_instantiate_from_tile(self):

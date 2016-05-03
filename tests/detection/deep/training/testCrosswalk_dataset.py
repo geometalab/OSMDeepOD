@@ -7,7 +7,7 @@ class testCrosswalk_dataset(unittest.TestCase):
 
     @staticmethod
     def get_test_dataset_path():
-        return os.path.dirname(__file__)  + "/dataset/"
+        return os.path.dirname(__file__) + "/dataset/"
 
     def testDataset_read_samples(self):
         dataset_path = self.get_test_dataset_path()
@@ -35,7 +35,9 @@ class testCrosswalk_dataset(unittest.TestCase):
         (train_set, test_set) = instance.split_train_test(factor)
         for test_sample in test_set.samples_shuffled:
             for train_sample in train_set.samples_shuffled:
-                self.assertNotEqual(test_sample.filepath, train_sample.filepath)
+                self.assertNotEqual(
+                    test_sample.filepath,
+                    train_sample.filepath)
 
     def test_dataset_load_images(self):
         dataset_path = self.get_test_dataset_path()
@@ -51,11 +53,9 @@ class testCrosswalk_dataset(unittest.TestCase):
         instance.load_images()
         (inputs, responses) = instance.to_input_response()
         should_input_shape = (10, 3, 50, 50)
-        should_response_shape = (10,2)
+        should_response_shape = (10, 2)
         self.assertEquals(inputs.shape, should_input_shape)
         self.assertEquals(responses.shape, should_response_shape)
-
-
 
     def testCategorie_read_folder(self):
         dataset_path = self.get_test_dataset_path()
