@@ -22,6 +22,7 @@ test:
     - docker run -it --rm --entrypoint="python"
       --volume $CIRCLE_TEST_REPORTS/nose:/testout:rw
       --volume $CIRCLE_ARTIFACTS/coverage:/coverage:rw
+      --env MAPQUEST_API_KEY=$MAPQUEST_API_KEY
       geometalab/osm-crosswalk-detection -m nose
       --with-xunit --xunit-file=/testout/nosetests.xml
       --with-coverage --cover-package=src --cover-xml --cover-xml-file=/coverage/coverage.xml
