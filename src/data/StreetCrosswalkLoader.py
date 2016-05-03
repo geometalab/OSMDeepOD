@@ -30,8 +30,9 @@ class StreetCrosswalkLoader(object):
 
     def _load_data(self, bbox):
         tree = self.api.request(bbox)
-        self._parse_tree(tree)
-        self._filter_crosswalks(tree)
+        if tree is not None:
+            self._parse_tree(tree)
+            self._filter_crosswalks(tree)
 
     def _filter_crosswalks(self, tree):
         for node in tree.iter('node'):
