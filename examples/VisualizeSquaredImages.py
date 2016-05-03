@@ -2,6 +2,7 @@ from src.base.Bbox import Bbox
 from src.detection.BoxWalker import BoxWalker
 from src.detection.StreetWalker import StreetWalker
 from src.base.TileDrawer import TileDrawer
+from src import cwenv
 
 '''
 Visualizes the 50x50 images which are cutted out of the tile along the streets
@@ -10,7 +11,7 @@ blue lines are the streets
 '''
 
 def load_tile_streets(bbox):
-    boxwalker = BoxWalker(bbox, False)
+    boxwalker = BoxWalker(bbox, apiKey=cwenv('MAPQUEST_API_KEY'), verbose=False)
     boxwalker.load_tiles()
     boxwalker.load_streets()
     return boxwalker.tile, boxwalker.streets

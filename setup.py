@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="OSM-Crosswalk-Detection",
-    version="0.1.0",
+    version="0.1.1",
     author="Buehler Severin and Kurath Samuel",
     maintainer="Marcel Huber",
     maintainer_email="marcel.huber@hsr.ch",

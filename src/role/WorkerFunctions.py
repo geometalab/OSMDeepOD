@@ -6,8 +6,8 @@ import os
 from src import cwenv
 
 
-def detect(bbox, redis):
-    walker = BoxWalker(bbox)
+def detect(bbox, redis, apiKey):
+    walker = BoxWalker(bbox, apiKey=apiKey)
     walker.load_convnet()
     walker.load_tiles()
     walker.load_streets()
@@ -37,3 +37,5 @@ def store(crosswalks):
 
     with open(PATH_TO_CROSSWALKS, 'w') as f:
         json.dump(data, f)
+
+    print('{0} potential crosswalks detected so far'.format(len(data['crosswalks'])))

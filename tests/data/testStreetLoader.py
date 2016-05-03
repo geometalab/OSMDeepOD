@@ -1,12 +1,13 @@
 import unittest
 from src.data.StreetCrosswalkLoader import StreetCrosswalkLoader
 from src.base.Bbox import Bbox
+from src import cwenv
 
 class TestStreetLoader(unittest.TestCase):
 
     def test_load_streets(self):
         bbox = self.ZurichBellvue()
-        loader = StreetCrosswalkLoader()
+        loader = StreetCrosswalkLoader(apiKey=cwenv('MAPQUEST_API_KEY'))
         streets = loader.load_data(bbox)
 
         self.assertTrue(len(streets) > 50)

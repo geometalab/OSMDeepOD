@@ -2,21 +2,22 @@ from src.detection.BoxWalker import BoxWalker
 import unittest
 from src.base.Bbox import Bbox
 from src.base.Node import Node
+from src import cwenv
 
 
 class testBoxWalker(unittest.TestCase):
     def test_load_tile(self):
-        walker = BoxWalker(self.smallTestBbox(), False)
+        walker = BoxWalker(self.smallTestBbox(), apiKey=cwenv('MAPQUEST_API_KEY'), verbose=False)
         walker.load_tiles()
         self.assertIsNotNone(walker.tile)
 
     def test_load_streets(self):
-        walker = BoxWalker(self.smallTestBbox(), False)
+        walker = BoxWalker(self.smallTestBbox(), apiKey=cwenv('MAPQUEST_API_KEY'), verbose=False)
         walker.load_streets()
         self.assertIsNotNone(walker.streets)
 
     def test_walk(self):
-        walker = BoxWalker(self.ZurichBellvue(), True)
+        walker = BoxWalker(self.ZurichBellvue(), apiKey=cwenv('MAPQUEST_API_KEY'), verbose=True)
         walker.load_convnet()
         walker.load_tiles()
         walker.load_streets()
@@ -28,14 +29,14 @@ class testBoxWalker(unittest.TestCase):
 
 
     def test_compare_detected_with_osm_same_points(self):
-        walker = BoxWalker(self.smallTestBbox(), False)
+        walker = BoxWalker(self.smallTestBbox(), apiKey=cwenv('MAPQUEST_API_KEY'), verbose=False)
         detected_crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
         walker.osm_crosswalks = detected_crosswalks
         result = walker._compare_osm_with_detected_crosswalks(detected_crosswalks)
         self.assertTrue(len(result) == 0)
 
     def test_compare_detected_with_osm_near_points(self):
-        walker = BoxWalker(self.smallTestBbox(), False)
+        walker = BoxWalker(self.smallTestBbox(), apiKey=cwenv('MAPQUEST_API_KEY'), verbose=False)
         detected_crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1), Node(47.2, 8.2)]
         walker.osm_crosswalks = [Node(47.000001, 8.0), Node(47.100001, 8.1), Node(48.2, 8.2)]
         result = walker._compare_osm_with_detected_crosswalks(detected_crosswalks)
@@ -43,7 +44,7 @@ class testBoxWalker(unittest.TestCase):
 
 
     def test_compare_detected_with_osm_different_points(self):
-        walker = BoxWalker(self.smallTestBbox(), False)
+        walker = BoxWalker(self.smallTestBbox(), apiKey=cwenv('MAPQUEST_API_KEY'), verbose=False)
         detected_crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
         walker.osm_crosswalks = [Node(48.0, 8.0), Node(48.1, 8.1)]
         result = walker._compare_osm_with_detected_crosswalks(detected_crosswalks)

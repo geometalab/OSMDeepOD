@@ -4,24 +4,23 @@ from src.data.MapquestApi import MapquestApi
 
 
 class StreetCrosswalkLoader(object):
+    STREET_CATEGORIES = [
+        'road',
+        'trunk',
+        'primary',
+        'secondary',
+        'tertiary',
+        'unclassified',
+        'residential',
+        'service',
+        'trunk_link',
+        'primary_link',
+        'secondary_link',
+        'tertiary_link',
+        'pedestrian']
 
-    def __init__(self):
-        self.api = MapquestApi()
-        self._ATTRIBNAME = "highway"
-        self._STREET_CATEGORIES = [
-            'road',
-            'trunk',
-            'primary',
-            'secondary',
-            'tertiary',
-            'unclassified',
-            'residential',
-            'service',
-            'trunk_link',
-            'primary_link',
-            'secondary_link',
-            'tertiary_link',
-            'pedestrian']
+    def __init__(self, apiKey):
+        self.api = MapquestApi(apiKey=apiKey)
         self.crosswalks = []
         self.streets = []
 
@@ -47,7 +46,7 @@ class StreetCrosswalkLoader(object):
         node_map = self._get_node_map(tree)
         for way in tree.iter('way'):
             for tag in way.iter('tag'):
-                for category in self._STREET_CATEGORIES:
+                for category in StreetCrosswalkLoader.STREET_CATEGORIES:
                     if self._is_in_category(tag, category):
                         results = self._parse_way(way, node_map)
                         self.streets += results
