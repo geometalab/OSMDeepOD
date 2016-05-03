@@ -15,10 +15,7 @@ class Worker(object):
             qs = map(Queue, self.queues) or [Queue()]
             w = rq.Worker(qs)
             w.work()
-            try:
-                print('Items in queue \'{0}\': {1}'.format(self.queues[0], len(qs)))
-            except:
-                pass
+            print('Items in queue \'{0}\': {1}'.format(self.queues[0], len(qs)))
 
     @classmethod
     def from_worker(cls, jobqueue_name_list):
