@@ -3,9 +3,6 @@ import unittest
 from src.base.Node import Node
 
 
-
-
-
 class NodeMergerTest(unittest.TestCase):
 
     def test_getNeighbors(self):

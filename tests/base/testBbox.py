@@ -2,6 +2,7 @@ import unittest
 from src.base.Bbox import Bbox
 from src.base.Node import Node
 
+
 class TestBbox(unittest.TestCase):
 
     def test_instantiate_from_bltr(self):

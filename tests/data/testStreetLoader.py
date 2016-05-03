@@ -3,6 +3,7 @@ from src.data.StreetCrosswalkLoader import StreetCrosswalkLoader
 from src.base.Bbox import Bbox
 from src import cwenv
 
+
 class TestStreetLoader(unittest.TestCase):
 
     def test_load_streets(self):
@@ -15,7 +16,10 @@ class TestStreetLoader(unittest.TestCase):
         for street in streets:
             self.assertEquals(len(street.nodes), 2)
 
-
     @staticmethod
     def ZurichBellvue():
-        return Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
+        return Bbox.from_lbrt(
+            8.54279671719532,
+            47.366177501999516,
+            8.547088251618977,
+            47.36781249586627)

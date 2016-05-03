@@ -38,4 +38,6 @@ def store(crosswalks):
     with open(PATH_TO_CROSSWALKS, 'w') as f:
         json.dump(data, f)
 
-    print('{0} potential crosswalks detected so far'.format(len(data['crosswalks'])))
+    print(
+        '{0} potential crosswalks detected so far'.format(
+            len(data['crosswalks'])))

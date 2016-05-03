@@ -2,6 +2,7 @@ import unittest
 from src.base.Street import Street
 from src.base.Node import Node
 
+
 class TestStreet(unittest.TestCase):
 
     def test_instantiate_from_info(self):

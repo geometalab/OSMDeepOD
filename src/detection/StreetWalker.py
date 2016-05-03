@@ -39,7 +39,6 @@ class StreetWalker(object):
             if isCrosswalk:
                 crosswalkNodes.append(val.getCentreNode())
 
-
         merged = self._merge_nodes(crosswalkNodes)
         return merged
 
@@ -66,4 +65,3 @@ class StreetWalker(object):
             squaresTiles.append(tile)
 
         return squaresTiles
-

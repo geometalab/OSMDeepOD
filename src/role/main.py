@@ -18,7 +18,11 @@ def manager(args):
         args.bb_top)
     try:
         print('Manger has started...')
-        Manager.from_big_bbox(big_bbox, redis_args(args), args.redis_jobqueue_name, apiKey=args.mapquest_api_key)
+        Manager.from_big_bbox(
+            big_bbox,
+            redis_args(args),
+            args.redis_jobqueue_name,
+            apiKey=args.mapquest_api_key)
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(

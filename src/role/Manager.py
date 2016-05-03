@@ -54,8 +54,10 @@ class Manager(object):
                 ),
                 timeout=Manager.TIMEOUT)
 
-        print('Number of enqueued jobs in queue \'{0}\': {1}'.format(self.jobqueue_name, len(queue)))
-
+        print(
+            'Number of enqueued jobs in queue \'{0}\': {1}'.format(
+                self.jobqueue_name,
+                len(queue)))
 
     def _calc_rows(self):
         _, mminy = self.mercator.LatLonToMeters(
