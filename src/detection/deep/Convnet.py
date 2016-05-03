@@ -6,8 +6,8 @@ from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.convolutional import Convolution2D, MaxPooling2D
 from keras.regularizers import l2
 import theano
-import os
 import numpy as np
+from src import cwenv
 
 
 class Convnet(object):
@@ -16,7 +16,7 @@ class Convnet(object):
         self.verbose = True
         self.very_verbose = False
         self.model = None
-        self.hdf5_file = "convnet48.e158-l0.055.hdf5"
+        self.hdf5_file = str(cwenv('CONVNET_WEIGHTS_FILE'))
         self.threshold = 0.9
 
     @classmethod
@@ -33,7 +33,7 @@ class Convnet(object):
         self._enable_multithreading()
         self._out("Compile convnet")
         self.model = self._compile_model()
-        self._out("Load " + self.hdf5_file)
+        self._out("Loading " + self.hdf5_file)
         self._load_weights(self.hdf5_file)
 
     def is_initialized(self):
@@ -179,18 +179,4 @@ class Convnet(object):
         return model
 
     def _load_weights(self, hdf5_file):
-        current_dir = os.path.join(os.getcwd(), os.path.dirname(__file__))
-
-        network_path = ""
-        if self._is_docker_container():
-            # Docker makes some crucial tricks in the filesystem
-            # virtualization. If it's a docker then we use this path
-            network_path = '/root/OSM-Crosswalk-Detection/src/detection/deep/' + hdf5_file
-        else:
-            network_path = current_dir + "/" + hdf5_file
-
-        self.model.load_weights(network_path)
-
-    @staticmethod
-    def _is_docker_container():
-        return os.path.exists('/root/OSM-Crosswalk-Detection/DockerIam')
+        self.model.load_weights(hdf5_file)

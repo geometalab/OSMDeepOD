@@ -44,6 +44,7 @@ containers:
       env:
       - REDIS_PASS=$REDIS_PASS
       - MAPQUEST_API_KEY=$MAPQUEST_API_KEY
+      - DISPLAY=unix$DISPLAY
       stop-signal: SIGTERM
       interactive: false
       tty: false
@@ -56,7 +57,7 @@ containers:
   crosswalk-bellevue: { <<: *cref, run: { <<: *crefrun, cmd: '--pass $REDIS_PASS manager --mapqapikey $MAPQUEST_API_KEY 8.54279671719532 47.366177501999516 8.547088251618977 47.36781249586627' } }
   cworker: { <<: *cref, run: { <<: *crefrun, detach: true, cmd: --pass $REDIS_PASS jobworker, env: ['REDIS_PASS=$REDIS_PASS'] } }
   cresults: { <<: *cref, run: { <<: *crefrun, detach: true, cmd: --pass $REDIS_PASS resultworker, volume: ['crosswalk-data_output:/output:rw'] } }
-  cshell: { <<: *cref, run: { <<: *crefrun, detach: false, entrypoint: /bin/bash, cmd, tty: true, interactive: true } }
+  cshell: { <<: *cref, run: { <<: *crefrun, detach: false, entrypoint: /bin/bash, cmd, tty: true, interactive: true, volume: ['/tmp/.X11-unix:/tmp/.X11-unix:rw'] } }
   ctests: { <<: *cref, run: { <<: *crefrun, detach: false, entrypoint: python, cmd: "-m nose --with-xunit --with-coverage --cover-package=src --cover-xml" } }
   keras:
     build:
