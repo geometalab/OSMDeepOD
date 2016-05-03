@@ -20,7 +20,7 @@ docker run --name crossdis redis:alpine
 docker run --rm --link crossdis:db redis:alpine /bin/sh -c 'printf "config set requirepass crosswalks\nauth crosswalks\n" | redis-cli -h db'
 
 #Manager, example zurich bellevue
-docker run --rm --link crossdis:db geometalab/osm-crosswalk-detection --redis db manager 8.54279671719532 47.366177501999516 8.547088251618977 47.36781249586627
+docker run --rm --link crossdis:db geometalab/osm-crosswalk-detection --redis db manager --mapqapikey "Your API Key Here" 8.54279671719532 47.366177501999516 8.547088251618977 47.36781249586627
 
 #Jobworker
 docker run --rm --link crossdis:db geometalab/osm-crosswalk-detection jobworker
