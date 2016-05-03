@@ -15,7 +15,6 @@ class StreetWalker(object):
     def from_street_tile(cls, street, tile, convnet):
         walker = cls()
         walker.street = street
-        walker.street = street
         walker.tile = tile
         walker.convnet = convnet
 
