@@ -35,6 +35,9 @@ containers:
     build:
       context: crosswalks
       file: Dockerfile
+      build-arg:
+      - GIT_BRANCH=$GIT_BRANCH
+      - GIT_REPO_URL=$GIT_REPO_URL
     image: geometalab/osm-crosswalk-detection
     run: &crefrun
       detach: false

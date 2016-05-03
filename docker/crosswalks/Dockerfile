@@ -9,6 +9,8 @@ ARG GIT_REPO_URL
 ENV GIT_BRANCH=${GIT_BRANCH:-master} \
     GIT_REPO_URL=${GIT_REPO_URL:-https://github.com/geometalab/OSM-Crosswalk-Detection.git}
 
+RUN echo "repo URL:[$GIT_REPO_URL] branch:[$GIT_BRANCH]"
+
 RUN cd /root \
   && git clone --single-branch --branch $GIT_BRANCH --depth 1 $GIT_REPO_URL \
   && cd OSM-Crosswalk-Detection \
