@@ -15,7 +15,9 @@ class MapquestApi(object):
             box) + self.__LINK_POSTFIX + self.apiKey
         url = self.__LINK_PREFIX + postfix
         resp, content = httplib2.Http().request(url)
-        if resp.get('status') == '200' and resp.get('content-type', '').find('text/xml') != -1:
+        if resp.get('status') == '200' and resp.get(
+                'content-type',
+                '').find('text/xml') != -1:
             return ElementTree.fromstring(content)
         return None
 
