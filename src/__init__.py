@@ -1,6 +1,8 @@
 import environ
 import os
 
+__version__ = "0.1.4.dev"
+
 root = environ.Path(os.getcwd())
 cwenv = environ.Env(
     REDIS_HOST=(
@@ -26,3 +28,4 @@ cwenv = environ.Env(
         '.'),
 )
 environ.Env.read_env(root('.env'))  # reading .env file
+

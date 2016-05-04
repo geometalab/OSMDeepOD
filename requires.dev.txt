@@ -3,6 +3,7 @@ click
 coverage
 django-environ
 fake-useragent
+flake8
 geopy
 h5py
 httplib2
