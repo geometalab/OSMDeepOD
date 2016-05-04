@@ -85,5 +85,8 @@ containers:
     exec:
       interactive: true
       tty: true
+hooks:
+  cshell:
+    pre-start: sh -c 'test -n "$(type -fP xhost)" && xhost local:'
 volumes:
   crosswalk-data_output:

@@ -1,6 +1,11 @@
 FROM geometalab/keras_cuda:latest
 MAINTAINER Marcel Huber <marcel.huber@hsr.ch>
 
+RUN apt-get update \
+  && apt-get install --no-install-recommends -y xloadimage \
+  && apt-get autoclean autoremove clean \
+  && rm -rf /var/lib/apt/lists/*
+
 RUN pip install --upgrade \
   nose django-environ coverage codacy-coverage
 

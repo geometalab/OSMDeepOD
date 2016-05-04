@@ -1,4 +1,18 @@
 from PIL import ImageDraw
+from PIL.ImageShow import UnixViewer, register, quote, which
+
+
+class XloadImageViewer(UnixViewer):
+
+    def get_command_ex(self, thefile, title=None, **options):
+        command = executable = "xloadimage"
+        command += " -quiet "
+        if title:
+            command += " -title %s" % quote(title)
+        return command, executable
+
+if which("xloadimage"):
+    register(XloadImageViewer)
 
 
 class TileDrawer(object):
