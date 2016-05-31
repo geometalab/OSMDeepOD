@@ -77,7 +77,7 @@ The following steps are required if you want to checkout directly into your envi
 
 3. Install required python modules
 
-   Some required modules, especially `numpy` and `scipy` require compilation and headers and libraries of third party stuff. Depending on your knowledge it might be easier to find packages for your platform or even skip this section and make use of the pre-built docker images.
+   Some required modules, especially `numpy` and `scipy` require compilation and headers and libraries of third party stuff. Ubuntu user might need to install `python-dev`, `libopenblas-dev`, `python-h5py`, `python-yaml`, `python-pil`, and `libhdf5-dev` packages prior to continueing. If the list seems outdated, check the Dockerfiles to find out more. Depending on your knowledge it might be easier to find packages for your platform or even skip this section and make use of the pre-built docker images.
 
    `pip install -r requires.dev.txt`
 
