@@ -1,25 +1,16 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
-import codecs
-import re
+import versioneer
 from setuptools import setup
 from pip.req import parse_requirements
 
-package = 'src'
-
-
-here = os.path.abspath(os.path.dirname(__file__))
-with codecs.open(os.path.join(here, package, '__init__.py'),
-                 encoding='utf8') as version_file:
-    metadata = dict(
-        re.findall(
-            r"""__([a-z]+)__ = "([^"]+)""",
-            version_file.read()))
+PACKAGE = 'src'
 
 
 def get_packages(package):
-    """
-    Return root package and all sub-packages.
-    """
+    """Return root package and all sub-packages."""
     return [dirpath
             for dirpath, _, _ in os.walk(package)
             if os.path.exists(os.path.join(dirpath, '__init__.py'))]
@@ -41,15 +32,17 @@ def get_requirements():
 
 setup(
     name="OSM-Crosswalk-Detection",
-    version=metadata['version'],
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     author="Buehler Severin and Kurath Samuel",
+    author_email="severin.buehler@hsr.ch, samuel.kurath@hsr.ch",
     maintainer="Marcel Huber",
     maintainer_email="marcel.huber@hsr.ch",
     description="Crosswalk detection on orthofotos.",
     license="MIT",
     keywords=['crosswalk detection'],
     url="https://github.com/geometalab/OSM-Crosswalk-Detection",
-    packages=get_packages(package),
+    packages=get_packages(PACKAGE),
     install_requires=get_requirements(),
     setup_requires=[],
     test_suite='tests',

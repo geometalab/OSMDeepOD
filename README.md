@@ -86,8 +86,8 @@ The following steps are required if you want to checkout directly into your envi
    To test if your installation is working, run at least the tests like this:
 
    ```
-   python (MAPQUEST_API_KEY="Your API Key Here" python -m nose \
-          --with-xunit --with-coverage --cover-package=src)
+   MAPQUEST_API_KEY="Your API Key Here" python -m nose \
+       --with-xunit --with-coverage --cover-package=src
    ```
    You can also execute `main.py` and check its options or the options of the subcommands. Please note that it is required to add the current path to the `PYTHONPATH` environment variable.
    ```

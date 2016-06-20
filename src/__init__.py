@@ -1,7 +1,9 @@
 import environ
 import os
 
-__version__ = "0.1.4.dev"
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions
 
 root = environ.Path(os.getcwd())
 cwenv = environ.Env(
@@ -28,4 +30,3 @@ cwenv = environ.Env(
         '.'),
 )
 environ.Env.read_env(root('.env'))  # reading .env file
-
