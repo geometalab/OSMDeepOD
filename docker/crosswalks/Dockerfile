@@ -19,8 +19,7 @@ RUN echo "repo URL:[$GIT_REPO_URL] branch:[$GIT_BRANCH]"
 RUN cd /root \
   && git clone --single-branch --branch $GIT_BRANCH --depth 1 $GIT_REPO_URL \
   && cd OSM-Crosswalk-Detection \
-  && python setup.py install \
-  && touch DockerIam
+  && python setup.py install
 
 # store results in this directory
 ENV OUTPUT_DIR=/output
