@@ -76,4 +76,6 @@ def _download_image(url):
     response = urllib2.urlopen(request)
     content = response.read()
     img = Image.open(StringIO.StringIO(content))
+    img.filename = url
     return img
+
