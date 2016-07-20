@@ -16,7 +16,7 @@ class Convnet(object):
         self.verbose = True
         self.very_verbose = False
         self.model = None
-        self.hdf5_file = '/home/murthy/Projects/ifs/OSM-Crosswalk-Detection/src/detection/deep/convnet48.e158-l0.055.hdf5' #str(cwenv('CONVNET_WEIGHTS_FILE'))
+        self.hdf5_file = str(cwenv('CONVNET_WEIGHTS_FILE')) # '/home/murthy/Projects/ifs/OSM-Crosswalk-Detection/src/detection/deep/convnet48.e158-l0.055.hdf5'
         self.threshold = 0.9
 
     @classmethod

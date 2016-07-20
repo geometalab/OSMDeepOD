@@ -1,5 +1,5 @@
 from src.base.Bbox import Bbox
-from src.data.crosswalk_collector import CrosswalkCollector
+from src.data.generation.crosswalk_collector import CrosswalkCollector
 
 
 def zuerich_bellevue():
@@ -46,11 +46,6 @@ def test_get_crosswalks():
 
 def test_get_images():
     crosswalk_collector = CrosswalkCollector(bbox=small_bbox())
-    images = crosswalk_collector._get_images()
+    crosswalks = crosswalk_collector._get_crosswalk_nodes()
+    images = crosswalk_collector._get_cropped_images(crosswalks)
     assert len(images) != 0
-
-
-def test_run():
-    crosswalk_collector = CrosswalkCollector(bbox=thun())
-    crosswalk_collector.run()
-    assert 0 == 0
