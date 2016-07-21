@@ -14,34 +14,6 @@ class CrosswalkImage(object):
         self._crosswalk_image = None
         self._position_px, self._position_py = self._get_pixel_position_of_crosswalks()
 
-    @property
-    def node(self):
-        return self._node
-
-    @property
-    def url(self):
-        return self._url
-
-    @property
-    def tile_image(self):
-        return self._tile_image
-
-    @tile_image.setter
-    def tile_image(self, value):
-        self._tile_image = value
-
-    @property
-    def crosswalk_image(self):
-        return self._crosswalk_image
-
-    @property
-    def position_px(self):
-        return self._position_px
-
-    @property
-    def position_py(self):
-        return self._position_py
-
     def crop_tile_image(self):
         box = self._build_box(self._position_px, self._position_py)
         if self._is_on_image(box, self._tile_image):
@@ -83,3 +55,31 @@ class CrosswalkImage(object):
         filename = re.sub(r"^https://t..ssl.ak.tiles.virtualearth.net/tiles/a*", '', filename)
         filename = re.sub(r".jpeg\?g=4401&n=z", '', filename)
         return filename + '.png'
+
+    @property
+    def node(self):
+        return self._node
+
+    @property
+    def url(self):
+        return self._url
+
+    @property
+    def tile_image(self):
+        return self._tile_image
+
+    @tile_image.setter
+    def tile_image(self, value):
+        self._tile_image = value
+
+    @property
+    def crosswalk_image(self):
+        return self._crosswalk_image
+
+    @property
+    def position_px(self):
+        return self._position_px
+
+    @property
+    def position_py(self):
+        return self._position_py

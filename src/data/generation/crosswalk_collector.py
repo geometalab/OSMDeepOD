@@ -4,15 +4,18 @@ from src.data.generation.crosswalk_detector import CrosswalkDetector
 
 
 class CrosswalkCollector:
-    def __init__(self, bbox=None, hdf5_file=None, image_dir='/tmp/crosswalks'):
+    def __init__(self, bbox=None, hdf5_file=None, image_dir='/tmp/crosswalks', detect=False):
         self.bbox = bbox
-        self.hdf5_file = hdf5_file
+        self.detect = detect
         self.image_dir = self._build_dir_path(image_dir)
+        if detect:
+            self.crosswalk_detector = CrosswalkDetector(hdf5_file)
 
     def run(self):
         crosswalk_nodes = self._get_crosswalk_nodes()
-        cropped_images = self._get_cropped_images(crosswalk_nodes)
-        images = self._detect_crosswalks(cropped_images)
+        images = self._get_cropped_images(crosswalk_nodes)
+        if self.detect:
+            images = self.crosswalk_detector.detect(images)
         self._store(images)
 
     def _get_crosswalk_nodes(self):
@@ -23,10 +26,6 @@ class CrosswalkCollector:
     def _get_cropped_images(crosswalk_nodes):
         image_loader = ImageLoader()
         return image_loader.get_images(crosswalk_nodes)
-
-    def _detect_crosswalks(self, images):
-        crosswalk_detector = CrosswalkDetector(self.hdf5_file)
-        return crosswalk_detector.detect(images)
 
     def _store(self, images):
         for image in images:

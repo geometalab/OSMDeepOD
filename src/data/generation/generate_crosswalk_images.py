@@ -1,13 +1,33 @@
+import os
 import argparse
+import csv
 
 from src.base.Bbox import Bbox
 from src.data.generation.crosswalk_collector import CrosswalkCollector
 
 
+def collect(bboxes, args):
+    crosswalk_collector = CrosswalkCollector(hdf5_file=args.convnet, image_dir=args.image_dir, detect=args.detect)
+    for bbox in bboxes:
+        crosswalk_collector.bbox = bbox
+        crosswalk_collector.run()
+
+
 def run(args):
-    bbox = Bbox.from_lbrt(args.bbox[0], args.bbox[1], args.bbox[2], args.bbox[3])
-    crosswalkCollector = CrosswalkCollector(bbox=bbox, hdf5_file=args.convnet, image_dir=args.image_dir)
-    crosswalkCollector.run()
+    bboxes = []
+    if args.csv is not None:
+        if os.path.exists(args.csv):
+            with open(args.csv, 'rb') as csvfile:
+                reader = csv.reader(csvfile, delimiter=',')
+                next(reader)
+                for row in reader:
+                    bbox = Bbox.from_lbrt(float(row[1]), float(row[2]), float(row[3]), float(row[4]))
+                    bboxes.append(bbox)
+        else:
+            raise Exception('CSV file ' + args.csv + ' does not exist!')
+    else:
+        bboxes.append(Bbox.from_lbrt(args.bbox[0], args.bbox[1], args.bbox[2], args.bbox[3]))
+    collect(bboxes, args)
 
 
 def mainfunc():
@@ -19,7 +39,6 @@ def mainfunc():
             action='store',
             dest='bbox',
             help='The boundingbox to look for crosswalks. (left, bottom, right, top)',
-            required=True
     )
 
     parser.add_argument(
@@ -37,6 +56,27 @@ def mainfunc():
             action='store',
             dest='convnet',
             help='The path to the convnet file. (inclusive filename)'
+    )
+
+    parser.add_argument(
+            '--no-detect',
+            dest='detect',
+            action='store_false',
+            help='Stop preverifying from traind convnet.'
+    )
+    parser.add_argument(
+            '--detect',
+            dest='detect',
+            action='store_true',
+            help='Activate preverifying from traind convnet.'
+    )
+    parser.set_defaults(detect=True)
+
+    parser.add_argument(
+            '--csv',
+            action='store',
+            dest='csv',
+            help='The path to the csv bounding box file. (csv: region, left, bottom, right, top)'
     )
 
     args = parser.parse_args()

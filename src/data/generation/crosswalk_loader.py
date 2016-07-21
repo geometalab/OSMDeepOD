@@ -6,7 +6,7 @@ from src.base.Node import Node
 
 class CrosswalkLoader:
     def __init__(self):
-        self.overpass = overpass.API()
+        self.overpass = overpass.API(timeout=60)
 
     def get_crosswalk_nodes(self, bbox):
         overpass_bbox = self._bbox_to_overpass(bbox)
@@ -20,7 +20,8 @@ class CrosswalkLoader:
     def _try_overpass_download(self, overpass_bbox):
         for i in range(4):
             try:
-                json_crosswalks = self.overpass.Get('node[highway=crossing](' + overpass_bbox + ')')
+                query = 'node[highway=crossing](' + overpass_bbox + ')'
+                json_crosswalks = self.overpass.Get(query)
                 return json_crosswalks
             except Exception as e:
                 print "Download of crosswalks from overpass failed", i, "wait", i * 10, e
