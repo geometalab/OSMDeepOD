@@ -1,4 +1,4 @@
-from src.data.MultiLoader import MultiLoader
+from src.data.multi_loader import MultiLoader
 from src.data.url_builder import UrlBuilder
 from src.data.generation.crosswalk_image import CrosswalkImage
 

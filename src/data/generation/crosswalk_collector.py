@@ -1,3 +1,5 @@
+import warnings
+
 from src.data.generation.image_loader import ImageLoader
 from src.data.generation.crosswalk_loader import CrosswalkLoader
 from src.data.generation.crosswalk_detector import CrosswalkDetector
@@ -13,10 +15,13 @@ class CrosswalkCollector:
 
     def run(self):
         crosswalk_nodes = self._get_crosswalk_nodes()
-        images = self._get_cropped_images(crosswalk_nodes)
-        if self.detect:
-            images = self.crosswalk_detector.detect(images)
-        self._store(images)
+        if crosswalk_nodes:
+            images = self._get_cropped_images(crosswalk_nodes)
+            if self.detect:
+                images = self.crosswalk_detector.detect(images)
+            self._store(images)
+        else:
+            warnings.warn('No images downloaded in ' + str(self.bbox))
 
     def _get_crosswalk_nodes(self):
         crosswalk_loader = CrosswalkLoader()

@@ -1,5 +1,5 @@
-from src.data.StreetDrawer import StreetDrawer
-from src.base.Bbox import Bbox
+from src.data.street_drawer import StreetDrawer
+from src.base.bbox import Bbox
 from src import cwenv
 
 '''

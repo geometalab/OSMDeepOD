@@ -1,6 +1,6 @@
-from src.base.Node import Node
+from src.base.node import Node
 from src.data.generation.crosswalk_image import CrosswalkImage
-from src.data.MultiLoader import MultiLoader
+from src.data.multi_loader import MultiLoader
 
 
 def test_get_crosswalk_image_crop():

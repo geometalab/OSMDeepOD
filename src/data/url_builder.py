@@ -18,19 +18,16 @@ class UrlBuilder:
         url = self._build_url(quadtree)
         return url
 
-    def get_urls_by_tiles(self, tminx, tminy, tmaxx, tmaxy):
+    def get_urls_by_tiles(self, t_minx, t_miny, t_maxx, t_maxy):
         urls = []
-        for ty in range(tminy, tmaxy + 1):
-            for tx in range(tminx, tmaxx + 1):
+        for ty in range(t_miny, t_maxy + 1):
+            for tx in range(t_minx, t_maxx + 1):
                 quadtree = self._mercator.QuadTree(tx, ty, self._ZOOMLEVEL)
                 url = self._build_url(quadtree)
                 urls.append(url)
-        return self._remove_dublicates(urls)
+        return urls
 
     def _build_url(self, quadtree):
         server = random.randint(0, 7)
         return self._PRELINK_FIRST + str(server) + self._PRELINK_SECOUND + str(
                 quadtree) + self._POSTLINK
-
-    def _remove_dublicates(self, urls):
-        return list(set(urls))

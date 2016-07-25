@@ -2,7 +2,7 @@ import os
 import argparse
 import csv
 
-from src.base.Bbox import Bbox
+from src.base.bbox import Bbox
 from src.data.generation.crosswalk_collector import CrosswalkCollector
 
 

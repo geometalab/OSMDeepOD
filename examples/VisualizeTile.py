@@ -1,5 +1,5 @@
-from src.data.TileLoader import TileLoader
-from src.base.Bbox import Bbox
+from src.data.tile_loader import TileLoader
+from src.base.bbox import Bbox
 
 '''
 Download all tiles in a specific BBox

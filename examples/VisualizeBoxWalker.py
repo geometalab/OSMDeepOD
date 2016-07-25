@@ -1,6 +1,6 @@
-from src.detection.BoxWalker import BoxWalker
-from src.base.Bbox import Bbox
-from src.base.TileDrawer import TileDrawer
+from src.detection.box_walker import BoxWalker
+from src.base.bbox import Bbox
+from src.base.tile_drawer import TileDrawer
 from src import cwenv
 
 '''
@@ -13,7 +13,7 @@ zurich_bellevue = Bbox.from_lbrt(
     8.547088251618977,
     47.36781249586627)  # Take the BBox you want
 
-walker = BoxWalker(zurich_bellevue, apiKey=cwenv('MAPQUEST_API_KEY'))
+walker = BoxWalker(zurich_bellevue, api_key=cwenv('MAPQUEST_API_KEY'))
 walker.load_convnet()
 walker.load_tiles()
 walker.load_streets()

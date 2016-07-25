@@ -1,7 +1,7 @@
-from src.base.Bbox import Bbox
-from src.detection.BoxWalker import BoxWalker
-from src.detection.StreetWalker import StreetWalker
-from src.base.TileDrawer import TileDrawer
+from src.base.bbox import Bbox
+from src.detection.box_walker import BoxWalker
+from src.detection.street_walker import StreetWalker
+from src.base.tile_drawer import TileDrawer
 from src import cwenv
 
 '''
@@ -14,7 +14,7 @@ blue lines are the streets
 def load_tile_streets(bbox):
     boxwalker = BoxWalker(
         bbox,
-        apiKey=cwenv('MAPQUEST_API_KEY'),
+        api_key=cwenv('MAPQUEST_API_KEY'),
         verbose=False)
     boxwalker.load_tiles()
     boxwalker.load_streets()
@@ -39,7 +39,7 @@ def draw(tile, streets, squared_images):
         drawer.draw_line(street.nodes[0], street.nodes[1])
 
     for t in squared_images:
-        drawer.draw_box(t.getCentreNode(), 50)
+        drawer.draw_box(t.get_centre_node(), 50)
 
     return drawer
 

@@ -7,7 +7,6 @@ flake8
 geopy
 h5py
 httplib2
-Keras==1.0.1
 nose
 numpy
 Pillow
@@ -16,7 +15,7 @@ redis
 rq
 scipy
 six
-Theano==0.8.2
 overpass
 pytest
 pandas
+tensorflow

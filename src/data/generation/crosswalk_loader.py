@@ -1,7 +1,7 @@
 import time
 import overpass
 
-from src.base.Node import Node
+from src.base.node import Node
 
 
 class CrosswalkLoader:
@@ -24,7 +24,7 @@ class CrosswalkLoader:
                 json_crosswalks = self.overpass.Get(query)
                 return json_crosswalks
             except Exception as e:
-                print "Download of crosswalks from overpass failed", i, "wait", i * 10, e
+                print("Download of crosswalks from overpass failed " + str(i) + " wait " + str(i * 10) + str(e))
                 time.sleep(i * 10)
         raise Exception("Download of crosswalks from overpass failed 4 times " + str(e))
 
