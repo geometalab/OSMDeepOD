@@ -3,9 +3,9 @@ from ..base.node import Node
 
 class NodeMerger(object):
     def __init__(self):
-        self.node_list = None
-        self.near_dict = None
-        self.max_distance = 7
+        self.node_list = []
+        self.near_dict = {}
+        self.max_distance = 8
 
     @classmethod
     def from_nodelist(cls, node_list):

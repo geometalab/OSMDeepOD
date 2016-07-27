@@ -1,6 +1,5 @@
 from src.data.street_crosswalk_loader import StreetCrosswalkLoader
 from src.base.bbox import Bbox
-from src import cwenv
 
 
 def zurich_bellevue():
@@ -9,7 +8,7 @@ def zurich_bellevue():
 
 def test_load_streets():
     bbox = zurich_bellevue()
-    loader = StreetCrosswalkLoader(api_key=cwenv('MAPQUEST_API_KEY'))
+    loader = StreetCrosswalkLoader()
     streets = loader.load_data(bbox)
 
     assert len(streets) > 50

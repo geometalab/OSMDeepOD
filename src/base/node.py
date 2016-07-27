@@ -42,10 +42,10 @@ class Node(Point):
         return Node(new_lat, new_lon)
 
     def __hash__(self):
-        return hash((self.latitude, self.longitude))
+        return hash((self.latitude, self.longitude, self.osm_id))
 
     def __eq__(self, other):
-        return (self.latitude, self.longitude) == (other.latitude, other.longitude)
+        return self.latitude == other.latitude and self.longitude == other.longitude and self.osm_id == other.osm_id
 
     def __ne__(self, other):
         return not (self == other)

@@ -1,7 +1,6 @@
 from src.base.bbox import Bbox
 from src.detection.box_walker import BoxWalker
 from src.detection.street_walker import StreetWalker
-from src import cwenv
 
 
 def small_bbox():
@@ -11,7 +10,6 @@ def small_bbox():
 def get_tile_streets(bbox):
     boxwalker = BoxWalker(
             bbox,
-            api_key=cwenv('MAPQUEST_API_KEY'),
             verbose=False)
     boxwalker.load_tiles()
     boxwalker.load_streets()

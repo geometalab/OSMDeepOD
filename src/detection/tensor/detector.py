@@ -13,7 +13,7 @@ class Detector:
         self._load_graph()
 
     def _get_grap_paht(self):
-        cwenv = environ.Env()
+        cwenv = environ.Env(GRAPH_PATH=(str, 'graph_path'))
         root = environ.Path(os.getcwd())
         environ.Env.read_env(root('.env'))
         return cwenv('GRAPH_PATH')

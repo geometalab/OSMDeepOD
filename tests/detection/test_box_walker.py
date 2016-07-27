@@ -15,7 +15,6 @@ def zurich_bellevue():
 def test_load_tile():
     walker = BoxWalker(
             small_bbox(),
-            api_key=cwenv('MAPQUEST_API_KEY'),
             verbose=False)
     walker.load_tiles()
     assert walker.tile is not None
@@ -24,7 +23,6 @@ def test_load_tile():
 def test_load_streets():
     walker = BoxWalker(
             small_bbox(),
-            api_key=cwenv('MAPQUEST_API_KEY'),
             verbose=False)
     walker.load_streets()
     assert walker.streets is not None
@@ -33,7 +31,6 @@ def test_load_streets():
 def test_walk():
     walker = BoxWalker(
             zurich_bellevue(),
-            api_key=cwenv('MAPQUEST_API_KEY'),
             verbose=True)
     walker.load_convnet()
     walker.load_tiles()
@@ -47,7 +44,6 @@ def test_walk():
 def test_compare_detected_with_osm_same_points():
     walker = BoxWalker(
             small_bbox(),
-            api_key=cwenv('MAPQUEST_API_KEY'),
             verbose=False)
     detected_crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
     walker.osm_crosswalks = detected_crosswalks
@@ -58,7 +54,6 @@ def test_compare_detected_with_osm_same_points():
 def test_compare_detected_with_osm_near_points():
     walker = BoxWalker(
             small_bbox(),
-            api_key=cwenv('MAPQUEST_API_KEY'),
             verbose=False)
     detected_crosswalks = [
         Node(
@@ -77,7 +72,6 @@ def test_compare_detected_with_osm_near_points():
 def test_compare_detected_with_osm_different_points():
     walker = BoxWalker(
             small_bbox(),
-            api_key=cwenv('MAPQUEST_API_KEY'),
             verbose=False)
     detected_crosswalks = [Node(47.0, 8.0), Node(47.1, 8.1)]
     walker.osm_crosswalks = [Node(48.0, 8.0), Node(48.1, 8.1)]

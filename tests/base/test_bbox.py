@@ -36,10 +36,10 @@ def test_in_bbox():
     bbox = rappi()
     node = Node(47.22, 8.82)
 
-    assert bbox.in_bbox(node)
+    assert bbox.in_bbox(node) == True
 
 
 def test_not_in_bbox():
     bbox = rappi()
     node = Node(48.0, 8.8)
-    assert bbox.in_bbox(node)
+    assert bbox.in_bbox(node) == False
