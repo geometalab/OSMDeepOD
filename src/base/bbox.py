@@ -1,4 +1,4 @@
-from src.base.node import Node
+from .node import Node
 
 
 class Bbox(object):

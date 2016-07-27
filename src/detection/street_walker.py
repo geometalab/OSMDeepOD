@@ -1,4 +1,4 @@
-from src.detection.node_merger import NodeMerger
+from .node_merger import NodeMerger
 
 
 class StreetWalker(object):
@@ -49,6 +49,6 @@ class StreetWalker(object):
             if current_distance > distance_between_nodes:
                 current_distance = distance_between_nodes
             current_node = node1.step_to(node2, current_distance)
-            tile = self.tile.getTile_byNode(current_node, self._SQUAREDIMAGE_PIXELPERSIDE)
+            tile = self.tile.get_tile_by_node(current_node, self._SQUAREDIMAGE_PIXELPERSIDE)
             square_tiles.append(tile)
         return square_tiles

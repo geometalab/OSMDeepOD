@@ -1,10 +1,9 @@
-from src.data.street_crosswalk_loader import StreetCrosswalkLoader
-from src.data.tile_loader import TileLoader
-from src.base.tile_drawer import TileDrawer
+from ..data.street_crosswalk_loader import StreetCrosswalkLoader
+from ..data.tile_loader import TileLoader
+from ..base.tile_drawer import TileDrawer
 
 
 class StreetDrawer(object):
-
     def __init__(self):
         self.streets = None
         self.tile = None

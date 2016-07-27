@@ -1,17 +1,16 @@
 import datetime
 from random import shuffle
 
-from src.detection.street_walker import StreetWalker
-from src.data.tile_loader import TileLoader
-from src.data.street_crosswalk_loader import StreetCrosswalkLoader
-from src.detection.tensor.detector import Detector
-from src.detection.node_merger import NodeMerger
+from .node_merger import NodeMerger
+from .street_walker import StreetWalker
+from ..data.tile_loader import TileLoader
+from ..data.street_crosswalk_loader import StreetCrosswalkLoader
+from .tensor.detector import Detector
 
 
 class BoxWalker(object):
-    def __init__(self, bbox, api_key, verbose=True):
+    def __init__(self, bbox, verbose=True):
         self.bbox = bbox
-        self.api_key = api_key
         self.tile = None
         self.streets = None
         self.osm_crosswalks = None
@@ -37,7 +36,7 @@ class BoxWalker(object):
         if self.tile is None:
             print("Download tiles first")
 
-        street_loader = StreetCrosswalkLoader(api_key=self.api_key)
+        street_loader = StreetCrosswalkLoader()
         self.streets = street_loader.load_data(self.bbox)
         self.osm_crosswalks = street_loader.crosswalks
         shuffle(self.streets)

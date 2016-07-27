@@ -7,7 +7,7 @@ from src.data.generation.crosswalk_collector import CrosswalkCollector
 
 
 def collect(bboxes, args):
-    crosswalk_collector = CrosswalkCollector(hdf5_file=args.convnet, image_dir=args.image_dir, detect=args.detect)
+    crosswalk_collector = CrosswalkCollector(image_dir=args.image_dir)
     for bbox in bboxes:
         crosswalk_collector.bbox = bbox
         crosswalk_collector.run()
@@ -50,27 +50,6 @@ def mainfunc():
             required=True
     )
 
-    parser.add_argument(
-            '-c',
-            '--convnet',
-            action='store',
-            dest='convnet',
-            help='The path to the convnet file. (inclusive filename)'
-    )
-
-    parser.add_argument(
-            '--no-detect',
-            dest='detect',
-            action='store_false',
-            help='Stop preverifying from traind convnet.'
-    )
-    parser.add_argument(
-            '--detect',
-            dest='detect',
-            action='store_true',
-            help='Activate preverifying from traind convnet.'
-    )
-    parser.set_defaults(detect=True)
 
     parser.add_argument(
             '--csv',

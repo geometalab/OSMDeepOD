@@ -1,27 +1,29 @@
-import warnings
-import numpy as np
 import os
+import environ
+import numpy as np
 
 import tensorflow as tf
 
 
 class Detector:
-    def __init__(self, graph_path='output_graph_crosswalks.pb', label_path='output_labels_crosswalks.txt'):
-        current_dir = os.path.dirname(__file__)
-        self.graph_path = current_dir + '/' + graph_path
-        self.label_path = current_dir + '/' + label_path
-        self.labels = self._load_labels()
+    def __init__(self):
+        self.graph_path = self._get_grap_paht()
+        self.labels = ['noncrosswalk', 'crosswalk']
         self.sess = tf.Session()
         self._load_graph()
 
-    def __del__(self):
-        self.sess.close()
+    def _get_grap_paht(self):
+        cwenv = environ.Env()
+        root = environ.Path(os.getcwd())
+        environ.Env.read_env(root('.env'))
+        return cwenv('GRAPH_PATH')
 
     def _load_graph(self):
-        with tf.gfile.FastGFile(self.graph_path, 'rb') as f:
-            graph_def = tf.GraphDef()
-            graph_def.ParseFromString(f.read())
-            _ = tf.import_graph_def(graph_def, name='')
+        with tf.device("/cpu:0"):
+            with tf.gfile.FastGFile(self.graph_path, 'rb') as f:
+                graph_def = tf.GraphDef()
+                graph_def.ParseFromString(f.read())
+                _ = tf.import_graph_def(graph_def, name='')
 
     def _load_labels(self):
         with open(self.label_path, 'rb') as labels_file:

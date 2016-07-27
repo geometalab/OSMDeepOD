@@ -1,8 +1,9 @@
 import argparse
-from src.base.bbox import Bbox
-from src.role.worker import Worker
-from src.role.manager import Manager
 from redis.exceptions import ConnectionError
+
+from ..base.bbox import Bbox
+from .worker import Worker
+from .manager import Manager
 from src import cwenv
 
 

@@ -1,6 +1,6 @@
-from src.base.street import Street
-from src.base.node import Node
-from src.data.mapquest_api import MapquestApi
+from ..base.street import Street
+from ..base.node import Node
+from ..data.mapquest_api import MapquestApi
 
 
 class StreetCrosswalkLoader(object):
@@ -19,8 +19,8 @@ class StreetCrosswalkLoader(object):
         'tertiary_link',
         'pedestrian']
 
-    def __init__(self, api_key):
-        self.api = MapquestApi(api_key=api_key)
+    def __init__(self, ):
+        self.api = MapquestApi()
         self.crosswalks = []
         self.streets = []
 

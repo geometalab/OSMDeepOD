@@ -2,23 +2,17 @@ import warnings
 
 from src.data.generation.image_loader import ImageLoader
 from src.data.generation.crosswalk_loader import CrosswalkLoader
-from src.data.generation.crosswalk_detector import CrosswalkDetector
 
 
 class CrosswalkCollector:
-    def __init__(self, bbox=None, hdf5_file=None, image_dir='/tmp/crosswalks', detect=False):
+    def __init__(self, bbox=None, image_dir='/tmp/crosswalks'):
         self.bbox = bbox
-        self.detect = detect
         self.image_dir = self._build_dir_path(image_dir)
-        if detect:
-            self.crosswalk_detector = CrosswalkDetector(hdf5_file)
 
     def run(self):
         crosswalk_nodes = self._get_crosswalk_nodes()
         if crosswalk_nodes:
             images = self._get_cropped_images(crosswalk_nodes)
-            if self.detect:
-                images = self.crosswalk_detector.detect(images)
             self._store(images)
         else:
             warnings.warn('No images downloaded in ' + str(self.bbox))

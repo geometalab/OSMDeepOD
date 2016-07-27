@@ -5,17 +5,11 @@ django-environ
 fake-useragent
 flake8
 geopy
-h5py
 httplib2
-nose
 numpy
 Pillow
 PyYAML
 redis
 rq
-scipy
-six
 overpass
 pytest
-pandas
-tensorflow

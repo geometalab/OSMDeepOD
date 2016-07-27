@@ -1,3 +1,5 @@
+import os
+import environ
 import httplib2
 from xml.etree import ElementTree
 
@@ -5,10 +7,16 @@ from xml.etree import ElementTree
 class MapquestApi(object):
     # "http://open.mapquestapi.com/xapi/api/0.6/node[highway=crossing][bbox=8.815191135900864,47.22491209728128,8.823774204748178,47.22819078179419]?key=..."
 
-    def __init__(self, api_key):
-        self.apiKey = api_key
+    def __init__(self):
+        self.apiKey = self._get_api_key()
         self.__LINK_PREFIX = "http://open.mapquestapi.com/xapi/api/0.6/way[highway=*][bbox="
         self.__LINK_POSTFIX = "]?key="
+
+    def _get_api_key(self):
+        cwenv = environ.Env(MAPQUEST_API_KEY=(str, 'api_key'))
+        root = environ.Path(os.getcwd())
+        environ.Env.read_env(root('.env'))
+        return cwenv('MAPQUEST_API_KEY')
 
     def request(self, box):
         postfix = self.to_mapquest_format(

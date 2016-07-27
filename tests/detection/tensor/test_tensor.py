@@ -19,11 +19,7 @@ def caslano():
     return Bbox.from_lbrt(8.878787756, 45.9721151751, 8.8803809881, 45.9744061776)
 
 
-cwenv = environ.Env(MAPQUEST_API_KEY=(str, 'api_key'))
-root = environ.Path(os.getcwd())
-environ.Env.read_env(root('.env'))
-
-walker = BoxWalker(caslano(), api_key=cwenv('MAPQUEST_API_KEY'))
+walker = BoxWalker(caslano())
 walker.load_convnet()
 walker.load_tiles()
 walker.load_streets()
@@ -38,5 +34,5 @@ crosswalkNodes = walker.plain_result  # Takes all results found
 drawer = TileDrawer.from_tile(walker.tile)
 for node in crosswalkNodes:
     drawer.draw_point(node)
-drawer.drawsection.save("boxsave.jpg")
-drawer.drawsection.show()
+drawer.draw_section.save("boxsave.jpg")
+drawer.draw_section.show()

@@ -1,9 +1,10 @@
-from src.detection.box_walker import BoxWalker
 from rq import Queue
 from redis import Redis
 import json
 import os
+
 from src import cwenv
+from ..detection.box_walker import BoxWalker
 
 
 def detect(bbox, redis, api_key):
