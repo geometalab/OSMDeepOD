@@ -1,14 +1,25 @@
-import urllib.request
 import time
+import urllib.request
 
 from multiprocessing.dummy import Pool as ThreadPool
 from PIL import Image
-from fake_useragent import UserAgent
 from io import BytesIO
+from random import choice
+
+user_agents = [
+    'Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11',
+    'Opera/9.25 (Windows NT 5.1; U; en)',
+    'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)',
+    'Mozilla/5.0 (compatible; Konqueror/3.5; Linux) KHTML/3.5.5 (like Gecko) (Kubuntu)',
+    'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.12) Gecko/20070731 Ubuntu/dapper-security Firefox/1.5.0.12',
+    'Lynx/2.8.5rel.1 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/1.2.9'
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+    'Opera/9.80 (X11; Linux i686; U; ru) Presto/2.8.131 Version/11.11'
+    'Dalvik/2.1.0 (Linux; U; Android 6.0.1; Nexus Player Build/MMB29T)'
+]
 
 
 class MultiLoader(object):
-
     def __init__(self):
         self.urls = []
         self.results = []
@@ -54,9 +65,9 @@ class MultiLoader(object):
                 results = self._download_async(urls)
                 return results
             except Exception as e:
-                print("Tile download failed " +  str(i) +  " wait " + str(i * 10) + str(e))
+                print("Tile download failed " + str(i) + " wait " + str(i * 10) + str(e))
                 time.sleep(i * 10)
-        raise Exception("Download of tiles have failed 4 times " + str(e))
+        raise Exception("Download of tiles have failed 4 times")
 
     def _download_async(self, urls):
         pool = ThreadPool(self.nb_threads)
@@ -67,16 +78,15 @@ class MultiLoader(object):
 
 
 def _generate_request(url):
-    header = {'User-Agent': UserAgent().random}
-    request = urllib.request.Request(url, headers=header)
-    return request
+    header = {'User-Agent': choice(user_agents)}
+    req = urllib.request.Request(url, headers=header)
+    return req
 
 
 def _download_image(url):
-    request = _generate_request(url)
-    response = urllib.request.urlopen(request)
+    req = _generate_request(url)
+    response = urllib.request.urlopen(req)
     content = response.read()
     img = Image.open(BytesIO(content))
     img.filename = url
     return img
-

@@ -2,7 +2,6 @@ FROM nvidia/cuda:7.5-cudnn4-devel-ubuntu14.04
 
 MAINTAINER Samuel Kurath <skurath@hsr.ch>
 
-
 RUN apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y python3-pip python3-dev python3 git vim libjpeg-dev libjpeg8-dev\

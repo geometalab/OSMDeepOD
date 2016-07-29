@@ -1,9 +1,7 @@
 click==6.6
 django-environ==0.4.0
-fake-useragent==0.0.8
 geopy==1.11.0
 httplib2==0.9.2
-numpy==1.11.0
 overpass==0.4.0
 Pillow==2.6.1
 pytest==2.9.2

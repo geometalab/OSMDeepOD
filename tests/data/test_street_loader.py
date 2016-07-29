@@ -1,13 +1,8 @@
 from src.data.street_crosswalk_loader import StreetCrosswalkLoader
-from src.base.bbox import Bbox
 
 
-def zurich_bellevue():
-    return Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
-
-
-def test_load_streets():
-    bbox = zurich_bellevue()
+def test_load_streets(zurich_bellevue):
+    bbox = zurich_bellevue
     loader = StreetCrosswalkLoader()
     streets = loader.load_data(bbox)
 

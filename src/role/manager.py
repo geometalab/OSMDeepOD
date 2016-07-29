@@ -2,9 +2,9 @@ import math
 from rq import Queue
 from redis import Redis
 
-from .worker_functions import detect
-from ..data.globalmaptiles import GlobalMercator
-from ..base.bbox import Bbox
+from src.role.worker_functions import detect
+from src.data.globalmaptiles import GlobalMercator
+from src.base.bbox import Bbox
 
 
 class Manager(object):
@@ -18,10 +18,10 @@ class Manager(object):
         self.small_bboxes = []
 
     @classmethod
-    def from_big_bbox(cls, big_bbox, redis, job_queue_name, apiKey):
+    def from_big_bbox(cls, big_bbox, redis, job_queue_name):
         manager = cls(big_bbox, job_queue_name)
         manager._generate_small_bboxes()
-        manager._enqueue_jobs(redis, apiKey)
+        manager._enqueue_jobs(redis)
         return manager
 
     def _generate_small_bboxes(self):
@@ -37,13 +37,13 @@ class Manager(object):
                 small_bbox = Bbox.from_lbrt(left, bottom, right, top)
                 self.small_bboxes.append(small_bbox)
 
-    def _enqueue_jobs(self, redis, api_key):
+    def _enqueue_jobs(self, redis):
         redis_connection = Redis(redis[0], redis[1], password=redis[2])
         queue = Queue(self.job_queue_name, connection=redis_connection)
         for small_bbox in self.small_bboxes:
             queue.enqueue_call(
                     func=detect,
-                    args=(small_bbox, redis, api_key,),
+                    args=(small_bbox, redis,),
                     timeout=Manager.TIMEOUT)
         print('Number of enqueued jobs in queue \'{0}\': {1}'.format(self.job_queue_name, len(queue)))
 

@@ -1,4 +1,4 @@
-from .node_merger import NodeMerger
+from src.detection.node_merger import NodeMerger
 
 
 class StreetWalker(object):

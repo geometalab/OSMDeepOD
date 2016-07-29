@@ -28,9 +28,9 @@ class CrosswalkLoader:
                 time.sleep(i * 10)
         raise Exception("Download of crosswalks from overpass failed 4 times " + str(e))
 
-    def _json_to_nodes(self, json):
+    def _json_to_nodes(self, json_data):
         nodes = []
-        for feature in json['features']:
+        for feature in json_data['features']:
             coordinates = feature['geometry']['coordinates']
             osm_id = feature['id']
             node = Node(coordinates[1], coordinates[0], osm_id)

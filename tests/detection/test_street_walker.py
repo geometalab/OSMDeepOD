@@ -1,10 +1,5 @@
-from src.base.bbox import Bbox
 from src.detection.box_walker import BoxWalker
 from src.detection.street_walker import StreetWalker
-
-
-def small_bbox():
-    return Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.543088251618977, 47.36781249586627)
 
 
 def get_tile_streets(bbox):
@@ -16,8 +11,8 @@ def get_tile_streets(bbox):
     return boxwalker.tile, boxwalker.streets
 
 
-def test_from_street_tile():
-    (tile, streets) = get_tile_streets(small_bbox())
+def test_from_street_tile(small_bbox):
+    (tile, streets) = get_tile_streets(small_bbox)
     walker = StreetWalker.from_street_tile(streets[0], tile, None)
     assert walker.tile is not None
     assert walker.street is not None

@@ -1,5 +1,5 @@
-from .bbox import Bbox
-from .node import Node
+from src.base.bbox import Bbox
+from src.base.node import Node
 
 
 class Tile(object):

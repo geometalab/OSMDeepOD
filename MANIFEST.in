@@ -1,2 +1,3 @@
 include versioneer.py
 include src/_version.py
+include src/detection/tensor/output_graph_crosswalks.pb

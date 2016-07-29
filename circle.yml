@@ -11,8 +11,6 @@ dependencies:
   override:
     - pip install codacy-coverage
     - docker info
-    - docker build -t geometalab/theano_cuda -f docker/theano_cuda/Dockerfile docker/theano_cuda
-    - docker build -t geometalab/keras_cuda -f docker/keras_cuda/Dockerfile docker/keras_cuda
     - docker build --build-arg GIT_BRANCH=$CIRCLE_BRANCH -t geometalab/osm-crosswalk-detection -f docker/crosswalks/Dockerfile docker/crosswalks
 
 test:
@@ -33,6 +31,4 @@ deployment:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push geometalab/theano_cuda
-      - docker push geometalab/keras_cuda
       - docker push geometalab/osm-crosswalk-detection

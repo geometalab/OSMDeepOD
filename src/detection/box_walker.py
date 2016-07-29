@@ -1,11 +1,11 @@
 import datetime
 from random import shuffle
 
-from .node_merger import NodeMerger
-from .street_walker import StreetWalker
-from ..data.tile_loader import TileLoader
-from ..data.street_crosswalk_loader import StreetCrosswalkLoader
-from .tensor.detector import Detector
+from src.detection.node_merger import NodeMerger
+from src.detection.street_walker import StreetWalker
+from src.data.tile_loader import TileLoader
+from src.data.street_crosswalk_loader import StreetCrosswalkLoader
+from src.detection.tensor.detector import Detector
 
 
 class BoxWalker(object):

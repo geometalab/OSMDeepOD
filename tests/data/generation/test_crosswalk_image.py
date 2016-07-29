@@ -1,13 +1,25 @@
+import pytest
+
 from src.base.node import Node
 from src.data.generation.crosswalk_image import CrosswalkImage
 from src.data.multi_loader import MultiLoader
 
 
-def test_get_crosswalk_image_crop():
-    node = Node(46.754588, 7.63048, 0)
-    url = 'https://t1.ssl.ak.tiles.virtualearth.net/tiles/a1202212103103301000.jpeg?g=4401&n=z'
+@pytest.fixture(scope="module")
+def crosswalk_node():
+    return Node(46.754588, 7.63048, 0)
+
+
+@pytest.fixture(scope="module")
+def crosswalk_url():
+    return 'https://t1.ssl.ak.tiles.virtualearth.net/tiles/a1202212103103301000.jpeg?g=4401&n=z'
+
+
+def test_get_crosswalk_image_crop(crosswalk_node, crosswalk_url):
+    node = crosswalk_node
+    url = crosswalk_url
     urls = list()
-    urls.append(url)
+    urls.append(crosswalk_url)
 
     loader = MultiLoader.from_url_list(urls)
     loader.download()
@@ -22,9 +34,10 @@ def test_get_crosswalk_image_crop():
     assert height == crosswalk_image._CROPPED_IMAGE_HEIGHT
 
 
-def test_build_box():
-    node = Node(46.754588, 7.63048, 0)
-    url = 'https://t1.ssl.ak.tiles.virtualearth.net/tiles/a1202212103103301000.jpeg?g=4401&n=z'
+def test_build_box(crosswalk_node, crosswalk_url):
+    node = crosswalk_node
+    url = crosswalk_url
+
     px = 12
     py = 102
 
@@ -35,9 +48,10 @@ def test_build_box():
     assert (bottom - top) == crosswalk_image._CROPPED_IMAGE_HEIGHT
 
 
-def test_build_filename():
-    node = Node(46.754588, 7.63048, 0)
-    url = 'https://t1.ssl.ak.tiles.virtualearth.net/tiles/a1202212103103301000.jpeg?g=4401&n=z'
+def test_build_filename(crosswalk_node, crosswalk_url):
+    node = crosswalk_node
+    url = crosswalk_url
+
     crosswalk_image = CrosswalkImage(node=node, url=url)
 
     filename = crosswalk_image._build_filename(url)

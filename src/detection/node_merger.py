@@ -1,4 +1,4 @@
-from ..base.node import Node
+from src.base.node import Node
 
 
 class NodeMerger(object):

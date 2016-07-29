@@ -4,11 +4,11 @@ import json
 import os
 
 from src import cwenv
-from ..detection.box_walker import BoxWalker
+from src.detection.box_walker import BoxWalker
 
 
-def detect(bbox, redis, api_key):
-    walker = BoxWalker(bbox, api_key=api_key)
+def detect(bbox, redis):
+    walker = BoxWalker(bbox)
     walker.load_convnet()
     walker.load_tiles()
     walker.load_streets()

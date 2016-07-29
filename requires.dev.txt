@@ -2,7 +2,6 @@ autopep8
 click
 coverage
 django-environ
-fake-useragent
 flake8
 geopy
 httplib2

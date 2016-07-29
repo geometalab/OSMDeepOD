@@ -1,10 +1,10 @@
 from PIL import Image
 
-from ..base.bbox import Bbox
-from ..base.tile import Tile
-from ..data.multi_loader import MultiLoader
-from ..data.globalmaptiles import GlobalMercator
-from ..data.url_builder import UrlBuilder
+from src.base.bbox import Bbox
+from src.base.tile import Tile
+from src.data.multi_loader import MultiLoader
+from src.data.globalmaptiles import GlobalMercator
+from src.data.url_builder import UrlBuilder
 
 
 class TileLoader(object):
