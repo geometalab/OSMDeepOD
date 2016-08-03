@@ -28,7 +28,7 @@ class StreetWalker(object):
         crosswalk_nodes = []
         for tile in squared_tiles:
             prediction = self.convnet.detect(tile.image)
-            if prediction['crosswalk'] > 0.95:
+            if prediction['crosswalk'] > 0.97:
                 crosswalk_nodes.append(tile.get_centre_node())
         merged = self._merge_nodes(crosswalk_nodes)
         return merged

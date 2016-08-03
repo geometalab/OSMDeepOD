@@ -92,7 +92,10 @@ def mainfunc():
     subparsers = parser.add_subparsers(
         title='worker roles',
         description='',
-        help='Select the role of this process')
+        help='Select the role of this process'
+    )
+
+    subparsers.required = True
 
     p_manager = subparsers.add_parser(
         'manager',
