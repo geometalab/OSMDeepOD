@@ -26,11 +26,6 @@ class Detector:
                 graph_def.ParseFromString(f.read())
                 _ = tf.import_graph_def(graph_def, name='')
 
-    def _load_labels(self):
-        with open(self.label_path, 'rb') as labels_file:
-            lines = labels_file.readlines()
-            return [w.decode("utf-8").replace("\n", "") for w in lines]
-
     def detect(self, image):
         image_array = self._pil_to_tf(image)
         with tf.device("/gpu:0"):

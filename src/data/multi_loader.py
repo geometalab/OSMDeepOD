@@ -48,7 +48,10 @@ class MultiLoader(object):
             result = self._try_download(urlpart)
             results += result
 
-            new_percentage = (float(end) / nb_urls) * 100
+            new_percentage = 0.0
+            if nb_urls > 0:
+                new_percentage = (float(end) / nb_urls) * 100
+
             self._set_progress(new_percentage)
 
         self.results = results
