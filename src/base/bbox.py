@@ -49,10 +49,10 @@ class Bbox(object):
         lat = node.latitude
         lon = node.longitude
 
-        inLat = self.bottom <= lat <= self.top
-        inLon = self.left <= lon <= self.right
+        in_lat = self.bottom <= lat <= self.top
+        in_lon = self.left <= lon <= self.right
 
-        return inLat and inLon
+        return in_lat and in_lon
 
     def get_bbox_exclude_border(self, border_distance):
         left_down_node = self.node_leftdown()

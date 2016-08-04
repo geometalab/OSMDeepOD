@@ -1,8 +1,8 @@
 import time
 import overpass
 
-from ..base.street import Street
-from ..base.node import Node
+from src.base.street import Street
+from src.base.node import Node
 
 
 class OverpassApi:
