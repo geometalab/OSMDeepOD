@@ -37,7 +37,7 @@ class BoxWalker(object):
     def load_streets(self):
         self.status_printer.start_load_streets()
         if self.tile is None:
-            print("Download tiles first")
+            logger.warning("Download tiles first")
         street_loader = StreetCrosswalkLoader()
         self.streets = street_loader.load_data(self.bbox)
         self.osm_crosswalks = street_loader.crosswalks

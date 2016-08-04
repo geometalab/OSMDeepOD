@@ -35,9 +35,8 @@ class NodeMerger(object):
             merged = self._merge(sub_graph)
             merged_nodes.append(merged)
             for node in sub_graph:
-                if node not in nodes:
-                    print("")
-                nodes.remove(node)
+                if node in nodes:
+                    nodes.remove(node)
         return merged_nodes
 
     @staticmethod

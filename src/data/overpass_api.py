@@ -44,7 +44,7 @@ class OverpassApi:
                 json_data = self.overpass.Get(query)
                 return json_data
             except Exception as e:
-                print("Download of streets from overpass failed " + str(i) + " wait " + str(i * 10) + str(e))
+                logger.warning("Download of streets from overpass failed " + str(i) + " wait " + str(i * 10) + str(e))
                 time.sleep(i * 10)
         error_message = "Download of streets from overpass failed 4 times."
         logger.error(error_message)
