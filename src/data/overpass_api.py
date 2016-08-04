@@ -1,9 +1,11 @@
 import time
+import logging
 import overpass
 
 from src.base.street import Street
 from src.base.node import Node
 
+logger = logging.getLogger(__name__)
 
 class OverpassApi:
     def __init__(self, street_categories):
@@ -44,7 +46,9 @@ class OverpassApi:
             except Exception as e:
                 print("Download of streets from overpass failed " + str(i) + " wait " + str(i * 10) + str(e))
                 time.sleep(i * 10)
-        raise Exception("Download of streets from overpass failed 4 times.")
+        error_message = "Download of streets from overpass failed 4 times."
+        logger.error(error_message)
+        raise Exception(error_message)
 
     def _set_data(self, json_data):
         for feature in json_data['features']:

@@ -1,5 +1,6 @@
 import time
 import urllib.request
+import logging
 
 from multiprocessing.dummy import Pool as ThreadPool
 from PIL import Image
@@ -17,6 +18,8 @@ user_agents = [
     'Opera/9.80 (X11; Linux i686; U; ru) Presto/2.8.131 Version/11.11'
     'Dalvik/2.1.0 (Linux; U; Android 6.0.1; Nexus Player Build/MMB29T)'
 ]
+
+logger = logging.getLogger(__name__)
 
 
 class MultiLoader(object):
@@ -70,7 +73,9 @@ class MultiLoader(object):
             except Exception as e:
                 print("Tile download failed " + str(i) + " wait " + str(i * 10) + str(e))
                 time.sleep(i * 10)
-        raise Exception("Download of tiles have failed 4 times")
+        error_message = "Download of tiles have failed 4 times"
+        logger.error(error_message)
+        raise Exception(error_message)
 
     def _download_async(self, urls):
         pool = ThreadPool(self.nb_threads)

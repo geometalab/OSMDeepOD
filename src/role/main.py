@@ -1,4 +1,5 @@
 import argparse
+import logging
 from redis.exceptions import ConnectionError
 
 from src.base.bbox import Bbox
@@ -60,7 +61,17 @@ def result_worker(args):
         print('ResultWorker has finished!')
 
 
+def set_logger():
+    root_logger = logging.getLogger()
+    file_handler = logging.FileHandler('/var/log/crosswalk.log')
+    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s %(name)s')
+    file_handler.setFormatter(formatter)
+    root_logger.addHandler(file_handler)
+    root_logger.setLevel(logging.WARNING)
+
+
 def mainfunc():
+    set_logger()
     parser = argparse.ArgumentParser(description='Detect crosswalks.', )
     redis_host = cwenv('REDIS_HOST')
     redis_port = cwenv('REDIS_PORT')

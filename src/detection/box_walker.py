@@ -1,4 +1,5 @@
 import datetime
+import logging
 from random import shuffle
 
 from src.detection.node_merger import NodeMerger
@@ -6,6 +7,8 @@ from src.detection.street_walker import StreetWalker
 from src.data.tile_loader import TileLoader
 from src.data.street_crosswalk_loader import StreetCrosswalkLoader
 from src.detection.tensor.detector import Detector
+
+logger = logging.getLogger(__name__)
 
 
 class BoxWalker(object):
@@ -35,7 +38,6 @@ class BoxWalker(object):
         self.status_printer.start_load_streets()
         if self.tile is None:
             print("Download tiles first")
-
         street_loader = StreetCrosswalkLoader()
         self.streets = street_loader.load_data(self.bbox)
         self.osm_crosswalks = street_loader.crosswalks
@@ -48,7 +50,9 @@ class BoxWalker(object):
             not self.streets is None) and (
                              not self.convnet is None)
         if not ready_for_walk:
-            raise Exception("Not ready for walk. Load tiles, streets and convnet first")
+            error_message = "Not ready for walk. Load tiles, streets and convnet first"
+            logger.error(error_message)
+            raise Exception(error_message)
 
         results = []
         nb_images = 0
