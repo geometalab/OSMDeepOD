@@ -28,3 +28,4 @@ def test_reduce(node_list):
     merger = NodeMerger.from_nodelist(node_list)
     merged_nodes = merger.reduce()
     assert len(merged_nodes) == 2
+
