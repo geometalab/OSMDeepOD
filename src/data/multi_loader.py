@@ -8,6 +8,7 @@ from io import BytesIO
 
 from src.data.user_agent import UserAgent
 
+
 class MultiLoader(object):
     def __init__(self):
         self.urls = []

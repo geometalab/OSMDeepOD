@@ -5,7 +5,7 @@ from src.base.tile import Tile
 from src.data.multi_loader import MultiLoader
 from src.data.globalmaptiles import GlobalMercator
 from src.data.url_builder import UrlBuilder
-
+from src.data.fitting_bbox import FittingBbox
 
 class TileLoader(object):
     def __init__(self):
@@ -28,13 +28,13 @@ class TileLoader(object):
         tiles = self._to_tiles(images, t_minx, t_miny, t_maxx, t_maxy)
         return tiles
 
-    def _to_tiles(self, images, tminx, tminy, tmaxx, tmaxy):
+    def _to_tiles(self, images, t_minx, t_miny, t_maxx, t_maxy):
         tiles = []
         row = 0
         url_number = 0
-        for ty in range(tminy, tmaxy + 1):
+        for ty in range(t_miny, t_maxy + 1):
             tiles.append([])
-            for tx in range(tminx, tmaxx + 1):
+            for tx in range(t_minx, t_maxx + 1):
                 image = images[url_number]
                 bbox = self._generate_bbox(tx, ty, self._ZOOMLEVEL)
                 tile = Tile.from_tile(image, bbox)

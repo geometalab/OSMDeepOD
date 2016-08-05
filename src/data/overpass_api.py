@@ -5,7 +5,6 @@ import overpass
 from src.base.street import Street
 from src.base.node import Node
 
-logger = logging.getLogger(__name__)
 
 class OverpassApi:
     def __init__(self, street_categories):
@@ -13,6 +12,7 @@ class OverpassApi:
         self.crosswalks = []
         self.streets = []
         self.street_categories = street_categories
+        self.logger = logging.getLogger(__name__)
 
     def load_data(self, bbox):
         self._load_data(bbox)
@@ -44,10 +44,10 @@ class OverpassApi:
                 json_data = self.overpass.Get(query)
                 return json_data
             except Exception as e:
-                logger.warning("Download of streets from overpass failed " + str(i) + " wait " + str(i * 10) + str(e))
+                self.logger.warning("Download of streets from overpass failed " + str(i) + " wait " + str(i * 10) + str(e))
                 time.sleep(i * 10)
         error_message = "Download of streets from overpass failed 4 times."
-        logger.error(error_message)
+        self.logger.error(error_message)
         raise Exception(error_message)
 
     def _set_data(self, json_data):

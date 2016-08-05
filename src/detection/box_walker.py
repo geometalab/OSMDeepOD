@@ -8,8 +8,6 @@ from src.data.tile_loader import TileLoader
 from src.data.street_crosswalk_loader import StreetCrosswalkLoader
 from src.detection.tensor.detector import Detector
 
-logger = logging.getLogger(__name__)
-
 
 class BoxWalker(object):
     def __init__(self, bbox, verbose=True):
@@ -22,6 +20,7 @@ class BoxWalker(object):
         self.plain_result = None
         self.compared_with_osm_result = []
         self.status_printer = StatusPrinter.from_nb_streets(verbose)
+        self.logger = logging.getLogger(__name__)
 
     def load_convnet(self):
         self.convnet = Detector()
@@ -32,12 +31,14 @@ class BoxWalker(object):
         loader = TileLoader.from_bbox(self.bbox, self.verbose)
         loader.load_tile()
         self.tile = loader.tile
+        old_box = self.bbox
         self.bbox = self.tile.bbox
+        test = None
 
     def load_streets(self):
         self.status_printer.start_load_streets()
         if self.tile is None:
-            logger.warning("Download tiles first")
+            self.logger.warning("Download tiles first")
         street_loader = StreetCrosswalkLoader()
         self.streets = street_loader.load_data(self.bbox)
         self.osm_crosswalks = street_loader.crosswalks
@@ -51,7 +52,7 @@ class BoxWalker(object):
                              not self.convnet is None)
         if not ready_for_walk:
             error_message = "Not ready for walk. Load tiles, streets and convnet first"
-            logger.error(error_message)
+            self.logger.error(error_message)
             raise Exception(error_message)
 
         results = []
