@@ -3,17 +3,17 @@ from PIL import Image
 from src.base.bbox import Bbox
 from src.base.tile import Tile
 from src.data.multi_loader import MultiLoader
-from src.data.globalmaptiles import GlobalMercator
 from src.data.url_builder import UrlBuilder
 from src.data.fitting_bbox import FittingBbox
+
 
 class TileLoader(object):
     def __init__(self):
         self.bbox = None
         self.verbose = True
         self.tile = None
-        self._ZOOMLEVEL = 19
-        self._mercator = GlobalMercator()
+        self._zoom_level = 19
+        self._fitting_bbox = FittingBbox(bbox=None, zoom_level=self._zoom_level)
 
     @classmethod
     def from_bbox(cls, bbox, verbose=True):
@@ -23,7 +23,7 @@ class TileLoader(object):
         return loader
 
     def _download_tiles(self, bbox):
-        t_minx, t_miny, t_maxx, t_maxy = self._bbox_to_tiles(bbox)
+        t_minx, t_miny, t_maxx, t_maxy = self._fitting_bbox.bbox_to_tiles(bbox)
         images = self._download_images(t_minx, t_miny, t_maxx, t_maxy)
         tiles = self._to_tiles(images, t_minx, t_miny, t_maxx, t_maxy)
         return tiles
@@ -36,24 +36,12 @@ class TileLoader(object):
             tiles.append([])
             for tx in range(t_minx, t_maxx + 1):
                 image = images[url_number]
-                bbox = self._generate_bbox(tx, ty, self._ZOOMLEVEL)
+                bbox = self._fitting_bbox.generate_bbox(tx, ty)
                 tile = Tile.from_tile(image, bbox)
                 tiles[row].append(tile)
                 url_number += 1
             row += 1
         return tiles
-
-    def _bbox_to_tiles(self, bbox):
-        m_minx, m_miny = self._mercator.LatLonToMeters(bbox.bottom, bbox.left)
-        m_maxx, m_maxy = self._mercator.LatLonToMeters(bbox.top, bbox.right)
-        t_maxx, t_maxy = self._mercator.MetersToTile(m_maxx, m_maxy, self._ZOOMLEVEL)
-        t_minx, t_miny = self._mercator.MetersToTile(m_minx, m_miny, self._ZOOMLEVEL)
-        return t_minx, t_miny, t_maxx, t_maxy
-
-    def _generate_bbox(self, tx, ty, zoom_level):
-        bottom, left, top, right = self._mercator.TileLatLonBounds(tx, ty, zoom_level)
-        bbox = Bbox.from_lbrt(left, bottom, right, top)
-        return bbox
 
     def _download_images(self, t_minx, t_miny, t_maxx, t_maxy):
         url_builder = UrlBuilder()

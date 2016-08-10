@@ -10,9 +10,11 @@ from src.detection.box_walker import BoxWalker
 def detect(bbox, redis):
     walker = BoxWalker(bbox)
     walker.load_convnet()
-    walker.load_tiles()
     walker.load_streets()
-    crosswalk_nodes = walker.walk()
+    crosswalk_nodes = []
+    if len(walker.streets) > 0:
+        walker.load_tiles()
+        crosswalk_nodes = walker.walk()
     redis_connection = Redis(redis[0], redis[1], password=redis[2])
     q = Queue('results', connection=redis_connection)
     q.enqueue_call(func=store, args=(crosswalk_nodes,), timeout=5400)
@@ -30,8 +32,7 @@ def store(crosswalks):
         data = json.load(f)
 
     for crosswalk in crosswalks:
-        data['crosswalks'].append(
-                {"latitude": crosswalk.latitude, "longitude": crosswalk.longitude})
+        data['crosswalks'].append({"latitude": crosswalk.latitude, "longitude": crosswalk.longitude})
 
     with open(PATH_TO_CROSSWALKS, 'w') as f:
         json.dump(data, f)

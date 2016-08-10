@@ -5,6 +5,7 @@ from random import shuffle
 from src.detection.node_merger import NodeMerger
 from src.detection.street_walker import StreetWalker
 from src.data.tile_loader import TileLoader
+from src.data.fitting_bbox import FittingBbox
 from src.data.street_crosswalk_loader import StreetCrosswalkLoader
 from src.detection.tensor.detector import Detector
 
@@ -13,7 +14,7 @@ class BoxWalker(object):
     def __init__(self, bbox, verbose=True):
         self.bbox = bbox
         self.tile = None
-        self.streets = None
+        self.streets = []
         self.osm_crosswalks = None
         self.verbose = verbose
         self.convnet = None
@@ -27,20 +28,19 @@ class BoxWalker(object):
 
     def load_tiles(self):
         self.status_printer.start_load_tiles()
-
         loader = TileLoader.from_bbox(self.bbox, self.verbose)
         loader.load_tile()
         self.tile = loader.tile
-        old_box = self.bbox
         self.bbox = self.tile.bbox
-        test = None
 
     def load_streets(self):
+        fitting_bbox = FittingBbox(bbox=self.bbox)
+        bbox = fitting_bbox.get()
         self.status_printer.start_load_streets()
         if self.tile is None:
             self.logger.warning("Download tiles first")
         street_loader = StreetCrosswalkLoader()
-        self.streets = street_loader.load_data(self.bbox)
+        self.streets = street_loader.load_data(bbox)
         self.osm_crosswalks = street_loader.crosswalks
         shuffle(self.streets)
         self.status_printer.set_nb_streets(len(self.streets))
