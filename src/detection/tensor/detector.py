@@ -37,6 +37,20 @@ class Detector:
                 answer[self.labels[node_id]] = predictions[node_id]
             return answer
 
+    def detect_multiple(self, images):
+        image_array_list = [self._pil_to_tf(image) for image in images]
+        with tf.device("/gpu:0"):
+            softmax_tensor = self.sess.graph.get_tensor_by_name('final_result:0')
+            answers = []
+            for image in image_array_list:
+                predictions = self.sess.run(softmax_tensor, {'DecodeJpeg:0': image})
+                predictions = np.squeeze(predictions)
+                answer = {}
+                for node_id in range(len(predictions)):
+                    answer[self.labels[node_id]] = predictions[node_id]
+                answers.append(answer)
+            return answers
+
     @staticmethod
     def _pil_to_tf(image):
         return np.array(image)[:, :, 0:3]

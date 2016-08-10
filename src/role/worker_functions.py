@@ -9,10 +9,10 @@ from src.detection.box_walker import BoxWalker
 
 def detect(bbox, redis):
     walker = BoxWalker(bbox)
-    walker.load_convnet()
     walker.load_streets()
     crosswalk_nodes = []
     if len(walker.streets) > 0:
+        walker.load_convnet()
         walker.load_tiles()
         crosswalk_nodes = walker.walk()
     redis_connection = Redis(redis[0], redis[1], password=redis[2])
