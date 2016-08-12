@@ -22,6 +22,7 @@ class BoxWalker(object):
         self.compared_with_osm_result = []
         self.status_printer = StatusPrinter.from_nb_streets(verbose)
         self.logger = logging.getLogger(__name__)
+        self.is_crosswalk_barrier = 0.97
 
     def load_convnet(self):
         self.convnet = Detector()
@@ -55,21 +56,29 @@ class BoxWalker(object):
             self.logger.error(error_message)
             raise Exception(error_message)
 
+        tiles = self._get_tiles_of_box(self.streets, self.tile)
+        images = [tile.image for tile in tiles]
+        predictions = self.convnet.detect(images)
         results = []
-        nb_images = 0
-
-        for i in range(len(self.streets)):
-            street = self.streets[i]
-            street_walker = StreetWalker.from_street_tile(street, self.tile, self.convnet)
-            street_results = street_walker.walk()
-            results += street_results
-            nb_images += street_walker._nb_images
-            self.status_printer.set_state(i, len(results))
-
-        self.status_printer.end_walking(nb_images)
+        for i in range(len(tiles)):
+            prediction = predictions[i]
+            if self.is_crosswalk(prediction):
+                results.append(tiles[i].get_centre_node())
         self.plain_result = self._merge_near_nodes(results)
         self.compared_with_osm_result = self._compare_osm_with_detected_crosswalks(self.plain_result)
         return self.compared_with_osm_result
+
+    def is_crosswalk(self, prediction):
+        return prediction['crosswalk'] > self.is_crosswalk_barrier
+
+    @staticmethod
+    def _get_tiles_of_box(streets, tile):
+        street_walker = StreetWalker(tile)
+        tiles = []
+        for street in streets:
+            street_tiles = street_walker.get_tiles(street)
+            tiles += street_tiles
+        return tiles
 
     @staticmethod
     def _merge_near_nodes(nodelist):
