@@ -28,12 +28,12 @@ def test_detector_multiple_images(detector):
     crosswalk_image = Image.open(current_dir + '/img/crosswalk.jpg')
 
     images = []
-    for i in range(10000):
+    for i in range(100):
         images.append(crosswalk_image.copy())
 
     answers = detector.detect_multiple(images)
 
-    assert len(answers) == 10000
+    assert len(answers) == 100
 
 
 def test_pil_to_tf(detector):
