@@ -45,8 +45,8 @@ class Detector:
 
         with tf.device("/gpu:0"):
             softmax_tensor = self.sess.graph.get_tensor_by_name('final_result:0')
-            threads = [pool.apply_async(operation, args=(self.sess, softmax_tensor, image_array_list[i],)) for i in
-                       range(10)]
+            threads = [pool.apply_async(operation, args=(self.sess, softmax_tensor, image,)) for image in
+                       image_array_list]
             results = []
             for x in threads:
                 results.append(x.get())
