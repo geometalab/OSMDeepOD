@@ -24,47 +24,35 @@ class Detector:
             graph_def = tf.GraphDef()
             graph_def.ParseFromString(f.read())
             return graph_def
-            # _ = tf.import_graph_def(graph_def, name='')
 
-    def detect(self, image):
-        image_array = self._pil_to_tf(image)
-
-        with tf.Graph().as_default() as imported_graph:
-            tf.import_graph_def(self.graph_def, name='')
-
-        with tf.Session(graph=imported_graph) as sess:
-            with tf.device("/gpu:0"):
-                softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
-                predictions = sess.run(softmax_tensor, {'DecodeJpeg:0': image_array})
-                predictions = np.squeeze(predictions)
-                answer = {}
-                for node_id in range(len(predictions)):
-                    answer[self.labels[node_id]] = predictions[node_id]
-                return answer
-
-    def detect_multiple(self, images):
-        image_array_list = [self._pil_to_tf(image) for image in images]
+    def detect(self, images):
+        np_images = [self._pil_to_np(image) for image in images]
 
         pool = ThreadPool()
         with tf.Graph().as_default() as imported_graph:
             tf.import_graph_def(self.graph_def, name='')
-            
+
         with tf.Session(graph=imported_graph) as sess:
             with tf.device("/gpu:0"):
                 softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
-                threads = [pool.apply_async(operation, args=(sess, softmax_tensor, image,)) for image in
-                           image_array_list]
-                results = []
-                for x in threads:
-                    results.append(x.get())
-
-                return results
+                threads = [pool.apply_async(self.operation,
+                                            args=(sess, softmax_tensor, np_images[image_number], image_number,)) for
+                           image_number in range(len(np_images))]
+                answers = []
+                for thread in threads:
+                    prediction, image_number = thread.get()
+                    prediction = np.squeeze(prediction)
+                    answer = {'image_number': image_number}
+                    for node_id in range(len(prediction)):
+                        answer[self.labels[node_id]] = prediction[node_id]
+                    answers.append(answer)
+                return answers
 
     @staticmethod
-    def _pil_to_tf(image):
+    def _pil_to_np(image):
         return np.array(image)[:, :, 0:3]
 
-
-def operation(sess, softmax, image):
-    prediction = sess.run(softmax, {'DecodeJpeg:0': image})
-    return prediction
+    @staticmethod
+    def operation(sess, softmax, image, image_number):
+        prediction = sess.run(softmax, {'DecodeJpeg:0': image})
+        return prediction, image_number
