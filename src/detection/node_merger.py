@@ -37,7 +37,7 @@ class NodeMerger(object):
             for node in sub_graph:
                 if node in nodes:
                     nodes.remove(node)
-        return merged_nodes
+        return list(set(merged_nodes))
 
     @staticmethod
     def _merge(sub_graph):

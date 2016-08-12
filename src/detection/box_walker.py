@@ -90,7 +90,6 @@ class BoxWalker(object):
         result = []
         is_near = False
         DISTANCE_TO_CROSSWALK = 5.0
-
         for detected_crosswalk in detected_crosswalks:
             for osm_crosswalk in self.osm_crosswalks:
                 if osm_crosswalk.get_distance_in_meter(
