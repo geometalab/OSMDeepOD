@@ -14,6 +14,11 @@ def node_list():
     return [n1, n2, n3, n4, n5]
 
 
+@pytest.fixture
+def same_node():
+    return Node(46.78351333884473, 8.159137666225423, 10)
+
+
 def test_get_neighbors(node_list):
     merger = NodeMerger.from_nodelist(node_list)
     merger._generate_near_dict()
@@ -30,17 +35,14 @@ def test_reduce(node_list):
     assert len(merged_nodes) == 2
 
 
-def test_reduce_same_points():
-    node1 = Node(46.78351333884473, 8.159137666225423, 10)
-    node2 = Node(46.78351333884473, 8.159137666225423, 10)
-    merger = NodeMerger.from_nodelist([node1, node2])
+def test_reduce_same_points(same_node):
+    merger = NodeMerger.from_nodelist([same_node, same_node])
     merged_nodes = merger.reduce()
     assert len(merged_nodes) == 1
 
 
-def test_reduce_not_same_points():
-    node1 = Node(46.78351333884473, 8.159137666225423, 10)
-    node2 = Node(46.78351333884473, 8.159137666225423, 0)
-    merger = NodeMerger.from_nodelist([node1, node2])
+def test_reduce_not_same_points(same_node):
+    node = Node(46.78351333884473, 8.159137666225423, 0)
+    merger = NodeMerger.from_nodelist([node, same_node])
     merged_nodes = merger.reduce()
     assert len(merged_nodes) == 1
