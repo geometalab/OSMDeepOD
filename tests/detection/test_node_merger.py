@@ -33,9 +33,14 @@ def test_reduce(node_list):
 def test_reduce_same_points():
     node1 = Node(46.78351333884473, 8.159137666225423, 10)
     node2 = Node(46.78351333884473, 8.159137666225423, 10)
-    merger = NodeMerger.from_nodelist([node1,node2])
+    merger = NodeMerger.from_nodelist([node1, node2])
     merged_nodes = merger.reduce()
     assert len(merged_nodes) == 1
 
 
-
+def test_reduce_not_same_points():
+    node1 = Node(46.78351333884473, 8.159137666225423, 10)
+    node2 = Node(46.78351333884473, 8.159137666225423, 0)
+    merger = NodeMerger.from_nodelist([node1, node2])
+    merged_nodes = merger.reduce()
+    assert len(merged_nodes) == 1
