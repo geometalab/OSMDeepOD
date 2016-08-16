@@ -3,7 +3,7 @@ from src.data.tile_loader import TileLoader
 
 def test_satellite_image_download(zurich_bellevue):
     bbox = zurich_bellevue
-    tl = TileLoader.from_bbox(bbox, False)
+    tl = TileLoader(bbox)
     tile = tl.load_tile()
     img = tile.image
     assert img.size[0] == 1792
@@ -11,7 +11,7 @@ def test_satellite_image_download(zurich_bellevue):
 
 
 def test_new_bbox(small_bbox):
-    tile_loader = TileLoader.from_bbox(small_bbox, False)
+    tile_loader = TileLoader(small_bbox)
     tile_loader.load_tile()
     tile = tile_loader.tile
     tile_bbox = tile.bbox

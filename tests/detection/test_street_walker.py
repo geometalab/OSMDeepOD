@@ -3,7 +3,7 @@ from src.detection.street_walker import StreetWalker
 
 
 def get_tile_streets(bbox):
-    box_walker = BoxWalker(bbox, verbose=False)
+    box_walker = BoxWalker(bbox)
     box_walker.load_tiles()
     box_walker.load_streets()
     return box_walker.tile, box_walker.streets
