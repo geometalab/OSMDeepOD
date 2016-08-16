@@ -9,22 +9,14 @@ from io import BytesIO
 from src.data.user_agent import UserAgent
 
 
-class MultiLoader(object):
-    def __init__(self):
-        self.urls = []
+class MultiLoader:
+    def __init__(self, urls):
+        self.urls = urls
         self.results = []
         self.nb_threads = 10
         self.nb_tile_per_trial = 40
-        self.verbose = True
         self._progress = 0
         self.logger = logging.getLogger(__name__)
-
-    @classmethod
-    def from_url_list(cls, urls, verbose=True):
-        loader = cls()
-        loader.urls = urls
-        loader.verbose = verbose
-        return loader
 
     def download(self):
         results = []
@@ -34,24 +26,12 @@ class MultiLoader(object):
             end = start + self.nb_tile_per_trial
             if end >= nb_urls:
                 end = nb_urls
-            urlpart = self.urls[start:end]
+            url_part = self.urls[start:end]
 
-            result = self._try_download(urlpart)
+            result = self._try_download(url_part)
             results += result
 
-            new_percentage = 0.0
-            if nb_urls > 0:
-                new_percentage = (float(end) / nb_urls) * 100
-
-            self._set_progress(new_percentage)
-
         self.results = results
-
-    def _set_progress(self, new_percentage):
-        if self._progress + 5 < new_percentage:
-            self._progress = new_percentage
-            if self.verbose:
-                print("-- " + str(int(new_percentage)) + "%")
 
     def _try_download(self, urls):
         for i in range(4):

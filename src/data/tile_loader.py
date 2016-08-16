@@ -7,20 +7,12 @@ from src.data.url_builder import UrlBuilder
 from src.data.fitting_bbox import FittingBbox
 
 
-class TileLoader(object):
-    def __init__(self):
-        self.bbox = None
-        self.verbose = True
+class TileLoader:
+    def __init__(self, bbox, zoom_level=19):
+        self.bbox = bbox
         self.tile = None
-        self._zoom_level = 19
+        self._zoom_level = zoom_level
         self._fitting_bbox = FittingBbox(bbox=None, zoom_level=self._zoom_level)
-
-    @classmethod
-    def from_bbox(cls, bbox, verbose=True):
-        loader = cls()
-        loader.bbox = bbox
-        loader.verbose = verbose
-        return loader
 
     def _download_tiles(self, bbox):
         t_minx, t_miny, t_maxx, t_maxy = self._fitting_bbox.bbox_to_tiles(bbox)
@@ -46,7 +38,7 @@ class TileLoader(object):
     def _download_images(self, t_minx, t_miny, t_maxx, t_maxy):
         url_builder = UrlBuilder()
         urls = url_builder.get_urls_by_tiles(t_minx, t_miny, t_maxx, t_maxy)
-        loader = MultiLoader.from_url_list(urls, self.verbose)
+        loader = MultiLoader(urls)
         loader.download()
         return loader.results
 

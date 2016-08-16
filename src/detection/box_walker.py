@@ -20,7 +20,6 @@ class BoxWalker(object):
         self.convnet = None
         self.plain_result = None
         self.compared_with_osm_result = []
-        self.status_printer = StatusPrinter.from_nb_streets(verbose)
         self.logger = logging.getLogger(__name__)
         self.is_crosswalk_barrier = 0.97
 
@@ -28,7 +27,6 @@ class BoxWalker(object):
         self.convnet = Detector()
 
     def load_tiles(self):
-        self.status_printer.start_load_tiles()
         loader = TileLoader.from_bbox(self.bbox, self.verbose)
         loader.load_tile()
         self.tile = loader.tile
@@ -37,17 +35,14 @@ class BoxWalker(object):
     def load_streets(self):
         fitting_bbox = FittingBbox(bbox=self.bbox)
         bbox = fitting_bbox.get()
-        self.status_printer.start_load_streets()
         if self.tile is None:
             self.logger.warning("Download tiles first")
         street_loader = StreetCrosswalkLoader()
         self.streets = street_loader.load_data(bbox)
         self.osm_crosswalks = street_loader.crosswalks
         shuffle(self.streets)
-        self.status_printer.set_nb_streets(len(self.streets))
 
     def walk(self):
-        self.status_printer.start_walking()
         ready_for_walk = (not self.tile is None) and (
             not self.streets is None) and (
                              not self.convnet is None)
@@ -57,10 +52,11 @@ class BoxWalker(object):
             raise Exception(error_message)
 
         tiles = self._get_tiles_of_box(self.streets, self.tile)
+        tiles_count = len(tiles)
         images = [tile.image for tile in tiles]
         predictions = self.convnet.detect(images)
         results = []
-        for i in range(len(tiles)):
+        for i in range(tiles_count):
             prediction = predictions[i]
             if self.is_crosswalk(prediction):
                 results.append(tiles[i].get_centre_node())
@@ -100,63 +96,4 @@ class BoxWalker(object):
             if not is_near:
                 result.append(detected_crosswalk)
             is_near = False
-
         return result
-
-
-class StatusPrinter(object):
-    def __init__(self):
-        self.nb_streets = 0
-        self.last_percentage = 0.0
-        self.start_time = None
-        self.end_time = None
-        self.verbose = True
-
-    @classmethod
-    def from_nb_streets(cls, verbose=True):
-        printer = cls()
-        printer.verbose = verbose
-        return printer
-
-    def start_load_tiles(self):
-        self._out("Loading images within bounding box", True)
-
-    def start_load_streets(self):
-        self._out("Loading streets within bounding box", True)
-
-    def set_nb_streets(self, nb_streets):
-        self.nb_streets = nb_streets
-        self._out(str(self.nb_streets) + " streets loaded")
-
-    def start_walking(self):
-        self.start_time = datetime.datetime.now()
-        self._out("Start Walking", True)
-
-    def end_walking(self, nb_images):
-        self.end_time = datetime.datetime.now()
-        self._out("End Walking", True)
-        self._out("Time needed: " + str((self.end_time - self.start_time).seconds) + " seconds")
-        self._out(str(nb_images) + " images predicted")
-
-    def set_state(self, nb_streets_done, nb_detected_crosswalks):
-        current_percentage = (nb_streets_done / float(self.nb_streets)) * 100
-
-        if self.last_percentage + 1 < current_percentage:
-            self.last_percentage = current_percentage
-            remaining_time = self._calc_remaining_duration(self.last_percentage)
-            msg = str(int(current_percentage)) + "% - " + str(nb_detected_crosswalks) + \
-                  " crosswalks found, " + str(remaining_time) + " seconds remaining"
-            self._out(msg)
-
-    def _calc_remaining_duration(self, percentage):
-        to_do_percentage = 100 - percentage
-        time_used = (datetime.datetime.now() - self.start_time).seconds
-        time_remain = (time_used / percentage) * to_do_percentage
-        return int(time_remain)
-
-    def _out(self, message, show_time=False):
-        if self.verbose:
-            output = message
-            if show_time:
-                output = str(datetime.datetime.now()) + ": " + output
-            print(output)

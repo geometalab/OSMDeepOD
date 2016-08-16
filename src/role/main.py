@@ -77,7 +77,6 @@ def mainfunc():
     redis_port = cwenv('REDIS_PORT')
     redis_pass = cwenv('REDIS_PASS')
     redis_jobqueue_name = cwenv('REDIS_JOBQUEUE_NAME')
-    mapquest_api_key = cwenv('MAPQUEST_API_KEY')
     parser.add_argument(
         '--redis',
         action='store',
@@ -119,13 +118,6 @@ def mainfunc():
         default=redis_jobqueue_name,
         help='queue name for worker jobs, default is ' +
              redis_jobqueue_name)
-    p_manager.add_argument(
-        '--mapqapikey',
-        action='store',
-        dest='mapquest_api_key',
-        default=mapquest_api_key,
-        help='mapquest API key, default is ' +
-             mapquest_api_key)
     p_manager.add_argument(
         'bb_left',
         type=float,
