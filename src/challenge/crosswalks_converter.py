@@ -14,17 +14,21 @@ def lat_lon_from_geojson_or_json(entry):
             lon = coordinates[0]
         except KeyError:
             pass
-    return dict(latitude=lat, longitude=lon)
+    return dict(latitude=format(lat, '.5f'), longitude=format(lon, '.5f'))
+
+
+def remove_same_points(elements):
+    return [dict(tupleized) for tupleized in set(tuple(item.items()) for item in elements)]
 
 
 def convert_csv(json_data, name, ext='csv'):
     def build_element(crosswalk):
-        return str(crosswalk['latitude']) + ',' + str(crosswalk[
-                                                          'longitude']) + os.linesep
+        return str(crosswalk['latitude']) + ',' + str(crosswalk['longitude']) + os.linesep
 
-    elements = [build_element(lat_lon_from_geojson_or_json(crosswalk))
-                for crosswalk in json_data.get('crosswalks', json_data.get(
-                'features', []))]
+    elements = [crosswalk for crosswalk in json_data.get('crosswalks', json_data.get('features', []))]
+    elements = remove_same_points(elements)
+    elements = [build_element(lat_lon_from_geojson_or_json(crosswalk)) for crosswalk in elements]
+
     value = 'latitude,longitude' + os.linesep + ''.join(elements)
     output_filename = '.'.join([name, ext])
     with open(output_filename, 'w') as f:
@@ -58,7 +62,7 @@ def convert_maproulette(json_data, name, ext='tasks.json'):
 
     elements = [build_element(lat_lon_from_geojson_or_json(crosswalk))
                 for crosswalk in json_data.get('crosswalks', json_data.get(
-                'features', []))]
+            'features', []))]
     value = str(elements).replace("'", '"')
     output_filename = '.'.join([name, ext])
     with open(output_filename, 'w') as f:
@@ -90,7 +94,7 @@ def convert_geojson(json_data, name, ext='geo.json'):
         }
     outer['features'] = [build_element(lat_lon_from_geojson_or_json(crosswalk))
                          for crosswalk in json_data.get(
-                'crosswalks', json_data.get('features', []))]
+            'crosswalks', json_data.get('features', []))]
     value = str(outer).replace("'", '"')
     output_filename = '.'.join([name, ext])
     with open(output_filename, 'w') as f:
@@ -115,30 +119,30 @@ def convert(args):
 
 def mainfunc():
     parser = argparse.ArgumentParser(
-            description='Convert crosswalks json to other formats', )
+        description='Convert crosswalks json to other formats', )
     parser.add_argument(
-            '--csv',
-            action='append_const',
-            dest='conversion_funcs',
-            const=convert_csv,
-            help='convert to csv format with two columns [latitude,longitude], extension .csv')
+        '--csv',
+        action='append_const',
+        dest='conversion_funcs',
+        const=convert_csv,
+        help='convert to csv format with two columns [latitude,longitude], extension .csv')
     parser.add_argument('--geojson',
                         action='append_const',
                         dest='conversion_funcs',
                         const=convert_geojson,
                         help='convert to geojson format, extension .geo.json')
     parser.add_argument(
-            '--maproulette',
-            action='append_const',
-            dest='conversion_funcs',
-            const=convert_maproulette,
-            help='convert to maproulette.org challenge format, extension .tasks.json')
+        '--maproulette',
+        action='append_const',
+        dest='conversion_funcs',
+        const=convert_maproulette,
+        help='convert to maproulette.org challenge format, extension .tasks.json')
     parser.add_argument(
-            '--outputfile',
-            action='store',
-            dest='outputfile',
-            default=None,
-            help='explicit output filename if input filename is not wanted as name part. extension if present will be used instead of defaults')
+        '--outputfile',
+        action='store',
+        dest='outputfile',
+        default=None,
+        help='explicit output filename if input filename is not wanted as name part. extension if present will be used instead of defaults')
     parser.add_argument('input_file',
                         type=argparse.FileType('r'),
                         help='name of crosswalks json file')
