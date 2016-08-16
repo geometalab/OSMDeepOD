@@ -10,13 +10,12 @@ from src.data.street_crosswalk_loader import StreetCrosswalkLoader
 from src.detection.tensor.detector import Detector
 
 
-class BoxWalker(object):
-    def __init__(self, bbox, verbose=True):
+class BoxWalker:
+    def __init__(self, bbox):
         self.bbox = bbox
         self.tile = None
         self.streets = []
         self.osm_crosswalks = None
-        self.verbose = verbose
         self.convnet = None
         self.plain_result = None
         self.compared_with_osm_result = []
@@ -27,12 +26,15 @@ class BoxWalker(object):
         self.convnet = Detector()
 
     def load_tiles(self):
-        loader = TileLoader.from_bbox(self.bbox, self.verbose)
+        self._printer("Start image loading.")
+        loader = TileLoader(self.bbox)
         loader.load_tile()
         self.tile = loader.tile
         self.bbox = self.tile.bbox
+        self._printer("Stop image loading.")
 
     def load_streets(self):
+        self._printer("Start street loading.")
         fitting_bbox = FittingBbox(bbox=self.bbox)
         bbox = fitting_bbox.get()
         if self.tile is None:
@@ -41,6 +43,7 @@ class BoxWalker(object):
         self.streets = street_loader.load_data(bbox)
         self.osm_crosswalks = street_loader.crosswalks
         shuffle(self.streets)
+        self._printer("Stop street loading.")
 
     def walk(self):
         ready_for_walk = (not self.tile is None) and (
@@ -51,8 +54,11 @@ class BoxWalker(object):
             self.logger.error(error_message)
             raise Exception(error_message)
 
+        self._printer("Start detection.")
         tiles = self._get_tiles_of_box(self.streets, self.tile)
         tiles_count = len(tiles)
+        self._printer(str(tiles_count) + " images to analise.")
+
         images = [tile.image for tile in tiles]
         predictions = self.convnet.detect(images)
         results = []
@@ -62,6 +68,7 @@ class BoxWalker(object):
                 results.append(tiles[i].get_centre_node())
         self.plain_result = self._merge_near_nodes(results)
         self.compared_with_osm_result = self._compare_osm_with_detected_crosswalks(self.plain_result)
+        self._printer("Stop detection.")
         return self.compared_with_osm_result
 
     def is_crosswalk(self, prediction):
@@ -97,3 +104,6 @@ class BoxWalker(object):
                 result.append(detected_crosswalk)
             is_near = False
         return result
+
+    def _printer(self, message):
+        self.logger.info(str(datetime.datetime.now()) + ": " + message)
