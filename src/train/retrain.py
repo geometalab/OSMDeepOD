@@ -466,7 +466,7 @@ def cache_bottlenecks(sess, image_lists, image_dir, bottleneck_dir,
     for label_name, label_lists in image_lists.items():
         for category in ['training', 'testing', 'validation']:
             category_list = label_lists[category]
-            for index, unused_base_name in enumerate(category_list):
+            for index, _ in enumerate(category_list):
                 get_or_create_bottleneck(sess, image_lists, label_name, index,
                                          image_dir, category, bottleneck_dir,
                                          jpeg_data_tensor, bottleneck_tensor)
@@ -502,7 +502,7 @@ def get_random_cached_bottlenecks(sess, image_lists, how_many, category,
     class_count = len(image_lists.keys())
     bottlenecks = []
     ground_truths = []
-    for unused_i in range(how_many):
+    for _ in range(how_many):
         label_index = random.randrange(class_count)
         label_name = list(image_lists.keys())[label_index]
         image_index = random.randrange(65536)

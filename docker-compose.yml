@@ -1,0 +1,16 @@
+version: '2'
+services:
+  redis:
+    build: ./docker/redis/
+    ports:
+      - "40001-40002:40001-40002"
+  crosswalks:
+    build: ./docker/redis/
+    devices:
+      -
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

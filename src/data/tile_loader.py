@@ -35,7 +35,8 @@ class TileLoader:
             row += 1
         return tiles
 
-    def _download_images(self, t_minx, t_miny, t_maxx, t_maxy):
+    @staticmethod
+    def _download_images(t_minx, t_miny, t_maxx, t_maxy):
         url_builder = UrlBuilder()
         urls = url_builder.get_urls_by_tiles(t_minx, t_miny, t_maxx, t_maxy)
         loader = MultiLoader(urls)

@@ -3,7 +3,8 @@ from PIL.ImageShow import UnixViewer, register, quote, which
 
 
 class XloadImageViewer(UnixViewer):
-    def get_command_ex(self, the_file, title=None, **options):
+    @staticmethod
+    def get_command_ex(the_file, title=None, **options):
         command = executable = "xloadimage"
         command += " -quiet "
         if title:
@@ -32,9 +33,9 @@ class TileDrawer(object):
     def draw_point(self, node, point_size=6):
         (x, y) = self.tile.get_pixel(node)
         self.drawer.ellipse(
-                (x - point_size, y - point_size, x + point_size, y + point_size),
-                outline=(0, 255, 0),
-                fill=(0, 255, 0))
+            (x - point_size, y - point_size, x + point_size, y + point_size),
+            outline=(0, 255, 0),
+            fill=(0, 255, 0))
 
     def draw_line(self, node1, node2, width=3):
         pixels1 = self.tile.get_pixel(node1)

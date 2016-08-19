@@ -8,11 +8,12 @@ from multiprocessing.pool import ThreadPool
 
 class Detector:
     def __init__(self):
-        self.graph_path = self._get_grap_paht()
+        self.graph_path = self._get_grap_path()
         self.labels = ['noncrosswalk', 'crosswalk']
         self.graph_def = self._load_graph()
 
-    def _get_grap_paht(self):
+    @staticmethod
+    def _get_grap_path():
         directory = os.path.dirname(os.path.realpath(__file__))
         cwenv = environ.Env(GRAPH_PATH=(str, directory + '/output_graph_crosswalks.pb'))
         root = environ.Path(os.getcwd())

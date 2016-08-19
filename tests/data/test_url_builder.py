@@ -17,10 +17,9 @@ def test_url_from_node(node1, url_builder):
 def test_url_reachable(node1, url_builder):
     url = url_builder.get_url_by_node(node1)
     req = urllib.request.Request(url)
-    content = None
     try:
         response = urllib.request.urlopen(req)
         content = response.read()
-    except:
+    except Exception:
         assert False
     assert content is not None
