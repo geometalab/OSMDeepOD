@@ -5,10 +5,12 @@ MAINTAINER Samuel Kurath <skurath@hsr.ch>
 ENV REDIS_PORT 40001
 ENV DASHBOARD_PORT 40002
 
-COPY /entrypoint.sh /
-COPY /my_redis.conf /etc/redis/
+EXPOSE $REDIS_PORT $DASHBOARD_PORT
 
-ENTRYPOINT ["/entrypoint.sh"]
+COPY entrypoint.sh /
+COPY my_redis.conf /etc/redis/
+
+ENTRYPOINT ["./entrypoint.sh"]
 
 RUN apt-get update -y \
 && apt-get upgrade -y \
