@@ -1,8 +1,7 @@
-from src.base.bbox import Bbox
 from src.detection.box_walker import BoxWalker
 from src.detection.street_walker import StreetWalker
 from src.base.tile_drawer import TileDrawer
-from src import cwenv
+from examples.zuerich_bellevue import zuerich_bellevue
 
 '''
 Visualizes the 50x50 images which are cutted out of the tile along the streets
@@ -12,22 +11,17 @@ blue lines are the streets
 
 
 def load_tile_streets(bbox):
-    boxwalker = BoxWalker(
-        bbox,
-        api_key=cwenv('MAPQUEST_API_KEY'),
-        verbose=False)
-    boxwalker.load_tiles()
-    boxwalker.load_streets()
-    return boxwalker.tile, boxwalker.streets
+    box_walker = BoxWalker(bbox)
+    box_walker.load_tiles()
+    box_walker.load_streets()
+    return box_walker.tile, box_walker.streets
 
 
 def cut_squared_images(streets, tile):
     squared_list = []
     for street in streets:
-        walker = StreetWalker.from_street_tile(street, tile, None)
-        squared = walker._get_squared_tiles(
-            walker.street.nodes[0],
-            walker.street.nodes[1])
+        walker = StreetWalker(tile)
+        squared = walker.get_tiles(street)
         squared_list += squared
     return squared_list
 
@@ -43,18 +37,11 @@ def draw(tile, streets, squared_images):
 
     return drawer
 
-zurich_bellevue = Bbox.from_lbrt(
-    8.54279671719532,
-    47.366177501999516,
-    8.547088251618977,
-    47.36781249586627)
 
 # Loads all tiles and streets within bbox
-(tile, streets) = load_tile_streets(zurich_bellevue)
+tile, streets = load_tile_streets(zuerich_bellevue)
 
-squared_list = cut_squared_images(
-    streets,
-    tile)  # Cuts the 50x50 images along the streets
+squared_list = cut_squared_images(streets, tile)  # Cuts the 50x50 images along the streets
 
 # Draws the streets and marks the squared images on the tile
 drawer = draw(tile, streets, squared_list)

@@ -1,18 +1,12 @@
 from src.detection.box_walker import BoxWalker
-from src.base.bbox import Bbox
 from src.base.tile_drawer import TileDrawer
+from examples.zuerich_bellevue import zuerich_bellevue
 
 '''
 This example visualizes the results of the boxwalker
 '''
 
-zurich_bellevue = Bbox.from_lbrt(
-    8.54279671719532,
-    47.366177501999516,
-    8.547088251618977,
-    47.36781249586627)  # Take the BBox you want
-
-walker = BoxWalker(zurich_bellevue)
+walker = BoxWalker(zuerich_bellevue)
 walker.load_convnet()
 walker.load_tiles()
 walker.load_streets()
