@@ -12,6 +12,6 @@ RUN apt-get update \
 && git clone https://github.com/geometalab/OSM-Crosswalk-Detection.git \
 && cd OSM-Crosswalk-Detection \
 && git checkout tensorflow \
-&& pip install -r requirements.txt \
+&& pip install -r requires.dev.txt \
 
 
