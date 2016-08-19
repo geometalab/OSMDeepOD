@@ -1,6 +1,6 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/6d2ec33de73d4f929dfab6c0f186f1d7)](https://www.codacy.com/app/marcelhuberfoo/OSM-Crosswalk-Detection)
-[![Circle CI](https://circleci.com/gh/geometalab/OSM-Crosswalk-Detection.svg?style=svg)](https://circleci.com/gh/geometalab/OSM-Crosswalk-Detection)
+[![Build Status](https://travis-ci.org/geometalab/OSM-Crosswalk-Detection.svg?branch=tensorflow)](https://travis-ci.org/geometalab/OSM-Crosswalk-Detection)
 [![Stories in Ready](https://badge.waffle.io/geometalab/OSM-Crosswalk-Detection.svg?label=ready&title=Ready)](http://waffle.io/geometalab/OSM-Crosswalk-Detection)
 
 
@@ -8,8 +8,7 @@
 
 ## Introduction
 
-OSM-Crosswalk-Detection is a highly scalable image recognition software for aerial photos (orthophotos). It uses the deep learning library Keras, more precisely a VGGNet like convolutional neural network, to detect crosswalks along streets.
-This Python based project provides a Keras docker container to train the neural network on a GPU and several docker containers to distribute the recognition work on multiple servers.
+OSM-Crosswalk-Detection is a highly scalable image recognition software for aerial photos (orthophotos). It uses the open source software library TensorFlow, with a retrained Inception V3 neuronal network, to detect crosswalks along streets.
 
 This work started as part of a semester thesis autumn 2015 at Geometa Lab, University of Applied Sciences Rapperswil (HSR).
 
@@ -43,19 +42,11 @@ Picture 4: No Crosswalk Examples
 
 - Python
 
-  At the moment, we only support python 2.7.x. If you need python 3.x, send us a pull request an we will integrate it :)
+  At the moment, we support python 3.x
 
 - Docker
 
   In order to use volumes, I recommend using docker >= 1.9.x
-
-- [crane](https://github.com/michaelsauter/crane)
-
-  `crane` is like `docker-compose` but simpler in my opinion. I prepared a crane.yaml configuration in the `docker` directory which you can use to create/start the containers.
-
-- MapQuest API key
-
-  You can obtain an api key by registering at https://developer.mapquest.com . This key is later used to retrieve highway data to a given bounding box. The key can be set using an environment variable `MAPQUEST_API_KEY` or within a `.env` file.
 
 - Bounding Box of area to analyze
 
@@ -77,7 +68,7 @@ The following steps are required if you want to checkout directly into your envi
 
 3. Install required python modules
 
-   Some required modules, especially `numpy` and `scipy` require compilation and headers and libraries of third party stuff. Ubuntu user might need to install `python-dev`, `libopenblas-dev`, `python-h5py`, `python-yaml`, `python-pil`, and `libhdf5-dev` packages prior to continueing. If the list seems outdated, check the Dockerfiles to find out more. Depending on your knowledge it might be easier to find packages for your platform or even skip this section and make use of the pre-built docker images.
+   Some required modules, especially `numpy` and `scipy` require compilation and headers and libraries of third party stuff. Ubuntu user might need to install `python-dev`, `libopenblas-dev`, `python-yaml`, `python-pil`, and `tensorflow` packages prior to continueing. If the list seems outdated, check the Dockerfiles to find out more. Depending on your knowledge it might be easier to find packages for your platform or even skip this section and make use of the pre-built docker images.
 
    `pip install -r requires.dev.txt`
 
@@ -86,8 +77,7 @@ The following steps are required if you want to checkout directly into your envi
    To test if your installation is working, run at least the tests like this:
 
    ```
-   MAPQUEST_API_KEY="Your API Key Here" python -m nose \
-       --with-xunit --with-coverage --cover-package=src
+    py.test tests/ -s
    ```
    You can also execute `main.py` and check its options or the options of the subcommands. Please note that it is required to add the current path to the `PYTHONPATH` environment variable.
    ```
@@ -121,7 +111,6 @@ The following steps are required if you want to checkout directly into your envi
    PYTHONPATH=$(pwd) python src/role/main.py manager -h
     Using Theano backend.
     usage: main.py manager [-h] [--jobqueue REDIS_JOBQUEUE_NAME]
-                           [--mapqapikey MAPQUEST_API_KEY]
                            bb_left bb_bottom bb_right bb_top
 
     positional arguments:
@@ -134,8 +123,6 @@ The following steps are required if you want to checkout directly into your envi
       -h, --help            show this help message and exit
       --jobqueue REDIS_JOBQUEUE_NAME
                             queue name for worker jobs, default is jobs
-      --mapqapikey MAPQUEST_API_KEY
-                            mapquest API key, default is Undefined
    ```
 
 
@@ -156,26 +143,17 @@ The following steps are required if you want to checkout directly into your envi
 
    -  Start the redis instance
 
-     To start the redis instance you can simply issue the following command:
+     To start the redis instance you can simply build the redis docker container and run it:
 
      ```
-     REDIS_PASS=mypass crane --verbose --config=docker/crane.yaml run crossdis
+     docker run -d -p 40001-40002:40001-40002 --name crosswalk_redis <redis_image>
      ```
-     This command will pull the image, create the container based on default values and start it up. It exposes the port 40001.
-
-   - One time initialize the redis instance
-
-     ```
-     REDIS_PASS=mypass crane --verbose --config=docker/crane.yaml run crossdis-init
-     ```
-     This command enables authentication and sets the password to `mypass`.
 
    - Start the manager given your bounding box coordinates
 
      I recommend using separate terminals for the `manager`, the `jobworker` and the `resultworker` if your bounding box is large. In the following example you can issue the commands in the same shell as it won't take you too long to execute and it does not produce much output.
      ```
      python src/role/main.py --redis 127.0.0.1 --port 40001 --pass mypass \
-            manager --mapqapikey "Your API Key Here" \
             8.54279671719532 47.366177501999516 8.547088251618977 47.36781249586627
      ```
      This setup uses a bounding box around Bellevue place in the city of Zurich. It results in placing one job into the corresponding default queue `jobs`.
@@ -200,43 +178,6 @@ The following steps are required if you want to checkout directly into your envi
             resultworker
      ```
      This job simply collects results from the `results` queue and writes them out into a file called `crosswalks.json` containing the potential matches of crosswalks within the given bounding box.
-
-### Using docker images
-
-Using docker images simplifies the setup quite a bit as no additional packages and python modules need to be installed on your host machine.
-To start an extraction run, we can proceed similar to step 6. of the previous section. The redis part stays the same as we already used containers in the previous section for this.
-
-- Start the redis instance and setup authentication
-
-  Proceed as documented in the previous section.
-
-- Start the manager given your bounding box coordinates
-
-  ```
-  REDIS_PASS=mypass MAPQUEST_API_KEY="Your API Key Here" crane --verbose \
-      --config=docker/crane.yaml run crosswalk-bellevue
-  ```
-  This setup uses a bounding box around Bellevue place in the city of Zurich. It results in placing one job into the corresponding default queue `jobs`.
-
-- Start the jobworker
-
-  ```
-  REDIS_PASS=mypass crane --verbose --config=docker/crane.yaml run cworker
-  ```
-  The jobworker does the real work by
-
-  1.  loading aerial images within the bounding box
-  2.  loading the streets within the bounding box
-  3.  walking along the streets in segments of 50x50px images and detecting crosswalks
-  4.  merging points of the same potential crosswalk into one
-
-- Start the resultworker
-
-  ```
-  REDIS_PASS=mypass crane --verbose --config=docker/crane.yaml run cresults
-  ```
-  This job simply collects results from the `results` queue and writes them out into a file called `crosswalks.json` containing the potential matches of crosswalks within the given bounding box. The volume the container writes to is named `crosswalk-data_output`.
-  You can get the file system path (Mountpoint:) by issueing the following command `docker volume inspect crosswalk-data_output` and find the file there.
 
 
 ## Links

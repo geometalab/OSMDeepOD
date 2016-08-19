@@ -1,8 +1,10 @@
 import argparse
-from src.base.Bbox import Bbox
-from src.role.Worker import Worker
-from src.role.Manager import Manager
+import logging
 from redis.exceptions import ConnectionError
+
+from src.base.bbox import Bbox
+from src.role.worker import Worker
+from src.role.manager import Manager
 from src import cwenv
 
 
@@ -21,78 +23,89 @@ def manager(args):
         Manager.from_big_bbox(
             big_bbox,
             redis_args(args),
-            args.redis_jobqueue_name,
-            apiKey=args.mapquest_api_key)
+            args.redis_jobqueue_name)
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
                 ip=args.redis_host,
                 port=args.redis_port))
     finally:
-        print 'Manager has finished!'
+        print('Manager has finished!')
 
 
-def jobworker(args):
-    jobWorker = Worker.from_worker([args.redis_jobqueue_name])
+def job_worker(args):
+    worker = Worker.from_worker([args.redis_jobqueue_name])
     try:
-        print 'JobWorker has started...'
-        jobWorker.run(redis_args(args))
+        print('JobWorker has started...')
+        worker.run(redis_args(args))
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
                 ip=args.redis_host,
                 port=args.redis_port))
     finally:
-        print 'JobWorker has finished!'
+        print('JobWorker has finished!')
 
 
-def resultworker(args):
-    resultWorker = Worker.from_worker(['results'])
+def result_worker(args):
+    worker = Worker.from_worker(['results'])
     try:
-        print 'ResultWorker has started...'
-        resultWorker.run(redis_args(args))
+        print('ResultWorker has started...')
+        worker.run(redis_args(args))
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
                 ip=args.redis_host,
                 port=args.redis_port))
     finally:
-        print 'ResultWorker has finished!'
+        print('ResultWorker has finished!')
+
+
+def set_logger():
+    root_logger = logging.getLogger()
+    file_handler = logging.FileHandler('/var/log/crosswalk.log')
+    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s %(name)s')
+    file_handler.setFormatter(formatter)
+    root_logger.addHandler(file_handler)
+    root_logger.setLevel(logging.WARNING)
 
 
 def mainfunc():
+    set_logger()
     parser = argparse.ArgumentParser(description='Detect crosswalks.', )
     redis_host = cwenv('REDIS_HOST')
     redis_port = cwenv('REDIS_PORT')
     redis_pass = cwenv('REDIS_PASS')
     redis_jobqueue_name = cwenv('REDIS_JOBQUEUE_NAME')
-    mapquest_api_key = cwenv('MAPQUEST_API_KEY')
     parser.add_argument(
         '--redis',
         action='store',
         dest='redis_host',
         default=redis_host,
         help='hostname or ip of redis database, default is ' +
-        redis_host)
+             redis_host)
     parser.add_argument(
         '--port',
         action='store',
         dest='redis_port',
         default=redis_port,
         help='port of redis database, default is ' +
-        redis_port)
+             redis_port)
     parser.add_argument(
         '--pass',
         action='store',
         dest='redis_pass',
         default=redis_pass,
         help='password of redis database, default is ' +
-        redis_pass)
+             redis_pass)
 
     subparsers = parser.add_subparsers(
         title='worker roles',
         description='',
-        help='Select the role of this process')
+        help='Select the role of this process'
+    )
+
+    subparsers.required = True
 
     p_manager = subparsers.add_parser(
         'manager',
@@ -104,14 +117,7 @@ def mainfunc():
         dest='redis_jobqueue_name',
         default=redis_jobqueue_name,
         help='queue name for worker jobs, default is ' +
-        redis_jobqueue_name)
-    p_manager.add_argument(
-        '--mapqapikey',
-        action='store',
-        dest='mapquest_api_key',
-        default=mapquest_api_key,
-        help='mapquest API key, default is ' +
-        mapquest_api_key)
+             redis_jobqueue_name)
     p_manager.add_argument(
         'bb_left',
         type=float,
@@ -143,13 +149,13 @@ def mainfunc():
         dest='redis_jobqueue_name',
         default=redis_jobqueue_name,
         help='queue name for worker jobs, default is ' +
-        redis_jobqueue_name)
-    p_jobworker.set_defaults(func=jobworker)
+             redis_jobqueue_name)
+    p_jobworker.set_defaults(func=job_worker)
 
     p_resultworker = subparsers.add_parser(
         'resultworker',
         help='Consolidate and write out results.')
-    p_resultworker.set_defaults(func=resultworker)
+    p_resultworker.set_defaults(func=result_worker)
 
     args = parser.parse_args()
     args.func(args)

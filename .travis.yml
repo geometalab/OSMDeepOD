@@ -1,0 +1,18 @@
+sudo: required
+
+services:
+  - docker
+
+language: python
+python:
+  - "3.4"
+  - "3.5"
+
+before_install:
+  - docker build -t crosswalks ./docker/tensorflow_cuda/
+
+script:
+  - docker run crosswalks /bin/sh -c "cd /OSM-Crosswalk-Detection/; git checkout ${TRAVIS_BRANCH}; py.test tests;"
+
+notifications:
+  email: false
