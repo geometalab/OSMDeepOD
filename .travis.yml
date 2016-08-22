@@ -1,7 +1,7 @@
 sudo: required
 
 services:
-  - dockerfiles
+  - docker
 
 language: python
 python:
@@ -9,10 +9,10 @@ python:
   - "3.5"
 
 before_install:
-  - dockerfiles build -t crosswalks ./dockerfiles/crosswalk/
+  - docker build -t crosswalks ./dockerfiles/detection/
 
 script:
-  - dockerfiles run crosswalks /bin/sh -c "cd /OSM-Crosswalk-Detection/; git checkout ${TRAVIS_BRANCH}; py.test tests;"
+  - docker run crosswalks /bin/sh -c "cd /OSM-Crosswalk-Detection/; git checkout ${TRAVIS_BRANCH}; py.test tests;"
 
 notifications:
   email: false
