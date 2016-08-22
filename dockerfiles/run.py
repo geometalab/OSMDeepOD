@@ -56,7 +56,7 @@ def redis():
 
 
 def detection():
-    path = current_directory + '/crosswalk/'
+    path = current_directory + '/detection/'
     name = 'crosswalk_detection'
     volume = current_directory + 'crosswalks:/crosswalks/'
     build_container_if_not_exist(path, name + ':latest')
