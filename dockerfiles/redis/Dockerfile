@@ -7,10 +7,10 @@ ENV DASHBOARD_PORT 40002
 
 EXPOSE $REDIS_PORT $DASHBOARD_PORT
 
-COPY /entrypoint.sh /
-COPY /my_redis.conf /etc/redis/
+COPY entrypoint.sh /
+COPY my_redis.conf /etc/redis/
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 
 RUN apt-get update -y \
 && apt-get upgrade -y \

@@ -22,7 +22,7 @@ class StreetDrawer(object):
         drawer = cls()
         drawer.bbox = bbox
 
-        tile_loader = TileLoader.from_bbox(bbox)
+        tile_loader = TileLoader(bbox)
         tile_loader.load_tile()
         drawer.tile = tile_loader.tile
         street_loader = StreetCrosswalkLoader()

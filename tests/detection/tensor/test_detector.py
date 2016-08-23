@@ -28,7 +28,7 @@ def test_detector_multiple_images(detector):
 
     images = []
     image_count = 10
-    for i in range(image_count):
+    for _ in range(image_count):
         images.append(crosswalk_image.copy())
 
     answers = detector.detect(images)

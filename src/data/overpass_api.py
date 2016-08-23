@@ -35,7 +35,8 @@ class OverpassApi:
         query += crosswalks + ');'
         return query
 
-    def _bbox_to_overpass(self, bbox):
+    @staticmethod
+    def _bbox_to_overpass(bbox):
         return str(bbox.bottom) + ',' + str(bbox.left) + ',' + str(bbox.top) + ',' + str(bbox.right)
 
     def _try_overpass_download(self, query):
@@ -44,7 +45,8 @@ class OverpassApi:
                 json_data = self.overpass.Get(query)
                 return json_data
             except Exception as e:
-                self.logger.warning("Download of streets from overpass failed " + str(i) + " wait " + str(i * 10) + str(e))
+                self.logger.warning(
+                    "Download of streets from overpass failed " + str(i) + " wait " + str(i * 10) + str(e))
                 time.sleep(i * 10)
         error_message = "Download of streets from overpass failed 4 times."
         self.logger.error(error_message)
@@ -71,7 +73,7 @@ class OverpassApi:
         else:
             name = 'unknown'
         coordinates = feature['geometry']['coordinates']
-        for i in range(len(coordinates)-1):
+        for i in range(len(coordinates) - 1):
             street = Street.from_info(name, osm_id, highway)
             start_node = Node(coordinates[i][1], coordinates[i][0])
             end_node = Node(coordinates[i + 1][1], coordinates[i + 1][0])
