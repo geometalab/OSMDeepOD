@@ -20,7 +20,8 @@ class BoxWalker:
         self.plain_result = None
         self.compared_with_osm_result = []
         self.logger = logging.getLogger(__name__)
-        self.is_crosswalk_barrier = 0.97
+        self.is_crosswalk_barrier = 0.98
+        self.is_no_crosswalk_barrier = 0.5
 
     def load_convnet(self):
         self.convnet = Detector()
@@ -72,7 +73,8 @@ class BoxWalker:
         return self.compared_with_osm_result
 
     def is_crosswalk(self, prediction):
-        return prediction['crosswalk'] > self.is_crosswalk_barrier
+        return prediction['crosswalk'] > self.is_crosswalk_barrier \
+               and prediction['noncrosswalk'] < self.is_no_crosswalk_barrier
 
     @staticmethod
     def _get_tiles_of_box(streets, tile):
