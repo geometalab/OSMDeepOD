@@ -81,5 +81,6 @@ class OverpassApi:
             street.nodes.append(end_node)
             self.streets.append(street)
 
-    def _has_name(self, feature):
+    @staticmethod
+    def _has_name(feature):
         return 'name' in feature['properties']

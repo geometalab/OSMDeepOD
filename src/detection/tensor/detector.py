@@ -8,12 +8,12 @@ from multiprocessing.pool import ThreadPool
 
 class Detector:
     def __init__(self):
-        self.graph_path = self._get_grap_path()
+        self.graph_path = self._get_graph_path()
         self.labels = ['noncrosswalk', 'crosswalk']
         self.graph_def = self._load_graph()
 
     @staticmethod
-    def _get_grap_path():
+    def _get_graph_path():
         directory = os.path.dirname(os.path.realpath(__file__))
         cwenv = environ.Env(GRAPH_PATH=(str, directory + '/output_graph_crosswalks.pb'))
         root = environ.Path(os.getcwd())
@@ -44,7 +44,7 @@ class Detector:
                     prediction, image_number = thread.get()
                     prediction = np.squeeze(prediction)
                     answer = {'image_number': image_number}
-                    for node_id in range(len(prediction)):
+                    for node_id, _ in enumerate(prediction):
                         answer[self.labels[node_id]] = prediction[node_id]
                     answers.append(answer)
                 return answers
