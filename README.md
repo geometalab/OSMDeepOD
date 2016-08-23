@@ -58,13 +58,13 @@ The simplest way to use the detection process is to clone the repository and bui
 ```
 git clone https://github.com/geometalab/OSM-Crosswalk-Detection.git
 cd OSM-Crosswalk-Detection/dockerfiles/
-sudo python run.py -r -d
+sudo python docker_run.py -r -d
 ```
 
 After the previous shell commands you have started a redis instance for data persistance and a container for the detection process.
 Now you should be connected to a tty of the crosswalk_detection container. If you have a nvida GPU and nvidia-docker installed the detection algorithm will automatically use this GPU<sup id="a1">[1](#GPU)</sup>.
 
-To start the detection process use the src/role/main.py script.
+To start the detection process use the src/role/main.py<sup id="a2">[2](#main)</sup> script.
 
 1. Use the manger option to select the detection area and generate the jobs stored by the redis instance
 ```
@@ -92,4 +92,5 @@ If you have execute the result worker in the docker container you can move the c
 
 
 ## Notes
-<a name="GPU">1</a>: The crosswalk_detection container is based on the nvidia/cuda:7.5-cudnn4-devel-ubuntu14.04 image, may you have to change the base image for your GPU [↩](#a1)
+<a name="GPU">1</a>: The crosswalk_detection container is based on the nvidia/cuda:7.5-cudnn4-devel-ubuntu14.04 image, may you have to change the base image for your GPU. [↩](#a1)
+<a name="main">2</a>: For more information about the main.py use the -h option. [↩](#a2)
