@@ -58,7 +58,7 @@ class BoxWalker:
         self._printer("Start detection.")
         tiles = self._get_tiles_of_box(self.streets, self.tile)
         tiles_count = len(tiles)
-        self._printer(str(tiles_count) + " images to analise.")
+        self._printer(str(tiles_count) + " images to analyze.")
 
         images = [tile.image for tile in tiles]
         predictions = self.convnet.detect(images)
