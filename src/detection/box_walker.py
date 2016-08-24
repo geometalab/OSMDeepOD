@@ -21,7 +21,7 @@ class BoxWalker:
         self.compared_with_osm_result = []
         self.logger = logging.getLogger(__name__)
         self.is_crosswalk_barrier = 0.98
-        self.is_no_crosswalk_barrier = 0.5
+        self.is_no_crosswalk_barrier = 0.1
 
     def load_convnet(self):
         self.convnet = Detector()
@@ -108,4 +108,4 @@ class BoxWalker:
         return result
 
     def _printer(self, message):
-        self.logger.info(str(datetime.datetime.now()) + ": " + message)
+        print(str(datetime.datetime.now()) + ": " + message)
