@@ -11,7 +11,7 @@ class Manager(object):
     SMALL_BBOX_SIDE_LENGHT = 2000.0
     TIMEOUT = 5400
 
-    def __init__(self, bbox, job_queue_name, zoom_level):
+    def __init__(self, bbox, job_queue_name, zoom_level=19):
         self.big_bbox = bbox
         self.job_queue_name = job_queue_name
         self.mercator = GlobalMercator()
@@ -19,8 +19,8 @@ class Manager(object):
         self.zoom_level = zoom_level
 
     @classmethod
-    def from_big_bbox(cls, big_bbox, redis, job_queue_name, zoom_level):
-        manager = cls(big_bbox, job_queue_name)
+    def from_big_bbox(cls, big_bbox, redis, job_queue_name, zoom_level=19):
+        manager = cls(big_bbox, job_queue_name, zoom_level)
         manager._generate_small_bboxes()
         manager._enqueue_jobs(redis)
         return manager
@@ -55,7 +55,7 @@ class Manager(object):
         return int(math.ceil(meter_in_y / Manager.SMALL_BBOX_SIDE_LENGHT))
 
     def _calc_columns(self):
-        m_minx, _ = self.mercator.LatLonToMeters(self.big_bbox.bottom, self.big_bbox.left)
-        m_maxx, _ = self.mercator.LatLonToMeters(self.big_bbox.top, self.big_bbox.right)
-        meter_in_x = m_maxx - m_minx
+        m_min_x, _ = self.mercator.LatLonToMeters(self.big_bbox.bottom, self.big_bbox.left)
+        m_max_x, _ = self.mercator.LatLonToMeters(self.big_bbox.top, self.big_bbox.right)
+        meter_in_x = m_max_x - m_min_x
         return int(math.ceil(meter_in_x / Manager.SMALL_BBOX_SIDE_LENGHT))

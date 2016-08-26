@@ -11,7 +11,7 @@ from src.detection.tensor.detector import Detector
 
 
 class BoxWalker:
-    def __init__(self, bbox, zoom_level):
+    def __init__(self, bbox, zoom_level=19):
         self.bbox = bbox
         self.zoom_level = zoom_level
         self.tile = None

@@ -18,13 +18,14 @@ def manager(args):
         args.bb_bottom,
         args.bb_right,
         args.bb_top)
-    zoom_level = args.zoom_level
+    zoom_level = int(args.zoom_level)
     try:
         print('Manger has started...')
         Manager.from_big_bbox(
             big_bbox,
             redis_args(args),
-            args.redis_jobqueue_name)
+            args.redis_jobqueue_name,
+            zoom_level)
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
