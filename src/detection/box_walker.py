@@ -11,8 +11,9 @@ from src.detection.tensor.detector import Detector
 
 
 class BoxWalker:
-    def __init__(self, bbox):
+    def __init__(self, bbox, zoom_level):
         self.bbox = bbox
+        self.zoom_level = zoom_level
         self.tile = None
         self.streets = []
         self.osm_crosswalks = None
@@ -30,7 +31,7 @@ class BoxWalker:
 
     def load_tiles(self):
         self._printer("Start image loading.")
-        loader = TileLoader(self.bbox)
+        loader = TileLoader(bbox=self.bbox, zoom_level=self.zoom_level)
         loader.load_tile()
         self.tile = loader.tile
         self.bbox = self.tile.bbox

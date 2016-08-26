@@ -11,14 +11,15 @@ class Manager(object):
     SMALL_BBOX_SIDE_LENGHT = 2000.0
     TIMEOUT = 5400
 
-    def __init__(self, bbox, job_queue_name):
+    def __init__(self, bbox, job_queue_name, zoom_level):
         self.big_bbox = bbox
         self.job_queue_name = job_queue_name
         self.mercator = GlobalMercator()
         self.small_bboxes = []
+        self.zoom_level = zoom_level
 
     @classmethod
-    def from_big_bbox(cls, big_bbox, redis, job_queue_name):
+    def from_big_bbox(cls, big_bbox, redis, job_queue_name, zoom_level):
         manager = cls(big_bbox, job_queue_name)
         manager._generate_small_bboxes()
         manager._enqueue_jobs(redis)
@@ -43,7 +44,7 @@ class Manager(object):
         for small_bbox in self.small_bboxes:
             queue.enqueue_call(
                     func=detect,
-                    args=(small_bbox, redis,),
+                    args=(small_bbox, redis, self.zoom_level),
                     timeout=Manager.TIMEOUT)
         print('Number of enqueued jobs in queue \'{0}\': {1}'.format(self.job_queue_name, len(queue)))
 

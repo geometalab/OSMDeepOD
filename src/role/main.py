@@ -18,6 +18,7 @@ def manager(args):
         args.bb_bottom,
         args.bb_right,
         args.bb_top)
+    zoom_level = args.zoom_level
     try:
         print('Manger has started...')
         Manager.from_big_bbox(
@@ -110,7 +111,12 @@ def mainfunc():
     p_manager = subparsers.add_parser(
         'manager',
         help='Splits up the given bounding box (WGS84, minlon/minlat/maxlon/maxlat) into small pieces and puts them into the redis queue to be consumed by the jobworkers.')
-
+    p_manager.add_argument(
+        '--zoom_level',
+        action='stored',
+        dest='zoom_level',
+        default='19',
+        help='the zoom level of the satellite images')
     p_manager.add_argument(
         '--jobqueue',
         action='store',
