@@ -16,7 +16,7 @@ def build_container_if_not_exist(path, name):
         if not client.images(name):
             dockerfile_path = path + 'Dockerfile'
             if os.path.isfile(dockerfile_path):
-                [print(line.decode("utf-8")) for line in client.build(rm=True, tag=name, path=path)]
+                _ = [print(line.decode("utf-8")) for line in client.build(rm=True, tag=name, path=path)]
             else:
                 print("Can't find the file: " + path)
                 sys.exit()

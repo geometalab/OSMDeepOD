@@ -27,3 +27,14 @@ def node1():
 @pytest.fixture(scope="session", autouse=True)
 def node2():
     return Node('47.1', '8.1', 10)
+
+
+@pytest.fixture(scope="session", autouse=True)
+def step_distance():
+    return 18
+
+
+@pytest.fixture(scope="session", autouse=True)
+def square_image_length():
+    return 50
+

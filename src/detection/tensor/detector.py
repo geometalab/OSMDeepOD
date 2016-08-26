@@ -8,20 +8,23 @@ from multiprocessing.pool import ThreadPool
 
 class Detector:
     def __init__(self):
-        self.graph_path = self._get_grap_path()
-        self.labels = ['noncrosswalk', 'crosswalk']
+        self.current_directory = os.path.dirname(os.path.realpath(__file__))
+        self.env = self._get_env()
+        self.labels = self._load_labels()
         self.graph_def = self._load_graph()
 
-    @staticmethod
-    def _get_grap_path():
-        directory = os.path.dirname(os.path.realpath(__file__))
-        cwenv = environ.Env(GRAPH_PATH=(str, directory + '/output_graph_crosswalks.pb'))
+    def _get_env(self):
+        env = environ.Env(GRAPH_PATH=(str, self.current_directory + '/output_graph_crosswalks.pb'),
+                          LABEL_PATH=(str, self.current_directory + '/output_labels_crosswalks.txt'))
         root = environ.Path(os.getcwd())
         environ.Env.read_env(root('.env'))
-        return cwenv('GRAPH_PATH')
+        return env
+
+    def _load_labels(self):
+        return [line.rstrip('\n') for line in open(self.env('LABEL_PATH'))]
 
     def _load_graph(self):
-        with tf.gfile.FastGFile(self.graph_path, 'rb') as f:
+        with tf.gfile.FastGFile(self.env('GRAPH_PATH'), 'rb') as f:
             graph_def = tf.GraphDef()
             graph_def.ParseFromString(f.read())
             return graph_def
@@ -44,7 +47,7 @@ class Detector:
                     prediction, image_number = thread.get()
                     prediction = np.squeeze(prediction)
                     answer = {'image_number': image_number}
-                    for node_id in range(len(prediction)):
+                    for node_id, _ in enumerate(prediction):
                         answer[self.labels[node_id]] = prediction[node_id]
                     answers.append(answer)
                 return answers

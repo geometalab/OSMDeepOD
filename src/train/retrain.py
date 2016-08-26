@@ -63,7 +63,7 @@ import numpy as np
 import urllib.request
 import tensorflow as tf
 
-from tensorflow.python.client import graph_util
+from tensorflow.python.framework import graph_util
 from tensorflow.python.framework import tensor_shape
 from tensorflow.python.platform import gfile
 
@@ -547,7 +547,7 @@ def get_random_distorted_bottlenecks(
     class_count = len(image_lists.keys())
     bottlenecks = []
     ground_truths = []
-    for unused_i in range(how_many):
+    for _ in range(how_many):
         label_index = random.randrange(class_count)
         label_name = list(image_lists.keys())[label_index]
         image_index = random.randrange(65536)
