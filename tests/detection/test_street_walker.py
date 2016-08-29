@@ -9,8 +9,8 @@ def get_tile_streets(bbox):
     return box_walker.tile, box_walker.streets
 
 
-def test_from_street_tile(small_bbox, square_image_length, step_distance):
+def test_from_street_tile(small_bbox, square_image_length):
     (tile, streets) = get_tile_streets(small_bbox)
-    walker = StreetWalker(tile=tile, step_distance=step_distance, square_image_length=square_image_length)
+    walker = StreetWalker(tile=tile, square_image_length=square_image_length)
     assert walker.tile is not None
     assert streets is not None

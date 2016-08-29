@@ -2,7 +2,7 @@ from src.base.bbox import Bbox
 from src.base.node import Node
 
 
-class Tile(object):
+class Tile:
     def __init__(self):
         self.image = None
         self.bbox = None
@@ -61,6 +61,7 @@ class Tile(object):
         node = Node(self.bbox.node_leftdown().latitude + diff_lat / 2,
                     self.bbox.node_leftdown().longitude + diff_lon / 2)
         return node
+
 
     def show(self):
         self.image.show()

@@ -21,9 +21,8 @@ class BoxWalker:
         self.plain_result = None
         self.compared_with_osm_result = []
         self.logger = logging.getLogger(__name__)
-        self.is_crosswalk_barrier = 0.98
-        self.is_no_crosswalk_barrier = 0.1
-        self.step_distance = 18
+        self.is_crosswalk_barrier = 0.99
+        self.is_no_crosswalk_barrier = 0.03
         self.square_image_length = 50
 
     def load_convnet(self):
@@ -80,8 +79,8 @@ class BoxWalker:
                and prediction['noncrosswalk'] < self.is_no_crosswalk_barrier
 
     def _get_tiles_of_box(self, streets, tile):
-        street_walker = StreetWalker(tile=tile, step_distance=self.step_distance,
-                                     square_image_length=self.square_image_length)
+        street_walker = StreetWalker(tile=tile, square_image_length=self.square_image_length,
+                                     zoom_level=self.zoom_level)
         tiles = []
         for street in streets:
             street_tiles = street_walker.get_tiles(street)

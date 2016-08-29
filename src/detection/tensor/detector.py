@@ -14,8 +14,8 @@ class Detector:
         self.graph_def = self._load_graph()
 
     def _get_env(self):
-        env = environ.Env(GRAPH_PATH=(str, self.current_directory + '/output_graph_crosswalks.pb'),
-                          LABEL_PATH=(str, self.current_directory + '/output_labels_crosswalks.txt'))
+        env = environ.Env(GRAPH_PATH=(str, self.current_directory + '/output_graph.pb'),
+                          LABEL_PATH=(str, self.current_directory + '/output_labels.txt'))
         root = environ.Path(os.getcwd())
         environ.Env.read_env(root('.env'))
         return env

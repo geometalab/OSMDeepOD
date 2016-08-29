@@ -30,11 +30,5 @@ def node2():
 
 
 @pytest.fixture(scope="session", autouse=True)
-def step_distance():
-    return 18
-
-
-@pytest.fixture(scope="session", autouse=True)
 def square_image_length():
     return 50
-

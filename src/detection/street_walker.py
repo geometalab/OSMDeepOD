@@ -1,12 +1,13 @@
+from src.base.globalmaptiles import GlobalMercator
 from src.detection.node_merger import NodeMerger
 
 
 class StreetWalker:
-    def __init__(self, tile, square_image_length, step_distance):
+    def __init__(self, tile, square_image_length=50, zoom_level=19):
         self.tile = tile
         self._nb_images = 0
-        self._step_distance = step_distance
         self._square_image_length = square_image_length
+        self._step_distance = self._calculate_step_distance(zoom_level)
 
     def get_tiles(self, street):
         squared_tiles = self._get_squared_tiles(street.nodes[0], street.nodes[1])
@@ -30,3 +31,8 @@ class StreetWalker:
             tile = self.tile.get_tile_by_node(current_node, self._square_image_length)
             square_tiles.append(tile)
         return square_tiles
+
+    def _calculate_step_distance(self, zoom_level):
+        global_mercator = GlobalMercator()
+        resolution = global_mercator.Resolution(zoom_level)
+        return resolution * (self._square_image_length / 3)

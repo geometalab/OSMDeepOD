@@ -1,5 +1,5 @@
 from src.base.bbox import Bbox
-from src.data.globalmaptiles import GlobalMercator
+from src.base.globalmaptiles import GlobalMercator
 
 
 class FittingBbox:

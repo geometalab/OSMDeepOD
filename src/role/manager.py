@@ -1,10 +1,11 @@
 import math
-from rq import Queue
-from redis import Redis
 
-from src.role.worker_functions import detect
-from src.data.globalmaptiles import GlobalMercator
+from redis import Redis
+from rq import Queue
+
 from src.base.bbox import Bbox
+from src.base.globalmaptiles import GlobalMercator
+from src.role.worker_functions import detect
 
 
 class Manager(object):

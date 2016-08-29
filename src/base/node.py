@@ -1,6 +1,7 @@
 from geopy import Point
 from geopy.distance import vincenty
-from src.data.globalmaptiles import GlobalMercator
+
+from src.base.globalmaptiles import GlobalMercator
 
 
 class Node(Point):
