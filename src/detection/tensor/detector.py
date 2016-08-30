@@ -7,15 +7,17 @@ from multiprocessing.pool import ThreadPool
 
 
 class Detector:
-    def __init__(self):
+    def __init__(self, graph_file='output_graph.pb', labels_file='output_labels.txt'):
         self.current_directory = os.path.dirname(os.path.realpath(__file__))
+        self.graph_file = graph_file
+        self.labels_file = labels_file
         self.env = self._get_env()
         self.labels = self._load_labels()
         self.graph_def = self._load_graph()
 
     def _get_env(self):
-        env = environ.Env(GRAPH_PATH=(str, self.current_directory + '/output_graph.pb'),
-                          LABEL_PATH=(str, self.current_directory + '/output_labels.txt'))
+        env = environ.Env(GRAPH_PATH=(str, self.current_directory + '/' + self.graph_file),
+                          LABEL_PATH=(str, self.current_directory + '/' + self.labels_file))
         root = environ.Path(os.getcwd())
         environ.Env.read_env(root('.env'))
         return env

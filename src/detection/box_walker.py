@@ -11,7 +11,7 @@ from src.detection.tensor.detector import Detector
 
 
 class BoxWalker:
-    def __init__(self, bbox, zoom_level=19):
+    def __init__(self, bbox, zoom_level=19, search='crosswalk'):
         self.bbox = bbox
         self.zoom_level = zoom_level
         self.tile = None
@@ -21,8 +21,8 @@ class BoxWalker:
         self.plain_result = None
         self.compared_with_osm_result = []
         self.logger = logging.getLogger(__name__)
-        self.is_crosswalk_barrier = 0.99
-        self.is_no_crosswalk_barrier = 0.03
+        self.barrier = 0.99
+        self.search = search
         self.square_image_length = 50
 
     def load_convnet(self):
@@ -75,8 +75,7 @@ class BoxWalker:
         return self.compared_with_osm_result
 
     def is_crosswalk(self, prediction):
-        return prediction['crosswalk'] > self.is_crosswalk_barrier \
-               and prediction['noncrosswalk'] < self.is_no_crosswalk_barrier
+        return prediction[self.search] > self.barrier
 
     def _get_tiles_of_box(self, streets, tile):
         street_walker = StreetWalker(tile=tile, square_image_length=self.square_image_length,

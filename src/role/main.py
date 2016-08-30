@@ -25,7 +25,8 @@ def manager(args):
             big_bbox,
             redis_args(args),
             args.redis_jobqueue_name,
-            zoom_level)
+            zoom_level,
+            args.search)
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
@@ -114,10 +115,17 @@ def mainfunc():
         help='Splits up the given bounding box (WGS84, minlon/minlat/maxlon/maxlat) into small pieces and puts them into the redis queue to be consumed by the jobworkers.')
     p_manager.add_argument(
         '--zoom_level',
-        action='stored',
+        action='store',
         dest='zoom_level',
         default='19',
         help='the zoom level of the satellite images')
+    p_manager.add_argument(
+        '--search',
+        action='store',
+        dest='search',
+        default='crosswalk',
+        help='the search context, which has to be in the label file')
+
     p_manager.add_argument(
         '--jobqueue',
         action='store',
