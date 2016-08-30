@@ -18,6 +18,7 @@ class Manager(object):
         self.mercator = GlobalMercator()
         self.small_bboxes = []
         self.zoom_level = zoom_level
+        self.search = search
 
     @classmethod
     def from_big_bbox(cls, big_bbox, redis, job_queue_name, zoom_level=19, search='crosswalk'):
@@ -45,7 +46,7 @@ class Manager(object):
         for small_bbox in self.small_bboxes:
             queue.enqueue_call(
                 func=detect,
-                args=(small_bbox, redis, self.zoom_level),
+                args=(small_bbox, redis, self.zoom_level, self.search),
                 timeout=Manager.TIMEOUT)
         print('Number of enqueued jobs in queue \'{0}\': {1}'.format(self.job_queue_name, len(queue)))
 
