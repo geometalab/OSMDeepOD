@@ -19,15 +19,14 @@ def manager(args):
         args.bb_bottom,
         args.bb_right,
         args.bb_top)
-    zoom_level = int(args.zoom_level)
     try:
         print('Manger has started...')
-        search = Search(word=args.search,key=args.tag[0], value=args.tag[1],compare=(not args.no_compare))
+        search = Search(word=args.search, key=args.tag[0], value=args.tag[1], zoom_level=int(args.zoom_level),
+                        compare=(not args.no_compare))
         Manager.from_big_bbox(
             big_bbox,
             redis_args(args),
             args.redis_jobqueue_name,
-            zoom_level,
             search)
     except ConnectionError:
         print(

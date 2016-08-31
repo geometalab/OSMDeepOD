@@ -14,23 +14,22 @@ from src.data.osm_comparator import OsmComparator
 
 
 class BoxWalker:
-    def __init__(self, bbox, zoom_level=19, search=Search()):
-        self.bbox = FittingBbox(zoom_level=zoom_level).get(bbox)
-        self.zoom_level = zoom_level
+    def __init__(self, bbox, search=Search()):
+        self.bbox = FittingBbox(zoom_level=search.zoom_level).get(bbox)
         self.tile = None
         self.streets = []
         self.convnet = None
         self.logger = logging.getLogger(__name__)
         self.search = search
         self.square_image_length = 50
-        self.max_distance = self._calculate_max_distance(zoom_level, self.square_image_length)
+        self.max_distance = self._calculate_max_distance(search.zoom_level, self.square_image_length)
 
     def load_convnet(self):
         self.convnet = Detector()
 
     def load_tiles(self):
         self._printer("Start image loading.")
-        loader = TileLoader(bbox=self.bbox, zoom_level=self.zoom_level)
+        loader = TileLoader(bbox=self.bbox, zoom_level=self.search.zoom_level)
         loader.load_tile()
         self.tile = loader.tile
         self._printer("Stop image loading.")
@@ -72,7 +71,7 @@ class BoxWalker:
 
     def _get_tiles_of_box(self, streets, tile):
         street_walker = StreetWalker(tile=tile, square_image_length=self.square_image_length,
-                                     zoom_level=self.zoom_level)
+                                     zoom_level=self.search.zoom_level)
         tiles = []
         for street in streets:
             street_tiles = street_walker.get_tiles(street)

@@ -13,17 +13,16 @@ class Manager(object):
     small_bbox_side_length = 2000.0
     timeout = 5400
 
-    def __init__(self, bbox, job_queue_name, zoom_level=19, search=Search()):
+    def __init__(self, bbox, job_queue_name, search=Search()):
         self.big_bbox = bbox
         self.job_queue_name = job_queue_name
         self.mercator = GlobalMercator()
         self.small_bboxes = []
-        self.zoom_level = zoom_level
         self.search = search
 
     @classmethod
-    def from_big_bbox(cls, big_bbox, redis, job_queue_name, zoom_level=19, search=Search()):
-        manager = cls(big_bbox, job_queue_name, zoom_level, search)
+    def from_big_bbox(cls, big_bbox, redis, job_queue_name, search=Search()):
+        manager = cls(big_bbox, job_queue_name, search)
         manager._generate_small_bboxes()
         manager._enqueue_jobs(redis)
         return manager
