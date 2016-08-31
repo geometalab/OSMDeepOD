@@ -2,14 +2,15 @@ import datetime
 import logging
 from random import shuffle
 
+from src.base.globalmaptiles import GlobalMercator
 from src.base.search import Search
 from src.data.fitting_bbox import FittingBbox
-from src.data.node_loader import NodeLoader
 from src.data.node_merger import NodeMerger
 from src.data.street_loader import StreetLoader
 from src.data.tile_loader import TileLoader
 from src.detection.street_walker import StreetWalker
 from src.detection.tensor.detector import Detector
+from src.data.osm_comparator import OsmComparator
 
 
 class BoxWalker:
@@ -23,6 +24,7 @@ class BoxWalker:
         self.logger = logging.getLogger(__name__)
         self.search = search
         self.square_image_length = 50
+        self.max_distance = self._calculate_max_distance(zoom_level, self.square_image_length)
 
     def load_convnet(self):
         self.convnet = Detector()
@@ -43,12 +45,6 @@ class BoxWalker:
         shuffle(self.streets)
         self._printer("Stop street loading.")
 
-    def load_search_nodes(self):
-        self._printer("Start node loading.")
-        node_loader = NodeLoader()
-        self.search_nodes = node_loader.load_data(self.bbox, self.search.tag)
-        self._printer("Stop node loading.")
-
     def walk(self):
         ready_for_walk = (not self.tile is None) and (
             not self.streets is None) and (
@@ -64,13 +60,16 @@ class BoxWalker:
 
         images = [tile.image for tile in tiles]
         predictions = self.convnet.detect(images)
-        results = []
+        detected_nodes = []
         for i, _ in enumerate(tiles):
             prediction = predictions[i]
             if self.search.hit(prediction):
-                results.append(tiles[i].get_centre_node())
+                detected_nodes.append(tiles[i].get_centre_node())
         self._printer("Stop detection.")
-        return self._merge_near_nodes(results)
+        merged_nodes = self._merge_near_nodes(detected_nodes)
+        if self.search.compare:
+            return self._compare_with_osm(merged_nodes)
+        return merged_nodes
 
     def _get_tiles_of_box(self, streets, tile):
         street_walker = StreetWalker(tile=tile, square_image_length=self.square_image_length,
@@ -87,5 +86,15 @@ class BoxWalker:
         merger.max_distance = 7
         return merger.reduce()
 
+    def _compare_with_osm(self, detected_nodes):
+        comparator = OsmComparator(max_distance=self.max_distance)
+        return comparator.compare(detected_nodes=detected_nodes, tag=self.search.tag, bbox=self.bbox)
+
     def _printer(self, message):
         print(str(datetime.datetime.now()) + ": " + message)
+
+    @staticmethod
+    def _calculate_max_distance(zoom_level, square_image_length):
+        global_mercator = GlobalMercator()
+        resolution = global_mercator.Resolution(zoom_level)
+        return resolution * (square_image_length / 2)

@@ -1,7 +1,7 @@
 from src.data.node_loader import NodeLoader
 
 
-class OsmComparer:
+class OsmComparator:
     def __init__(self, max_distance=7):
         self.max_distance = max_distance
 
@@ -9,7 +9,8 @@ class OsmComparer:
         osm_nodes = self._load_nodes(bbox, tag)
         return self._compare_osm_with(osm_nodes, detected_nodes)
 
-    def _load_nodes(self, bbox, tag):
+    @staticmethod
+    def _load_nodes(bbox, tag):
         node_loader = NodeLoader()
         return node_loader.load_data(bbox, tag)
 

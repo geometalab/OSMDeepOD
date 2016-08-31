@@ -2,6 +2,7 @@ import argparse
 import logging
 from redis.exceptions import ConnectionError
 
+from src.base.search import Search
 from src.base.bbox import Bbox
 from src.role.worker import Worker
 from src.role.manager import Manager
@@ -21,12 +22,13 @@ def manager(args):
     zoom_level = int(args.zoom_level)
     try:
         print('Manger has started...')
+        search = Search(word=args.search,key=args.tag[0], value=args.tag[1],compare=(not args.no_compare))
         Manager.from_big_bbox(
             big_bbox,
             redis_args(args),
             args.redis_jobqueue_name,
             zoom_level,
-            args.search)
+            search)
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
@@ -125,6 +127,21 @@ def mainfunc():
         dest='search',
         default='crosswalk',
         help='the search context, which has to be in the label file')
+    p_manager.add_argument(
+        '-t',
+        '--tag',
+        nargs=2,
+        action='store',
+        dest='tag',
+        default=['highway', 'crossing'],
+        help='An OpenStreetMap key value pair like: highway crossing. To compare with OpenStreetMap entries.',
+    )
+    p_manager.add_argument(
+        '--no_compare',
+        action='store_true',
+        dest='no_compare',
+        help='Stop compare between OpenStreetMap entries and detected points.',
+    )
 
     p_manager.add_argument(
         '--jobqueue',
