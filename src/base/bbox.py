@@ -36,8 +36,7 @@ class Bbox(object):
         return bbox
 
     def __str__(self):
-        return "Bbox left: " + str(self.left) + " bottom: " + str(
-                self.bottom) + " right: " + str(self.right) + " top: " + str(self.top)
+        return str(self.bottom) + ',' + str(self.left) + ',' + str(self.top) + ',' + str(self.right)
 
     def node_leftdown(self):
         return Node(self.bottom, self.left)

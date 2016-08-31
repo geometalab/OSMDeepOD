@@ -3,13 +3,12 @@ from src.base.globalmaptiles import GlobalMercator
 
 
 class FittingBbox:
-    def __init__(self, bbox, zoom_level=19):
-        self.bbox = bbox
+    def __init__(self, zoom_level=19):
         self._mercator = GlobalMercator()
         self._zoom_level = zoom_level
 
-    def get(self):
-        t_minx, t_miny, t_maxx, t_maxy = self.bbox_to_tiles(self.bbox)
+    def get(self, bbox):
+        t_minx, t_miny, t_maxx, t_maxy = self.bbox_to_tiles(bbox)
         bbox = self._bbox_from(t_minx, t_miny, t_maxx, t_maxy)
         return bbox
 

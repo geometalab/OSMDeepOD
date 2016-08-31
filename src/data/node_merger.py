@@ -1,7 +1,7 @@
 from src.base.node import Node
 
 
-class NodeMerger(object):
+class NodeMerger:
     def __init__(self):
         self.node_list = []
         self.near_dict = {}

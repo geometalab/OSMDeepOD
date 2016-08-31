@@ -1,6 +1,7 @@
 import pytest
 
 from src.base.node import Node
+from src.base.tag import Tag
 from src.base.bbox import Bbox
 
 
@@ -32,3 +33,8 @@ def node2():
 @pytest.fixture(scope="session", autouse=True)
 def square_image_length():
     return 50
+
+
+@pytest.fixture(scope="session", autouse=True)
+def crosswalk_tag():
+    return Tag(key='highway', value='crossing')

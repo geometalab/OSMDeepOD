@@ -1,7 +1,7 @@
 import pytest
 
-from src.detection.node_merger import NodeMerger
 from src.base.node import Node
+from src.data.node_merger import NodeMerger
 
 
 @pytest.fixture
