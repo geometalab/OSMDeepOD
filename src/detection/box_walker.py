@@ -26,6 +26,10 @@ class BoxWalker:
 
     def load_convnet(self):
         self.convnet = Detector()
+        if not self.search.word in self.convnet.labels:
+            error_message = self.search.word + " is not in label file."
+            self.logger.error(error_message)
+            raise Exception(error_message)
 
     def load_tiles(self):
         self._printer("Start image loading.")

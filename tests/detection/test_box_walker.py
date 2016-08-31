@@ -31,3 +31,4 @@ def test_walk(zurich_bellevue):
     crosswalk_nodes = walker.walk()
     assert crosswalk_nodes is not None
     assert len(crosswalk_nodes) == 0
+

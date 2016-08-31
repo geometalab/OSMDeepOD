@@ -25,7 +25,8 @@ class Node(Point):
         return copy
 
     def get_distance_in_meter(self, node):
-        return vincenty(self, node).meters
+        distance = vincenty(self, node).meters
+        return distance
 
     def step_to(self, target_node, distance):
         distance_between = self.get_distance_in_meter(target_node)
@@ -46,7 +47,7 @@ class Node(Point):
         return hash((self.latitude, self.longitude, self.osm_id))
 
     def __eq__(self, other):
-        return self.latitude == other.latitude and self.longitude == other.longitude and self.osm_id == other.osm_id
+        return self.latitude == other.latitude and self.longitude == other.longitude
 
     def __ne__(self, other):
         return not (self == other)

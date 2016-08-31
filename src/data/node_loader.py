@@ -32,8 +32,12 @@ class NodeLoader:
 
     @staticmethod
     def _get_centre(nodes):
-        sum_node = reduce((lambda x, y: Node(y.latitude + x.latitude, y.longitude + x.longitude)), nodes)
+        sum_lat = 0
+        sum_lon = 0
+        for node in nodes:
+            sum_lat += node.latitude
+            sum_lon += node.longitude
         length = len(nodes)
-        centre_latitude = sum_node.latitude / length
-        centre_longitude = sum_node.longitude / length
+        centre_latitude = sum_lat / length
+        centre_longitude = sum_lon / length
         return Node(centre_latitude, centre_longitude, 0)

@@ -62,3 +62,4 @@ class Detector:
     def operation(sess, softmax, image, image_number):
         prediction = sess.run(softmax, {'DecodeJpeg:0': image})
         return prediction, image_number
+

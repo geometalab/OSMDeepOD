@@ -18,7 +18,7 @@ def big_bbox():
 
 @pytest.fixture(scope="session", autouse=True)
 def zurich_bellevue():
-    return Bbox.from_lbrt(8.5448316112,47.3661604928,8.5453673825,47.366466604)
+    return Bbox.from_lbrt(8.5448316112, 47.3661604928, 8.5453673825, 47.366466604)
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -39,6 +39,11 @@ def square_image_length():
 @pytest.fixture(scope="session", autouse=True)
 def crosswalk_tag():
     return Tag(key='highway', value='crossing')
+
+
+@pytest.fixture(scope="session", autouse=True)
+def roundabout_tag():
+    return Tag(key='junction', value='roundabout')
 
 
 @pytest.fixture(scope="session", autouse=True)
