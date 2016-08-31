@@ -1,6 +1,7 @@
 import pytest
 
 from src.base.node import Node
+from src.base.search import Search
 from src.base.tag import Tag
 from src.base.bbox import Bbox
 
@@ -17,7 +18,7 @@ def big_bbox():
 
 @pytest.fixture(scope="session", autouse=True)
 def zurich_bellevue():
-    return Bbox.from_lbrt(8.54279671719532, 47.366177501999516, 8.547088251618977, 47.36781249586627)
+    return Bbox.from_lbrt(8.5448316112,47.3661604928,8.5453673825,47.366466604)
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -38,3 +39,8 @@ def square_image_length():
 @pytest.fixture(scope="session", autouse=True)
 def crosswalk_tag():
     return Tag(key='highway', value='crossing')
+
+
+@pytest.fixture(scope="session", autouse=True)
+def search_no_compare():
+    return Search(key='highway', value='crossing', word='crosswalk', compare=False)

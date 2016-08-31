@@ -22,7 +22,7 @@ class Manager(object):
         self.search = search
 
     @classmethod
-    def from_big_bbox(cls, big_bbox, redis, job_queue_name, zoom_level=19, search='crosswalk'):
+    def from_big_bbox(cls, big_bbox, redis, job_queue_name, zoom_level=19, search=Search()):
         manager = cls(big_bbox, job_queue_name, zoom_level, search)
         manager._generate_small_bboxes()
         manager._enqueue_jobs(redis)

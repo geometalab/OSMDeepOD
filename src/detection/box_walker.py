@@ -19,7 +19,6 @@ class BoxWalker:
         self.zoom_level = zoom_level
         self.tile = None
         self.streets = []
-        self.search_nodes = []
         self.convnet = None
         self.logger = logging.getLogger(__name__)
         self.search = search

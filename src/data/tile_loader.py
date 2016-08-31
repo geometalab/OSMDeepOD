@@ -12,7 +12,7 @@ class TileLoader:
         self.bbox = bbox
         self.tile = None
         self._zoom_level = zoom_level
-        self._fitting_bbox = FittingBbox(bbox=None, zoom_level=self._zoom_level)
+        self._fitting_bbox = FittingBbox(zoom_level=self._zoom_level)
 
     def _download_tiles(self, bbox):
         t_minx, t_miny, t_maxx, t_maxy = self._fitting_bbox.bbox_to_tiles(bbox)
