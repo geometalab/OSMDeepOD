@@ -2,6 +2,7 @@ import argparse
 import logging
 from redis.exceptions import ConnectionError
 
+from src.base.search import Search
 from src.base.bbox import Bbox
 from src.role.worker import Worker
 from src.role.manager import Manager
@@ -20,10 +21,13 @@ def manager(args):
         args.bb_top)
     try:
         print('Manger has started...')
+        search = Search(word=args.search, key=args.tag[0], value=args.tag[1], zoom_level=int(args.zoom_level),
+                        compare=(not args.no_compare))
         Manager.from_big_bbox(
             big_bbox,
             redis_args(args),
-            args.redis_jobqueue_name)
+            args.redis_jobqueue_name,
+            search)
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
@@ -110,6 +114,33 @@ def mainfunc():
     p_manager = subparsers.add_parser(
         'manager',
         help='Splits up the given bounding box (WGS84, minlon/minlat/maxlon/maxlat) into small pieces and puts them into the redis queue to be consumed by the jobworkers.')
+    p_manager.add_argument(
+        '--zoom_level',
+        action='store',
+        dest='zoom_level',
+        default='19',
+        help='the zoom level of the satellite images')
+    p_manager.add_argument(
+        '--search',
+        action='store',
+        dest='search',
+        default='crosswalk',
+        help='the search context, which has to be in the label file')
+    p_manager.add_argument(
+        '-t',
+        '--tag',
+        nargs=2,
+        action='store',
+        dest='tag',
+        default=['highway', 'crossing'],
+        help='An OpenStreetMap key value pair like: highway crossing. To compare with OpenStreetMap entries.',
+    )
+    p_manager.add_argument(
+        '--no_compare',
+        action='store_true',
+        dest='no_compare',
+        help='Stop comparing between OpenStreetMap entries and detected points.',
+    )
 
     p_manager.add_argument(
         '--jobqueue',

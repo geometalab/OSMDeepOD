@@ -1,6 +1,7 @@
 from geopy import Point
 from geopy.distance import vincenty
-from src.data.globalmaptiles import GlobalMercator
+
+from src.base.globalmaptiles import GlobalMercator
 
 
 class Node(Point):
@@ -45,7 +46,7 @@ class Node(Point):
         return hash((self.latitude, self.longitude, self.osm_id))
 
     def __eq__(self, other):
-        return self.latitude == other.latitude and self.longitude == other.longitude and self.osm_id == other.osm_id
+        return self.latitude == other.latitude and self.longitude == other.longitude
 
     def __ne__(self, other):
         return not (self == other)

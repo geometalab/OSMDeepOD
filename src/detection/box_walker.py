@@ -2,49 +2,48 @@ import datetime
 import logging
 from random import shuffle
 
-from src.detection.node_merger import NodeMerger
-from src.detection.street_walker import StreetWalker
-from src.data.tile_loader import TileLoader
+from src.base.globalmaptiles import GlobalMercator
+from src.base.search import Search
 from src.data.fitting_bbox import FittingBbox
-from src.data.street_crosswalk_loader import StreetCrosswalkLoader
+from src.data.node_merger import NodeMerger
+from src.data.street_loader import StreetLoader
+from src.data.tile_loader import TileLoader
+from src.detection.street_walker import StreetWalker
 from src.detection.tensor.detector import Detector
+from src.data.osm_comparator import OsmComparator
 
 
 class BoxWalker:
-    def __init__(self, bbox):
-        self.bbox = bbox
+    def __init__(self, bbox, search=Search()):
+        self.bbox = FittingBbox(zoom_level=search.zoom_level).get(bbox)
         self.tile = None
         self.streets = []
-        self.osm_crosswalks = None
         self.convnet = None
-        self.plain_result = None
-        self.compared_with_osm_result = []
         self.logger = logging.getLogger(__name__)
-        self.is_crosswalk_barrier = 0.98
-        self.is_no_crosswalk_barrier = 0.1
-        self.step_distance = 18
+        self.search = search
         self.square_image_length = 50
+        self.max_distance = self._calculate_max_distance(search.zoom_level, self.square_image_length)
 
     def load_convnet(self):
         self.convnet = Detector()
+        if not self.search.word in self.convnet.labels:
+            error_message = self.search.word + " is not in label file."
+            self.logger.error(error_message)
+            raise Exception(error_message)
 
     def load_tiles(self):
         self._printer("Start image loading.")
-        loader = TileLoader(self.bbox)
+        loader = TileLoader(bbox=self.bbox, zoom_level=self.search.zoom_level)
         loader.load_tile()
         self.tile = loader.tile
-        self.bbox = self.tile.bbox
         self._printer("Stop image loading.")
 
     def load_streets(self):
         self._printer("Start street loading.")
-        fitting_bbox = FittingBbox(bbox=self.bbox)
-        bbox = fitting_bbox.get()
         if self.tile is None:
             self.logger.warning("Download tiles first")
-        street_loader = StreetCrosswalkLoader()
-        self.streets = street_loader.load_data(bbox)
-        self.osm_crosswalks = street_loader.crosswalks
+        street_loader = StreetLoader()
+        self.streets = street_loader.load_data(self.bbox)
         shuffle(self.streets)
         self._printer("Stop street loading.")
 
@@ -59,55 +58,43 @@ class BoxWalker:
 
         self._printer("Start detection.")
         tiles = self._get_tiles_of_box(self.streets, self.tile)
-        tiles_count = len(tiles)
-        self._printer(str(tiles_count) + " images to analyze.")
+        self._printer(str(len(tiles)) + " images to analyze.")
 
         images = [tile.image for tile in tiles]
         predictions = self.convnet.detect(images)
-        results = []
-        for i in range(tiles_count):
+        detected_nodes = []
+        for i, _ in enumerate(tiles):
             prediction = predictions[i]
-            if self.is_crosswalk(prediction):
-                results.append(tiles[i].get_centre_node())
-        self.plain_result = self._merge_near_nodes(results)
-        self.compared_with_osm_result = self._compare_osm_with_detected_crosswalks(self.plain_result)
+            if self.search.hit(prediction):
+                detected_nodes.append(tiles[i].get_centre_node())
         self._printer("Stop detection.")
-        return self.compared_with_osm_result
-
-    def is_crosswalk(self, prediction):
-        return prediction['crosswalk'] > self.is_crosswalk_barrier \
-               and prediction['noncrosswalk'] < self.is_no_crosswalk_barrier
+        merged_nodes = self._merge_near_nodes(detected_nodes)
+        if self.search.compare:
+            return self._compare_with_osm(merged_nodes)
+        return merged_nodes
 
     def _get_tiles_of_box(self, streets, tile):
-        street_walker = StreetWalker(tile=tile, step_distance=self.step_distance,
-                                     square_image_length=self.square_image_length)
+        street_walker = StreetWalker(tile=tile, square_image_length=self.square_image_length,
+                                     zoom_level=self.search.zoom_level)
         tiles = []
         for street in streets:
             street_tiles = street_walker.get_tiles(street)
             tiles += street_tiles
         return tiles
 
-    @staticmethod
-    def _merge_near_nodes(nodelist):
-        merger = NodeMerger.from_nodelist(nodelist)
-        merger.max_distance = 7
+    def _merge_near_nodes(self, node_list):
+        merger = NodeMerger(node_list, self.max_distance)
         return merger.reduce()
 
-    def _compare_osm_with_detected_crosswalks(self, detected_crosswalks):
-        result = []
-        is_near = False
-        DISTANCE_TO_CROSSWALK = 5.0
-        for detected_crosswalk in detected_crosswalks:
-            for osm_crosswalk in self.osm_crosswalks:
-                if osm_crosswalk.get_distance_in_meter(
-                        detected_crosswalk) < DISTANCE_TO_CROSSWALK:
-                    is_near = True
-                    break
-
-            if not is_near:
-                result.append(detected_crosswalk)
-            is_near = False
-        return result
+    def _compare_with_osm(self, detected_nodes):
+        comparator = OsmComparator(max_distance=self.max_distance)
+        return comparator.compare(detected_nodes=detected_nodes, tag=self.search.tag, bbox=self.bbox)
 
     def _printer(self, message):
         print(str(datetime.datetime.now()) + ": " + message)
+
+    @staticmethod
+    def _calculate_max_distance(zoom_level, square_image_length):
+        global_mercator = GlobalMercator()
+        resolution = global_mercator.Resolution(zoom_level)
+        return resolution * (square_image_length / 2)

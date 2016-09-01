@@ -1,14 +1,14 @@
 import random
 
-from src.data.globalmaptiles import GlobalMercator
+from src.base.globalmaptiles import GlobalMercator
 
 
 class UrlBuilder:
-    def __init__(self):
+    def __init__(self, zoom_level=19):
         self._url_first_part = 'https://t'
         self._url_second_part = '.ssl.ak.tiles.virtualearth.net/tiles/a'
         self._url_last_part = '.jpeg?g=4401&n=z'
-        self._zoom_level = 19
+        self._zoom_level = zoom_level
         self._mercator = GlobalMercator()
 
     def get_url_by_node(self, node):

@@ -1,12 +1,11 @@
-from src.data.street_crosswalk_loader import StreetCrosswalkLoader
+from src.data.street_loader import StreetLoader
 
 
 def test_load_streets(zurich_bellevue):
     bbox = zurich_bellevue
-    loader = StreetCrosswalkLoader()
+    loader = StreetLoader()
     streets = loader.load_data(bbox)
 
-    assert len(streets) > 50
-    assert len(loader.crosswalks) > 16
+    assert len(streets) > 0
     for street in streets:
         assert len(street.nodes) == 2

@@ -7,8 +7,8 @@ from src import cwenv
 from src.detection.box_walker import BoxWalker
 
 
-def detect(bbox, redis):
-    walker = BoxWalker(bbox)
+def detect(bbox, redis, search):
+    walker = BoxWalker(bbox=bbox, search=search)
     walker.load_streets()
     crosswalk_nodes = []
     if len(walker.streets) > 0:

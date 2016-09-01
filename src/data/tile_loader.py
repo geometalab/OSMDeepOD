@@ -12,7 +12,7 @@ class TileLoader:
         self.bbox = bbox
         self.tile = None
         self._zoom_level = zoom_level
-        self._fitting_bbox = FittingBbox(bbox=None, zoom_level=self._zoom_level)
+        self._fitting_bbox = FittingBbox(zoom_level=self._zoom_level)
 
     def _download_tiles(self, bbox):
         t_minx, t_miny, t_maxx, t_maxy = self._fitting_bbox.bbox_to_tiles(bbox)
@@ -35,9 +35,8 @@ class TileLoader:
             row += 1
         return tiles
 
-    @staticmethod
-    def _download_images(t_minx, t_miny, t_maxx, t_maxy):
-        url_builder = UrlBuilder()
+    def _download_images(self, t_minx, t_miny, t_maxx, t_maxy):
+        url_builder = UrlBuilder(self._zoom_level)
         urls = url_builder.get_urls_by_tiles(t_minx, t_miny, t_maxx, t_maxy)
         loader = MultiLoader(urls)
         loader.download()

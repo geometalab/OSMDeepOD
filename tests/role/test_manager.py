@@ -11,7 +11,7 @@ def test(big_bbox):
 
 
 def test_with_two_columns(node1):
-    node2 = node1.add_meter(200, Manager.SMALL_BBOX_SIDE_LENGHT + 50)
+    node2 = node1.add_meter(200, Manager.small_bbox_side_length + 50)
     manager = Manager(bbox=Bbox.from_leftdown_rightup(node1, node2), job_queue_name='dummy')
     columns = manager._calc_columns()
     rows = manager._calc_rows()
@@ -39,7 +39,7 @@ def test_big_bbox(node1, node2):
 
 
 def test_with_two(node1):
-    node2 = node1.add_meter(Manager.SMALL_BBOX_SIDE_LENGHT + 50, Manager.SMALL_BBOX_SIDE_LENGHT + 50)
+    node2 = node1.add_meter(Manager.small_bbox_side_length + 50, Manager.small_bbox_side_length + 50)
     manager = Manager(bbox=Bbox.from_leftdown_rightup(node1, node2), job_queue_name='dummy')
     columns = manager._calc_columns()
     rows = manager._calc_rows()
@@ -48,7 +48,7 @@ def test_with_two(node1):
 
 
 def test_with_three(node1):
-    node2 = node1.add_meter(2 * Manager.SMALL_BBOX_SIDE_LENGHT + 50, 2 * Manager.SMALL_BBOX_SIDE_LENGHT + 50)
+    node2 = node1.add_meter(2 * Manager.small_bbox_side_length + 50, 2 * Manager.small_bbox_side_length + 50)
     manager = Manager(bbox=Bbox.from_leftdown_rightup(node1, node2), job_queue_name='dummy')
     columns = manager._calc_columns()
     rows = manager._calc_rows()

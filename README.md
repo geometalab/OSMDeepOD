@@ -68,8 +68,10 @@ To start the detection process use the src/role/main.py<sup id="a2">[2](#main)</
 
 1. Use the manger option to select the detection area and generate the jobs stored by the redis instance
 ```
-python main.py --redis 127.0.0.1 --port 40001 --pass crosswalks manager 8.54 47.36 8.56 47.37
+python3 main.py --redis 172.17.0.25 --port 40001 --pass crosswalks manager 9.345101 47.090794 9.355947 47.097288 --tag junction roundabout --search roundabout --no_compare --zoom_level 17
 ```
+The default settings of --tag, --search, and --zoom_level are for crosswalk detection.
+
 
 2. Start the detection algorithm. The results are also stored by the redis instance.
 ```
