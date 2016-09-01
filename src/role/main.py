@@ -139,7 +139,7 @@ def mainfunc():
         '--no_compare',
         action='store_true',
         dest='no_compare',
-        help='Stop compare between OpenStreetMap entries and detected points.',
+        help='Stop comparing between OpenStreetMap entries and detected points.',
     )
 
     p_manager.add_argument(
