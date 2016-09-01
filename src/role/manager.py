@@ -46,7 +46,7 @@ class Manager(object):
         for small_bbox in self.small_bboxes:
             queue.enqueue_call(
                 func=detect,
-                args=(small_bbox, redis, self.search.zoom_level, self.search),
+                args=(small_bbox, redis, self.search),
                 timeout=Manager.timeout)
         print('Number of enqueued jobs in queue \'{0}\': {1}'.format(self.job_queue_name, len(queue)))
 
