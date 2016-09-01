@@ -14,15 +14,15 @@ from src.data.osm_comparator import OsmComparator
 
 
 class BoxWalker:
-    def __init__(self, bbox, search=Search()):
-        self.bbox = FittingBbox(zoom_level=search.zoom_level).get(bbox)
+    def __init__(self, bbox, search=None):
+        self.search = Search() if search is None else search
+        self.bbox = FittingBbox(zoom_level=self.search.zoom_level).get(bbox)
         self.tile = None
         self.streets = []
         self.convnet = None
         self.logger = logging.getLogger(__name__)
-        self.search = search
         self.square_image_length = 50
-        self.max_distance = self._calculate_max_distance(search.zoom_level, self.square_image_length)
+        self.max_distance = self._calculate_max_distance(self.search.zoom_level, self.square_image_length)
 
     def load_convnet(self):
         self.convnet = Detector()
@@ -90,7 +90,8 @@ class BoxWalker:
         comparator = OsmComparator(max_distance=self.max_distance)
         return comparator.compare(detected_nodes=detected_nodes, tag=self.search.tag, bbox=self.bbox)
 
-    def _printer(self, message):
+    @staticmethod
+    def _printer(message):
         print(str(datetime.datetime.now()) + ": " + message)
 
     @staticmethod

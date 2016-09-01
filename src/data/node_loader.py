@@ -1,5 +1,3 @@
-from functools import reduce
-
 from src.base.node import Node
 from src.data.overpass_api import OverpassApi
 
@@ -23,7 +21,7 @@ class NodeLoader:
     def _feature_to_nodes(feature):
         nodes = []
         coordinates = feature['geometry']['coordinates']
-        if type(coordinates) is tuple:
+        if isinstance(coordinates, tuple):
             nodes.append(Node(coordinates[1], coordinates[0], 0))
         else:
             for coordinate in coordinates:

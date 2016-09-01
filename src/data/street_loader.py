@@ -20,9 +20,9 @@ class StreetLoader:
         'tertiary_link',
         'pedestrian']
 
-    def __init__(self, categories=[]):
+    def __init__(self, categories=None):
         self.api = OverpassApi()
-        self._add(categories)
+        self._add([] if categories is None else categories)
         self.tags = self._generate_tags()
 
     def load_data(self, bbox):
