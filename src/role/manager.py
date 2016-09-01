@@ -13,16 +13,16 @@ class Manager(object):
     small_bbox_side_length = 2000.0
     timeout = 5400
 
-    def __init__(self, bbox, job_queue_name, search=Search()):
+    def __init__(self, bbox, job_queue_name, search=None):
         self.big_bbox = bbox
         self.job_queue_name = job_queue_name
         self.mercator = GlobalMercator()
         self.small_bboxes = []
-        self.search = search
+        self.search = self._search(search)
 
     @classmethod
-    def from_big_bbox(cls, big_bbox, redis, job_queue_name, search=Search()):
-        manager = cls(big_bbox, job_queue_name, search)
+    def from_big_bbox(cls, big_bbox, redis, job_queue_name, search=None):
+        manager = cls(big_bbox, job_queue_name, cls._search(search))
         manager._generate_small_bboxes()
         manager._enqueue_jobs(redis)
         return manager
@@ -61,3 +61,7 @@ class Manager(object):
         m_max_x, _ = self.mercator.LatLonToMeters(self.big_bbox.top, self.big_bbox.right)
         meter_in_x = m_max_x - m_min_x
         return int(math.ceil(meter_in_x / Manager.small_bbox_side_length))
+
+    @staticmethod
+    def _search(search):
+        return Search() if search is None else search
