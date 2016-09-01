@@ -6,11 +6,11 @@ from src.data.node_merger import NodeMerger
 
 @pytest.fixture
 def node_list():
-    n1 = Node(7.412756, 46.922925, 1)
-    n2 = Node(7.412790, 46.922918, 2)
-    n3 = Node(7.412797, 46.922942, 3)
+    n1 = Node(7.41275611, 46.922925, 1)
+    n2 = Node(7.41275612, 46.922925, 2)
+    n3 = Node(7.41275613, 46.922925, 3)
     n4 = Node(8.412797, 46.922942, 4)
-    n5 = Node(8.412797, 46.922942, 5)
+    n5 = Node(8.412797, 46.922941, 5)
     return [n1, n2, n3, n4, n5]
 
 
