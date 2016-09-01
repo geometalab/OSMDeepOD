@@ -82,10 +82,8 @@ class BoxWalker:
             tiles += street_tiles
         return tiles
 
-    @staticmethod
-    def _merge_near_nodes(nodelist):
-        merger = NodeMerger.from_nodelist(nodelist)
-        merger.max_distance = 7
+    def _merge_near_nodes(self, node_list):
+        merger = NodeMerger(node_list, self.max_distance)
         return merger.reduce()
 
     def _compare_with_osm(self, detected_nodes):

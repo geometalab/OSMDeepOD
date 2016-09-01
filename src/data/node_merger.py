@@ -2,8 +2,8 @@ from src.base.node import Node
 
 
 class NodeMerger:
-    def __init__(self, max_distance=8):
-        self.node_list = []
+    def __init__(self, node_list=[], max_distance=8):
+        self.node_list = node_list
         self.near_dict = {}
         self.max_distance = max_distance
 
