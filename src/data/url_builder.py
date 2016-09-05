@@ -11,19 +11,12 @@ class UrlBuilder:
         self._zoom_level = zoom_level
         self._mercator = GlobalMercator()
 
-    def get_url_by_node(self, node):
-        mx, my = self._mercator.LatLonToMeters(node.latitude, node.longitude)
-        tx, ty = self._mercator.MetersToTile(mx, my, self._zoom_level)
-        quadtree = self._mercator.QuadTree(tx, ty, self._zoom_level)
-        url = self._build_url(quadtree)
-        return url
-
     def get_urls_by_tiles(self, t_minx, t_miny, t_maxx, t_maxy):
         urls = []
         for ty in range(t_miny, t_maxy + 1):
             for tx in range(t_minx, t_maxx + 1):
-                quadtree = self._mercator.QuadTree(tx, ty, self._zoom_level)
-                url = self._build_url(quadtree)
+                quad_tree = self._mercator.QuadTree(tx, ty, self._zoom_level)
+                url = self._build_url(quad_tree)
                 urls.append(url)
         return urls
 

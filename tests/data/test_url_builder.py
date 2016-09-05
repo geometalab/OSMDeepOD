@@ -10,7 +10,7 @@ def url_builder():
 
 
 def test_url_from_node(node1, url_builder):
-    url = url_builder.get_url_by_node(node1)
+    url = url_builder.get_urls_by_tiles()
     assert url.endswith('ssl.ak.tiles.virtualearth.net/tiles/a1202212110112020212.jpeg?g=4401&n=z')
 
 
