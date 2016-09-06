@@ -1,20 +1,22 @@
-import time
 import logging
-import requests
-
-from multiprocessing.dummy import Pool as ThreadPool
-from PIL import Image
+import time
 from io import BytesIO
+from multiprocessing.dummy import Pool as ThreadPool
 
-from src.data.user_agent import UserAgent
+import requests
+from PIL import Image
+
+from src.data.orthofoto.user_agent import UserAgent
 
 
 class MultiLoader:
-    def __init__(self, urls):
+    def __init__(self, urls, auth=None):
         self.urls = urls
         self.results = []
         self.nb_threads = 10
         self.nb_tile_per_trial = 40
+        self.auth = tuple() if auth is None else auth
+        self.user_agent = UserAgent()
         self.logger = logging.getLogger(__name__)
 
     def download(self):
@@ -45,17 +47,14 @@ class MultiLoader:
         raise Exception(error_message)
 
     def _download_async(self, urls):
-        user_agent = UserAgent()
-        arguments = [dict(url=url, header={'User-Agent': user_agent.random}) for url in urls]
         pool = ThreadPool(self.nb_threads)
-        results = pool.map(_download_image, arguments)
+        results = pool.map(self._download_image, urls)
         pool.close()
         pool.join()
         return results
 
-
-def _download_image(arguments):
-    response = requests.get(arguments['url'], headers=arguments['header'])
-    img = Image.open(BytesIO(response.content))
-    img.filename = arguments['url']
-    return img
+    def _download_image(self, url):
+        response = requests.get(url, headers={'User-Agent': self.user_agent.random}, auth=self.auth)
+        img = Image.open(BytesIO(response.content))
+        img.filename = url
+        return img

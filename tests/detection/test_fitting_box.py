@@ -1,4 +1,4 @@
-from src.data.fitting_bbox import FittingBbox
+from src.data.orthofoto.fitting_bbox import FittingBbox
 
 
 def test_fitting_bbox(small_bbox):

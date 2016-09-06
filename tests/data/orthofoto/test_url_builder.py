@@ -1,7 +1,8 @@
-import pytest
 import urllib.request
 
-from src.data.url_builder import UrlBuilder
+import pytest
+
+from src.data.orthofoto.url_builder import UrlBuilder
 
 
 @pytest.fixture(scope="module")

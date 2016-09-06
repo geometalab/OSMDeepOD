@@ -1,8 +1,8 @@
 import pytest
 
-from src.base.node import Node
 from src.base.bbox import Bbox
-from src.data.osm_comparator import OsmComparator
+from src.base.node import Node
+from src.data.osm.osm_comparator import OsmComparator
 
 
 @pytest.fixture(scope="module", autouse=True)

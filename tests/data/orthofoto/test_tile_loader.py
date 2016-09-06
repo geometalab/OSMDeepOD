@@ -1,4 +1,4 @@
-from src.data.tile_loader import TileLoader
+from src.data.orthofoto.tile_loader import TileLoader
 
 
 def test_satellite_image_download(zurich_bellevue):

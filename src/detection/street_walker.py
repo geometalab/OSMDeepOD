@@ -1,5 +1,5 @@
 from src.base.globalmaptiles import GlobalMercator
-from src.data.node_merger import NodeMerger
+from src.data.osm.node_merger import NodeMerger
 
 
 class StreetWalker:

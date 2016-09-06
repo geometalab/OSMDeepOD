@@ -4,13 +4,13 @@ from random import shuffle
 
 from src.base.globalmaptiles import GlobalMercator
 from src.base.search import Search
-from src.data.fitting_bbox import FittingBbox
-from src.data.node_merger import NodeMerger
-from src.data.street_loader import StreetLoader
-from src.data.tile_loader import TileLoader
+from src.data.orthofoto.fitting_bbox import FittingBbox
+from src.data.orthofoto.tile_loader import TileLoader
+from src.data.osm.node_merger import NodeMerger
+from src.data.osm.osm_comparator import OsmComparator
+from src.data.osm.street_loader import StreetLoader
 from src.detection.street_walker import StreetWalker
 from src.detection.tensor.detector import Detector
-from src.data.osm_comparator import OsmComparator
 
 
 class BoxWalker:

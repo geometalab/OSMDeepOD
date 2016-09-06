@@ -1,5 +1,5 @@
 from src.base.node import Node
-from src.data.overpass_api import OverpassApi
+from src.data.osm.overpass_api import OverpassApi
 
 
 class NodeLoader:

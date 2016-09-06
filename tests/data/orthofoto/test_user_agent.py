@@ -1,4 +1,4 @@
-from src.data.user_agent import UserAgent
+from src.data.orthofoto.user_agent import UserAgent
 
 
 def test_user_agent_random():

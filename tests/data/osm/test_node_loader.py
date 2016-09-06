@@ -1,4 +1,4 @@
-from src.data.node_loader import NodeLoader
+from src.data.osm.node_loader import NodeLoader
 
 
 def test_load_streets(zurich_bellevue, crosswalk_tag):

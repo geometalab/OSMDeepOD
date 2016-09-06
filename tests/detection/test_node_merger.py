@@ -1,7 +1,7 @@
 import pytest
 
 from src.base.node import Node
-from src.data.node_merger import NodeMerger
+from src.data.osm.node_merger import NodeMerger
 
 
 @pytest.fixture(scope="module")

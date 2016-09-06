@@ -1,7 +1,7 @@
-from src.base.tag import Tag
 from src.base.node import Node
 from src.base.street import Street
-from src.data.overpass_api import OverpassApi
+from src.base.tag import Tag
+from src.data.osm.overpass_api import OverpassApi
 
 
 class StreetLoader:
