@@ -1,8 +1,8 @@
-import requests
 import pytest
+import requests
 
 from src.data.orthofoto.fitting_bbox import FittingBbox
-from src.data.orthofoto.url_builder import UrlBuilder
+from src.data.orthofoto.other.url_builder import UrlBuilder
 
 
 @pytest.fixture(scope='module')

@@ -3,8 +3,8 @@ from PIL import Image
 from src.base.bbox import Bbox
 from src.base.tile import Tile
 from src.data.orthofoto.fitting_bbox import FittingBbox
-from src.data.orthofoto.multi_loader import MultiLoader
-from src.data.orthofoto.url_builder import UrlBuilder
+from src.data.orthofoto.other.multi_loader import MultiLoader
+from src.data.orthofoto.other.url_builder import UrlBuilder
 
 
 class TileLoader:

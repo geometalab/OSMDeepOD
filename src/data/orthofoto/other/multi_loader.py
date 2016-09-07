@@ -6,7 +6,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 import requests
 from PIL import Image
 
-from src.data.orthofoto.user_agent import UserAgent
+from src.data.orthofoto.other.user_agent import UserAgent
 
 
 class MultiLoader:

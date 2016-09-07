@@ -1,6 +1,6 @@
 import pytest
 
-from src.data.orthofoto.multi_loader import MultiLoader
+from src.data.orthofoto.other.multi_loader import MultiLoader
 
 
 @pytest.fixture(scope='module')
