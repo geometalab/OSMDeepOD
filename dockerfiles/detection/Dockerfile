@@ -11,6 +11,7 @@ RUN apt-get update \
 && cd / \
 && git clone https://github.com/geometalab/OSM-Crosswalk-Detection.git \
 && cd OSM-Crosswalk-Detection \
+&& pip uninstall requests \
 && pip install -r requires.dev.txt \
 && python3 setup.py install \
 
