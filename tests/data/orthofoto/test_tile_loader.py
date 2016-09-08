@@ -1,21 +1,26 @@
+import pytest
+
 from src.data.orthofoto.tile_loader import TileLoader
+from src.data.orthofoto.other.other_api import OtherApi
 
 
-def test_satellite_image_download(zurich_bellevue):
+@pytest.fixture(scope='module')
+def image_api():
+    return OtherApi()
+
+
+def test_satellite_image_download(zurich_bellevue, image_api):
     bbox = zurich_bellevue
-    tl = TileLoader(bbox)
+    tl = TileLoader(bbox, image_api=image_api)
     tile = tl.load_tile()
     img = tile.image
     assert img.size[0] > 0
     assert img.size[1] > 0
 
 
-def test_new_bbox(small_bbox):
-    tile_loader = TileLoader(small_bbox)
+def test_new_bbox(small_bbox, image_api):
+    tile_loader = TileLoader(small_bbox, image_api)
     tile_loader.load_tile()
     tile = tile_loader.tile
     tile_bbox = tile.bbox
-    assert abs(tile_bbox.left - 8.5425567627)
-    assert abs(tile_bbox.bottom - 47.3658039665) < 0.00001
-    assert abs(tile_bbox.right - 8.5432434082) < 0.00001
-    assert abs(tile_bbox.top - 47.3681292923) < 0.00001
+    assert tile_bbox == small_bbox

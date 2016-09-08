@@ -35,13 +35,10 @@ class Bbox(object):
         bbox.top = node_rightup.latitude
         return bbox
 
-    def __str__(self):
-        return str(self.bottom) + ',' + str(self.left) + ',' + str(self.top) + ',' + str(self.right)
-
-    def node_leftdown(self):
+    def node_left_down(self):
         return Node(self.bottom, self.left)
 
-    def node_rightup(self):
+    def node_right_up(self):
         return Node(self.top, self.right)
 
     def in_bbox(self, node):
@@ -54,10 +51,17 @@ class Bbox(object):
         return in_lat and in_lon
 
     def get_bbox_exclude_border(self, border_distance):
-        left_down_node = self.node_leftdown()
-        right_up_node = self.node_rightup()
+        left_down_node = self.node_left_down()
+        right_up_node = self.node_right_up()
 
         new_left_down = left_down_node.add_meter(border_distance, border_distance)
         new_right_up = right_up_node.add_meter(-border_distance, -border_distance)
         ret = Bbox.from_leftdown_rightup(new_left_down, new_right_up)
         return ret
+
+    def __str__(self):
+        return str(self.bottom) + ',' + str(self.left) + ',' + str(self.top) + ',' + str(self.right)
+
+    def __eq__(self, other):
+        return self.bottom == other.bottom and self.left == other.left \
+               and self.top == other.top and self.right == other.right

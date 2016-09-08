@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from src.data.orthofoto.fitting_bbox import FittingBbox
+from src.data.orthofoto.other.fitting_bbox import FittingBbox
 from src.data.orthofoto.other.url_builder import UrlBuilder
 
 

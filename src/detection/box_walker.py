@@ -4,25 +4,26 @@ from random import shuffle
 
 from src.base.globalmaptiles import GlobalMercator
 from src.base.search import Search
-from src.data.orthofoto.fitting_bbox import FittingBbox
 from src.data.orthofoto.tile_loader import TileLoader
 from src.data.osm.node_merger import NodeMerger
 from src.data.osm.osm_comparator import OsmComparator
 from src.data.osm.street_loader import StreetLoader
 from src.detection.street_walker import StreetWalker
 from src.detection.tensor.detector import Detector
+from src.data.orthofoto.other.other_api import OtherApi
 
 
 class BoxWalker:
     def __init__(self, bbox, search=None):
         self.search = Search() if search is None else search
-        self.bbox = FittingBbox(zoom_level=self.search.zoom_level).get(bbox)
+        self.bbox = bbox
         self.tile = None
         self.streets = []
         self.convnet = None
         self.logger = logging.getLogger(__name__)
         self.square_image_length = 50
         self.max_distance = self._calculate_max_distance(self.search.zoom_level, self.square_image_length)
+        self.image_api = OtherApi(self.search.zoom_level)
 
     def load_convnet(self):
         self.convnet = Detector()
@@ -33,7 +34,7 @@ class BoxWalker:
 
     def load_tiles(self):
         self._printer("Start image loading.")
-        loader = TileLoader(bbox=self.bbox, zoom_level=self.search.zoom_level)
+        loader = TileLoader(bbox=self.bbox, image_api=self.image_api)
         loader.load_tile()
         self.tile = loader.tile
         self._printer("Stop image loading.")
