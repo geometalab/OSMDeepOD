@@ -18,6 +18,14 @@ class WmsApi:
     def _auth_monkey_patch(auth):
         AuthMonkeyPatch(auth)
 
-    def get(self, **kwargs):
+    def get_image(self, bbox):
+        return self.get()
+
+    def _calculate_image_size(self):
+        pass
+
+    def _get(self, **kwargs):
         img = self.wms.getmap(**kwargs)
         return Image.open(BytesIO(img.read()))
+
+
