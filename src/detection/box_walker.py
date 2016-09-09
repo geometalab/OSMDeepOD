@@ -41,11 +41,10 @@ class BoxWalker:
 
     def load_streets(self):
         self._printer("Start street loading.")
-        if self.tile is None:
-            self.logger.warning("Download tiles first")
         street_loader = StreetLoader()
         self.streets = street_loader.load_data(self.bbox)
         shuffle(self.streets)
+        self._printer(str(len(self.streets)) + " streets to walk.")
         self._printer("Stop street loading.")
 
     def walk(self):

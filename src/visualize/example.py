@@ -7,6 +7,10 @@ def zurich_bellevue():
     return Bbox.from_lbrt(8.5442953706, 47.36628571, 8.5457748771, 47.3674659016)
 
 
+def rappi():
+    return Bbox.from_lbrt(8.8181022825, 47.2263345016, 8.8188113747, 47.2268572692)
+
+
 def draw_streets(tile, streets):
     for street in streets:
         start = tile.get_pixel(street.nodes[0])
@@ -23,14 +27,29 @@ def draw_small_boxes(tiles, big_tile):
         drawer.rectangle(big_tile.image, start, end, "red")
 
 
-walker = BoxWalker(bbox=zurich_bellevue())
+def draw_nodes(nodes, tile):
+    for node in nodes:
+        position = tile.get_pixel(node)
+        drawer.point(tile.image, position, '#66ff33')
+
+
+walker = BoxWalker(bbox=rappi())
+walker.search.compare = False
+
 walker.load_streets()
 walker.load_tiles()
+walker.load_convnet()
+
 sample_streets = walker.streets
 sample_tile = walker.tile
+detected_nodes = walker.walk()
+
 sample_small_tiles = walker._get_tiles_of_box(sample_streets, sample_tile)
 
 draw_streets(sample_tile, sample_streets)
 draw_small_boxes(sample_small_tiles, sample_tile)
+draw_nodes(detected_nodes, sample_tile)
+
+print('Number of detected nodes: ', len(detected_nodes))
 
 sample_tile.image.show()
