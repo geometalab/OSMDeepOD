@@ -13,7 +13,7 @@ from src.data.orthofoto.other.other_api import OtherApi
 
 
 class BoxWalker:
-    def __init__(self, bbox, search=None):
+    def __init__(self, bbox, search=None, api=None):
         self.search = Search() if search is None else search
         self.bbox = bbox
         self.tile = None
@@ -22,7 +22,7 @@ class BoxWalker:
         self.logger = logging.getLogger(__name__)
         self.square_image_length = 50
         self.max_distance = self._calculate_max_distance(self.search.zoom_level, self.square_image_length)
-        self.image_api = OtherApi(self.search.zoom_level)
+        self.image_api = OtherApi(self.search.zoom_level) if api is None else api
 
     def load_convnet(self):
         self.convnet = Detector()

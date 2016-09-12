@@ -38,8 +38,14 @@ class Bbox(object):
     def node_left_down(self):
         return Node(self.bottom, self.left)
 
+    def node_left_up(self):
+        return Node(self.top, self.left)
+
     def node_right_up(self):
         return Node(self.top, self.right)
+
+    def node_right_down(self):
+        return Node(self.bottom, self.right)
 
     def in_bbox(self, node):
         lat = node.latitude

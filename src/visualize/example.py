@@ -1,6 +1,9 @@
+from requests_ntlm import HttpNtlmAuth
+
 from src.visualize import drawer
 from src.base.bbox import Bbox
 from src.detection.box_walker import BoxWalker
+from src.data.orthofoto.wms.wms_api import WmsApi
 
 
 def zurich_bellevue():
@@ -34,7 +37,13 @@ def draw_nodes(nodes, tile):
         drawer.point(tile.image, position, '#66ff33')
 
 
-walker = BoxWalker(bbox=zurich_bellevue())
+#url = 'http://maps.hsr.ch/gdi/services/Basisdaten/swissimage/ImageServer/WMSServer'
+#auth = HttpNtlmAuth(username, password)
+#wms_api = WmsApi(zoom_level=19, url=url, auth=auth)
+
+#walker = BoxWalker(bbox=rappi(), api=wms_api)
+walker = BoxWalker(bbox=rappi())
+
 walker.search.compare = False
 
 walker.load_streets()
