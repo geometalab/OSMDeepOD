@@ -1,6 +1,5 @@
 import datetime
 import logging
-from random import shuffle
 
 from src.base.globalmaptiles import GlobalMercator
 from src.base.search import Search
@@ -43,14 +42,11 @@ class BoxWalker:
         self._printer("Start street loading.")
         street_loader = StreetLoader()
         self.streets = street_loader.load_data(self.bbox)
-        shuffle(self.streets)
         self._printer(str(len(self.streets)) + " streets to walk.")
         self._printer("Stop street loading.")
 
     def walk(self):
-        ready_for_walk = (not self.tile is None) and (
-            not self.streets is None) and (
-                             not self.convnet is None)
+        ready_for_walk = (not self.tile is None) and (not self.streets is None) and (not self.convnet is None)
         if not ready_for_walk:
             error_message = "Not ready for walk. Load tiles, streets and convnet first"
             self.logger.error(error_message)

@@ -41,7 +41,8 @@ class Tile:
         y1 = centre_pixel[1] - side_length // 2
         y2 = centre_pixel[1] + side_length // 2
 
-        img = self.image.crop((x1, y1, x2, y2))
+        crop_box = (x1, y1, x2, y2)
+        img = self.image.crop(crop_box)
         left_down = self.get_node((x1, y1))
         right_up = self.get_node((x2, y2))
         bbox = Bbox.from_leftdown_rightup(left_down, right_up)
@@ -54,6 +55,3 @@ class Tile:
         node = Node(self.bbox.node_left_down().latitude + diff_lat / 2,
                     self.bbox.node_left_down().longitude + diff_lon / 2)
         return node
-
-    def show(self):
-        self.image.show()

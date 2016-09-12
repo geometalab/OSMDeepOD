@@ -13,9 +13,10 @@ def rappi():
 
 def draw_streets(tile, streets):
     for street in streets:
-        start = tile.get_pixel(street.nodes[0])
-        end = tile.get_pixel(street.nodes[1])
-        drawer.line(tile.image, start, end, 'blue')
+        for i in range(len(street.nodes) - 1):
+            start = tile.get_pixel(street.nodes[i])
+            end = tile.get_pixel(street.nodes[i + 1])
+            drawer.line(tile.image, start, end, 'blue')
 
 
 def draw_small_boxes(tiles, big_tile):

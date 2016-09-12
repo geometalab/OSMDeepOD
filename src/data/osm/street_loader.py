@@ -39,25 +39,13 @@ class StreetLoader:
             tags.append(Tag(key='highway', value=category))
         return tags
 
-    def _generate_street(self, data):
+    @staticmethod
+    def _generate_street(data):
         streets = []
         for feature in data['features']:
-            highway = feature['properties']['highway']
-            osm_id = feature['id']
-            if self._has_name(feature):
-                name = feature['properties']['name']
-            else:
-                name = 'unknown'
             coordinates = feature['geometry']['coordinates']
-            for i in range(len(coordinates) - 1):
-                street = Street.from_info(name, osm_id, highway)
-                start_node = Node(coordinates[i][1], coordinates[i][0])
-                end_node = Node(coordinates[i + 1][1], coordinates[i + 1][0])
-                street.nodes.append(start_node)
-                street.nodes.append(end_node)
-                streets.append(street)
+            nodes = []
+            for coordinate in coordinates:
+                nodes.append(Node(coordinate[1], coordinate[0]))
+            streets.append(Street(nodes))
         return streets
-
-    @staticmethod
-    def _has_name(feature):
-        return 'name' in feature['properties']
