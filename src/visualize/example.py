@@ -34,7 +34,7 @@ def draw_nodes(nodes, tile):
         drawer.point(tile.image, position, '#66ff33')
 
 
-walker = BoxWalker(bbox=rappi())
+walker = BoxWalker(bbox=zurich_bellevue())
 walker.search.compare = False
 
 walker.load_streets()

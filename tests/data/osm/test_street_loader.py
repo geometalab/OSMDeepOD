@@ -7,5 +7,3 @@ def test_load_streets(zurich_bellevue):
     streets = loader.load_data(bbox)
 
     assert len(streets) > 0
-    for street in streets:
-        assert len(street.nodes) == 2
