@@ -13,6 +13,11 @@ def version():
 
 
 @pytest.fixture(scope='module')
+def format():
+    return 'image/jpeg'
+
+
+@pytest.fixture(scope='module')
 def env():
     root = environ.Path(__file__ + "/../../../../../")
     env = environ.Env()
