@@ -14,6 +14,10 @@ def rappi():
     return Bbox.from_lbrt(8.8181022825, 47.2263345016, 8.8188113747, 47.2268572692)
 
 
+def three_king():
+    return Bbox.from_lbrt(8.529906, 47.364329, 8.539329, 47.369052)
+
+
 def draw_streets(tile, streets):
     for street in streets:
         for i in range(len(street.nodes) - 1):
@@ -37,12 +41,12 @@ def draw_nodes(nodes, tile):
         drawer.point(tile.image, position, '#66ff33')
 
 
-#url = 'http://maps.hsr.ch/gdi/services/Basisdaten/swissimage/ImageServer/WMSServer'
-#auth = HttpNtlmAuth(username, password)
-#wms_api = WmsApi(zoom_level=19, url=url, auth=auth)
+url = 'http://maps.hsr.ch/gdi/services/Basisdaten/swissimage/ImageServer/WMSServer'
+auth = HttpNtlmAuth('hsr\\skurath', '..Ib27Ja.!')
+wms_api = WmsApi(zoom_level=19, url=url, auth=auth)
 
-#walker = BoxWalker(bbox=rappi(), api=wms_api)
-walker = BoxWalker(bbox=rappi())
+walker = BoxWalker(bbox=three_king(), api=wms_api)
+# walker = BoxWalker(bbox=rappi())
 
 walker.search.compare = False
 
@@ -55,9 +59,11 @@ sample_tile = walker.tile
 detected_nodes = walker.walk()
 
 sample_small_tiles = walker._get_tiles_of_box(sample_streets, sample_tile)
-
-draw_streets(sample_tile, sample_streets)
-draw_small_boxes(sample_small_tiles, sample_tile)
+# sample_tile.image.show()
+# draw_streets(sample_tile, sample_streets)
+# sample_tile.image.show()
+# draw_small_boxes(sample_small_tiles, sample_tile)
+# sample_tile.image.show()
 draw_nodes(detected_nodes, sample_tile)
 
 print('Number of detected nodes: ', len(detected_nodes))

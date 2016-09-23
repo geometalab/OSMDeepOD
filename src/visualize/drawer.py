@@ -14,5 +14,5 @@ def rectangle(image, start, end, color):
 def point(image, position, color):
     draw = ImageDraw.Draw(image)
     x, y = position
-    circle = [(x - 3, y - 3), (x + 3, y + 3)]
+    circle = [(x - 5, y - 5), (x + 5, y + 5)]
     draw.ellipse(circle, fill=color, outline=color)

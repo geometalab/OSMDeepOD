@@ -32,7 +32,7 @@ class StreetWalker:
     def _calculate_step_distance(self, zoom_level):
         global_mercator = GlobalMercator()
         resolution = global_mercator.Resolution(zoom_level)
-        return resolution * (self._square_image_length / 1.3)
+        return resolution * (self._square_image_length / 1.5)
 
     def _calculate_tile_centres(self, street):
         centers = [street.nodes[0]]
