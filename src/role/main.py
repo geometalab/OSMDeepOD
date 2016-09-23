@@ -22,7 +22,7 @@ def manager(args):
     try:
         print('Manger has started...')
         search = Search(word=args.search, key=args.tag[0], value=args.tag[1], zoom_level=int(args.zoom_level),
-                        compare=(not args.no_compare))
+                        compare=(not args.no_compare), orthofoto=args.orthofoto)
         Manager.from_big_bbox(
             big_bbox,
             redis_args(args),
@@ -134,6 +134,14 @@ def mainfunc():
         dest='tag',
         default=['highway', 'crossing'],
         help='An OpenStreetMap key value pair like: highway crossing. To compare with OpenStreetMap entries.',
+    )
+    p_manager.add_argument(
+        '-o',
+        '--orthofoto',
+        action='store',
+        dest='orthofoto',
+        default='other',
+        help='Choose your API, your implementation must be in the orthofoto directory.',
     )
     p_manager.add_argument(
         '--no_compare',

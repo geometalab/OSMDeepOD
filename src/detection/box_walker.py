@@ -1,6 +1,8 @@
 import datetime
 import logging
 
+from importlib import import_module
+
 from src.base.globalmaptiles import GlobalMercator
 from src.base.search import Search
 from src.data.orthofoto.tile_loader import TileLoader
@@ -13,7 +15,7 @@ from src.data.orthofoto.other.other_api import OtherApi
 
 
 class BoxWalker:
-    def __init__(self, bbox, search=None, image_api=None):
+    def __init__(self, bbox, search=None):
         self.search = Search() if search is None else search
         self.bbox = bbox
         self.tile = None
@@ -22,7 +24,15 @@ class BoxWalker:
         self.logger = logging.getLogger(__name__)
         self.square_image_length = 50
         self.max_distance = self._calculate_max_distance(self.search.zoom_level, self.square_image_length)
-        self.image_api = OtherApi(self.search.zoom_level) if image_api is None else image_api
+        self.image_api = OtherApi(self.search.zoom_level) if self.search.orthophoto is 'other' else self._get_image_api(
+            self.search.orthophoto)
+
+    @staticmethod
+    def _get_image_api(image_api):
+        source = 'src.data.orthofoto.' + image_api + '.' + image_api + '_api'
+        module = import_module(source)
+        class_ = getattr(module, image_api.title() + 'Api')
+        return class_()
 
     def load_convnet(self):
         self.convnet = Detector()
