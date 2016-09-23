@@ -1,3 +1,5 @@
+import os
+import environ
 from io import BytesIO
 from PIL import Image
 
@@ -6,7 +8,8 @@ from src.data.orthofoto.wms.auth_monkey_patch import AuthMonkeyPatch
 
 
 class WmsApi:
-    def __init__(self, zoom_level=19, url='', auth=None):
+    def __init__(self, zoom_level=19):
+        self.current_directory = os.path.dirname(os.path.realpath(__file__))
         self.url = url
         self.zoom_level = zoom_level
         self.srs = 'EPSG:4326'
@@ -16,6 +19,16 @@ class WmsApi:
 
         from owslib.wms import WebMapService
         self.wms = WebMapService(url, version=self.version)
+
+    def read_env(self):
+        root = environ.Path(self.current_directory)  # three folder back (/a/b/c/ - 3 = /)
+        env = environ.Env(
+            NTLM_USER=(str, 'dummy_user'),
+            NTLM_PASSWORD=(str, 'dummy_user'),
+
+        )
+        environ.Env.read_env()  # reading .env file
+        return env
 
     @staticmethod
     def _auth_monkey_patch(auth):
