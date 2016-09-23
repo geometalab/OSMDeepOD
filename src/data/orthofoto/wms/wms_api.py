@@ -1,34 +1,51 @@
 import os
 import environ
+import logging
 from io import BytesIO
 from PIL import Image
 
 from src.base import geo_helper
 from src.data.orthofoto.wms.auth_monkey_patch import AuthMonkeyPatch
+from requests_ntlm import HttpNtlmAuth
 
 
 class WmsApi:
     def __init__(self, zoom_level=19):
+        self.logger = logging.getLogger(__name__)
         self.current_directory = os.path.dirname(os.path.realpath(__file__))
-        self.url = url
+        self.env = self._read_env()
+        self.auth = self.set_auth()
         self.zoom_level = zoom_level
-        self.srs = 'EPSG:4326'
-        self.version = '1.1.0'
-        self.auth = auth
-        self._auth_monkey_patch(auth)
+
+        self._auth_monkey_patch(self.auth)
 
         from owslib.wms import WebMapService
-        self.wms = WebMapService(url, version=self.version)
+        self.wms = WebMapService(url=self.env('URL'), version=self.env('VERSION'))
 
-    def read_env(self):
-        root = environ.Path(self.current_directory)  # three folder back (/a/b/c/ - 3 = /)
+    def set_auth(self):
+        user = self.env('NTLM_USER')
+        password = self.env('NTLM_PASSWORD')
+        return HttpNtlmAuth(user, password) if user is not None and password is not None else None
+
+    def _read_env(self):
         env = environ.Env(
-            NTLM_USER=(str, 'dummy_user'),
-            NTLM_PASSWORD=(str, 'dummy_user'),
-
+            NTLM_USER=(str, None),
+            NTLM_PASSWORD=(str, None),
+            URL=(str, None),
+            SRS=(str, None),
+            VERSION=(str, None),
+            LAYER=(str, None)
         )
-        environ.Env.read_env()  # reading .env file
+        current = environ.Path(self.current_directory)
+        environ.Env.read_env(current('.env'))
+        self._settings_check(env)
         return env
+
+    def _settings_check(self, env):
+        if env('URL') is None or env('SRS') is None or env('VERSION') is None or env('LAYER') is None:
+            error_message = "You have to set all URL, SRS, LAYER and VERSION in your .env config file."
+            self.logger.error(error_message)
+            raise Exception(error_message)
 
     @staticmethod
     def _auth_monkey_patch(auth):
@@ -36,8 +53,8 @@ class WmsApi:
 
     def get_image(self, bbox):
         size = self._calculate_image_size(bbox, self.zoom_level)
-        image = self._get(layers=['0'],
-                          srs=self.srs,
+        image = self._get(layers=[self.env('LAYER')],
+                          srs=self.env('SRS'),
                           bbox=self._box(bbox),
                           size=size,
                           format='image/jpeg',

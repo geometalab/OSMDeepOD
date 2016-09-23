@@ -1,9 +1,6 @@
-from requests_ntlm import HttpNtlmAuth
-
 from src.visualize import drawer
 from src.base.bbox import Bbox
 from src.detection.box_walker import BoxWalker
-from src.data.orthofoto.wms.wms_api import WmsApi
 
 
 def zurich_bellevue():
