@@ -5,7 +5,7 @@ from src.base.tile import Tile
 
 @pytest.fixture(scope="module")
 def tile(small_bbox):
-    return Tile.from_tile(None, small_bbox)
+    return Tile(None, small_bbox)
 
 
 def test_instantiate_from_tile(tile, small_bbox):

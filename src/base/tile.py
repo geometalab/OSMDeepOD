@@ -3,16 +3,9 @@ from src.base.node import Node
 
 
 class Tile:
-    def __init__(self):
-        self.image = None
-        self.bbox = None
-
-    @classmethod
-    def from_tile(cls, pil_image, bbox):
-        tile = cls()
-        tile.image = pil_image
-        tile.bbox = bbox
-        return tile
+    def __init__(self, image, bbox):
+        self.image = image
+        self.bbox = bbox
 
     def get_pixel(self, node):
         image_width = self.bbox.right - self.bbox.left
@@ -48,20 +41,17 @@ class Tile:
         y1 = centre_pixel[1] - side_length // 2
         y2 = centre_pixel[1] + side_length // 2
 
-        img = self.image.crop((x1, y1, x2, y2))
+        crop_box = (x1, y1, x2, y2)
+        img = self.image.crop(crop_box)
         left_down = self.get_node((x1, y1))
         right_up = self.get_node((x2, y2))
         bbox = Bbox.from_leftdown_rightup(left_down, right_up)
 
-        return Tile.from_tile(img, bbox)
+        return Tile(img, bbox)
 
     def get_centre_node(self):
-        diff_lat = self.bbox.node_rightup().latitude - self.bbox.node_leftdown().latitude
-        diff_lon = self.bbox.node_rightup().longitude - self.bbox.node_leftdown().longitude
-        node = Node(self.bbox.node_leftdown().latitude + diff_lat / 2,
-                    self.bbox.node_leftdown().longitude + diff_lon / 2)
+        diff_lat = self.bbox.node_right_up().latitude - self.bbox.node_left_down().latitude
+        diff_lon = self.bbox.node_right_up().longitude - self.bbox.node_left_down().longitude
+        node = Node(self.bbox.node_left_down().latitude + diff_lat / 2,
+                    self.bbox.node_left_down().longitude + diff_lon / 2)
         return node
-
-
-    def show(self):
-        self.image.show()

@@ -8,5 +8,7 @@ pytest==2.9.2
 redis==2.10.5
 rq==0.6.0
 dockerpty
-requests
+requests==2.5.2
 requests_ntlm
+docker-py
+OWSLib

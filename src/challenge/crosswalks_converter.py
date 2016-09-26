@@ -36,33 +36,32 @@ def convert_csv(json_data, name, ext='csv'):
 
 
 def convert_maproulette(json_data, name, ext='tasks.json'):
-    def build_element(crosswalk):
+    def build_element(i, crosswalk):
         element = \
             {
+                "name": "Task " + str(i),
+                "description": "Verify the point.",
                 "geometries": {
                     "type": "FeatureCollection",
                     "features": [
                         {
                             "type": "Feature",
-                            "properties": {
-                            },
+                            "properties": {},
                             "geometry": {
                                 "type": "Point",
                                 "coordinates": [
-                                    crosswalk['longitude'],
-                                    crosswalk['latitude']
+                                    float(crosswalk['longitude']),
+                                    float(crosswalk['latitude'])
                                 ]
                             }
                         }
                     ]
-                },
-                "identifier": str(uuid.uuid4())
+                }
             }
         return element
 
-    elements = [build_element(lat_lon_from_geojson_or_json(crosswalk))
-                for crosswalk in json_data.get('crosswalks', json_data.get(
-            'features', []))]
+    elements = [build_element(i, lat_lon_from_geojson_or_json(crosswalk))
+                for i, crosswalk in enumerate(json_data.get('crosswalks', json_data.get('features', [])))]
     value = str(elements).replace("'", '"')
     output_filename = '.'.join([name, ext])
     with open(output_filename, 'w') as f:

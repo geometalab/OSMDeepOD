@@ -1,5 +1,6 @@
+import math
 from src.base.globalmaptiles import GlobalMercator
-from src.data.node_merger import NodeMerger
+from src.data.osm.node_merger import NodeMerger
 
 
 class StreetWalker:
@@ -10,7 +11,8 @@ class StreetWalker:
         self._step_distance = self._calculate_step_distance(zoom_level)
 
     def get_tiles(self, street):
-        squared_tiles = self._get_squared_tiles(street.nodes[0], street.nodes[1])
+        nodes = self._calculate_tile_centres(street)
+        squared_tiles = self._get_squared_tiles(nodes)
         return squared_tiles
 
     @staticmethod
@@ -19,20 +21,32 @@ class StreetWalker:
         merger.max_distance = 10
         return merger.reduce()
 
-    def _get_squared_tiles(self, node1, node2):
-        distance_between_nodes = node1.get_distance_in_meter(node2)
-
+    def _get_squared_tiles(self, nodes):
         square_tiles = []
-        for i in range(0, int(distance_between_nodes / self._step_distance) + 2):
-            current_distance = self._step_distance * i
-            if current_distance > distance_between_nodes:
-                current_distance = distance_between_nodes
-            current_node = node1.step_to(node2, current_distance)
-            tile = self.tile.get_tile_by_node(current_node, self._square_image_length)
-            square_tiles.append(tile)
+        for node in nodes:
+            tile = self.tile.get_tile_by_node(node, self._square_image_length)
+            if self.tile.bbox.in_bbox(node):
+                square_tiles.append(tile)
         return square_tiles
 
     def _calculate_step_distance(self, zoom_level):
         global_mercator = GlobalMercator()
         resolution = global_mercator.Resolution(zoom_level)
-        return resolution * (self._square_image_length / 1.3)
+        return resolution * (self._square_image_length / 1.5)
+
+    def _calculate_tile_centres(self, street):
+        centers = [street.nodes[0]]
+        old_node = None
+        for i in range(len(street.nodes) - 1):
+            start_node = street.nodes[i] if old_node is None else old_node
+            end_node = street.nodes[i + 1]
+            distance = start_node.get_distance_in_meter(end_node)
+            if distance > self._step_distance:
+                parts = int(math.ceil(distance / self._step_distance))
+                for j in range(parts):
+                    node = start_node.step_to(end_node, self._step_distance * j)
+                    centers.append(node)
+                old_node = None
+            else:
+                old_node = start_node
+        return centers
