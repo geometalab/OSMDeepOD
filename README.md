@@ -68,9 +68,10 @@ To start the detection process use the src/role/main.py<sup id="a2">[2](#main)</
 
 1. Use the manger option to select the detection area and generate the jobs stored by the redis instance
 ```
-python3 main.py --redis 172.17.0.25 --port 40001 --pass crosswalks manager 9.345101 47.090794 9.355947 47.097288 --tag junction roundabout --search roundabout --no_compare --zoom_level 17
+python3 main.py --redis 172.17.0.25 --port 40001 --pass crosswalks manager 9.345101 47.090794 9.355947 47.097288 --tag junction roundabout --search roundabout --no_compare --zoom_level 17 --orthofoto other
 ```
 The default settings of --tag, --search, and --zoom_level are for crosswalk detection.
+The parameter '--orthofoto' is for the image source. (More under 'Own Orthofotos')
 
 
 2. Start the detection algorithm. The results are also stored by the redis instance.
@@ -85,6 +86,18 @@ python main.py --redis 127.0.0.1 --port 40001 --pass crosswalks resultworker
 
 If you have execute the result worker in the docker container you can move the crosswalks.json file to the /crosswalk/ directory which is map to your host.
 
+
+
+### Own Orthofotos
+To use your own Orthofotos you have to do the following steps:
+
+    1. Add a new directory to src/data/orthofoto
+    2. Add a new module to the directory with the name: 'your_new_directory'_api.py
+    3. Create a class in the module with the name: 'Your_new_directory'Api   (First letter needs to be uppercase)
+    4. Implement the function 'def get_image(self, bbox):' and returns a pillow image of the bbox
+    5. After that you can use your api with the parameter --orthofots 'your_new_directory'
+
+If you have problems with the implementation have a look at the wms or other example.
 
 ## Links
 - http://wiki.hsr.ch/StefanKeller/SA_BA_Gamified_Extraction_of_Crosswalks_from_Aerial_Images
