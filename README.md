@@ -4,7 +4,9 @@
 [![Stories in Ready](https://badge.waffle.io/geometalab/OSM-Crosswalk-Detection.svg?label=ready&title=Ready)](http://waffle.io/geometalab/OSM-Crosswalk-Detection)
 
 
-# OSM-Crosswalk-Detection: Deep learning based image recognition
+#  OSM and Deep Learning based Object Detection from Aerial Imagery 
+
+Formerly known as "OSM-Crosswalk-Detection".
 
 ## Introduction
 
