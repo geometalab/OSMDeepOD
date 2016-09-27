@@ -56,7 +56,7 @@ To start the detection process use the src/role/main.py<sup id="a2">[2](#main)</
 python3 main.py --redis 172.17.0.25 --port 40001 --pass crosswalks manager 9.345101 47.090794 9.355947 47.097288 --tag junction roundabout --search roundabout --no_compare --zoom_level 17 --orthofoto other
 ```
 The default settings of --tag, --search, and --zoom_level are for crosswalk detection.
-The parameter '--orthofoto' is for the image source. (More under 'Own Orthofotos')
+The parameter '--orthofoto' is for the image source.
 
 
 2. Start the detection algorithm. The results are also stored by the redis instance.
