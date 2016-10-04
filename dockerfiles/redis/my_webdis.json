@@ -1,0 +1,14 @@
+{
+  "redis_host": "127.0.0.1",
+  "redis_port": 40001,
+  "redis_auth": "crosswalks",
+  "http_host": "0.0.0.0",
+  "http_port": 1991,
+  "threads": 5,
+  "pool_size": 20,
+  "daemonize": false,
+  "websockets": false,
+  "database": 0,
+  "verbosity": 6,
+  "logfile": "webdis.log"
+}
