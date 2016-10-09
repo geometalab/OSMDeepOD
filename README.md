@@ -4,9 +4,11 @@
 [![Stories in Ready](https://badge.waffle.io/geometalab/OSM-Crosswalk-Detection.svg?label=ready&title=Ready)](http://waffle.io/geometalab/OSM-Crosswalk-Detection)
 
 
-#  OSM and Deep Learning based Object Detection from Aerial Imagery 
+#  OSMDeepOD - OSM and Deep Learning based Object Detection from Aerial Imagery 
 
-Formerly known as "OSM-Crosswalk-Detection".
+This is project about object detection from Aerial Imagery using OpenStreetMap (OSM) as massive training data and areal imagery wordwide or local. his project has been formerly known as "OSM-Crosswalk-Detection".
+
+Keywords: Big data; Data Science; Data Engineering; Machine Learning; Artificial Intelligence; Parallel Programming.
 
 ## Introduction
 
