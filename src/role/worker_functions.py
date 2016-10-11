@@ -1,5 +1,5 @@
 from rq import Queue
-from redis import Redis
+from redis import Redis, ConnectionPool
 import json
 import os
 
@@ -7,11 +7,13 @@ from src import cwenv
 from src.detection.box_walker import BoxWalker
 
 
-def enqueue_results(result_nodes, redis_connection):
-    q = Queue('results', connection=redis_connection)
+def enqueue_results(result_nodes, redis_connection_pool):
+    redis_queue_connection = Redis(connection_pool=redis_connection_pool)
+    q = Queue('results', connection=redis_queue_connection)
     q.enqueue_call(func=store, args=(result_nodes,), timeout=5400)
+    redis_result_connection = Redis(connection_pool=redis_connection_pool)
     for result_node in result_nodes:
-        redis_connection.rpush('visualizing', result_node.to_geojson())
+        redis_result_connection.rpush('visualizing', result_node.to_geojson())
 
 
 def detect(bbox, redis, search):
@@ -22,8 +24,8 @@ def detect(bbox, redis, search):
         walker.load_convnet()
         walker.load_tiles()
         crosswalk_nodes = walker.walk()
-    redis_connection = Redis(redis[0], redis[1], password=redis[2])
-    enqueue_results(crosswalk_nodes, redis_connection)
+    redis_connection_pool = ConnectionPool(redis[0], redis[1], password=redis[2])
+    enqueue_results(crosswalk_nodes, redis_connection_pool)
 
 
 PATH_TO_CROSSWALKS = os.path.join(cwenv('OUTPUT_DIR', default='.'), 'crosswalks.json')
