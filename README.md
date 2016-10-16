@@ -6,7 +6,7 @@
 
 #  OSMDeepOD - OSM and Deep Learning based Object Detection from Aerial Imagery 
 
-This is a project about object detection from aerial imagery using open data from OpenStreetMap (OSM) project as massive training data and areal imagery, wordwide or local. This project has been formerly known as "OSM-Crosswalk-Detection".
+This is a project about object detection from aerial imagery using open data from OpenStreetMap (OSM) project as massive training data and areal imagery, wordwide or local. This project has been formerly known as "OSM-Crosswalk-Detection"; now ot's called OSMDeepOD, pronounced "OSM Deep 'Oh 'Dee"!
 
 Keywords: Big Data; Data Science; Data Engineering; Machine Learning; Artificial Intelligence; Neuronal Nets; Imagery; Volunteered Geographic Information; Crowdsourcing; Geographic Information Systems; Infrastructure; Parallel Programming.
 
