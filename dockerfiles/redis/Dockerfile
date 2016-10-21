@@ -22,7 +22,7 @@ RUN apt-get update -y \
 && pip install rq-dashboard \
 && mkdir /redis/ \
 && cd /opt/ \
-&& git clone git://github.com/nicolasff/webdis.git \
+&& git clone https://github.com/nicolasff/webdis.git \
 && mv my_webdis.json /opt/webdis/webdis.json \
 && mv server.c /opt/webdis/server.c \
 && mv conf.c /opt/webdis/conf.c \
