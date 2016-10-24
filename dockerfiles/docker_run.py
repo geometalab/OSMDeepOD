@@ -55,7 +55,7 @@ def redis():
     client.start(container,
                  port_bindings={redis_port: ('0.0.0.0', redis_port), redis_dashboard: ('0.0.0.0', redis_dashboard)})
 
-#docker run -it --name crosswalk_detection -v .crosswalks/:/crosswalks crosswalk_detection:latest bash
+#nvidia-docker run -it --name crosswalk_detection -v .crosswalks/:/crosswalks crosswalk_detection:latest bash
 def detection():
     path = current_directory + '/detection/'
     name = 'crosswalk_detection'
