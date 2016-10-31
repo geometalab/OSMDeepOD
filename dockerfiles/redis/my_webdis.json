@@ -3,7 +3,7 @@
   "redis_port": 40001,
   "redis_auth": "crosswalks",
   "http_host": "0.0.0.0",
-  "http_port": 1991,
+  "http_port": 40003,
   "threads": 5,
   "pool_size": 20,
   "daemonize": false,
