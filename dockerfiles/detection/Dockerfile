@@ -12,8 +12,8 @@ RUN apt-get update \
 && pip3 install --upgrade pip \
 && pip install --upgrade $TF_BINARY_URL \
 && cd / \
-&& git clone https://github.com/geometalab/OSM-Crosswalk-Detection.git \
-&& cd OSM-Crosswalk-Detection \
+&& git clone https://github.com/geometalab/OSMDeepOD.git \
+&& cd OSMDeepOD \
 && pip uninstall requests -y \
 && pip install -r requires.dev.txt \
 && python3 setup.py install \
