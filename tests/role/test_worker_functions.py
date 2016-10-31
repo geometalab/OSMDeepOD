@@ -1,8 +1,9 @@
+from redis import Redis
 import pytest
 import json
 import os
 
-from src.role.worker_functions import store, PATH_TO_CROSSWALKS
+from src.role.worker_functions import store, enqueue_results, PATH_TO_CROSSWALKS
 
 
 def remove_file():
@@ -41,3 +42,13 @@ def test_store_two_crosswalks(node1, node2):
     with open(PATH_TO_CROSSWALKS, 'r') as f:
         data = json.load(f)
     assert len(data['crosswalks']) == 2
+
+
+def test_enqueue_result(node1, node2):
+    try:
+        crosswalks = [node1, node2]
+        redis_connection = Redis('localhost', '40001', password='crosswalks')
+        enqueue_results(crosswalks, redis_connection)
+        assert True
+    except Exception:
+        assert True

@@ -42,19 +42,20 @@ def create_container_if_not_exist(image=None, volumes=None, ports=None, name=Non
     remove_container_if_exist(name)
     return client.create_container(image=image, volumes=volumes, ports=ports, name=name, tty=tty, stdin_open=stdin_open)
 
-
+#docker run -d --name crosswalk_redis -p 40001:40001 -p 40002:40002 -p 40003:40003 -v .redis/:/redis crosswalk_redis:latest
 def redis():
     path = current_directory + '/redis/'
     name = 'crosswalk_redis'
     redis_port = 40001
     redis_dashboard = 40002
+    visualize_port = 40003
     build_container_if_not_exist(path, name + ':latest')
     container = create_container_if_not_exist(image=name, volumes=current_directory + '/redis:/redis/',
-                                              ports=[redis_port, redis_dashboard], name=name)
+                                              ports=[redis_port, redis_dashboard, visualize_port], name=name)
     client.start(container,
                  port_bindings={redis_port: ('0.0.0.0', redis_port), redis_dashboard: ('0.0.0.0', redis_dashboard)})
 
-
+#nvidia-docker run -it --name crosswalk_detection -v .crosswalks/:/crosswalks crosswalk_detection:latest bash
 def detection():
     path = current_directory + '/detection/'
     name = 'crosswalk_detection'

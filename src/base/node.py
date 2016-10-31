@@ -1,3 +1,4 @@
+import json
 from geopy import Point
 from geopy.distance import vincenty
 
@@ -11,7 +12,7 @@ class Node(Point):
 
     def __str__(self):
         return "Node " + str(self.osm_id) + ": Lat " + str(
-                self.latitude) + ", Lon " + str(self.longitude)
+            self.latitude) + ", Lon " + str(self.longitude)
 
     def copy(self):
         return Node(self.latitude, self.longitude, self.osm_id)
@@ -50,3 +51,6 @@ class Node(Point):
 
     def __ne__(self, other):
         return not (self == other)
+
+    def to_geojson(self):
+        return json.dumps({"type": "Point", "coordinates": [self.latitude, self.longitude]})

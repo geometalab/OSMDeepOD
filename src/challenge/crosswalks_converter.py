@@ -35,12 +35,14 @@ def convert_csv(json_data, name, ext='csv'):
         f.write(value)
 
 
-def convert_maproulette(json_data, name, ext='tasks.json'):
+def convert_maproulette(json_data, name, ext='tasks.json', parent=523):
     def build_element(i, crosswalk):
         element = \
             {
                 "name": "Task " + str(i),
-                "description": "Verify the point.",
+                "identifier": str(uuid.uuid4()),
+                "instruction": "Verify the point.",
+                "parent": parent,
                 "geometries": {
                     "type": "FeatureCollection",
                     "features": [
@@ -112,6 +114,8 @@ def convert(args):
         file_args = args.input_file.name.split('.')
         conv_kw['name'] = file_args[0]
         # do not supply extension to use defaults
+
+    conv_kw['parent'] = int(args.parent)
     for conv_func in args.conversion_funcs:
         conv_func(data, **conv_kw)
 
@@ -136,6 +140,12 @@ def mainfunc():
         dest='conversion_funcs',
         const=convert_maproulette,
         help='convert to maproulette.org challenge format, extension .tasks.json')
+    parser.add_argument(
+        '--parent',
+        action='store',
+        dest='parent',
+        default=523,
+        help='The tasks need the ID of the parent (the challenge ID).')
     parser.add_argument(
         '--outputfile',
         action='store',
