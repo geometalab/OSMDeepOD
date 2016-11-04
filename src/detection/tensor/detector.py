@@ -1,5 +1,4 @@
 import os
-import environ
 import numpy as np
 
 import tensorflow as tf
@@ -7,26 +6,20 @@ from multiprocessing.pool import ThreadPool
 
 
 class Detector:
-    def __init__(self, graph_file='output_graph.pb', labels_file='output_labels.txt'):
+    def __init__(self, graph_file='', labels_file=''):
         self.current_directory = os.path.dirname(os.path.realpath(__file__))
-        self.graph_file = graph_file
-        self.labels_file = labels_file
-        self.env = self._get_env()
+        self.graph_file = graph_file if labels_file is not '' else self.current_directory + '/output_graph.pb'
+        self.labels_file = labels_file if labels_file is not '' else self.current_directory + '/output_labels.txt'
         self.labels = self._load_labels()
         self.graph_def = self._load_graph()
 
-    def _get_env(self):
-        env = environ.Env(GRAPH_PATH=(str, self.current_directory + '/' + self.graph_file),
-                          LABEL_PATH=(str, self.current_directory + '/' + self.labels_file))
-        root = environ.Path(os.getcwd())
-        environ.Env.read_env(root('.env'))
-        return env
-
     def _load_labels(self):
-        return [line.rstrip('\n') for line in open(self.env('LABEL_PATH'))]
+        if not os.path.isfile(self.labels_file): raise Exception("Labels file error: " + self.labels_file)
+        return [line.rstrip('\n') for line in open(self.labels_file)]
 
     def _load_graph(self):
-        with tf.gfile.FastGFile(self.env('GRAPH_PATH'), 'rb') as f:
+        if not os.path.isfile(self.graph_file): raise Exception("Graph file error: " + self.graph_file)
+        with tf.gfile.FastGFile(self.graph_file, 'rb') as f:
             graph_def = tf.GraphDef()
             graph_def.ParseFromString(f.read())
             return graph_def
@@ -62,4 +55,3 @@ class Detector:
     def operation(sess, softmax, image, image_number):
         prediction = sess.run(softmax, {'DecodeJpeg:0': image})
         return prediction, image_number
-

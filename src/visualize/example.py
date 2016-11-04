@@ -40,22 +40,24 @@ def draw_nodes(nodes, tile):
 
 walker = BoxWalker(bbox=rappi())
 
-walker.search.compare = False
+walker.configuration.compare = False
+walker.configuration.follow_streets = False
 
-walker.load_streets()
+#walker.load_streets()
 walker.load_tiles()
 walker.load_convnet()
 
-sample_streets = walker.streets
+#sample_streets = walker.streets
 sample_tile = walker.tile
 detected_nodes = walker.walk()
 
-sample_small_tiles = walker._get_tiles_of_box(sample_streets, sample_tile)
-sample_tile.image.show()
-draw_streets(sample_tile, sample_streets)
-sample_tile.image.show()
+#sample_small_tiles = walker._get_tiles_of_box_with_streets(sample_streets, sample_tile)
+sample_small_tiles = walker._get_tiles_of_box(sample_tile)
+#sample_tile.image.show()
+#draw_streets(sample_tile, sample_streets)
+#sample_tile.image.show()
 draw_small_boxes(sample_small_tiles, sample_tile)
-sample_tile.image.show()
+#sample_tile.image.show()
 draw_nodes(detected_nodes, sample_tile)
 
 print('Number of detected nodes: ', len(detected_nodes))

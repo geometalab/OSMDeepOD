@@ -5,17 +5,17 @@ import logging.handlers
 import os
 from redis.exceptions import ConnectionError
 
-from src.base.search import Search
+from src.base.configuration import Configuration
 from src.base.bbox import Bbox
 from src.role.worker import Worker
 from src.role.manager import Manager
 
 
-def redis_args(config):
-    return [config['REDIS']['server'], config['REDIS']['port'], config['REDIS']['password']]
+def redis_args(configuration):
+    return [configuration.server, configuration.port, configuration.port]
 
 
-def manager(args, config):
+def manager(args, configuration):
     big_bbox = Bbox.from_lbrt(
         args.bb_left,
         args.bb_bottom,
@@ -23,53 +23,44 @@ def manager(args, config):
         args.bb_top)
     try:
         print('Manger has started...')
-        word = config.get(section='DETECTION', option='word', fallback='crosswalk')
-        key = config.get(section='DETECTION', option='key', fallback='highway')
-        value = config.get(section='DETECTION', option='value', fallback='crosswalk')
-        zoom = config.getint(section='DETECTION', option='zoom', fallback=19)
-        compare = config.getboolean(section='DETECTION', option='compare', fallback=True)
-        orthofoto = config.get(section='DETECTION', option='orthofoto', fallback='other')
-        network = config.get(section='DETECTION', option='network')
-        search = Search(word=word, key=key, value=value, zoom_level=zoom, compare=compare, orthofoto=orthofoto,
-                        network=network)
         Manager.from_big_bbox(
             big_bbox,
-            redis_args(config),
+            redis_args(configuration),
             'jobs',
-            search)
+            configuration)
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
-                ip=config['REDIS']['server'],
-                port=config['REDIS']['port']))
+                ip=configuration.server,
+                port=configuration.port))
     finally:
         print('Manager has finished!')
 
 
-def job_worker(_, config):
+def job_worker(_, configuration):
     worker = Worker.from_worker(['jobs'])
     try:
         print('JobWorker has started...')
-        worker.run(redis_args(config))
+        worker.run(redis_args(configuration))
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
-                ip=config['REDIS']['server'],
-                port=config['REDIS']['port']))
+                ip=configuration.server,
+                port=configuration.port))
     finally:
         print('JobWorker has finished!')
 
 
-def result_worker(_, config):
+def result_worker(_, configuration):
     worker = Worker.from_worker(['results'])
     try:
         print('ResultWorker has started...')
-        worker.run(redis_args(config))
+        worker.run(redis_args(configuration))
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
-                ip=config['REDIS']['server'],
-                port=config['REDIS']['port']))
+                ip=configuration,
+                port=configuration))
     finally:
         print('ResultWorker has finished!')
 
@@ -87,21 +78,13 @@ def read_config(args):
     config_file = args.config
     config = configparser.ConfigParser()
     if not os.path.isfile(config_file): raise Exception("The config file does not exist! " + config_file)
-
     config.read(config_file)
-    if not os.path.isfile(config_file): raise Exception("The config file could not be red! " + config_file)
-    if not config.has_section('REDIS'): raise Exception("Section 'REDIS' is not in config file! " + config_file)
-    if not config.has_option('REDIS', 'server'): raise Exception("'server' no in 'REDIS' section! " + config_file)
-    if not config.has_option('REDIS', 'password'): raise Exception("'password' no in 'REDIS' section! " + config_file)
-    if not config.has_option('REDIS', 'port'): raise Exception("'port' no in 'REDIS' section! " + config_file)
+    configuration = Configuration()
+    configuration.set_from_config_parser(config)
 
-    if args.role == 'manager':
-        if not config.has_section('DETECTION'): raise Exception(
-            "Section 'DETECTION' is not in config file! " + config_file)
-        if not config.has_option('DETECTION', 'network'): raise Exception(
-            "'network' no in 'DETECTION' section! " + config_file)
-        if not os.path.isfile(config_file): raise Exception("The config file does not exist! " + config_file)
-    return config
+    if args.role is 'manager':
+        configuration.check_manager_config(config)
+    return configuration
 
 
 def mainfunc():
@@ -161,8 +144,8 @@ def mainfunc():
     p_resultworker.set_defaults(func=result_worker)
 
     args = parser.parse_args()
-    config = read_config(args)
-    args.func(args, config)
+    configuration = read_config(args)
+    args.func(args, configuration)
 
 
 if __name__ == "__main__":

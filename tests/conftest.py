@@ -1,7 +1,7 @@
 import pytest
 
 from src.base.node import Node
-from src.base.search import Search
+from src.base.configuration import Configuration
 from src.base.tag import Tag
 from src.base.bbox import Bbox
 
@@ -47,5 +47,6 @@ def roundabout_tag():
 
 
 @pytest.fixture(scope="session", autouse=True)
-def search_no_compare():
-    return Search(key='highway', value='crossing', word='crosswalk', compare=False)
+def configuration_no_compare():
+    parameters = dict(compare=False)
+    return Configuration(parameters=parameters)
