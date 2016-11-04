@@ -1,19 +1,21 @@
 import argparse
+import configparser
 import logging
+import logging.handlers
+import os
 from redis.exceptions import ConnectionError
 
 from src.base.search import Search
 from src.base.bbox import Bbox
 from src.role.worker import Worker
 from src.role.manager import Manager
-from src import cwenv
 
 
-def redis_args(args):
-    return [args.redis_host, args.redis_port, args.redis_pass]
+def redis_args(config):
+    return [config['REDIS']['server'], config['REDIS']['port'], config['REDIS']['password']]
 
 
-def manager(args):
+def manager(args, config):
     big_bbox = Bbox.from_lbrt(
         args.bb_left,
         args.bb_bottom,
@@ -21,91 +23,103 @@ def manager(args):
         args.bb_top)
     try:
         print('Manger has started...')
-        search = Search(word=args.search, key=args.tag[0], value=args.tag[1], zoom_level=int(args.zoom_level),
-                        compare=(not args.no_compare), orthofoto=args.orthofoto)
+        word = config.get(section='DETECTION', option='word', fallback='crosswalk')
+        key = config.get(section='DETECTION', option='key', fallback='highway')
+        value = config.get(section='DETECTION', option='value', fallback='crosswalk')
+        zoom = config.getint(section='DETECTION', option='zoom', fallback=19)
+        compare = config.getboolean(section='DETECTION', option='compare', fallback=True)
+        orthofoto = config.get(section='DETECTION', option='orthofoto', fallback='other')
+        network = config.get(section='DETECTION', option='network')
+        search = Search(word=word, key=key, value=value, zoom_level=zoom, compare=compare, orthofoto=orthofoto,
+                        network=network)
         Manager.from_big_bbox(
             big_bbox,
-            redis_args(args),
-            args.redis_jobqueue_name,
+            redis_args(config),
+            'jobs',
             search)
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
-                ip=args.redis_host,
-                port=args.redis_port))
+                ip=config['REDIS']['server'],
+                port=config['REDIS']['port']))
     finally:
         print('Manager has finished!')
 
 
-def job_worker(args):
-    worker = Worker.from_worker([args.redis_jobqueue_name])
+def job_worker(_, config):
+    worker = Worker.from_worker(['jobs'])
     try:
         print('JobWorker has started...')
-        worker.run(redis_args(args))
+        worker.run(redis_args(config))
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
-                ip=args.redis_host,
-                port=args.redis_port))
+                ip=config['REDIS']['server'],
+                port=config['REDIS']['port']))
     finally:
         print('JobWorker has finished!')
 
 
-def result_worker(args):
+def result_worker(_, config):
     worker = Worker.from_worker(['results'])
     try:
         print('ResultWorker has started...')
-        worker.run(redis_args(args))
+        worker.run(redis_args(config))
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
-                ip=args.redis_host,
-                port=args.redis_port))
+                ip=config['REDIS']['server'],
+                port=config['REDIS']['port']))
     finally:
         print('ResultWorker has finished!')
 
 
 def set_logger():
     root_logger = logging.getLogger()
-    file_handler = logging.FileHandler('/var/log/crosswalk.log')
+    syslog_handler = logging.handlers.SysLogHandler(address=('localhost', 514))
     formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s %(name)s')
-    file_handler.setFormatter(formatter)
-    root_logger.addHandler(file_handler)
+    syslog_handler.setFormatter(formatter)
+    root_logger.addHandler(syslog_handler)
     root_logger.setLevel(logging.WARNING)
+
+
+def read_config(args):
+    config_file = args.config
+    config = configparser.ConfigParser()
+    if not os.path.isfile(config_file): raise Exception("The config file does not exist! " + config_file)
+
+    config.read(config_file)
+    if not os.path.isfile(config_file): raise Exception("The config file could not be red! " + config_file)
+    if not config.has_section('REDIS'): raise Exception("Section 'REDIS' is not in config file! " + config_file)
+    if not config.has_option('REDIS', 'server'): raise Exception("'server' no in 'REDIS' section! " + config_file)
+    if not config.has_option('REDIS', 'password'): raise Exception("'password' no in 'REDIS' section! " + config_file)
+    if not config.has_option('REDIS', 'port'): raise Exception("'port' no in 'REDIS' section! " + config_file)
+
+    if args.role == 'manager':
+        if not config.has_section('DETECTION'): raise Exception(
+            "Section 'DETECTION' is not in config file! " + config_file)
+        if not config.has_option('DETECTION', 'network'): raise Exception(
+            "'network' no in 'DETECTION' section! " + config_file)
+        if not os.path.isfile(config_file): raise Exception("The config file does not exist! " + config_file)
+    return config
 
 
 def mainfunc():
     set_logger()
     parser = argparse.ArgumentParser(description='Detect crosswalks.', )
-    redis_host = cwenv('REDIS_HOST')
-    redis_port = cwenv('REDIS_PORT')
-    redis_pass = cwenv('REDIS_PASS')
-    redis_jobqueue_name = cwenv('REDIS_JOBQUEUE_NAME')
     parser.add_argument(
-        '--redis',
+        '-c',
+        '--config',
         action='store',
-        dest='redis_host',
-        default=redis_host,
-        help='hostname or ip of redis database, default is ' +
-             redis_host)
-    parser.add_argument(
-        '--port',
-        action='store',
-        dest='redis_port',
-        default=redis_port,
-        help='port of redis database, default is ' +
-             redis_port)
-    parser.add_argument(
-        '--pass',
-        action='store',
-        dest='redis_pass',
-        default=redis_pass,
-        help='password of redis database, default is ' +
-             redis_pass)
+        dest='config',
+        required=True,
+        help='The path to the configuration file.'
+    )
 
     subparsers = parser.add_subparsers(
         title='worker roles',
         description='',
+        dest='role',
         help='Select the role of this process'
     )
 
@@ -114,49 +128,6 @@ def mainfunc():
     p_manager = subparsers.add_parser(
         'manager',
         help='Splits up the given bounding box (WGS84, minlon/minlat/maxlon/maxlat) into small pieces and puts them into the redis queue to be consumed by the jobworkers.')
-    p_manager.add_argument(
-        '--zoom_level',
-        action='store',
-        dest='zoom_level',
-        default='19',
-        help='the zoom level of the satellite images')
-    p_manager.add_argument(
-        '--search',
-        action='store',
-        dest='search',
-        default='crosswalk',
-        help='the search context, which has to be in the label file')
-    p_manager.add_argument(
-        '-t',
-        '--tag',
-        nargs=2,
-        action='store',
-        dest='tag',
-        default=['highway', 'crossing'],
-        help='An OpenStreetMap key value pair like: highway crossing. To compare with OpenStreetMap entries.',
-    )
-    p_manager.add_argument(
-        '-o',
-        '--orthofoto',
-        action='store',
-        dest='orthofoto',
-        default='other',
-        help='Choose your API, your implementation must be in the orthofoto directory.',
-    )
-    p_manager.add_argument(
-        '--no_compare',
-        action='store_true',
-        dest='no_compare',
-        help='Stop comparing between OpenStreetMap entries and detected points.',
-    )
-
-    p_manager.add_argument(
-        '--jobqueue',
-        action='store',
-        dest='redis_jobqueue_name',
-        default=redis_jobqueue_name,
-        help='queue name for worker jobs, default is ' +
-             redis_jobqueue_name)
     p_manager.add_argument(
         'bb_left',
         type=float,
@@ -182,13 +153,6 @@ def mainfunc():
     p_jobworker = subparsers.add_parser(
         'jobworker',
         help='Detect crosswalks on element from the redis queue.')
-    p_jobworker.add_argument(
-        '--jobqueue',
-        action='store',
-        dest='redis_jobqueue_name',
-        default=redis_jobqueue_name,
-        help='queue name for worker jobs, default is ' +
-             redis_jobqueue_name)
     p_jobworker.set_defaults(func=job_worker)
 
     p_resultworker = subparsers.add_parser(
@@ -197,7 +161,8 @@ def mainfunc():
     p_resultworker.set_defaults(func=result_worker)
 
     args = parser.parse_args()
-    args.func(args)
+    config = read_config(args)
+    args.func(args, config)
 
 
 if __name__ == "__main__":
