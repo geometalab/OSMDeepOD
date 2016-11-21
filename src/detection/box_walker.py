@@ -14,6 +14,8 @@ from src.detection.tensor.detector import Detector
 from src.data.orthofoto.other.other_api import OtherApi
 from src.detection.tile_walker import TileWalker
 
+logger = logging.getLogger(__name__)
+
 
 class BoxWalker:
     def __init__(self, bbox, configuration=None):
@@ -22,7 +24,6 @@ class BoxWalker:
         self.tile = None
         self.streets = []
         self.convnet = None
-        self.logger = logging.getLogger(__name__)
         self.square_image_length = 50
         self.max_distance = self._calculate_max_distance(self.configuration.zoom_level, self.square_image_length)
         self.image_api = OtherApi(
@@ -40,7 +41,7 @@ class BoxWalker:
         self.convnet = Detector(labels_file=self.configuration.labels, graph_file=self.configuration.network)
         if not self.configuration.word in self.convnet.labels:
             error_message = self.configuration.word + " is not in label file."
-            self.logger.error(error_message)
+            logger.error(error_message)
             raise Exception(error_message)
 
     def load_tiles(self):
@@ -61,7 +62,7 @@ class BoxWalker:
         ready_for_walk = (not self.tile is None) and (not self.convnet is None)
         if not ready_for_walk:
             error_message = "Not ready for walk. Load tiles and convnet first"
-            self.logger.error(error_message)
+            logger.error(error_message)
             raise Exception(error_message)
 
         self._printer("Start detection.")

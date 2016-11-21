@@ -12,15 +12,11 @@ from src.role.manager import Manager
 
 
 def redis_args(configuration):
-    return [configuration.server, configuration.port, configuration.port]
+    return [configuration.server, configuration.port, configuration.password]
 
 
 def manager(args, configuration):
-    big_bbox = Bbox.from_lbrt(
-        args.bb_left,
-        args.bb_bottom,
-        args.bb_right,
-        args.bb_top)
+    big_bbox = Bbox(left=args.bb_left, bottom=args.bb_bottom, right=args.bb_right, top=args.bb_top)
     try:
         print('Manger has started...')
         Manager.from_big_bbox(

@@ -35,7 +35,7 @@ class Manager:
             for y in range(0, rows):
                 bottom, left = self.mercator.MetersToLatLon(m_minx + (side * x), m_miny + (side * y))
                 top, right = self.mercator.MetersToLatLon(m_minx + (side * (x + 1)), m_miny + (side * (y + 1)))
-                small_bbox = Bbox.from_lbrt(left, bottom, right, top)
+                small_bbox = Bbox(left=left, bottom=bottom, right=right, top=top)
                 self.small_bboxes.append(small_bbox)
 
     def _enqueue_jobs(self, redis):

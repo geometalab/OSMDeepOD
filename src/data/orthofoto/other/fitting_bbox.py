@@ -21,10 +21,9 @@ class FittingBbox:
 
     def generate_bbox(self, tx, ty):
         bottom, left, top, right = self._mercator.TileLatLonBounds(tx, ty, self._zoom_level)
-        bbox = Bbox.from_lbrt(left, bottom, right, top)
-        return bbox
+        return Bbox(left=left, bottom=bottom, right=right, top=top)
 
     def _bbox_from(self, t_minx, t_miny, t_maxx, t_maxy):
         bottom, left, _, _ = self._mercator.TileLatLonBounds(t_minx, t_miny, self._zoom_level)
         _, _, top, right = self._mercator.TileLatLonBounds(t_maxx, t_maxy, self._zoom_level)
-        return Bbox.from_lbrt(left, bottom, right, top)
+        return Bbox(left=left, bottom=bottom, right=right, top=top)

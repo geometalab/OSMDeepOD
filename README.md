@@ -55,24 +55,54 @@ To start the detection process use the src/role/main.py<sup id="a2">[2](#main)</
 
 1. Use the manger option to select the detection area and generate the jobs stored by the redis instance
 ```
-python3 main.py --redis 172.17.0.25 --port 40001 --pass crosswalks manager 9.345101 47.090794 9.355947 47.097288 --tag junction roundabout --search roundabout --no_compare --zoom_level 17 --orthofoto other
+python3 main.py --config ./config.ini manager 9.345101 47.090794 9.355947 47.097288
 ```
-The default settings of --tag, --search, and --zoom_level are for crosswalk detection.
-The parameter '--orthofoto' is for the image source.
-
 
 2. Start the detection algorithm. The results are also stored by the redis instance.
 ```
-python main.py --redis 127.0.0.1 --port 40001 --pass crosswalks jobworker
+python main.py --config ./config.ini jobworker
 ```
 
 3. Collect the results in a simple JSON file.
 ```
-python main.py --redis 127.0.0.1 --port 40001 --pass crosswalks resultworker
+python main.py --config ./config.ini resultworker
 ```
 
 If you have execute the result worker in the docker container you can move the crosswalks.json file to the /crosswalk/ directory which is map to your host.
 
+### Configuration
+The configuration works with an INI file.
+The file looks like the following:
+```
+[REDIS]
+Server = 127.0.0.1
+Port = 40001
+Password = crosswalks
+
+[DETECTION]
+Network = /path/to/the/trained/convnet
+Labels = /path/to/the/label/file/of/the/convnet
+DetectionBarrier = 0.99
+Word = crosswalk
+Key = highway
+Value = crossing
+Zoom = 19
+Compare = yes
+Orthofoto = other
+FollowStreets = yes
+
+[JOB]
+BboxSize = 2000
+Timeout = 5400
+```
+
+Some hints to the config file:
+ - The section REDIS should be self explanatory
+ - "Word" is the key value of the labels file
+ - "Key" and "Value" builds the search Tag for OSM
+ - "Compare" means compared to OSM tagged Nodes
+ - "BboxSize" is the size in meters of the split large Bbox
+ - "Timeout" after the expired time the job does fail
 
 
 ### Own Orthofotos
@@ -107,5 +137,5 @@ Picture 4: No Crosswalk Examples
 
 
 ## Notes
-<a name="GPU">1</a>: The crosswalk_detection container is based on the nvidia/cuda:7.5-cudnn4-devel-ubuntu14.04 image, may you have to change the base image for your GPU. [↩](#a1)
-<a name="main">2</a>: For more information about the main.py use the -h option. [↩](#a2)
+ - <a name="GPU">1</a>: The crosswalk_detection container is based on the nvidia/cuda:7.5-cudnn4-devel-ubuntu14.04 image, may you have to change the base image for your GPU. [↩](#a1)
+ - <a name="main">2</a>: For more information about the main.py use the -h option. [↩](#a2)

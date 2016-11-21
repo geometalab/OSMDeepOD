@@ -20,9 +20,9 @@ def test_add_meter(node1):
     distance = node1.get_distance_in_meter(node2)
     assert 3900 < distance < 4100
 
-
 def test_copy(node1):
     node2 = node1.copy()
+    assert node1 is not node2
     assert node1.latitude == node2.latitude
     assert node1.longitude == node2.longitude
     assert node1.osm_id == node2.osm_id
@@ -36,3 +36,9 @@ def test_node_equality(node1):
 
 def test_node_not_equal(node1, node2):
     assert node1 != node2
+
+
+def test_node_equal(node1):
+    node2 = node1.copy()
+    assert node1 is not node2
+    assert node1 == node2

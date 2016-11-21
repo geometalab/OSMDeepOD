@@ -1,19 +1,20 @@
 import pytest
+import copy
 from src.base.bbox import Bbox
 from src.base.node import Node
 
 
 @pytest.fixture(scope="module")
 def rappi():
-    return Bbox.from_lbrt(8.81372, 47.218788, 8.852430, 47.239654)
+    return Bbox(left=8.81372, bottom=47.218788, right=8.852430, top=47.239654)
 
 
-def test_instantiate_from_bltr():
+def test_instantiate():
     bottom = 47.0
     left = 8.0
     top = 48.0
     right = 9.0
-    bbox = Bbox.from_bltr(bottom, left, top, right)
+    bbox = Bbox(bottom=bottom, left=left, top=top, right=right)
 
     assert bbox.bottom == bottom
     assert bbox.left == left
@@ -21,12 +22,12 @@ def test_instantiate_from_bltr():
     assert bbox.right == right
 
 
-def test_instantiate_from_bltr_string():
+def test_instantiate_from_string():
     bottom = '47.0'
     left = '8.0'
     top = '48.0'
     right = '9.0'
-    bbox = Bbox.from_bltr(bottom, left, top, right)
+    bbox = Bbox(bottom=bottom, left=left, top=top, right=right)
 
     assert bbox.bottom == bottom
     assert bbox.left == left
@@ -38,10 +39,22 @@ def test_in_bbox(rappi):
     bbox = rappi
     node = Node(47.22, 8.82)
 
-    assert bbox.in_bbox(node) == True
+    assert bbox.in_bbox(node)
 
 
 def test_not_in_bbox(rappi):
     bbox = rappi
     node = Node(48.0, 8.8)
-    assert bbox.in_bbox(node) == False
+    assert not bbox.in_bbox(node)
+
+
+def test_equal(rappi):
+    rappi2 = copy.copy(rappi)
+    assert rappi2 is not rappi
+    assert rappi2 == rappi
+
+
+def test_not_equal(rappi):
+    bbox = Bbox()
+    assert bbox is not rappi
+    assert bbox != rappi

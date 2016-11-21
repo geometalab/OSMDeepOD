@@ -1,3 +1,4 @@
+import configparser
 import pytest
 from src.base.configuration import Configuration
 
@@ -20,14 +21,24 @@ def test_default_values(configuration):
 
 def test_parameter():
     port = 1991
-    configuration = Configuration(dict(port=port))
-    assert configuration.port == port
+    config = Configuration(dict(port=port))
+    assert config.port == port
 
 
 def test_config(configuration):
+    config = configparser.ConfigParser()
+    redis = 'REDIS'
+    detection = 'DETECTION'
     port = 1991
-    redis_port = dict(Port=port)
-    config = {'REDIS': redis_port}
+
+    config.add_section(redis)
+    config.add_section(detection)
+
+    config.set(section=redis, option='Port', value=str(port))
+    config.set(section=redis, option='Server', value='')
+    config.set(section=redis, option='Password', value='')
+    config.set(section=detection, option='Network', value='')
+    config.set(section=detection, option='Labels', value='')
 
     configuration.set_from_config_parser(config)
 

@@ -34,17 +34,20 @@ class Configuration:
         self.barrier = config.getfloat(section='DETECTION', option='DetectionBarrier', fallback=0.99)
         self.bbox_size = config.getint(section='JOB', option='BboxSize', fallback=2000)
         self.timeout = config.getint(section='JOB', option='Timeout', fallback=5400)
+        self.port = config.getint(section='REDIS', option='Port', fallback=40001)
+        self.password = config.get(section='REDIS', option='Password', fallback='crosswalks')
+        self.server = config.get(section='REDIS', option='Server', fallback='127.0.0.1')
 
     @staticmethod
     def _check_required_fields(config):
         if not config.has_section('REDIS'):
             raise Exception("Section 'REDIS' is not in config file!")
         if not config.has_option('REDIS', 'Server'):
-            raise Exception("'server' no in 'REDIS' section!")
+            raise Exception("'server' not in 'REDIS' section!")
         if not config.has_option('REDIS', 'Password'):
-            raise Exception("'password' no in 'REDIS' section!")
+            raise Exception("'password' not in 'REDIS' section!")
         if not config.has_option('REDIS', 'Port'):
-            raise Exception("'port' no in 'REDIS' section!")
+            raise Exception("'port' not in 'REDIS' section!")
 
     @staticmethod
     def check_manager_config(config):
