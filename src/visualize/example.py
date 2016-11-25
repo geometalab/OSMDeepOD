@@ -11,6 +11,10 @@ def rappi():
     return Bbox(left=8.8181022825, bottom=47.2263345016, right=8.8188113747, top=47.2268572692)
 
 
+def small_bbox():
+    return Bbox(left=8.83848086, bottom=47.2218996495, right=8.8388215005, top=47.2220713398)
+
+
 def three_king():
     return Bbox(left=8.529906, bottom=47.364329, right=8.539329, top=47.369052)
 
@@ -38,12 +42,12 @@ def draw_nodes(nodes, tile):
         drawer.point(tile.image, position, '#66ff33')
 
 
-walker = BoxWalker(bbox=rappi())
+walker = BoxWalker(bbox=small_bbox())
 
 walker.configuration.compare = False
-walker.configuration.follow_streets = False
+walker.configuration.follow_streets = True
 
-# walker.load_streets()
+walker.load_streets()
 walker.load_tiles()
 walker.load_convnet()
 

@@ -14,12 +14,12 @@ class OverpassApi:
 
     @staticmethod
     def _get_query(bbox, tags):
-        bbox = '(' + str(bbox) + ');'
+        bbox_string = '(' + str(bbox) + ');'
         query = '('
         for tag in tags:
-            node = 'node["' + tag.key + '"="' + tag.value + '"]' + bbox
-            way = 'way["' + tag.key + '"="' + tag.value + '"]' + bbox
-            relation = 'relation["' + tag.key + '"="' + tag.value + '"]' + bbox
+            node = 'node["' + tag.key + '"="' + tag.value + '"]' + bbox_string
+            way = 'way["' + tag.key + '"="' + tag.value + '"]' + bbox_string
+            relation = 'relation["' + tag.key + '"="' + tag.value + '"]' + bbox_string
             query += node + way + relation
         query += ');'
         return query

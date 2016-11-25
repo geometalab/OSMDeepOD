@@ -18,12 +18,9 @@ def redis_args(configuration):
 def manager(args, configuration):
     big_bbox = Bbox(left=args.bb_left, bottom=args.bb_bottom, right=args.bb_right, top=args.bb_top)
     try:
-        print('Manger has started...')
-        Manager.from_big_bbox(
-            big_bbox,
-            redis_args(configuration),
-            'jobs',
-            configuration)
+        print('Manager has started...')
+        manage = Manager(big_bbox, 'jobs', configuration, args.standalone)
+        manage.run()
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
@@ -73,9 +70,12 @@ def set_logger():
 def read_config(args):
     config_file = args.config
     config = configparser.ConfigParser()
-    if not os.path.isfile(config_file): raise Exception("The config file does not exist! " + config_file)
+    if not os.path.isfile(config_file):
+        raise Exception("The config file does not exist! " + config_file)
     config.read(config_file)
     configuration = Configuration()
+    if not args.standalone:
+        configuration.check_redis_fields(config)
     configuration.set_from_config_parser(config)
 
     if args.role is 'manager':
@@ -128,6 +128,13 @@ def mainfunc():
         action='store',
         help='top float value of the bounding box (WGS84, maxlat)')
     p_manager.set_defaults(func=manager)
+    p_manager.add_argument(
+        '-s'
+        '--standalone',
+        dest='standalone',
+        action='store_true',
+        help='If chosen the detection will run standalone and save the results in "crosswalks.json".')
+    p_manager.set_defaults(standalone=False)
 
     p_jobworker = subparsers.add_parser(
         'jobworker',

@@ -3,7 +3,6 @@ from redis import Redis
 import json
 import os
 
-from src import cwenv
 from src.detection.box_walker import BoxWalker
 
 
@@ -14,33 +13,44 @@ def enqueue_results(result_nodes, redis_connection):
         redis_connection.rpush('visualizing', result_node.to_geojson())
 
 
-def detect(bbox, redis, configuration):
+def get_nodes(bbox, configuration):
     walker = BoxWalker(bbox=bbox, configuration=configuration)
-    if configuration.follow_streets: walker.load_streets()
+    if configuration.follow_streets:
+        walker.load_streets()
     crosswalk_nodes = []
     if len(walker.streets) > 0 or not configuration.follow_streets:
         walker.load_convnet()
         walker.load_tiles()
         crosswalk_nodes = walker.walk()
-    redis_connection = Redis(redis[0], redis[1], password=redis[2])
-    enqueue_results(crosswalk_nodes, redis_connection)
+    return crosswalk_nodes
 
 
-PATH_TO_CROSSWALKS = os.path.join(cwenv('OUTPUT_DIR', default='.'), 'crosswalks.json')
+def detect(bbox, configuration):
+    nodes = get_nodes(bbox, configuration)
+    redis_connection = Redis(host=configuration.server, port=configuration.port, password=configuration.password)
+    enqueue_results(nodes, redis_connection)
 
 
-def store(crosswalks):
-    if not os.path.exists(PATH_TO_CROSSWALKS):
-        with open(PATH_TO_CROSSWALKS, 'w') as f:
-            f.write('{ "crosswalks" : []}')
+def store(nodes):
+    store_path = os.path.join(os.getcwd(), 'detected_nodes.json')
+    if not os.path.exists(store_path):
+        with open(store_path, 'w') as f:
+            f.write('{ "nodes" : []}')
 
-    with open(PATH_TO_CROSSWALKS, 'r') as f:
+    with open(store_path, 'r') as f:
         data = json.load(f)
 
-    for crosswalk in crosswalks:
-        data['crosswalks'].append({"latitude": crosswalk.latitude, "longitude": crosswalk.longitude})
+    for node in nodes:
+        data['nodes'].append({"latitude": node.latitude, "longitude": node.longitude})
 
-    with open(PATH_TO_CROSSWALKS, 'w') as f:
+    with open(store_path, 'w') as f:
         json.dump(data, f)
 
-    print('{0} potential crosswalks detected so far'.format(len(data['crosswalks'])))
+    print('{0} potential nodes detected so far'.format(len(data['nodes'])))
+
+
+def standalone(bboxes=None, configuration=None):
+    nodes = []
+    for bbox in bboxes:
+        nodes += get_nodes(bbox, configuration)
+    store(nodes)

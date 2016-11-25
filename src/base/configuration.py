@@ -21,7 +21,6 @@ class Configuration:
         self.password = parameters.get('password', 'crosswalks')
 
     def set_from_config_parser(self, config):
-        self._check_required_fields(config)
         self.word = config.get(section='DETECTION', option='Word', fallback='crosswalk')
         self.tag = Tag(key=config.get(section='DETECTION', option='Key', fallback='highway'),
                        value=config.get(section='DETECTION', option='Value', fallback='crosswalk'))
@@ -39,7 +38,7 @@ class Configuration:
         self.server = config.get(section='REDIS', option='Server', fallback='127.0.0.1')
 
     @staticmethod
-    def _check_required_fields(config):
+    def check_redis_fields(config):
         if not config.has_section('REDIS'):
             raise Exception("Section 'REDIS' is not in config file!")
         if not config.has_option('REDIS', 'Server'):

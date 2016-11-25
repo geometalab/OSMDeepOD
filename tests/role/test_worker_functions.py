@@ -3,45 +3,45 @@ import pytest
 import json
 import os
 
-from src.role.worker_functions import store, enqueue_results, PATH_TO_CROSSWALKS
+from src.role.worker_functions import store, enqueue_results
 
 
-def remove_file():
-    if os.path.exists(PATH_TO_CROSSWALKS):
-        os.remove(PATH_TO_CROSSWALKS)
+def remove_file(path):
+    if os.path.exists(path):
+        os.remove(path)
 
 
 @pytest.yield_fixture(autouse=True)
-def setup():
-    remove_file()
+def setup(store_path):
+    remove_file(store_path)
     try:
         yield
     finally:
-        remove_file()
+        remove_file(store_path)
 
 
-def test_store_zero_crosswalks():
+def test_store_zero_crosswalks(store_path):
     store([])
-    with open(PATH_TO_CROSSWALKS, 'r') as f:
+    with open(store_path, 'r') as f:
         data = json.load(f)
-    assert len(data['crosswalks']) == 0
+    assert len(data['nodes']) == 0
 
 
-def test_store_in_two_steps_crosswalks(node1, node2):
+def test_store_in_two_steps_crosswalks(node1, node2, store_path):
     crosswalks = [node1, node2]
     store(crosswalks)
     store(crosswalks)
-    with open(PATH_TO_CROSSWALKS, 'r') as f:
+    with open(store_path, 'r') as f:
         data = json.load(f)
-    assert len(data['crosswalks']) == 4
+    assert len(data['nodes']) == 4
 
 
-def test_store_two_crosswalks(node1, node2):
+def test_store_two_crosswalks(node1, node2, store_path):
     crosswalks = [node1, node2]
     store(crosswalks)
-    with open(PATH_TO_CROSSWALKS, 'r') as f:
+    with open(store_path, 'r') as f:
         data = json.load(f)
-    assert len(data['crosswalks']) == 2
+    assert len(data['nodes']) == 2
 
 
 def test_enqueue_result(node1, node2):
@@ -52,3 +52,4 @@ def test_enqueue_result(node1, node2):
         assert True
     except Exception:
         assert True
+
