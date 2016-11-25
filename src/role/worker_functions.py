@@ -14,11 +14,11 @@ def enqueue_results(result_nodes, redis_connection):
         redis_connection.rpush('visualizing', result_node.to_geojson())
 
 
-def detect(bbox, redis, search):
-    walker = BoxWalker(bbox=bbox, search=search)
-    walker.load_streets()
+def detect(bbox, redis, configuration):
+    walker = BoxWalker(bbox=bbox, configuration=configuration)
+    if configuration.follow_streets: walker.load_streets()
     crosswalk_nodes = []
-    if len(walker.streets) > 0:
+    if len(walker.streets) > 0 or not configuration.follow_streets:
         walker.load_convnet()
         walker.load_tiles()
         crosswalk_nodes = walker.walk()

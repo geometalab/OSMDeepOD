@@ -1,38 +1,16 @@
 import math
-from src.base.globalmaptiles import GlobalMercator
-from src.data.osm.node_merger import NodeMerger
+
+from src.detection.walker import Walker
 
 
-class StreetWalker:
-    def __init__(self, tile, square_image_length=50, zoom_level=19):
-        self.tile = tile
-        self._nb_images = 0
-        self._square_image_length = square_image_length
-        self._step_distance = self._calculate_step_distance(zoom_level)
+class StreetWalker(Walker):
+    def __init__(self, tile=None, square_image_length=50, zoom_level=19):
+        super(StreetWalker, self).__init__(tile, square_image_length, zoom_level)
 
     def get_tiles(self, street):
         nodes = self._calculate_tile_centres(street)
         squared_tiles = self._get_squared_tiles(nodes)
         return squared_tiles
-
-    @staticmethod
-    def _merge_nodes(nodelist):
-        merger = NodeMerger.from_nodelist(nodelist)
-        merger.max_distance = 10
-        return merger.reduce()
-
-    def _get_squared_tiles(self, nodes):
-        square_tiles = []
-        for node in nodes:
-            tile = self.tile.get_tile_by_node(node, self._square_image_length)
-            if self.tile.bbox.in_bbox(node):
-                square_tiles.append(tile)
-        return square_tiles
-
-    def _calculate_step_distance(self, zoom_level):
-        global_mercator = GlobalMercator()
-        resolution = global_mercator.Resolution(zoom_level)
-        return resolution * (self._square_image_length / 1.5)
 
     def _calculate_tile_centres(self, street):
         centers = [street.nodes[0]]

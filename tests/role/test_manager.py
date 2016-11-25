@@ -10,9 +10,9 @@ def test(big_bbox):
     assert columns > 2
 
 
-def test_with_two_columns(node1):
-    node2 = node1.add_meter(200, Manager.small_bbox_side_length + 50)
-    manager = Manager(bbox=Bbox.from_leftdown_rightup(node1, node2), job_queue_name='dummy')
+def test_with_two_columns(node1, configuration_no_compare):
+    node2 = node1.add_meter(200, configuration_no_compare.bbox_size + 50)
+    manager = Manager(bbox=Bbox.from_nodes(node_left_down=node1, node_right_up=node2), job_queue_name='dummy')
     columns = manager._calc_columns()
     rows = manager._calc_rows()
     assert rows == 1
@@ -20,14 +20,14 @@ def test_with_two_columns(node1):
 
 
 def test_first(node1, node2):
-    manager = Manager(bbox=Bbox.from_leftdown_rightup(node1, node2), job_queue_name='dummy')
+    manager = Manager(bbox=Bbox.from_nodes(node_left_down=node1, node_right_up=node2), job_queue_name='dummy')
     manager._generate_small_bboxes()
     assert manager.small_bboxes[0].left == node1.longitude
     assert manager.small_bboxes[0].bottom == node1.latitude
 
 
 def test_big_bbox(node1, node2):
-    manager = Manager(bbox=Bbox.from_leftdown_rightup(node1, node2), job_queue_name='dummy')
+    manager = Manager(bbox=Bbox.from_nodes(node_left_down=node1, node_right_up=node2), job_queue_name='dummy')
     length = len(manager.small_bboxes)
     manager._generate_small_bboxes()
     assert manager.small_bboxes[0].left == node1.longitude
@@ -38,18 +38,18 @@ def test_big_bbox(node1, node2):
             and manager.small_bboxes[length - 1].top <= node2.latitude + 0.05)
 
 
-def test_with_two(node1):
-    node2 = node1.add_meter(Manager.small_bbox_side_length + 50, Manager.small_bbox_side_length + 50)
-    manager = Manager(bbox=Bbox.from_leftdown_rightup(node1, node2), job_queue_name='dummy')
+def test_with_two(node1, configuration_no_compare):
+    node2 = node1.add_meter(configuration_no_compare.bbox_size + 50, configuration_no_compare.bbox_size + 50)
+    manager = Manager(bbox=Bbox.from_nodes(node_left_down=node1, node_right_up=node2), job_queue_name='dummy')
     columns = manager._calc_columns()
     rows = manager._calc_rows()
     assert rows == 2
     assert columns == 2
 
 
-def test_with_three(node1):
-    node2 = node1.add_meter(2 * Manager.small_bbox_side_length + 50, 2 * Manager.small_bbox_side_length + 50)
-    manager = Manager(bbox=Bbox.from_leftdown_rightup(node1, node2), job_queue_name='dummy')
+def test_with_three(node1, configuration_no_compare):
+    node2 = node1.add_meter(2 * configuration_no_compare.bbox_size + 50, 2 * configuration_no_compare.bbox_size + 50)
+    manager = Manager(bbox=Bbox.from_nodes(node_left_down=node1, node_right_up=node2), job_queue_name='dummy')
     columns = manager._calc_columns()
     rows = manager._calc_rows()
     assert rows == 3

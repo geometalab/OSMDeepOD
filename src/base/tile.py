@@ -3,7 +3,7 @@ from src.base.node import Node
 
 
 class Tile:
-    def __init__(self, image, bbox):
+    def __init__(self, image=None, bbox=None):
         self.image = image
         self.bbox = bbox
 
@@ -18,13 +18,16 @@ class Tile:
         pixel_y = self.image.size[1] - int(self.image.size[1] * (y / image_height))
         return pixel_x, pixel_y
 
-    def get_node(self, pixel):
+    def get_node(self, pixel=(0, 0)):
         x = pixel[0]
         y = pixel[1]
-        x_count = self.image.size[0]
-        y_count = self.image.size[1]
-        y_part = (y_count - y) / float(y_count)
-        x_part = x / float(x_count)
+        image_size_x = self.image.size[0]
+        image_size_y = self.image.size[1]
+        y_part = 0
+        x_part = 0
+        if image_size_x > 0 and image_size_y > 0:
+            y_part = (image_size_y - y) / float(image_size_y)
+            x_part = x / float(image_size_x)
 
         lat_diff = float(self.bbox.top) - float(self.bbox.bottom)
         lon_diff = float(self.bbox.right) - float(self.bbox.left)
@@ -45,13 +48,12 @@ class Tile:
         img = self.image.crop(crop_box)
         left_down = self.get_node((x1, y1))
         right_up = self.get_node((x2, y2))
-        bbox = Bbox.from_leftdown_rightup(left_down, right_up)
+        bbox = Bbox.from_nodes(node_left_down=left_down, node_right_up=right_up)
 
         return Tile(img, bbox)
 
     def get_centre_node(self):
         diff_lat = self.bbox.node_right_up().latitude - self.bbox.node_left_down().latitude
         diff_lon = self.bbox.node_right_up().longitude - self.bbox.node_left_down().longitude
-        node = Node(self.bbox.node_left_down().latitude + diff_lat / 2,
+        return Node(self.bbox.node_left_down().latitude + diff_lat / 2,
                     self.bbox.node_left_down().longitude + diff_lon / 2)
-        return node

@@ -1,7 +1,10 @@
+import logging
 from src.base.node import Node
 from src.base.street import Street
 from src.base.tag import Tag
 from src.data.osm.overpass_api import OverpassApi
+
+logger = logging.getLogger(__name__)
 
 
 class StreetLoader:
@@ -46,6 +49,13 @@ class StreetLoader:
             coordinates = feature['geometry']['coordinates']
             nodes = []
             for coordinate in coordinates:
-                nodes.append(Node(coordinate[1], coordinate[0]))
+                try:
+                    lat, lon = coordinate[1], coordinate[0]
+                except TypeError:
+                    logger.exception()
+                    logger.warn("feature was: {}, coordinate was: {}".format(feature, coordinate))
+                else:
+                    nodes.append(Node(lat, lon))
+
             streets.append(Street(nodes))
         return streets

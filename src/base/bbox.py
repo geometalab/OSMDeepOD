@@ -2,37 +2,19 @@ from src.base.node import Node
 
 
 class Bbox(object):
-    def __init__(self):
-        self.left = None
-        self.bottom = None
-        self.right = None
-        self.top = None
+    def __init__(self, left=None, bottom=None, right=None, top=None):
+        self.left = left
+        self.bottom = bottom
+        self.right = right
+        self.top = top
 
     @classmethod
-    def from_lbrt(cls, left, bottom, right, top):
+    def from_nodes(cls, node_left_down=None, node_right_up=None):
         bbox = cls()
-        bbox.left = left
-        bbox.bottom = bottom
-        bbox.right = right
-        bbox.top = top
-        return bbox
-
-    @classmethod
-    def from_bltr(cls, bottom, left, top, right):
-        bbox = cls()
-        bbox.left = left
-        bbox.bottom = bottom
-        bbox.right = right
-        bbox.top = top
-        return bbox
-
-    @classmethod
-    def from_leftdown_rightup(cls, node_leftdown, node_rightup):
-        bbox = cls()
-        bbox.left = node_leftdown.longitude
-        bbox.bottom = node_leftdown.latitude
-        bbox.right = node_rightup.longitude
-        bbox.top = node_rightup.latitude
+        bbox.left = node_left_down.longitude
+        bbox.bottom = node_left_down.latitude
+        bbox.right = node_right_up.longitude
+        bbox.top = node_right_up.latitude
         return bbox
 
     def node_left_down(self):
@@ -62,7 +44,7 @@ class Bbox(object):
 
         new_left_down = left_down_node.add_meter(border_distance, border_distance)
         new_right_up = right_up_node.add_meter(-border_distance, -border_distance)
-        ret = Bbox.from_leftdown_rightup(new_left_down, new_right_up)
+        ret = Bbox.from_nodes(node_left_down=new_left_down, node_right_up=new_right_up)
         return ret
 
     def __str__(self):

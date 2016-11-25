@@ -12,7 +12,7 @@ def node():
 
 @pytest.fixture(scope="module", autouse=True)
 def roundabout_bbox():
-    return Bbox.from_lbrt(9.345857, 47.090498, 9.348325, 47.092383)
+    return Bbox(left=9.345857, bottom=47.090498, right=9.348325, top=47.092383)
 
 
 def test_comparator(node, roundabout_bbox, roundabout_tag):

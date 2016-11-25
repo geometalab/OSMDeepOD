@@ -13,8 +13,8 @@ def test_load_streets(small_bbox):
     assert walker.streets is not None
 
 
-def test_walk_no_compare(zurich_bellevue, search_no_compare):
-    walker = BoxWalker(zurich_bellevue, search=search_no_compare)
+def test_walk_no_compare(zurich_bellevue, configuration_no_compare):
+    walker = BoxWalker(zurich_bellevue, configuration=configuration_no_compare)
     walker.load_convnet()
     walker.load_tiles()
     walker.load_streets()
