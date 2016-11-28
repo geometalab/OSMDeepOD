@@ -5,11 +5,10 @@ services:
 
 language: python
 python:
-  - "3.4"
   - "3.5"
 
 before_install:
-  - docker build -t crosswalks ./dockerfiles/detection/
+  - docker build -t crosswalks ./docker/detection/
 
 script:
   - docker run crosswalks /bin/sh -c "cd /OSMDeepOD/; git checkout ${TRAVIS_BRANCH}; pip install -r requires.dev.txt; py.test tests;"

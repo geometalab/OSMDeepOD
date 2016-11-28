@@ -6,7 +6,7 @@
 
 #  OSMDeepOD - OSM and Deep Learning based Object Detection from Aerial Imagery 
 
-This is a project about object detection from aerial imagery using open data from OpenStreetMap (OSM) project as massive training data and areal imagery, wordwide or local. This project has been formerly known as "OSM-Crosswalk-Detection"; now ot's called OSMDeepOD, pronounced "OSM Deep 'Oh 'Dee"!
+This is a project about object detection from aerial imagery using open data from OpenStreetMap (OSM) project as massive training data and areal imagery, wordwide or local. This project has been formerly known as "OSM-Crosswalk-Detection", now it's called OSMDeepOD, pronounced "OSM Deep 'Oh 'Dee"!
 
 Keywords: Big Data; Data Science; Data Engineering; Machine Learning; Artificial Intelligence; Neuronal Nets; Imagery; Volunteered Geographic Information; Crowdsourcing; Geographic Information Systems; Infrastructure; Parallel Programming.
 
@@ -17,29 +17,12 @@ OSM-Crosswalk-Detection is a highly scalable image recognition software for aeri
 This work started as part of a semester thesis autumn 2015 at Geometa Lab, University of Applied Sciences Rapperswil (HSR).
 
 ## Overview
-
-![Marcitecture](http://s11.postimg.org/7bdx1cetf/SA_Overview_new.png)
+![Detection-Example1](imgs/big_picture.png)
 
 ## Process
 ![Detection-Example1](imgs/process.png)
 
 ## Getting Started
-
-### Prerequisites
-
-- Python
-
-  At the moment, we support python 3.x
-
-- Docker
-
-  In order to use volumes, I recommend using docker >= 1.9.x
-
-- Bounding Box of area to analyze
-
-  To start the extraction of crosswalks within a given area, the bounding box of this area is required as arguments for the manager. To get the bounding box the desired area, you can use https://www.openstreetmap.org/export to select the area and copy paste the corresponding coordinates. Use the values in the following order when used as positional arguments to manager: `left bottom right top`
-
-### Usage
 The simplest way to use the detection process is to clone the repository and build/start the docker containers.
 
 ```
@@ -127,6 +110,24 @@ Picture 3: Crosswalk Examples
 ![No-Crosswalk Examples](imgs/No_Zebrastreifen_examples.png)
 
 Picture 4: No Crosswalk Examples
+
+
+
+## Prerequisites
+
+- Python
+
+  At the moment, we support python 3.x
+
+- Docker
+
+  In order to use volumes, I recommend using docker >= 1.9.x
+
+- Bounding Box of area to analyze
+
+  To start the extraction of crosswalks within a given area, the bounding box of this area is required as arguments for the manager. To get the bounding box the desired area, you can use https://www.openstreetmap.org/export to select the area and copy paste the corresponding coordinates. Use the values in the following order when used as positional arguments to manager: `left bottom right top`
+
+
 
 
 ## Links
