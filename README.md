@@ -32,7 +32,7 @@ If you have a nvida GPU and nvidia-docker installed, you could use the "nvidia-d
 
 To start the detection process use the src/role/main.py<sup id="a2">[2](#main)</sup> script.
 
-1. Use the manger option to select the detection area and generate the jobs stored by the redis instance
+1. Use the manger option to select the detection area and start the detection with the --standalone parameter.
 ```
 python3 main.py --config ./config.ini manager 9.345101 47.090794 9.355947 47.097288 --standalone
 ```
