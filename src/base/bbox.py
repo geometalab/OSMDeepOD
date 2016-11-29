@@ -1,7 +1,7 @@
 from src.base.node import Node
 
 
-class Bbox(object):
+class Bbox:
     def __init__(self, left=None, bottom=None, right=None, top=None):
         self.left = left
         self.bottom = bottom

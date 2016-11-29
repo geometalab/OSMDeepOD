@@ -11,6 +11,7 @@ from src.base.bbox import Bbox
 def small_bbox():
     return Bbox(left=8.54279671719532, bottom=47.366177501999516, right=8.543088251618977, top=47.36781249586627)
 
+
 @pytest.fixture(scope="session", autouse=True)
 def big_bbox():
     return Bbox(left=8.8, bottom=47.0, right=8.9, top=47.9)
