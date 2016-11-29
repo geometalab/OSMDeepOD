@@ -11,3 +11,4 @@ requests==2.5.2
 requests_ntlm
 docker-py
 OWSLib
+django-environ
