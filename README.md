@@ -77,11 +77,11 @@ Some hints to the config file:
 ### Own Orthofotos
 To use your own Orthofotos you have to do the following steps:
 
-    1. Add a new directory to src/data/orthofoto
-    2. Add a new module to the directory with the name: 'your_new_directory'_api.py
-    3. Create a class in the module with the name: 'Your_new_directory'Api   (First letter needs to be uppercase)
-    4. Implement the function 'def get_image(self, bbox):' and returns a pillow image of the bbox
-    5. After that you can use your api with the parameter --orthofots 'your_new_directory'
+1. Add a new directory to `src/data/orthofoto`
+2. Add a new module to the directory with the name: `'your_new_directory'_api.py`
+3. Create a class in the module with the name: `'Your_new_directory'Api`   (First letter needs to be uppercase)
+4. Implement the function `def get_image(self, bbox):` and returns a pillow image of the bbox
+5. After that you can use your api with the parameter `--orthofots 'your_new_directory'`
 
 If you have problems with the implementation have a look at the wms or other example.
 
