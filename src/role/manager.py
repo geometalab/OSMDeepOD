@@ -6,24 +6,24 @@ from rq import Queue
 from src.base.bbox import Bbox
 from src.base.configuration import Configuration
 from src.base.globalmaptiles import GlobalMercator
-from src.role.worker_functions import detect
+from src.role import worker_functions
 
 
 class Manager:
-
-    def __init__(self, bbox, job_queue_name, configuration=None):
+    def __init__(self, bbox=None, configuration=None, standalone=False):
+        self.standalone = standalone
         self.big_bbox = bbox
-        self.job_queue_name = job_queue_name
+        self.job_queue_name = 'jobs'
         self.mercator = GlobalMercator()
         self.small_bboxes = []
         self.configuration = self._configuration(configuration)
 
-    @classmethod
-    def from_big_bbox(cls, big_bbox, redis, job_queue_name, configuration=None):
-        manager = cls(big_bbox, job_queue_name, cls._configuration(configuration))
-        manager._generate_small_bboxes()
-        manager._enqueue_jobs(redis)
-        return manager
+    def run(self):
+        self._generate_small_bboxes()
+        if not self.standalone:
+            self._enqueue_jobs(self.configuration)
+        else:
+            worker_functions.standalone(bboxes=self.small_bboxes, configuration=self.configuration)
 
     def _generate_small_bboxes(self):
         m_minx, m_miny = self.mercator.LatLonToMeters(self.big_bbox.bottom, self.big_bbox.left)
@@ -38,14 +38,12 @@ class Manager:
                 small_bbox = Bbox(left=left, bottom=bottom, right=right, top=top)
                 self.small_bboxes.append(small_bbox)
 
-    def _enqueue_jobs(self, redis):
-        redis_connection = Redis(redis[0], redis[1], password=redis[2])
+    def _enqueue_jobs(self, configuration):
+        redis_connection = Redis(host=configuration.server, port=configuration.port, password=configuration.password)
         queue = Queue(self.job_queue_name, connection=redis_connection)
         for small_bbox in self.small_bboxes:
-            queue.enqueue_call(
-                func=detect,
-                args=(small_bbox, redis, self.configuration),
-                timeout=self.configuration.timeout)
+            queue.enqueue_call(func=worker_functions.detect, args=(small_bbox, self.configuration),
+                               timeout=self.configuration.timeout)
         print('Number of enqueued jobs in queue \'{0}\': {1}'.format(self.job_queue_name, len(queue)))
 
     def _calc_rows(self):

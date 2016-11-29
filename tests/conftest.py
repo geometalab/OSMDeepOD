@@ -1,3 +1,4 @@
+import os
 import pytest
 
 from src.base.node import Node
@@ -9,7 +10,6 @@ from src.base.bbox import Bbox
 @pytest.fixture(scope="session", autouse=True)
 def small_bbox():
     return Bbox(left=8.54279671719532, bottom=47.366177501999516, right=8.543088251618977, top=47.36781249586627)
-
 
 @pytest.fixture(scope="session", autouse=True)
 def big_bbox():
@@ -50,3 +50,8 @@ def roundabout_tag():
 def configuration_no_compare():
     parameters = dict(compare=False)
     return Configuration(parameters=parameters)
+
+
+@pytest.fixture(scope="session", autouse=True)
+def store_path():
+    return os.path.join(os.getcwd(), 'detected_nodes.json')

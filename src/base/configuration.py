@@ -21,7 +21,6 @@ class Configuration:
         self.password = parameters.get('password', 'crosswalks')
 
     def set_from_config_parser(self, config):
-        self._check_required_fields(config)
         self.word = config.get(section='DETECTION', option='Word', fallback='crosswalk')
         self.tag = Tag(key=config.get(section='DETECTION', option='Key', fallback='highway'),
                        value=config.get(section='DETECTION', option='Value', fallback='crosswalk'))
@@ -32,14 +31,14 @@ class Configuration:
         self.labels = config.get(section='DETECTION', option='Labels')
         self.follow_streets = config.getboolean(section='DETECTION', option='FollowStreets', fallback=True)
         self.barrier = config.getfloat(section='DETECTION', option='DetectionBarrier', fallback=0.99)
-        self.bbox_size = config.getint(section='JOB', option='BboxSize', fallback=2000)
-        self.timeout = config.getint(section='JOB', option='Timeout', fallback=5400)
+        self.bbox_size = config.getint(section='REDIS', option='BboxSize', fallback=2000)
+        self.timeout = config.getint(section='REDIS', option='Timeout', fallback=5400)
         self.port = config.getint(section='REDIS', option='Port', fallback=40001)
         self.password = config.get(section='REDIS', option='Password', fallback='crosswalks')
         self.server = config.get(section='REDIS', option='Server', fallback='127.0.0.1')
 
     @staticmethod
-    def _check_required_fields(config):
+    def check_redis_fields(config):
         if not config.has_section('REDIS'):
             raise Exception("Section 'REDIS' is not in config file!")
         if not config.has_option('REDIS', 'Server'):
