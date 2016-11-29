@@ -6,13 +6,8 @@
 
 #  OSMDeepOD - OSM and Deep Learning based Object Detection from Aerial Imagery 
 
-This is a project about object detection from aerial imagery using open data from OpenStreetMap (OSM) project as massive training data and areal imagery, wordwide or local. This project has been formerly known as "OSM-Crosswalk-Detection", now it's called OSMDeepOD, pronounced "OSM Deep 'Oh 'Dee"!
-
-Keywords: Big Data; Data Science; Data Engineering; Machine Learning; Artificial Intelligence; Neuronal Nets; Imagery; Volunteered Geographic Information; Crowdsourcing; Geographic Information Systems; Infrastructure; Parallel Programming.
-
-## Introduction
-
-OSM-Crosswalk-Detection is a highly scalable image recognition software for aerial photos (orthophotos). It uses the open source software library TensorFlow, with a retrained Inception V3 neuronal network, to detect crosswalks along streets.
+OSMDeepOD is a project about object detection from aerial imagery using open data from OpenStreetMap (OSM).
+The project uses the open source software library TensorFlow, with a retrained Inception V3 neuronal network.
 
 This work started as part of a semester thesis autumn 2015 at Geometa Lab, University of Applied Sciences Rapperswil (HSR).
 
@@ -23,45 +18,33 @@ This work started as part of a semester thesis autumn 2015 at Geometa Lab, Unive
 ![Detection-Example1](imgs/process.png)
 
 ## Getting Started
-The simplest way to use the detection process is to clone the repository and build/start the docker containers.
+The simplest way to use the detection process is to clone the repository and build/start the docker container.
 
 ```
-git clone https://github.com/geometalab/OSM-Crosswalk-Detection.git
-cd OSM-Crosswalk-Detection/dockerfiles/
-sudo python docker_run.py -r -d
+git clone https://github.com/geometalab/OSMDeepOD.git
+cd OSMDeepOD/docker/
+sudo docker build . -t osmdeepod
+sudo docker run -it --name osmdeepod -v ./:/objects osmdeepod bash
 ```
 
-After the previous shell commands you have started a redis instance for data persistance and a container for the detection process.
-Now you should be connected to a tty of the crosswalk_detection container. If you have a nvida GPU and nvidia-docker installed the detection algorithm will automatically use this GPU<sup id="a1">[1](#GPU)</sup>.
+After the previous shell commands you have started a standalone instance of OSMDeepOD and you are connected to it.
+If you have a nvida GPU and nvidia-docker installed, you could use the "nvidia-docker" command to run the container for automatically usage of the GPU<sup id="a1">[1](#GPU)</sup>.
 
 To start the detection process use the src/role/main.py<sup id="a2">[2](#main)</sup> script.
 
 1. Use the manger option to select the detection area and generate the jobs stored by the redis instance
 ```
-python3 main.py --config ./config.ini manager 9.345101 47.090794 9.355947 47.097288
+python3 main.py --config ./config.ini manager 9.345101 47.090794 9.355947 47.097288 --standalone
 ```
 
-2. Start the detection algorithm. The results are also stored by the redis instance.
-```
-python main.py --config ./config.ini jobworker
-```
-
-3. Collect the results in a simple JSON file.
-```
-python main.py --config ./config.ini resultworker
-```
-
-If you have execute the result worker in the docker container you can move the crosswalks.json file to the /crosswalk/ directory which is map to your host.
+After the detection process has finished a "detected_nodes.json" file will appear with the results.
+If you like to use OSMDeepOD in a more parallel and distributed way have a look at the https://github.com/geometalab/OSMDeepOD-Visualize repository.
+There you have got the ability to use redis as a message queue and you can run many OSMDeepOD instances as workers.
 
 ### Configuration
 The configuration works with an INI file.
 The file looks like the following:
 ```
-[REDIS]
-Server = 127.0.0.1
-Port = 40001
-Password = crosswalks
-
 [DETECTION]
 Network = /path/to/the/trained/convnet
 Labels = /path/to/the/label/file/of/the/convnet
@@ -74,16 +57,19 @@ Compare = yes
 Orthofoto = other
 FollowStreets = yes
 
-[JOB]
+[REDIS]
+Server = 127.0.0.1
+Port = 40001
+Password = crosswalks
 BboxSize = 2000
 Timeout = 5400
 ```
 
 Some hints to the config file:
- - The section REDIS should be self explanatory
  - "Word" is the key value of the labels file
  - "Key" and "Value" builds the search Tag for OSM
  - "Compare" means compared to OSM tagged Nodes
+ - The section REDIS should be self explanatory, this is not necessary in the standalone mode
  - "BboxSize" is the size in meters of the split large Bbox
  - "Timeout" after the expired time the job does fail
 
@@ -117,7 +103,7 @@ Picture 4: No Crosswalk Examples
 
 - Python
 
-  At the moment, we support python 3.x
+  At the moment, we support python 3.5
 
 - Docker
 
@@ -140,3 +126,6 @@ Picture 4: No Crosswalk Examples
 ## Notes
  - <a name="GPU">1</a>: The crosswalk_detection container is based on the nvidia/cuda:7.5-cudnn4-devel-ubuntu14.04 image, may you have to change the base image for your GPU. [↩](#a1)
  - <a name="main">2</a>: For more information about the main.py use the -h option. [↩](#a2)
+
+## Keywords
+Big Data; Data Science; Data Engineering; Machine Learning; Artificial Intelligence; Neuronal Nets; Imagery; Volunteered Geographic Information; Crowdsourcing; Geographic Information Systems; Infrastructure; Parallel Programming.
