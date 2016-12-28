@@ -45,13 +45,16 @@ def test_config(configuration):
     assert configuration.port == port
 
 
-def test_barrier_constraints_low(configuration):
-    configuration.barrier = -1.0
-    with pytest.raises(Exception):
-        configuration.check_manager_config()
-
-
 def test_barrier_constraints_high(configuration):
-    configuration.barrier = 1.1
-    with pytest.raises(Exception):
-        configuration.check_manager_config()
+    barrier = 1.1
+    assert not configuration.check_barrier_constraints(barrier)
+
+
+def test_barrier_constraints_low(configuration):
+    barrier = -1.0
+    assert not configuration.check_barrier_constraints(barrier)
+
+
+def test_barrier_constraints_correct(configuration):
+    barrier = 0.5
+    assert configuration.check_barrier_constraints(barrier)

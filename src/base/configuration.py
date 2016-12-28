@@ -50,8 +50,7 @@ class Configuration:
         if not config.has_option('REDIS', 'Port'):
             raise Exception("'port' not in 'REDIS' section!")
 
-    @staticmethod
-    def check_manager_config(config):
+    def check_manager_config(self, config):
         if not config.has_section('DETECTION'): raise Exception(
             "Section 'DETECTION' is not in config file!")
 
@@ -68,5 +67,9 @@ class Configuration:
 
         if config.has_option('DETECTION', 'DetectionBarrier'):
             barrier = config.get(section='DETECTION', option='DetectionBarrier')
-            if barrier < 0.0 or barrier > 1.0:
+            if not self.check_barrier_constraints(barrier):
                 raise Exception("'DetectionBarrier' needs to be a value between 0.0 and 1.0. Current value: " + barrier)
+
+    @staticmethod
+    def check_barrier_constraints(barrier):
+        return not (barrier < 0.0 or barrier > 1.0)
