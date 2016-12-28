@@ -9,5 +9,5 @@ rq==0.6.0
 requests==2.5.2
 numpy==1.11.3
 tensorflow==0.12.0
-requests_ntlm==1.0.2
+requests_ntlm==1.0.0
 OWSLib==0.13.0
