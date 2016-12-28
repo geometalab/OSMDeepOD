@@ -43,3 +43,15 @@ def test_config(configuration):
     configuration.set_from_config_parser(config)
 
     assert configuration.port == port
+
+
+def test_barrier_constraints_low(configuration):
+    configuration.barrier = -1.0
+    with pytest.raises(Exception):
+        configuration.check_manager_config()
+
+
+def test_barrier_constraints_high(configuration):
+    configuration.barrier = 1.1
+    with pytest.raises(Exception):
+        configuration.check_manager_config()

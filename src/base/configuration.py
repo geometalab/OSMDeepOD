@@ -55,13 +55,18 @@ class Configuration:
         if not config.has_section('DETECTION'): raise Exception(
             "Section 'DETECTION' is not in config file!")
 
-        if not config.has_option('DETECTION', 'network'): raise Exception(
-            "'network' not in 'DETECTION' section! ")
+        if not config.has_option('DETECTION', 'Network'): raise Exception(
+            "'Network' not in 'DETECTION' section! ")
         network = config.get(section='DETECTION', option='network')
         if not os.path.isfile(network): raise Exception("The config file does not exist! " + network)
 
-        labels = config.get(section='DETECTION', option='labels')
-        if not config.has_option('DETECTION', 'labels'): raise Exception(
-            "'labels' not in 'DETECTION' section! ")
+        labels = config.get(section='DETECTION', option='Labels')
+        if not config.has_option('DETECTION', 'Labels'): raise Exception(
+            "'Labels' not in 'DETECTION' section! ")
         if not os.path.isfile(labels):
             raise Exception("The config file does not exist! " + labels)
+
+        if config.has_option('DETECTION', 'DetectionBarrier'):
+            barrier = config.get(section='DETECTION', option='DetectionBarrier')
+            if barrier < 0.0 or barrier > 1.0:
+                raise Exception("'DetectionBarrier' needs to be a value between 0.0 and 1.0. Current value: " + barrier)
