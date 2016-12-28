@@ -25,7 +25,7 @@ class Configuration:
         self.word = config.get(section='DETECTION', option='Word', fallback='crosswalk')
         self.tag = Tag(key=config.get(section='DETECTION', option='Key', fallback='highway'),
                        value=config.get(section='DETECTION', option='Value', fallback='crosswalk'))
-        self.zoom_level = config.getint(section='DETECTION', option='Zoom', fallback=19)
+        self.zoom_level = config.getint(section='DETECTION', option='ZoomLevel', fallback=19)
         self.compare = config.getboolean(section='DETECTION', option='Compare', fallback=True)
         self.orthophoto = config.get(section='DETECTION', option='Orthofoto', fallback='other')
         self.network = config.get(section='DETECTION', option='Network')
