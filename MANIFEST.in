@@ -2,3 +2,4 @@ include versioneer.py
 include src/_version.py
 include src/detection/tensor/output_graph.pb
 include src/detection/tensor/output_labels.txt
+include src/data/orthofoto/wms/wms.ini
