@@ -8,11 +8,10 @@ RUN apt-get update \
 && apt-get update \
 && apt-get upgrade -y \
 && apt-get install -y python3-pip python3-dev python3 git vim libjpeg-dev libjpeg8-dev \
-&& pip3 install --upgrade pip \
 && cd / \
 && git clone https://github.com/geometalab/OSMDeepOD.git \
 && cd OSMDeepOD \
-&& pip uninstall requests -y \
-&& pip install -r requires.dev.txt \
+&& pip3 uninstall requests -y \
+&& pip3 install -r requires.dev.txt \
 && python3 setup.py install \
 
