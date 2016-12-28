@@ -43,3 +43,18 @@ def test_config(configuration):
     configuration.set_from_config_parser(config)
 
     assert configuration.port == port
+
+
+def test_barrier_constraints_high(configuration):
+    barrier = 1.1
+    assert not configuration.check_barrier_constraints(barrier)
+
+
+def test_barrier_constraints_low(configuration):
+    barrier = -1.0
+    assert not configuration.check_barrier_constraints(barrier)
+
+
+def test_barrier_constraints_correct(configuration):
+    barrier = 0.5
+    assert configuration.check_barrier_constraints(barrier)

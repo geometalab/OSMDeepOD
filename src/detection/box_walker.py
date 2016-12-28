@@ -88,13 +88,13 @@ class BoxWalker:
 
     def _get_tiles_of_box(self, tile):
         tile_walker = TileWalker(tile=tile, square_image_length=self.square_image_length,
-                                 zoom_level=self.configuration.zoom_level)
+                                 zoom_level=self.configuration.zoom_level, step_width=self.configuration.step_width)
         tiles = tile_walker.get_tiles()
         return tiles
 
     def _get_tiles_of_box_with_streets(self, streets, tile):
         street_walker = StreetWalker(tile=tile, square_image_length=self.square_image_length,
-                                     zoom_level=self.configuration.zoom_level)
+                                     zoom_level=self.configuration.zoom_level, step_width=self.configuration.step_width)
         tiles = []
         for street in streets:
             street_tiles = street_walker.get_tiles(street)
