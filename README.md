@@ -56,6 +56,7 @@ Zoom = 19
 Compare = yes
 Orthofoto = other
 FollowStreets = yes
+StepWidth = 0.66
 
 [REDIS]
 Server = 127.0.0.1
@@ -69,6 +70,7 @@ Some hints to the config file:
  - "Word" is the key value of the labels file
  - "Key" and "Value" builds the search Tag for OSM
  - "Compare" means compared to OSM tagged Nodes
+ - "StepWidth" regulates the distance between the cut out images
  - The section REDIS should be self explanatory, this is not necessary in the standalone mode
  - "BboxSize" is the size in meters of the split large Bbox
  - "Timeout" after the expired time the job does fail

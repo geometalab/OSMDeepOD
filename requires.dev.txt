@@ -8,6 +8,8 @@ redis==2.10.5
 rq==0.6.0
 dockerpty
 requests==2.5.2
+numpy==1.11.3
+tensorflow==0.12.0
 requests_ntlm
 docker-py
 OWSLib

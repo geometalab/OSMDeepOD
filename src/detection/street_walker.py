@@ -4,8 +4,8 @@ from src.detection.walker import Walker
 
 
 class StreetWalker(Walker):
-    def __init__(self, tile=None, square_image_length=50, zoom_level=19):
-        super(StreetWalker, self).__init__(tile, square_image_length, zoom_level)
+    def __init__(self, tile=None, square_image_length=50, zoom_level=19, step_width=0.66):
+        super(StreetWalker, self).__init__(tile, square_image_length, zoom_level, step_width)
 
     def get_tiles(self, street):
         nodes = self._calculate_tile_centres(street)
