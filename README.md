@@ -11,6 +11,12 @@ The project uses the open source software library TensorFlow, with a retrained I
 
 This work started as part of a semester thesis autumn 2015 at Geometa Lab, University of Applied Sciences Rapperswil (HSR).
 
+## Material 
+ * [Paper AGIT 2016 (de) by S. Keller & S. Kurath, 7.7.2016](http://gispoint.de/gisopen-paper/3875-erkennung-von-fussgaengerstreifen-aus-orthophotos/agit.html?IDjournalTitle=5&tx_browser_pi1[IDedition]=5)
+ * Presentation (en) by S. Keller at GEOSmart Innovation Day 2016: tba.
+ * [Presentation (en/de) by S. Bühler at PyDataZRH, 6.12.2016](https://twitter.com/SeverinBuhler/status/803193080211996672)
+ * tba.
+
 ## Overview
 ![Detection-Example1](imgs/big_picture.png)
 
@@ -117,7 +123,6 @@ Picture 4: No Crosswalk Examples
 
 
 
-
 ## Links
 - http://wiki.hsr.ch/StefanKeller/SA_BA_Gamified_Extraction_of_Crosswalks_from_Aerial_Images
 - www.hsr.ch
@@ -128,6 +133,7 @@ Picture 4: No Crosswalk Examples
 ## Notes
  - <a name="GPU">1</a>: The crosswalk_detection container is based on the nvidia/cuda:7.5-cudnn4-devel-ubuntu14.04 image, may you have to change the base image for your GPU. [↩](#a1)
  - <a name="main">2</a>: For more information about the main.py use the -h option. [↩](#a2)
+
 
 ## Keywords
 Big Data; Data Science; Data Engineering; Machine Learning; Artificial Intelligence; Neuronal Nets; Imagery; Volunteered Geographic Information; Crowdsourcing; Geographic Information Systems; Infrastructure; Parallel Programming.
