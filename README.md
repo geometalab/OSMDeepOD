@@ -9,7 +9,7 @@
 OSMDeepOD is a project about object detection from aerial imagery using open data from OpenStreetMap (OSM).
 The project uses the open source software library TensorFlow, with a retrained Inception V3 neuronal network.
 
-This work started as part of a semester thesis autumn 2015 at Geometa Lab, University of Applied Sciences Rapperswil (HSR).
+This work started as part of a semester thesis autumn 2015 at Geometa Lab, University of Applied Sciences Rapperswil (HSR). See [Twitter hashtag #OSMDeepOD](https://twitter.com/hashtag/OSMDeepOD) for news.
 
 ## Material 
  * [Paper AGIT 2016 (de) by S. Keller & S. Kurath, 7.7.2016](http://gispoint.de/gisopen-paper/3875-erkennung-von-fussgaengerstreifen-aus-orthophotos/agit.html?IDjournalTitle=5&tx_browser_pi1[IDedition]=5)
