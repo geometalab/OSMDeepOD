@@ -1,4 +1,4 @@
-FROM nvidia/cuda:7.5-cudnn4-devel-ubuntu14.04
+FROM nvidia/cuda:8.0-devel-ubuntu14.04
 
 MAINTAINER Samuel Kurath <skurath@hsr.ch>
 
