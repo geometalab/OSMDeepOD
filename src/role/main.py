@@ -19,7 +19,7 @@ def manager(args, configuration):
     big_bbox = Bbox(left=args.bb_left, bottom=args.bb_bottom, right=args.bb_right, top=args.bb_top)
     try:
         print('Manager has started...')
-        manage = Manager(big_bbox, 'jobs', configuration, args.standalone)
+        manage = Manager(bbox=big_bbox, configuration=configuration, standalone=args.standalone)
         manage.run()
     except ConnectionError:
         print(
@@ -95,6 +95,14 @@ def mainfunc():
         help='The path to the configuration file.'
     )
 
+    parser.add_argument(
+        '-s',
+        '--standalone',
+        dest='standalone',
+        action='store_true',
+        help='If chosen the detection will run standalone and save the results in "crosswalks.json".')
+    parser.set_defaults(standalone=False)
+
     subparsers = parser.add_subparsers(
         title='worker roles',
         description='',
@@ -128,13 +136,6 @@ def mainfunc():
         action='store',
         help='top float value of the bounding box (WGS84, maxlat)')
     p_manager.set_defaults(func=manager)
-    p_manager.add_argument(
-        '-s'
-        '--standalone',
-        dest='standalone',
-        action='store_true',
-        help='If chosen the detection will run standalone and save the results in "crosswalks.json".')
-    p_manager.set_defaults(standalone=False)
 
     p_jobworker = subparsers.add_parser(
         'jobworker',
