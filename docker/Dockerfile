@@ -12,7 +12,6 @@ RUN apt-get update \
 && git clone https://github.com/geometalab/OSMDeepOD.git \
 && cd OSMDeepOD \
 && pip3 uninstall requests -y \
-&& git checkout cuda_update \
 && pip3 install -r requires.dev.txt \
 && sudo pip3 install --upgrade  https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.0.0-cp34-cp34m-linux_x86_64.whl \
 && python3 setup.py install \
