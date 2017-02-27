@@ -40,7 +40,7 @@ To start the detection process use the src/role/main.py<sup id="a2">[2](#main)</
 
 1. Use the manger option to select the detection area and start the detection with the --standalone parameter.
 ```
-python3 main.py --config ./config.ini manager 9.345101 47.090794 9.355947 47.097288 --standalone
+python3 main.py --config ./config.ini --standalone manager 9.345101 47.090794 9.355947 47.097288
 ```
 
 After the detection process has finished a "detected_nodes.json" file will appear with the results.
