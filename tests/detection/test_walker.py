@@ -8,8 +8,8 @@ def test_calculate_step_distance():
     assert step_distance > 0
 
 
-def test_get_squared_tiles(small_bbox):
-    box_walker = BoxWalker(small_bbox)
+def test_get_squared_tiles(small_bbox, default_config):
+    box_walker = BoxWalker(small_bbox, configuration=default_config)
     box_walker.load_tiles()
     walker = Walker(tile=box_walker.tile)
     centre_node = box_walker.tile.get_centre_node()

@@ -48,9 +48,15 @@ def roundabout_tag():
 
 
 @pytest.fixture(scope="session", autouse=True)
+def default_config():
+    return Configuration(os.path.dirname(os.path.realpath(__file__)) + '/test_config.ini')
+
+
+@pytest.fixture(scope="session", autouse=True)
 def configuration_no_compare():
-    parameters = dict(compare=False)
-    return Configuration(parameters=parameters)
+    configuration = Configuration(os.path.dirname(os.path.realpath(__file__)) + '/test_config.ini')
+    configuration.DETECTION.compare = 'false'
+    return configuration
 
 
 @pytest.fixture(scope="session", autouse=True)

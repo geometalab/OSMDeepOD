@@ -1,8 +1,6 @@
 import argparse
-import configparser
 import logging
 import logging.handlers
-import os
 from redis.exceptions import ConnectionError
 
 from src.base.configuration import Configuration
@@ -67,23 +65,7 @@ def set_logger():
     root_logger.setLevel(logging.WARNING)
 
 
-def read_config(args):
-    config_file = args.config
-    config = configparser.ConfigParser()
-    if not os.path.isfile(config_file):
-        raise Exception("The config file does not exist! " + config_file)
-    config.read(config_file)
-    configuration = Configuration()
-    if not args.standalone:
-        configuration.check_redis_fields(config)
-    configuration.set_from_config_parser(config)
-
-    if args.role is 'manager':
-        configuration.check_manager_config(config)
-    return configuration
-
-
-def mainfunc():
+def main_func():
     set_logger()
     parser = argparse.ArgumentParser(description='Detect crosswalks.', )
     parser.add_argument(
@@ -148,9 +130,9 @@ def mainfunc():
     p_resultworker.set_defaults(func=result_worker)
 
     args = parser.parse_args()
-    configuration = read_config(args)
+    configuration = Configuration(args.config)
     args.func(args, configuration)
 
 
 if __name__ == "__main__":
-    mainfunc()
+    main_func()

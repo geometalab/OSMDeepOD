@@ -16,7 +16,7 @@ class Manager:
         self.job_queue_name = 'jobs'
         self.mercator = GlobalMercator()
         self.small_bboxes = []
-        self.configuration = self._configuration(configuration)
+        self.configuration = configuration
 
     def run(self):
         self._generate_small_bboxes()
@@ -29,7 +29,7 @@ class Manager:
         m_minx, m_miny = self.mercator.LatLonToMeters(self.big_bbox.bottom, self.big_bbox.left)
         rows = self._calc_rows()
         columns = self._calc_columns()
-        side = self.configuration.bbox_size
+        side = int(self.configuration.JOB.bboxsize)
 
         for x in range(0, columns):
             for y in range(0, rows):
@@ -50,14 +50,10 @@ class Manager:
         _, m_miny = self.mercator.LatLonToMeters(self.big_bbox.bottom, self.big_bbox.left)
         _, m_maxy = self.mercator.LatLonToMeters(self.big_bbox.top, self.big_bbox.right)
         meter_in_y = m_maxy - m_miny
-        return int(math.ceil(meter_in_y / self.configuration.bbox_size))
+        return int(math.ceil(meter_in_y / int(self.configuration.JOB.bboxsize)))
 
     def _calc_columns(self):
         m_min_x, _ = self.mercator.LatLonToMeters(self.big_bbox.bottom, self.big_bbox.left)
         m_max_x, _ = self.mercator.LatLonToMeters(self.big_bbox.top, self.big_bbox.right)
         meter_in_x = m_max_x - m_min_x
-        return int(math.ceil(meter_in_x / self.configuration.bbox_size))
-
-    @staticmethod
-    def _configuration(configuration):
-        return Configuration() if configuration is None else configuration
+        return int(math.ceil(meter_in_x / int(self.configuration.JOB.bboxsize)))

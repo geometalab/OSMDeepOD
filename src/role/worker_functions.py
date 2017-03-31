@@ -15,7 +15,7 @@ def enqueue_results(result_nodes, redis_connection):
 
 def get_nodes(bbox, configuration):
     walker = BoxWalker(bbox=bbox, configuration=configuration)
-    if configuration.follow_streets:
+    if configuration.DETECTION.followstreets:
         walker.load_streets()
     crosswalk_nodes = []
     if len(walker.streets) > 0 or not configuration.follow_streets:
