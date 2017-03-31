@@ -55,4 +55,9 @@ def configuration_no_compare():
 
 @pytest.fixture(scope="session", autouse=True)
 def store_path():
-    return os.path.join(os.getcwd(), 'detected_nodes.json')
+    file_path = os.path.join(os.getcwd(), 'detected_nodes.json')
+    try:
+        os.remove(file_path)
+    except OSError:
+        pass
+    return file_path
