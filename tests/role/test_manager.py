@@ -64,7 +64,7 @@ def test_manager_configuration(big_bbox):
 
 
 def test_manager_standalone(store_path):
-    small_bbox = Bbox(left=8.83848086, bottom=47.2218996495, right=8.8388215005, top=47.2220713398)
+    small_bbox = Bbox(left=9.351172, bottom=47.098195, right=9.351301, top=47.098480)
     manager = Manager(bbox=small_bbox, standalone=True, configuration=Configuration(dict(bbox_size=50, compare=False)))
     manager.run()
     with open(store_path, 'r') as f:
