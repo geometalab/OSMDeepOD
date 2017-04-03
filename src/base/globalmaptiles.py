@@ -248,8 +248,7 @@ class GlobalMercator(object):
 
     def Resolution(self, zoom):
         "Resolution (meters/pixel) for given zoom level (measured at Equator)"
-
-        # return (2 * math.pi * 6378137) / (self.tileSize * 2**zoom)
+        zoom = int(zoom)
         return self.initialResolution / (2 ** zoom)
 
     def ZoomForPixelSize(self, pixelSize):

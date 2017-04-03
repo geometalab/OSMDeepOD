@@ -1,75 +1,52 @@
 import os
-from src.base.tag import Tag
+import configparser
 
 
 class Configuration:
-    def __init__(self, parameters=None):
-        if parameters is None: parameters = dict()
-        self.word = parameters.get('word', 'crosswalk')
-        self.tag = Tag(key=parameters.get('key', 'highway'), value=parameters.get('value', 'crossing'))
-        self.zoom_level = parameters.get('zoom_level', 19)
-        self.barrier = parameters.get('barrier', 0.99)
-        self.compare = parameters.get('compare', True)
-        self.orthophoto = parameters.get('orthophoto', 'other')
-        self.network = parameters.get('network', '')
-        self.labels = parameters.get('labels', '')
-        self.step_width = parameters.get('StepWidth', 0.66)
-        self.follow_streets = parameters.get('follow_street', True)
-        self.bbox_size = float(parameters.get('bbox_size', 2000))
-        self.timeout = parameters.get('timeout', 5400)
-        self.server = parameters.get('server', '127.0.0.1')
-        self.port = parameters.get('port', 40001)
-        self.password = parameters.get('password', 'crosswalks')
+    def __init__(self, config_file_path=''):
+        config_parser = self.read_configuration_file(config_file_path)
+        sections = [
+            {'section': 'REDIS', 'options': [{'option': 'server', 'fallback': '127.0.0.1'},
+                                             {'option': 'port', 'fallback': '40001'},
+                                             {'option': 'password', 'fallback': 'crosswalks'}]},
+            {'section': 'DETECTION', 'options': [{'option': 'network', 'fallback': ''},
+                                                 {'option': 'labels', 'fallback': ''},
+                                                 {'option': 'barrier', 'fallback': '0.99'},
+                                                 {'option': 'word', 'fallback': 'crosswalk'},
+                                                 {'option': 'key', 'fallback': 'highway'},
+                                                 {'option': 'value', 'fallback': 'crossing'},
+                                                 {'option': 'zoomlevel', 'fallback': '19'},
+                                                 {'option': 'compare', 'fallback': 'yes'},
+                                                 {'option': 'orthophoto', 'fallback': 'other'},
+                                                 {'option': 'stepwidth', 'fallback': '0.66'},
+                                                 {'option': 'followstreets', 'fallback': 'yes'}]},
+            {'section': 'JOB', 'options': [{'option': 'bboxsize', 'fallback': '2000'},
+                                           {'option': 'timeout', 'fallback': '5400'}]},
+        ]
+        self.check_sections(config_parser, sections)
+        self.set_options(config_parser, sections)
 
-    def set_from_config_parser(self, config):
-        self.word = config.get(section='DETECTION', option='Word', fallback='crosswalk')
-        self.tag = Tag(key=config.get(section='DETECTION', option='Key', fallback='highway'),
-                       value=config.get(section='DETECTION', option='Value', fallback='crosswalk'))
-        self.zoom_level = config.getint(section='DETECTION', option='ZoomLevel', fallback=19)
-        self.compare = config.getboolean(section='DETECTION', option='Compare', fallback=True)
-        self.orthophoto = config.get(section='DETECTION', option='Orthofoto', fallback='other')
-        self.network = config.get(section='DETECTION', option='Network')
-        self.labels = config.get(section='DETECTION', option='Labels')
-        self.follow_streets = config.getboolean(section='DETECTION', option='FollowStreets', fallback=True)
-        self.barrier = config.getfloat(section='DETECTION', option='DetectionBarrier', fallback=0.99)
-        self.step_width = config.getfloat(section='DETECTION', option='StepWidth', fallback=0.66)
-        self.bbox_size = config.getint(section='REDIS', option='BboxSize', fallback=2000)
-        self.timeout = config.getint(section='REDIS', option='Timeout', fallback=5400)
-        self.port = config.getint(section='REDIS', option='Port', fallback=40001)
-        self.password = config.get(section='REDIS', option='Password', fallback='crosswalks')
-        self.server = config.get(section='REDIS', option='Server', fallback='127.0.0.1')
+    def set_options(self, config_parser, sections):
+        for section in sections:
+            SectionClass = type(section['section'], (), {})
+            section_class = SectionClass()
+            for option in section['options']:
+                if not config_parser.has_option(section['section'], option['option']):
+                    raise Exception('Option {0} is not in section {1}!'.format(option['option'], section['section']))
+                setattr(section_class, option['option'],
+                        config_parser.get(section['section'], option['option'], fallback=option['fallback']))
+            setattr(self, section['section'], section_class)
 
     @staticmethod
-    def check_redis_fields(config):
-        if not config.has_section('REDIS'):
-            raise Exception("Section 'REDIS' is not in config file!")
-        if not config.has_option('REDIS', 'Server'):
-            raise Exception("'server' not in 'REDIS' section!")
-        if not config.has_option('REDIS', 'Password'):
-            raise Exception("'password' not in 'REDIS' section!")
-        if not config.has_option('REDIS', 'Port'):
-            raise Exception("'port' not in 'REDIS' section!")
-
-    def check_manager_config(self, config):
-        if not config.has_section('DETECTION'): raise Exception(
-            "Section 'DETECTION' is not in config file!")
-
-        if not config.has_option('DETECTION', 'Network'): raise Exception(
-            "'Network' not in 'DETECTION' section! ")
-        network = config.get(section='DETECTION', option='network')
-        if not os.path.isfile(network): raise Exception("The config file does not exist! " + network)
-
-        labels = config.get(section='DETECTION', option='Labels')
-        if not config.has_option('DETECTION', 'Labels'): raise Exception(
-            "'Labels' not in 'DETECTION' section! ")
-        if not os.path.isfile(labels):
-            raise Exception("The config file does not exist! " + labels)
-
-        if config.has_option('DETECTION', 'DetectionBarrier'):
-            barrier = config.get(section='DETECTION', option='DetectionBarrier')
-            if not self.check_barrier_constraints(barrier):
-                raise Exception("'DetectionBarrier' needs to be a value between 0.0 and 1.0. Current value: " + barrier)
+    def read_configuration_file(config_file_path):
+        if not os.path.isfile(config_file_path):
+            raise Exception("The config file does not exist!")
+        config_parser = configparser.ConfigParser()
+        config_parser.read(config_file_path)
+        return config_parser
 
     @staticmethod
-    def check_barrier_constraints(barrier):
-        return not (barrier < 0.0 or barrier > 1.0)
+    def check_sections(config_parser, sections):
+        for section in sections:
+            if not config_parser.has_section(section['section']):
+                raise Exception('Section {0} is not in config file!'.format(section['section']))

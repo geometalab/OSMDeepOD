@@ -5,6 +5,7 @@ from importlib import import_module
 
 from src.base.globalmaptiles import GlobalMercator
 from src.base.configuration import Configuration
+from src.base.tag import Tag
 from src.data.orthofoto.tile_loader import TileLoader
 from src.data.osm.node_merger import NodeMerger
 from src.data.osm.osm_comparator import OsmComparator
@@ -25,10 +26,11 @@ class BoxWalker:
         self.streets = []
         self.convnet = None
         self.square_image_length = 50
-        self.max_distance = self._calculate_max_distance(self.configuration.zoom_level, self.square_image_length)
+        self.max_distance = self._calculate_max_distance(self.configuration.DETECTION.zoomlevel,
+                                                         self.square_image_length)
         self.image_api = OtherApi(
-            self.configuration.zoom_level) if self.configuration.orthophoto is 'other' else self._get_image_api(
-            self.configuration.orthophoto)
+            self.configuration.DETECTION.zoomlevel) if self.configuration.DETECTION.orthophoto is 'other' else self._get_image_api(
+            self.configuration.DETECTION.orthophoto)
 
     @staticmethod
     def _get_image_api(image_api):
@@ -38,9 +40,10 @@ class BoxWalker:
         return class_()
 
     def load_convnet(self):
-        self.convnet = Detector(labels_file=self.configuration.labels, graph_file=self.configuration.network)
-        if not self.configuration.word in self.convnet.labels:
-            error_message = self.configuration.word + " is not in label file."
+        self.convnet = Detector(labels_file=self.configuration.DETECTION.labels,
+                                graph_file=self.configuration.DETECTION.network)
+        if not self.configuration.DETECTION.word in self.convnet.labels:
+            error_message = self.configuration.DETECTION.word + " is not in label file."
             logger.error(error_message)
             raise Exception(error_message)
 
@@ -66,7 +69,7 @@ class BoxWalker:
             raise Exception(error_message)
 
         self._printer("Start detection.")
-        if self.configuration.follow_streets:
+        if self.configuration.DETECTION.followstreets:
             tiles = self._get_tiles_of_box_with_streets(self.streets, self.tile)
         else:
             tiles = self._get_tiles_of_box(self.tile)
@@ -82,19 +85,23 @@ class BoxWalker:
                 detected_nodes.append(tiles[i].get_centre_node())
         self._printer("Stop detection.")
         merged_nodes = self._merge_near_nodes(detected_nodes)
-        if self.configuration.compare:
+
+        compare = self._compare_string_to_bool(self.configuration.DETECTION.compare)
+        if compare:
             return self._compare_with_osm(merged_nodes)
         return merged_nodes
 
     def _get_tiles_of_box(self, tile):
         tile_walker = TileWalker(tile=tile, square_image_length=self.square_image_length,
-                                 zoom_level=self.configuration.zoom_level, step_width=self.configuration.step_width)
+                                 zoom_level=self.configuration.DETECTION.zoomlevel,
+                                 step_width=self.configuration.DETECTION.stepwidth)
         tiles = tile_walker.get_tiles()
         return tiles
 
     def _get_tiles_of_box_with_streets(self, streets, tile):
         street_walker = StreetWalker(tile=tile, square_image_length=self.square_image_length,
-                                     zoom_level=self.configuration.zoom_level, step_width=self.configuration.step_width)
+                                     zoom_level=self.configuration.DETECTION.zoomlevel,
+                                     step_width=self.configuration.DETECTION.stepwidth)
         tiles = []
         for street in streets:
             street_tiles = street_walker.get_tiles(street)
@@ -107,10 +114,11 @@ class BoxWalker:
 
     def _compare_with_osm(self, detected_nodes):
         comparator = OsmComparator(max_distance=self.max_distance)
-        return comparator.compare(detected_nodes=detected_nodes, tag=self.configuration.tag, bbox=self.bbox)
+        tag = Tag(key=self.configuration.DETECTION.key, value=self.configuration.DETECTION.value)
+        return comparator.compare(detected_nodes=detected_nodes, tag=tag, bbox=self.bbox)
 
     def hit(self, prediction):
-        return prediction[self.configuration.word] > self.configuration.barrier
+        return prediction[self.configuration.DETECTION.word] > float(self.configuration.DETECTION.barrier)
 
     @staticmethod
     def _printer(message):
@@ -121,3 +129,7 @@ class BoxWalker:
         global_mercator = GlobalMercator()
         resolution = global_mercator.Resolution(zoom_level)
         return resolution * (square_image_length / 2)
+
+    @staticmethod
+    def _compare_string_to_bool(compare):
+        return compare.lower() in ['true', '1', 't', 'y', 'yes']

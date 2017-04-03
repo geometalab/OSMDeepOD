@@ -54,7 +54,7 @@ The file looks like the following:
 [DETECTION]
 Network = /path/to/the/trained/convnet
 Labels = /path/to/the/label/file/of/the/convnet
-DetectionBarrier = 0.99
+Barrier = 0.99
 Word = crosswalk
 Key = highway
 Value = crossing
@@ -68,6 +68,8 @@ StepWidth = 0.66
 Server = 127.0.0.1
 Port = 40001
 Password = crosswalks
+
+[JOB]
 BboxSize = 2000
 Timeout = 5400
 ```
