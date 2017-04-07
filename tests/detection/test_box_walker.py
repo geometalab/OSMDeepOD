@@ -32,15 +32,3 @@ def test_walk(zurich_bellevue, default_config):
     assert crosswalk_nodes is not None
     assert len(crosswalk_nodes) == 0
 
-
-def test_compare_to_bool_true():
-    assert BoxWalker._compare_string_to_bool('true')
-    assert BoxWalker._compare_string_to_bool('True')
-    assert BoxWalker._compare_string_to_bool('yes')
-    assert BoxWalker._compare_string_to_bool('Yes')
-
-
-def test_compare_to_bool_false():
-    assert not BoxWalker._compare_string_to_bool('no')
-    assert not BoxWalker._compare_string_to_bool('n')
-    assert not BoxWalker._compare_string_to_bool('fooboo')

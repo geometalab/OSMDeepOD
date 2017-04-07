@@ -69,12 +69,15 @@ class BoxWalker:
             raise Exception(error_message)
 
         self._printer("Start detection.")
-        if self.configuration.DETECTION.followstreets:
+
+        follow_streets = self.configuration.to_bool(self.configuration.DETECTION.followstreets)
+
+        if follow_streets:
             tiles = self._get_tiles_of_box_with_streets(self.streets, self.tile)
         else:
             tiles = self._get_tiles_of_box(self.tile)
 
-        self._printer(str(len(tiles)) + " images to analyze.")
+        self._printer("{0} images to analyze.".format(str(len(tiles))))
 
         images = [tile.image for tile in tiles]
         predictions = self.convnet.detect(images)
@@ -86,7 +89,8 @@ class BoxWalker:
         self._printer("Stop detection.")
         merged_nodes = self._merge_near_nodes(detected_nodes)
 
-        compare = self._compare_string_to_bool(self.configuration.DETECTION.compare)
+        compare = self.configuration.to_bool(self.configuration.DETECTION.compare)
+        print('Compare with OpenStreetMap entries: {0}'.format(compare))
         if compare:
             return self._compare_with_osm(merged_nodes)
         return merged_nodes
@@ -122,14 +126,10 @@ class BoxWalker:
 
     @staticmethod
     def _printer(message):
-        print(str(datetime.datetime.now()) + ": " + message)
+        print("{0}: {1}".format(str(datetime.datetime.now()), message))
 
     @staticmethod
     def _calculate_max_distance(zoom_level, square_image_length):
         global_mercator = GlobalMercator()
         resolution = global_mercator.Resolution(zoom_level)
         return resolution * (square_image_length / 2)
-
-    @staticmethod
-    def _compare_string_to_bool(compare):
-        return compare.lower() in ['true', '1', 't', 'y', 'yes']

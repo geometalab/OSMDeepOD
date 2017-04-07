@@ -19,3 +19,16 @@ def test_default_values(configuration):
     assert configuration.DETECTION.followstreets == 'yes'
     assert configuration.JOB.timeout == '5400'
     assert configuration.JOB.bboxsize == '2000'
+
+
+def test_to_bool_true(configuration):
+    assert configuration.to_bool('true')
+    assert configuration.to_bool('True')
+    assert configuration.to_bool('yes')
+    assert configuration.to_bool('Yes')
+
+
+def test_to_bool_false(configuration):
+    assert not configuration.to_bool('no')
+    assert not configuration.to_bool('n')
+    assert not configuration.to_bool('fooboo')

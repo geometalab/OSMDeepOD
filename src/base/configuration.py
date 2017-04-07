@@ -50,3 +50,7 @@ class Configuration:
         for section in sections:
             if not config_parser.has_section(section['section']):
                 raise Exception('Section {0} is not in config file!'.format(section['section']))
+
+    @staticmethod
+    def to_bool(string):
+        return string.lower() in ['true', '1', 't', 'y', 'yes']
