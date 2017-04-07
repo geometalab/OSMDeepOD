@@ -10,7 +10,7 @@ from src.role.manager import Manager
 
 
 def redis_args(configuration):
-    return [configuration.server, configuration.port, configuration.password]
+    return [configuration.REDIS.server, configuration.REDIS.port, configuration.REDIS.password]
 
 
 def manager(args, configuration):
@@ -22,8 +22,8 @@ def manager(args, configuration):
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
-                ip=configuration.server,
-                port=configuration.port))
+                ip=configuration.REDIS.server,
+                port=configuration.REDIS.port))
     finally:
         print('Manager has finished!')
 
@@ -36,8 +36,8 @@ def job_worker(_, configuration):
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
-                ip=configuration.server,
-                port=configuration.port))
+                ip=configuration.REDIS.server,
+                port=configuration.REDIS.port))
     finally:
         print('JobWorker has finished!')
 
@@ -50,8 +50,8 @@ def result_worker(_, configuration):
     except ConnectionError:
         print(
             'Failed to connect to redis instance [{ip}:{port}], is it running? Check connection arguments and retry.'.format(
-                ip=configuration,
-                port=configuration))
+                ip=configuration.REDIS.server,
+                port=configuration.REDIS.port))
     finally:
         print('ResultWorker has finished!')
 

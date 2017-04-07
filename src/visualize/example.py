@@ -44,8 +44,8 @@ def draw_nodes(nodes, tile):
 
 walker = BoxWalker(bbox=small_bbox())
 
-walker.configuration.compare = False
-walker.configuration.follow_streets = True
+walker.configuration.DETECTION.compare = False
+walker.configuration.DETECTION.followstreets = True
 
 walker.load_streets()
 walker.load_tiles()

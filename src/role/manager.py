@@ -39,11 +39,11 @@ class Manager:
                 self.small_bboxes.append(small_bbox)
 
     def _enqueue_jobs(self, configuration):
-        redis_connection = Redis(host=configuration.server, port=configuration.port, password=configuration.password)
+        redis_connection = Redis(host=configuration.REDIS.server, port=configuration.REDIS.port, password=configuration.REDIS.password)
         queue = Queue(self.job_queue_name, connection=redis_connection)
         for small_bbox in self.small_bboxes:
             queue.enqueue_call(func=worker_functions.detect, args=(small_bbox, self.configuration),
-                               timeout=self.configuration.timeout)
+                               timeout=self.configuration.JOB.timeout)
         print('Number of enqueued jobs in queue \'{0}\': {1}'.format(self.job_queue_name, len(queue)))
 
     def _calc_rows(self):
