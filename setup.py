@@ -31,7 +31,7 @@ def get_requirements():
 
 
 setup(
-    name="OSM-Crosswalk-Detection",
+    name="OSMDeepOD",
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     author="Buehler Severin and Kurath Samuel",
