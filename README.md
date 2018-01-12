@@ -11,11 +11,12 @@ The project uses the open source software library TensorFlow, with a retrained I
 
 This work started as part of a semester thesis autumn 2015 at Geometa Lab, University of Applied Sciences Rapperswil (HSR). See [Twitter hashtag #OSMDeepOD](https://twitter.com/hashtag/OSMDeepOD) for news.
 
-## Material 
+## Material and Publications
+ * Part of KTI innovation check 2017/2018.
+ * "OSMDeepOD - Object Detection on Orthophotos with and for VGI2, by Samuel Kurath, Raphael Das Gupta and Stefan Keller. GI_Forum 2017, Issue 2, pages 173 -188, DOI: 10.1553/giscience2017_02_s173. Web: http://hw.oeaw.ac.at/0xc1aa500e%200x00373589.pdf (Jan 2018)
  * [Paper AGIT 2016 (de) by S. Keller & S. Kurath, 7.7.2016](http://gispoint.de/gisopen-paper/3875-erkennung-von-fussgaengerstreifen-aus-orthophotos/agit.html?IDjournalTitle=5&tx_browser_pi1[IDedition]=5)
  * Presentation (en) by S. Keller at GEOSmart Innovation Day 2016: tba.
  * [Presentation (en/de) by S. Bühler at PyDataZRH, 6.12.2016](https://twitter.com/SeverinBuhler/status/803193080211996672)
- * tba.
 
 ## Overview
 ![Detection-Example1](imgs/big_picture.png)
