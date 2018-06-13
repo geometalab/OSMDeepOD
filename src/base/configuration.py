@@ -17,7 +17,7 @@ class Configuration:
                                                  {'option': 'value', 'fallback': 'crossing'},
                                                  {'option': 'zoomlevel', 'fallback': '19'},
                                                  {'option': 'compare', 'fallback': 'yes'},
-                                                 {'option': 'orthophoto', 'fallback': 'other'},
+                                                 {'option': 'orthophoto', 'fallback': 'wms'},
                                                  {'option': 'stepwidth', 'fallback': '0.66'},
                                                  {'option': 'followstreets', 'fallback': 'yes'}]},
             {'section': 'JOB', 'options': [{'option': 'bboxsize', 'fallback': '2000'},

@@ -12,7 +12,6 @@ from src.data.osm.osm_comparator import OsmComparator
 from src.data.osm.street_loader import StreetLoader
 from src.detection.street_walker import StreetWalker
 from src.detection.tensor.detector import Detector
-from src.data.orthofoto.other.other_api import OtherApi
 from src.detection.tile_walker import TileWalker
 
 logger = logging.getLogger(__name__)
@@ -28,9 +27,7 @@ class BoxWalker:
         self.square_image_length = 50
         self.max_distance = self._calculate_max_distance(self.configuration.DETECTION.zoomlevel,
                                                          self.square_image_length)
-        self.image_api = OtherApi(
-            self.configuration.DETECTION.zoomlevel) if self.configuration.DETECTION.orthophoto is 'other' else self._get_image_api(
-            self.configuration.DETECTION.orthophoto)
+        self.image_api = self._get_image_api(self.configuration.DETECTION.orthophoto)
 
     @staticmethod
     def _get_image_api(image_api):

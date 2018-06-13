@@ -1,12 +1,11 @@
 import pytest
 
 from src.data.orthofoto.tile_loader import TileLoader
-from src.data.orthofoto.other.other_api import OtherApi
 
 
 @pytest.fixture(scope='module')
 def image_api():
-    return OtherApi()
+    return WmsApi()
 
 
 def test_satellite_image_download(zurich_bellevue, image_api):

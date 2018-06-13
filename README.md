@@ -61,7 +61,7 @@ Key = highway
 Value = crossing
 ZoomLevel = 19
 Compare = yes
-Orthofoto = other
+Orthofoto = wms
 FollowStreets = yes
 StepWidth = 0.66
 
@@ -86,16 +86,8 @@ Some hints to the config file:
 
 
 ### Own Orthofotos
-To use your own Orthofotos you have to do the following steps:
 
-1. Add a new directory to `src/data/orthofoto`
-2. Add a new module to the directory with the name: <code><var>&lt;your_new_directory></var>_api.py</code>
-3. Create a class in the module with the name: <code><var>&lt;Your_new_directory></var>Api</code> (First letter needs to be uppercase)
-4. Implement the function `def get_image(self, bbox):` and returns a pillow image of the bbox
-5. After that you can use your api with the parameter <code>--orthofots <var>&lt;your_new_directory></var></code>
-
-If you have problems with the implementation have a look at the wms or other example.
-
+Provide it as a WMS from a MapProxy server.
 
 ## Dataset
 During this work, we have collected our own dataset with swiss crosswalks and non-crosswalks. The pictures have a size of 50x50 pixels and are available by request.
