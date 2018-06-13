@@ -6,7 +6,7 @@ from importlib import import_module
 from src.base.globalmaptiles import GlobalMercator
 from src.base.configuration import Configuration
 from src.base.tag import Tag
-from src.data.orthofoto.tile_loader import TileLoader
+from src.base.tile import Tile
 from src.data.osm.node_merger import NodeMerger
 from src.data.osm.osm_comparator import OsmComparator
 from src.data.osm.street_loader import StreetLoader
@@ -21,13 +21,13 @@ class BoxWalker:
     def __init__(self, bbox, configuration=None):
         self.configuration = Configuration() if configuration is None else configuration
         self.bbox = bbox
-        self.tile = None
         self.streets = []
         self.convnet = None
         self.square_image_length = 50
         self.max_distance = self._calculate_max_distance(self.configuration.DETECTION.zoomlevel,
                                                          self.square_image_length)
         self.image_api = self._get_image_api(self.configuration.DETECTION.orthophoto)
+        self.tile = Tile(image_api=self.image_api, bbox=self.bbox)
 
     @staticmethod
     def _get_image_api(image_api):
@@ -44,13 +44,6 @@ class BoxWalker:
             logger.error(error_message)
             raise Exception(error_message)
 
-    def load_tiles(self):
-        self._printer("Start image loading.")
-        loader = TileLoader(bbox=self.bbox, image_api=self.image_api)
-        loader.load_tile()
-        self.tile = loader.tile
-        self._printer("Stop image loading.")
-
     def load_streets(self):
         self._printer("Start street loading.")
         street_loader = StreetLoader()
@@ -59,7 +52,7 @@ class BoxWalker:
         self._printer("Stop street loading.")
 
     def walk(self):
-        ready_for_walk = (not self.tile is None) and (not self.convnet is None)
+        ready_for_walk = not self.convnet is None
         if not ready_for_walk:
             error_message = "Not ready for walk. Load tiles and convnet first"
             logger.error(error_message)

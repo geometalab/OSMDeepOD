@@ -23,7 +23,6 @@ def get_nodes(bbox, configuration):
 
     if len(walker.streets) > 0 or not follow_streets:
         walker.load_convnet()
-        walker.load_tiles()
         crosswalk_nodes = walker.walk()
     return crosswalk_nodes
 
