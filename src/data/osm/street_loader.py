@@ -9,8 +9,8 @@ logger = logging.getLogger(__name__)
 
 class StreetLoader:
     street_categories = [
-        'road',
-        'trunk',
+#        'road',
+#        'trunk',
         'primary',
         'secondary',
         'tertiary',
@@ -29,7 +29,7 @@ class StreetLoader:
         self.tags = self._generate_tags()
 
     def load_data(self, bbox):
-        data = self.api.get(bbox, self.tags)
+        data = self.api.get(bbox, self.tags, nodes=True, ways=True, relations=False)
         return self._generate_street(data)
 
     def _add(self, categories):
