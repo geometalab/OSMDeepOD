@@ -24,9 +24,7 @@ class Detector:
             graph_def.ParseFromString(f.read())
             return graph_def
 
-    def detect(self, images):
-        np_images = [self._pil_to_np(image) for image in images]
-
+    def detect(self, tiles):
         pool = ThreadPool()
         with tf.Graph().as_default() as imported_graph:
             tf.import_graph_def(self.graph_def, name='')
@@ -34,14 +32,13 @@ class Detector:
         with tf.Session(graph=imported_graph) as sess:
             with tf.device("/gpu:0"):
                 softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
-                threads = [pool.apply_async(self.operation,
-                                            args=(sess, softmax_tensor, np_images[image_number], image_number,)) for
-                           image_number in range(len(np_images))]
+
+                prediction_image = pool.map(lambda image_number_tile: self.operation(sess, softmax_tensor, self._pil_to_np(image_number_tile[1].image), image_number_tile[1], image_number_tile[0]), enumerate(tiles), 16)
+
                 answers = []
-                for thread in threads:
-                    prediction, image_number = thread.get()
+                for prediction, tile in prediction_image:
                     prediction = np.squeeze(prediction)
-                    answer = {'image_number': image_number}
+                    answer = {'tile': tile}
                     for node_id, _ in enumerate(prediction):
                         answer[self.labels[node_id]] = prediction[node_id]
                     answers.append(answer)
@@ -52,6 +49,8 @@ class Detector:
         return np.array(image)[:, :, 0:3]
 
     @staticmethod
-    def operation(sess, softmax, image, image_number):
+    def operation(sess, softmax, image, tile, image_number):
+        if image_number % 50 == 0:
+            print("operation {0}".format(image_number))
         prediction = sess.run(softmax, {'DecodeJpeg:0': image})
-        return prediction, image_number
+        return prediction, tile
