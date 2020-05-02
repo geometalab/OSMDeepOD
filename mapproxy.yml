@@ -1,0 +1,43 @@
+layers:
+   - name: osm
+     title: osm
+     sources: [cache_osm]
+   - name: bing
+     title: bing
+     sources: [cache_bing]
+   - name: ign
+     title: ign
+     sources: [cache_ign]
+
+caches:
+  cache_osm:
+    grids: [webmercator]
+    sources: [source_osm]
+  cache_bing:
+    grids: [webmercator]
+    sources: [source_bing]
+  cache_ign:
+    grids: [webmercator]
+    sources: [source_ign]
+
+sources:
+  source_osm:
+    type: tile
+    grid: GLOBAL_WEBMERCATOR
+    url: http://a.tile.openstreetmap.org/%(z)s/%(x)s/%(y)s.png
+  source_bing:
+    type: tile
+    grid: GLOBAL_WEBMERCATOR
+    url: https://t2.ssl.ak.tiles.virtualearth.net/tiles/a%(quadkey)s.jpeg?g=4401&n=z
+  source_ign:
+    type: tile
+    grid: GLOBAL_WEBMERCATOR
+    url: https://proxy-ign.openstreetmap.fr/94GjiyqD/bdortho/%(z)s/%(x)s/%(y)s.jpg
+
+grids:
+ webmercator:
+   base: GLOBAL_WEBMERCATOR
+
+services:
+  demo:
+  wms:

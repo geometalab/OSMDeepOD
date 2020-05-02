@@ -5,6 +5,7 @@ from io import BytesIO
 from PIL import Image
 
 from src.base import geo_helper
+from src.base.globalmaptiles import GlobalMercator
 from src.data.orthofoto.wms.auth_monkey_patch import AuthMonkeyPatch
 from requests_ntlm import HttpNtlmAuth
 
@@ -17,6 +18,7 @@ class WmsApi:
         self.auth = self.set_auth()
         self.zoom_level = zoom_level
         self._auth_monkey_patch(self.auth)
+        self.mercator = GlobalMercator()
 
         from owslib.wms import WebMapService
         self.wms = WebMapService(url=self.config.get(section='WMS', option='Url'),
@@ -42,14 +44,19 @@ class WmsApi:
         AuthMonkeyPatch(auth)
 
     def get_image(self, bbox):
+        bbox_ = self._box(bbox)
+        bbox_ = self.mercator.LatLonToMeters(bbox_[3], bbox_[0]) + self.mercator.LatLonToMeters(bbox_[1], bbox_[2])
         size = self._calculate_image_size(bbox, self.zoom_level)
         image = self._get(layers=[self.config.get(section='WMS', option='Layer')],
                           srs=self.config.get(section='WMS', option='Srs'),
-                          bbox=self._box(bbox),
+                          bbox=bbox_,
                           size=size,
                           format='image/jpeg',
                           )
         return image
+
+    def get_image_size(self, bbox):
+        return self._calculate_image_size(bbox, self.zoom_level)
 
     @staticmethod
     def _calculate_image_size(bbox, zoom_level):

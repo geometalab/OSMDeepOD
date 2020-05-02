@@ -15,9 +15,4 @@ class Walker:
         return resolution * (self._square_image_length * self._step_width)
 
     def _get_squared_tiles(self, nodes):
-        square_tiles = []
-        for node in nodes:
-            tile = self.tile.get_tile_by_node(node, self._square_image_length)
-            if self.tile.bbox.in_bbox(node):
-                square_tiles.append(tile)
-        return square_tiles
+        return map(lambda node: self.tile.get_tile_by_node(node, self._square_image_length), nodes)

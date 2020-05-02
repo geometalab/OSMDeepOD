@@ -1,36 +1,75 @@
 import datetime
 import logging
+import threading
+import queue
 
 from importlib import import_module
+from itertools import chain
 
 from src.base.globalmaptiles import GlobalMercator
 from src.base.configuration import Configuration
 from src.base.tag import Tag
-from src.data.orthofoto.tile_loader import TileLoader
+from src.base.tile import Tile
 from src.data.osm.node_merger import NodeMerger
 from src.data.osm.osm_comparator import OsmComparator
 from src.data.osm.street_loader import StreetLoader
 from src.detection.street_walker import StreetWalker
 from src.detection.tensor.detector import Detector
-from src.data.orthofoto.other.other_api import OtherApi
 from src.detection.tile_walker import TileWalker
 
 logger = logging.getLogger(__name__)
+
+
+class BackgroundGenerator(threading.Thread):
+    def __init__(self, generator, queue):
+        threading.Thread.__init__(self)
+        self.queue = queue
+        self.generator = generator
+        self.daemon = True
+        #self.start()
+
+    def run(self):
+        for item in self.generator:
+            print("put: " + str(self.queue.qsize()))
+            self.queue.put(item)
+        self.queue.put(None)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        print("next: " + str(self.queue.qsize()))
+        next_item = self.queue.get()
+        if next_item is None:
+             raise StopIteration
+        return next_item
+
+
+class BackgroundGeneratorPool:
+    def __init__(self, generator, n=8):
+        q = queue.Queue(100)
+        self.pool = list(map(lambda _: BackgroundGenerator(generator, q), range(n)))
+        for b in self.pool:
+            b.start()
+
+    def __iter__(self):
+        return self.pool[0].__iter__()
+
+    def __next__(self):
+        return self.pool[0].__next__()
 
 
 class BoxWalker:
     def __init__(self, bbox, configuration=None):
         self.configuration = Configuration() if configuration is None else configuration
         self.bbox = bbox
-        self.tile = None
         self.streets = []
         self.convnet = None
-        self.square_image_length = 50
+        self.square_image_length = 100
         self.max_distance = self._calculate_max_distance(self.configuration.DETECTION.zoomlevel,
                                                          self.square_image_length)
-        self.image_api = OtherApi(
-            self.configuration.DETECTION.zoomlevel) if self.configuration.DETECTION.orthophoto is 'other' else self._get_image_api(
-            self.configuration.DETECTION.orthophoto)
+        self.image_api = self._get_image_api(self.configuration.DETECTION.orthophoto)
+        self.tile = Tile(image_api=self.image_api, bbox=self.bbox)
 
     @staticmethod
     def _get_image_api(image_api):
@@ -47,13 +86,6 @@ class BoxWalker:
             logger.error(error_message)
             raise Exception(error_message)
 
-    def load_tiles(self):
-        self._printer("Start image loading.")
-        loader = TileLoader(bbox=self.bbox, image_api=self.image_api)
-        loader.load_tile()
-        self.tile = loader.tile
-        self._printer("Stop image loading.")
-
     def load_streets(self):
         self._printer("Start street loading.")
         street_loader = StreetLoader()
@@ -62,7 +94,7 @@ class BoxWalker:
         self._printer("Stop street loading.")
 
     def walk(self):
-        ready_for_walk = (not self.tile is None) and (not self.convnet is None)
+        ready_for_walk = not self.convnet is None
         if not ready_for_walk:
             error_message = "Not ready for walk. Load tiles and convnet first"
             logger.error(error_message)
@@ -77,15 +109,14 @@ class BoxWalker:
         else:
             tiles = self._get_tiles_of_box(self.tile)
 
-        self._printer("{0} images to analyze.".format(str(len(tiles))))
+        #self._printer("{0} images to analyze.".format(str(len(tiles))))
 
-        images = [tile.image for tile in tiles]
-        predictions = self.convnet.detect(images)
+        tiles = BackgroundGeneratorPool(tiles, n=32) # Fetch next images while running detect
+        predictions = self.convnet.detect(tiles)
         detected_nodes = []
-        for i, _ in enumerate(tiles):
-            prediction = predictions[i]
+        for prediction in predictions:
             if self.hit(prediction):
-                detected_nodes.append(tiles[i].get_centre_node())
+                detected_nodes.append(prediction['tile'].get_centre_node())
         self._printer("Stop detection.")
         merged_nodes = self._merge_near_nodes(detected_nodes)
 
@@ -106,11 +137,9 @@ class BoxWalker:
         street_walker = StreetWalker(tile=tile, square_image_length=self.square_image_length,
                                      zoom_level=self.configuration.DETECTION.zoomlevel,
                                      step_width=self.configuration.DETECTION.stepwidth)
-        tiles = []
-        for street in streets:
-            street_tiles = street_walker.get_tiles(street)
-            tiles += street_tiles
-        return tiles
+
+        return chain.from_iterable(map(street_walker.get_tiles, streets))
+
 
     def _merge_near_nodes(self, node_list):
         merger = NodeMerger(node_list, self.max_distance)
