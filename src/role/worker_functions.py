@@ -7,10 +7,10 @@ from src.detection.box_walker import BoxWalker
 
 
 def enqueue_results(result_nodes, redis_connection):
-    q = Queue('results', connection=redis_connection)
+    q = Queue("results", connection=redis_connection)
     q.enqueue_call(func=store, args=(result_nodes,), timeout=5400)
     for result_node in result_nodes:
-        redis_connection.rpush('visualizing', result_node.to_geojson())
+        redis_connection.rpush("visualizing", result_node.to_geojson())
 
 
 def get_nodes(bbox, configuration):
@@ -30,27 +30,30 @@ def get_nodes(bbox, configuration):
 
 def detect(bbox, configuration):
     nodes = get_nodes(bbox, configuration)
-    redis_connection = Redis(host=configuration.REDIS.server, port=configuration.REDIS.port,
-                             password=configuration.REDIS.password)
+    redis_connection = Redis(
+        host=configuration.REDIS.server,
+        port=configuration.REDIS.port,
+        password=configuration.REDIS.password,
+    )
     enqueue_results(nodes, redis_connection)
 
 
 def store(nodes):
-    store_path = os.path.join(os.getcwd(), 'detected_nodes.json')
+    store_path = os.path.join(os.getcwd(), "detected_nodes.json")
     if not os.path.exists(store_path):
-        with open(store_path, 'w') as f:
+        with open(store_path, "w") as f:
             f.write('{ "nodes" : []}')
 
-    with open(store_path, 'r') as f:
+    with open(store_path, "r") as f:
         data = json.load(f)
 
     for node in nodes:
-        data['nodes'].append({"latitude": node.latitude, "longitude": node.longitude})
+        data["nodes"].append({"latitude": node.latitude, "longitude": node.longitude})
 
-    with open(store_path, 'w') as f:
+    with open(store_path, "w") as f:
         json.dump(data, f)
 
-    print('{0} potential nodes detected so far'.format(len(data['nodes'])))
+    print("{0} potential nodes detected so far".format(len(data["nodes"])))
 
 
 def standalone(bboxes=None, configuration=None):

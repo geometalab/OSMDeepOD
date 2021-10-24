@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  nbs:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      target: default
+    user: "1000:1000"
+    volumes:
+      - ../:/home/jovyan/work/OSMDeepOD
+      - /run/media/nicola/ExternalData/bern_0.1m_aufloesung:/test-data/bern
+      - /run/media/nicola/LaCie/SWISSIMAGE_RS:/test-data/SWISSIMAGE_RS:ro
+    ports:
+      - "8088:8888"
+    shm_size: '10gb'

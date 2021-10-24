@@ -5,3 +5,8 @@ dist/
 .eggs/
 OSM_Crosswalk_Detection.egg-info
 .venv*/
+test-data/
+pre-processing-data/
+*.gpkg
+*.geojson
+.ipynb_checkpoints/

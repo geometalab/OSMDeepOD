@@ -103,3 +103,8 @@ documentation/main.pdf
 .venv*/
 *.swp
 *.tar
+src/test-data/
+pre-processing-data/
+*.gpkg
+*.geojson
+.ipynb_checkpoints/
