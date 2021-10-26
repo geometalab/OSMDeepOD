@@ -6,10 +6,19 @@ services:
       dockerfile: docker/Dockerfile
       target: default
     user: "1000:1000"
+    command: [
+      "start-notebook.sh",
+      "--ip=0.0.0.0",
+      # "--allow-root",
+      "--port=8088",
+      "--NotebookApp.base_url=/",
+      "--NotebookApp.token='7HDOWxPSk3hw0hB6hoWJ7l9YCvGgoqaNes4FLBvpaABrTJDTWE1AJPJjbt8zINfbLQ7m'",
+      "--NotebookApp.password='7HDOWxPSk3hw0hB6hoWJ7l9YCvGgoqaNes4FLBvpaABrTJDTWE1AJPJjbt8zINfbLQ7m'",
+    ]
     volumes:
       - ../:/home/jovyan/work/OSMDeepOD
-      - /run/media/nicola/ExternalData/bern_0.1m_aufloesung:/test-data/bern
-      - /run/media/nicola/LaCie/SWISSIMAGE_RS:/test-data/SWISSIMAGE_RS:ro
     ports:
-      - "8088:8888"
+      - "8088:8088"
+      # voila default port
+      - "8866:8866"
     shm_size: '10gb'

@@ -22,6 +22,8 @@ RUN  mamba install --quiet -c conda-forge -y \
     ipyleaflet \
     ipyvuetify \
     xarray_leaflet \
+    voila \
+    voila-gridstack \
     && mamba clean -tipsy \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}"
