@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  nbs:
+  nbs: &nb
     build:
       context: ../
       dockerfile: docker/Dockerfile
@@ -21,4 +21,11 @@ services:
       - "8088:8088"
       # voila default port
       - "8866:8866"
+      # image_app port
+      - "8123:8123"
     shm_size: '10gb'
+  image-api:
+    <<: *nb
+    command: >-
+      echo 0
+    ports: []
