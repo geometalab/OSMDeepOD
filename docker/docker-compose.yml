@@ -5,6 +5,8 @@ services:
       context: ../
       dockerfile: docker/Dockerfile
       target: default
+      # when cuda support is needed:
+      # target: cuda
     user: "1000:1000"
     command: [
       "start-notebook.sh",
