@@ -20,6 +20,7 @@ RUN mamba install --quiet -y -c fastchan \
     && fix-permissions "/home/${NB_USER}"
 
 RUN mamba install --quiet -c conda-forge -y \
+    nbconvert \
     pyrosm \
     pyarrow \
     sidecar \

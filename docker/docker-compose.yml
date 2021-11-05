@@ -4,6 +4,7 @@ services:
     build:
       context: ../
       dockerfile: docker/Dockerfile
+      # when no gpu available:
       target: default
       # when cuda support is needed:
       # target: cuda
@@ -26,8 +27,44 @@ services:
       # image_app port
       - "8123:8123"
     shm_size: '10gb'
-  image-api:
-    <<: *nb
-    command: >-
-      echo 0
-    ports: []
+
+  # ONLY NEEDED WHEN DRAWING IMAGE BOXES
+  # ims: &ims
+  #   <<: *nb
+  #   entrypoint: []
+  #   command: >-
+  #     bash -c '
+  #     cd /home/jovyan/work/OSMDeepOD/src/
+  #     && voila 002_BoxImagesTool.ipynb --port 8234 --no-browser --Voila.ip="0.0.0.0"'
+  # 
+  # im-service:
+  #   <<: *ims
+  #   command: >-
+  #     bash -c '
+  #     cd /home/jovyan/work/OSMDeepOD/src/
+  #     && jupyter nbconvert --to notebook --execute 999_image_service.ipynb'
+  #
+  # proxy:
+  #   image: njordan/env-configurable-caddy
+  #   environment:
+  #     # password: E2enzQKJ7I7UhSBcggUpGj17MHooY2kt6Qr
+  #     # hash: JDJhJDE0JHRJY2FReGFGTGJwWU5uSjB2T0EzZXVWMUhGbUhlcHNTU1N5N250YVJYOUFDTWFLcmtBWU9l
+  #     CADDY_CONFIG: |
+  #       # {
+  #       #   email njordan.hsr@gmail.com
+  #       # }
+  #       :8000 {
+  #         basicauth / {
+  #            segmentation-hero JDJhJDE0JHRJY2FReGFGTGJwWU5uSjB2T0EzZXVWMUhGbUhlcHNTU1N5N250YVJYOUFDTWFLcmtBWU9l
+  #         }
+  #         route {
+  #           reverse_proxy /nbs* {
+  #             to nbs:8088
+  #           }
+  #           reverse_proxy /* {
+  #             to ims:8234
+  #           }
+  #         }
+  #       }
+  #   ports:
+  #     - '8000:8000'
